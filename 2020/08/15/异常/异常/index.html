@@ -1,0 +1,381 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <meta charset="utf-8">
+  
+  
+  <title>异常 | Hexo</title>
+  <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+  <meta name="description" content="异常概念">
+<meta property="og:type" content="article">
+<meta property="og:title" content="异常">
+<meta property="og:url" content="http://example.com/2020/08/15/%E5%BC%82%E5%B8%B8/%E5%BC%82%E5%B8%B8/index.html">
+<meta property="og:site_name" content="Hexo">
+<meta property="og:description" content="异常概念">
+<meta property="og:locale" content="en_US">
+<meta property="og:image" content="https://s1.ax1x.com/2020/08/15/dFNmrt.png">
+<meta property="article:published_time" content="2020-08-15T04:41:20.000Z">
+<meta property="article:modified_time" content="2020-08-15T09:58:08.173Z">
+<meta property="article:author" content="John Doe">
+<meta property="article:tag" content="java基础">
+<meta property="article:tag" content="异常">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:image" content="https://s1.ax1x.com/2020/08/15/dFNmrt.png">
+  
+    <link rel="alternate" href="/atom.xml" title="Hexo" type="application/atom+xml">
+  
+  
+    <link rel="shortcut icon" href="/favicon.png">
+  
+  
+    
+<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/typeface-source-code-pro@0.0.71/index.min.css">
+
+  
+  
+<link rel="stylesheet" href="/css/style.css">
+
+  
+    
+<link rel="stylesheet" href="/fancybox/jquery.fancybox.min.css">
+
+  
+<meta name="generator" content="Hexo 5.3.0"></head>
+
+<body>
+  <div id="container">
+    <div id="wrap">
+      <header id="header">
+  <div id="banner"></div>
+  <div id="header-outer" class="outer">
+    <div id="header-title" class="inner">
+      <h1 id="logo-wrap">
+        <a href="/" id="logo">Hexo</a>
+      </h1>
+      
+    </div>
+    <div id="header-inner" class="inner">
+      <nav id="main-nav">
+        <a id="main-nav-toggle" class="nav-icon"></a>
+        
+          <a class="main-nav-link" href="/">Home</a>
+        
+          <a class="main-nav-link" href="/archives">Archives</a>
+        
+      </nav>
+      <nav id="sub-nav">
+        
+          <a id="nav-rss-link" class="nav-icon" href="/atom.xml" title="RSS Feed"></a>
+        
+        <a id="nav-search-btn" class="nav-icon" title="Search"></a>
+      </nav>
+      <div id="search-form-wrap">
+        <form action="//google.com/search" method="get" accept-charset="UTF-8" class="search-form"><input type="search" name="q" class="search-form-input" placeholder="Search"><button type="submit" class="search-form-submit">&#xF002;</button><input type="hidden" name="sitesearch" value="http://example.com"></form>
+      </div>
+    </div>
+  </div>
+</header>
+
+      <div class="outer">
+        <section id="main"><article id="post-异常/异常" class="h-entry article article-type-post" itemprop="blogPost" itemscope itemtype="https://schema.org/BlogPosting">
+  <div class="article-meta">
+    <a href="/2020/08/15/%E5%BC%82%E5%B8%B8/%E5%BC%82%E5%B8%B8/" class="article-date">
+  <time class="dt-published" datetime="2020-08-15T04:41:20.000Z" itemprop="datePublished">2020-08-15</time>
+</a>
+    
+  </div>
+  <div class="article-inner">
+    
+    
+      <header class="article-header">
+        
+  
+    <h1 class="p-name article-title" itemprop="headline name">
+      异常
+    </h1>
+  
+
+      </header>
+    
+    <div class="e-content article-entry" itemprop="articleBody">
+      
+        <h2 id="异常概念"><a href="#异常概念" class="headerlink" title="异常概念"></a>异常概念</h2><a id="more"></a>
+<p>javas是采用面向对象的方式来处理异常的。处理过程：</p>
+<ul>
+<li>1.抛出异常：在执行一个方法时，如果发生异常，则这个方法生成代表该异常的一个对象，停止当前执行路径，并把异常对象提交给JRE</li>
+<li>2.捕获异常：JRE得到该异常后，寻找相应的代码来处理该异常。JRE在方法的调用栈中查找，从生成异常的方法开始回溯，知道找到相应的异常处理代码为止。</li>
+</ul>
+<p><img src="https://s1.ax1x.com/2020/08/15/dFNmrt.png" alt="异常"></p>
+<h2 id="Exception"><a href="#Exception" class="headerlink" title="Exception"></a>Exception</h2><p>Exception是程序本身能够处理的异常，如：空指针异常(NullPointerException)、数组下标越界异常(ArrayIndexOutOfBoundsException)、类型转换异常(ClassCastException)、算术异常（ArithmeticException）等。</p>
+<p>Exception类时所有异常类的父类，其子类对应了各种各样可能出现的异常事件。通常java的异常可分为：</p>
+<ul>
+<li>1.RuntimeException运行时异常</li>
+<li>2.CheckedException已检查异常</li>
+</ul>
+<h2 id="RuntimeException运行时异常"><a href="#RuntimeException运行时异常" class="headerlink" title="RuntimeException运行时异常"></a>RuntimeException运行时异常</h2><p>大多数都是逻辑错误，需要程序猿去使用代码进行完善的异常</p>
+<p>比如：试图去除以零等等</p>
+<h2 id="CheckedException已检查异常"><a href="#CheckedException已检查异常" class="headerlink" title="CheckedException已检查异常"></a>CheckedException已检查异常</h2><p>也叫编译器异常：使用try/catch捕获异常、使用throws声明异常</p>
+<pre><code>package cn.yishan.exception;
+
+import java.io.FileNotFoundException;
+import java.io.FileReader;
+import java.io.IOException;
+
+/**
+* 使用try-catch处理异常
+* @author yishan
+*/
+public class Test02 &#123;
+    public static void main(String[] args) &#123;
+        FileReader reader = null;
+        try &#123;
+            reader = new FileReader(&quot;d:/a.txt&quot;);
+
+            char c1 = (char) reader.read();
+            System.out.println(c1);
+            //子类异常在父类异常前面
+        &#125; catch (FileNotFoundException e) &#123;
+            e.printStackTrace();
+        &#125; catch (IOException e) &#123;
+            e.printStackTrace();
+        &#125;finally &#123;
+            try &#123;
+                if (reader!=null)&#123;
+                    reader.close();
+                &#125;
+            &#125; catch (IOException e) &#123;
+                e.printStackTrace();
+            &#125;
+        &#125;
+    &#125;
+&#125;
+
+
+package cn.yishan.exception;
+
+import java.io.FileNotFoundException;
+import java.io.FileReader;
+import java.io.IOException;
+
+/**
+*使用throws声明异常
+*将异常抛出，谁调用我谁处理异常
+* @author yishan
+*/
+public class Test03 &#123;
+    public static void main(String[] args) throws IOException &#123;
+        readMyFile();
+    &#125;
+
+    public static void readMyFile() throws IOException &#123;
+        FileReader reader = null;
+            reader = new FileReader(&quot;d:/a.txt&quot;);
+
+            char c1 = (char) reader.read();
+            System.out.println(c1);
+            //子类异常在父类异常前面
+            &#125;
+        &#125;
+</code></pre>
+<h2 id="手动抛出异常-自定义异常总结"><a href="#手动抛出异常-自定义异常总结" class="headerlink" title="手动抛出异常_自定义异常总结"></a>手动抛出异常_自定义异常总结</h2><ul>
+<li><p>1.在程序中，可能会遇到JDK提供的任何标准异常类都无法充分描述清楚我们想要表达的问题，这种情况下可以创建自己的异常类，即自定义异常类。</p>
+</li>
+<li><p>2.自定义异常类只需从Exception类或者它的子类派生一个子类即可。</p>
+</li>
+<li><p>3.自定义异常类如果继承Exception类，则为受检查异常，必须对其进行处理；如果不想处理，可以让自定义异常类继承运行时异常RuntimeException类。</p>
+</li>
+<li><p>4.习惯上，自定义异常类应该包含2个构造器：一个是默认的构造器，另一个是带有详细信息的构造器。</p>
+<pre><code>  package cn.yishan.exception;
+  /**
+  * 继承运行时异常进行自定义异常
+  * @author yishan
+  */
+  public class Test04 &#123;
+      public static void main(String[] args) &#123;
+          Person p = new Person();
+          p.setAge(-10);
+      &#125;
+  &#125;
+
+  class Person&#123;
+      private int age;
+
+      public int getAge() &#123;
+          return age;
+      &#125;
+
+      public void setAge(int age) &#123;
+          if (age&lt;0)&#123;
+              throw new IllegalAgeException(&quot;年龄不能为负数&quot;);
+          &#125;
+          this.age = age;
+      &#125;
+  &#125;
+
+  class IllegalAgeException extends RuntimeException&#123;
+      public IllegalAgeException()&#123;
+
+      &#125;
+      public IllegalAgeException(String msg)&#123;
+          super(msg);
+      &#125;
+  &#125;
+</code></pre>
+<h4 id="使用异常机制的建议"><a href="#使用异常机制的建议" class="headerlink" title="使用异常机制的建议"></a>使用异常机制的建议</h4></li>
+<li><p>1.要避免使用异常处理代替错误处理，这样会降低程序的清晰性，并且效率低下。</p>
+</li>
+<li><p>2.处理异常不可以代替简单测试—只在异常情况下使用异常机制。</p>
+</li>
+<li><p>3.不要进行小粒度的异常处理—应该讲整个任务包装在一个try语句块中。</p>
+</li>
+<li><p>4.异常往往在高层处理</p>
+</li>
+</ul>
+
+      
+    </div>
+    <footer class="article-footer">
+      <a data-url="http://example.com/2020/08/15/%E5%BC%82%E5%B8%B8/%E5%BC%82%E5%B8%B8/" data-id="ckkkvm238002xyo59cnrqckzb" data-title="异常" class="article-share-link">Share</a>
+      
+      
+      
+  <ul class="article-tag-list" itemprop="keywords"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/java%E5%9F%BA%E7%A1%80/" rel="tag">java基础</a></li><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/%E5%BC%82%E5%B8%B8/" rel="tag">异常</a></li></ul>
+
+    </footer>
+  </div>
+  
+    
+<nav id="article-nav">
+  
+    <a href="/2020/08/15/%E9%9B%86%E5%90%88/%E5%AE%B9%E5%99%A8/" id="article-nav-newer" class="article-nav-link-wrap">
+      <strong class="article-nav-caption">Newer</strong>
+      <div class="article-nav-title">
+        
+          容器
+        
+      </div>
+    </a>
+  
+  
+    <a href="/2020/08/14/%E5%B8%B8%E7%94%A8API/Math%E7%B1%BB%E3%80%81File%E7%B1%BB%E3%80%81%E6%9E%9A%E4%B8%BE/" id="article-nav-older" class="article-nav-link-wrap">
+      <strong class="article-nav-caption">Older</strong>
+      <div class="article-nav-title">Math类、File类、枚举</div>
+    </a>
+  
+</nav>
+
+  
+</article>
+
+
+</section>
+        
+          <aside id="sidebar">
+  
+    
+
+  
+    
+  <div class="widget-wrap">
+    <h3 class="widget-title">Tags</h3>
+    <div class="widget">
+      <ul class="tag-list" itemprop="keywords"><li class="tag-list-item"><a class="tag-list-link" href="/tags/AOP/" rel="tag">AOP</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/ArrayList/" rel="tag">ArrayList</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/Collection/" rel="tag">Collection</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/HashMap/" rel="tag">HashMap</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/HashSet/" rel="tag">HashSet</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/IO/" rel="tag">IO</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/IOC/" rel="tag">IOC</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/Lambad/" rel="tag">Lambad</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/LinkedList/" rel="tag">LinkedList</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/Linux/" rel="tag">Linux</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/List/" rel="tag">List</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/Map/" rel="tag">Map</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/MarkDown%E5%9F%BA%E7%A1%80/" rel="tag">MarkDown基础</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/Set/" rel="tag">Set</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/Spring/" rel="tag">Spring</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/TreeMap/" rel="tag">TreeMap</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/TreeSet/" rel="tag">TreeSet</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/Vector%E5%90%91%E9%87%8F/" rel="tag">Vector向量</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/java%E5%9F%BA%E7%A1%80/" rel="tag">java基础</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/js/" rel="tag">js</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/jvm/" rel="tag">jvm</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/jvm%E8%B0%83%E4%BC%98/" rel="tag">jvm调优</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/mysql/" rel="tag">mysql</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/web%E6%A0%B8%E5%BF%83/" rel="tag">web核心</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/%E4%BA%8C%E5%88%86%E6%9F%A5%E6%89%BE/" rel="tag">二分查找</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/%E5%86%92%E6%B3%A1%E6%8E%92%E5%BA%8F/" rel="tag">冒泡排序</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/%E5%9E%83%E5%9C%BE%E5%9B%9E%E6%94%B6/" rel="tag">垃圾回收</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/%E5%A4%9A%E7%BA%BF%E7%A8%8B/" rel="tag">多线程</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/%E5%AE%9E%E4%BE%8B%E7%A8%8B%E5%BA%8F/" rel="tag">实例程序</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/%E5%BC%82%E5%B8%B8/" rel="tag">异常</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/%E6%95%B0%E6%8D%AE%E7%BB%93%E6%9E%84/" rel="tag">数据结构</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/%E6%B3%9B%E5%9E%8B/" rel="tag">泛型</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/%E7%89%88%E6%9C%AC%E6%8E%A7%E5%88%B6/" rel="tag">版本控制</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/%E7%AE%97%E6%B3%95%E5%9F%BA%E7%A1%80/" rel="tag">算法基础</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/%E7%B1%BB%E5%8A%A0%E8%BD%BD%E5%99%A8/" rel="tag">类加载器</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/%E8%AE%BE%E8%AE%A1%E6%A8%A1%E5%BC%8F/" rel="tag">设计模式</a></li></ul>
+    </div>
+  </div>
+
+
+  
+    
+  <div class="widget-wrap">
+    <h3 class="widget-title">Tag Cloud</h3>
+    <div class="widget tagcloud">
+      <a href="/tags/AOP/" style="font-size: 10px;">AOP</a> <a href="/tags/ArrayList/" style="font-size: 12px;">ArrayList</a> <a href="/tags/Collection/" style="font-size: 10px;">Collection</a> <a href="/tags/HashMap/" style="font-size: 12px;">HashMap</a> <a href="/tags/HashSet/" style="font-size: 12px;">HashSet</a> <a href="/tags/IO/" style="font-size: 16px;">IO</a> <a href="/tags/IOC/" style="font-size: 10px;">IOC</a> <a href="/tags/Lambad/" style="font-size: 10px;">Lambad</a> <a href="/tags/LinkedList/" style="font-size: 10px;">LinkedList</a> <a href="/tags/Linux/" style="font-size: 14px;">Linux</a> <a href="/tags/List/" style="font-size: 12px;">List</a> <a href="/tags/Map/" style="font-size: 12px;">Map</a> <a href="/tags/MarkDown%E5%9F%BA%E7%A1%80/" style="font-size: 10px;">MarkDown基础</a> <a href="/tags/Set/" style="font-size: 12px;">Set</a> <a href="/tags/Spring/" style="font-size: 12px;">Spring</a> <a href="/tags/TreeMap/" style="font-size: 10px;">TreeMap</a> <a href="/tags/TreeSet/" style="font-size: 10px;">TreeSet</a> <a href="/tags/Vector%E5%90%91%E9%87%8F/" style="font-size: 10px;">Vector向量</a> <a href="/tags/java%E5%9F%BA%E7%A1%80/" style="font-size: 20px;">java基础</a> <a href="/tags/js/" style="font-size: 10px;">js</a> <a href="/tags/jvm/" style="font-size: 12px;">jvm</a> <a href="/tags/jvm%E8%B0%83%E4%BC%98/" style="font-size: 10px;">jvm调优</a> <a href="/tags/mysql/" style="font-size: 10px;">mysql</a> <a href="/tags/web%E6%A0%B8%E5%BF%83/" style="font-size: 12px;">web核心</a> <a href="/tags/%E4%BA%8C%E5%88%86%E6%9F%A5%E6%89%BE/" style="font-size: 10px;">二分查找</a> <a href="/tags/%E5%86%92%E6%B3%A1%E6%8E%92%E5%BA%8F/" style="font-size: 10px;">冒泡排序</a> <a href="/tags/%E5%9E%83%E5%9C%BE%E5%9B%9E%E6%94%B6/" style="font-size: 10px;">垃圾回收</a> <a href="/tags/%E5%A4%9A%E7%BA%BF%E7%A8%8B/" style="font-size: 16px;">多线程</a> <a href="/tags/%E5%AE%9E%E4%BE%8B%E7%A8%8B%E5%BA%8F/" style="font-size: 10px;">实例程序</a> <a href="/tags/%E5%BC%82%E5%B8%B8/" style="font-size: 10px;">异常</a> <a href="/tags/%E6%95%B0%E6%8D%AE%E7%BB%93%E6%9E%84/" style="font-size: 10px;">数据结构</a> <a href="/tags/%E6%B3%9B%E5%9E%8B/" style="font-size: 12px;">泛型</a> <a href="/tags/%E7%89%88%E6%9C%AC%E6%8E%A7%E5%88%B6/" style="font-size: 12px;">版本控制</a> <a href="/tags/%E7%AE%97%E6%B3%95%E5%9F%BA%E7%A1%80/" style="font-size: 12px;">算法基础</a> <a href="/tags/%E7%B1%BB%E5%8A%A0%E8%BD%BD%E5%99%A8/" style="font-size: 10px;">类加载器</a> <a href="/tags/%E8%AE%BE%E8%AE%A1%E6%A8%A1%E5%BC%8F/" style="font-size: 18px;">设计模式</a>
+    </div>
+  </div>
+
+  
+    
+  <div class="widget-wrap">
+    <h3 class="widget-title">Archives</h3>
+    <div class="widget">
+      <ul class="archive-list"><li class="archive-list-item"><a class="archive-list-link" href="/archives/2021/01/">January 2021</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2020/12/">December 2020</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2020/10/">October 2020</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2020/09/">September 2020</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2020/08/">August 2020</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2020/07/">July 2020</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2020/06/">June 2020</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2020/05/">May 2020</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2020/04/">April 2020</a></li></ul>
+    </div>
+  </div>
+
+
+  
+    
+  <div class="widget-wrap">
+    <h3 class="widget-title">Recent Posts</h3>
+    <div class="widget">
+      <ul>
+        
+          <li>
+            <a href="/2021/01/31/web%E6%A0%B8%E5%BF%83/web%E6%A0%B8%E5%BF%83-request-response/">(no title)</a>
+          </li>
+        
+          <li>
+            <a href="/2021/01/31/web%E6%A0%B8%E5%BF%83/web%E6%A0%B8%E5%BF%83-Servlet/">web核心-Servlet</a>
+          </li>
+        
+          <li>
+            <a href="/2021/01/30/web%E6%A0%B8%E5%BF%83/web%E6%A0%B8%E5%BF%83-Http%E5%8D%8F%E8%AE%AE/">web核心-Http协议</a>
+          </li>
+        
+          <li>
+            <a href="/2021/01/26/mysql/mysql%E5%9F%BA%E7%A1%80/">mysql基础</a>
+          </li>
+        
+          <li>
+            <a href="/2021/01/24/Linux/Linux-yum%E5%87%BA%E9%94%99/">Linux-yum出错</a>
+          </li>
+        
+      </ul>
+    </div>
+  </div>
+
+  
+</aside>
+        
+      </div>
+      <footer id="footer">
+  
+  <div class="outer">
+    <div id="footer-info" class="inner">
+      
+      &copy; 2021 John Doe<br>
+      Powered by <a href="https://hexo.io/" target="_blank">Hexo</a>
+    </div>
+  </div>
+</footer>
+
+    </div>
+    <nav id="mobile-nav">
+  
+    <a href="/" class="mobile-nav-link">Home</a>
+  
+    <a href="/archives" class="mobile-nav-link">Archives</a>
+  
+</nav>
+    
+
+
+<script src="/js/jquery-3.4.1.min.js"></script>
+
+
+
+  
+<script src="/fancybox/jquery.fancybox.min.js"></script>
+
+
+
+
+<script src="/js/script.js"></script>
+
+
+
+
+
+  </div>
+</body>
+</html>

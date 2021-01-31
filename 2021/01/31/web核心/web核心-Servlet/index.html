@@ -1,0 +1,462 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <meta charset="utf-8">
+  
+  
+  <title>web核心-Servlet | Hexo</title>
+  <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+  <meta name="description" content="Servlet">
+<meta property="og:type" content="article">
+<meta property="og:title" content="web核心-Servlet">
+<meta property="og:url" content="http://example.com/2021/01/31/web%E6%A0%B8%E5%BF%83/web%E6%A0%B8%E5%BF%83-Servlet/index.html">
+<meta property="og:site_name" content="Hexo">
+<meta property="og:description" content="Servlet">
+<meta property="og:locale" content="en_US">
+<meta property="article:published_time" content="2021-01-31T02:48:36.000Z">
+<meta property="article:modified_time" content="2021-01-31T03:26:35.078Z">
+<meta property="article:author" content="John Doe">
+<meta property="article:tag" content="web核心">
+<meta name="twitter:card" content="summary">
+  
+    <link rel="alternate" href="/atom.xml" title="Hexo" type="application/atom+xml">
+  
+  
+    <link rel="shortcut icon" href="/favicon.png">
+  
+  
+    
+<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/typeface-source-code-pro@0.0.71/index.min.css">
+
+  
+  
+<link rel="stylesheet" href="/css/style.css">
+
+  
+    
+<link rel="stylesheet" href="/fancybox/jquery.fancybox.min.css">
+
+  
+<meta name="generator" content="Hexo 5.3.0"></head>
+
+<body>
+  <div id="container">
+    <div id="wrap">
+      <header id="header">
+  <div id="banner"></div>
+  <div id="header-outer" class="outer">
+    <div id="header-title" class="inner">
+      <h1 id="logo-wrap">
+        <a href="/" id="logo">Hexo</a>
+      </h1>
+      
+    </div>
+    <div id="header-inner" class="inner">
+      <nav id="main-nav">
+        <a id="main-nav-toggle" class="nav-icon"></a>
+        
+          <a class="main-nav-link" href="/">Home</a>
+        
+          <a class="main-nav-link" href="/archives">Archives</a>
+        
+      </nav>
+      <nav id="sub-nav">
+        
+          <a id="nav-rss-link" class="nav-icon" href="/atom.xml" title="RSS Feed"></a>
+        
+        <a id="nav-search-btn" class="nav-icon" title="Search"></a>
+      </nav>
+      <div id="search-form-wrap">
+        <form action="//google.com/search" method="get" accept-charset="UTF-8" class="search-form"><input type="search" name="q" class="search-form-input" placeholder="Search"><button type="submit" class="search-form-submit">&#xF002;</button><input type="hidden" name="sitesearch" value="http://example.com"></form>
+      </div>
+    </div>
+  </div>
+</header>
+
+      <div class="outer">
+        <section id="main"><article id="post-web核心/web核心-Servlet" class="h-entry article article-type-post" itemprop="blogPost" itemscope itemtype="https://schema.org/BlogPosting">
+  <div class="article-meta">
+    <a href="/2021/01/31/web%E6%A0%B8%E5%BF%83/web%E6%A0%B8%E5%BF%83-Servlet/" class="article-date">
+  <time class="dt-published" datetime="2021-01-31T02:48:36.000Z" itemprop="datePublished">2021-01-31</time>
+</a>
+    
+  </div>
+  <div class="article-inner">
+    
+    
+      <header class="article-header">
+        
+  
+    <h1 class="p-name article-title" itemprop="headline name">
+      web核心-Servlet
+    </h1>
+  
+
+      </header>
+    
+    <div class="e-content article-entry" itemprop="articleBody">
+      
+        <h3 id="Servlet"><a href="#Servlet" class="headerlink" title="Servlet"></a>Servlet</h3><a id="more"></a>
+
+<h4 id="Serevlet执行过程分析"><a href="#Serevlet执行过程分析" class="headerlink" title="Serevlet执行过程分析"></a>Serevlet执行过程分析</h4><ul>
+<li><p>通过浏览器发送请求，请求首先到达Tomcat服务器，由服务器解析请求URL，然后在部署的应用列表中找到对应的应用。</p>
+</li>
+<li><p>接下来，在找应用里的web.xml配置文件，在web.xml中找到Servlet的配置，找到后执行service方法，最后由Servlet响应客户浏览器。</p>
+</li>
+</ul>
+<h4 id="Servlet编写方式"><a href="#Servlet编写方式" class="headerlink" title="Servlet编写方式"></a>Servlet编写方式</h4><h5 id="实现Servlet功能时，可以选择以下三种方式："><a href="#实现Servlet功能时，可以选择以下三种方式：" class="headerlink" title="实现Servlet功能时，可以选择以下三种方式："></a>实现Servlet功能时，可以选择以下三种方式：</h5><ul>
+<li><p>第一种：实现Servlet接口，接口中的方法必须全部实现。</p>
+</li>
+<li><p>第二种：继承GenericServlet，service方法必须重写，其他方可根据需求，选择性重写。</p>
+</li>
+</ul>
+<p>​    <strong>此种方式是和HTTP协议无关的。</strong></p>
+<ul>
+<li>第三种：继承HttpServlet，它是javax.servlet.http包下的一个抽象类，是GenericServlet的子类。</li>
+</ul>
+<p>​    <b><font color='red'>如果我们选择继承HttpServlet时，只需要重写doGet和doPost方法，不要覆盖service方法。</font></b></p>
+<p>​    <strong>使用此种方式，表示我们的请求和响应需要和HTTP协议相关。</strong></p>
+<h4 id="Servlet使用细节"><a href="#Servlet使用细节" class="headerlink" title="Servlet使用细节"></a>Servlet使用细节</h4><h5 id="Servlet的生命周期"><a href="#Servlet的生命周期" class="headerlink" title="Servlet的生命周期"></a>Servlet的生命周期</h5><ul>
+<li>init()方法<ul>
+<li>在Servlet的生命周期中，仅执行一次init()方法，它是在服务器装入Servlet时执行的。</li>
+</ul>
+</li>
+<li>service()方法<ul>
+<li>它是Servlet的核心，每当一个客户请求一个HttpServlet对象，该对象的Service()方法就要调用。</li>
+<li>而且传递给这个方法一个“请求”（ServletRequest）对象和一个“响应”（ServletResponse）对象作为参数。</li>
+</ul>
+</li>
+<li>destroy()方法<ul>
+<li>仅执行一次，在服务器端停止且卸载Servlet时执行该方法。</li>
+</ul>
+</li>
+</ul>
+<h5 id="Servlet的线程安全"><a href="#Servlet的线程安全" class="headerlink" title="Servlet的线程安全"></a>Servlet的线程安全</h5><ul>
+<li><strong>Servlet不是线程安全的：</strong><ul>
+<li>Servlet类中尽量不要定义成员变量。</li>
+<li>同步代码会影响Servlet性能，尽量定义局部变量。</li>
+</ul>
+</li>
+</ul>
+<h4 id="Servlet的注意事项"><a href="#Servlet的注意事项" class="headerlink" title="Servlet的注意事项"></a>Servlet的注意事项</h4><h5 id="映射Servlet的方式"><a href="#映射Servlet的方式" class="headerlink" title="映射Servlet的方式"></a>映射Servlet的方式</h5><ul>
+<li><p><strong>第一种：指名道姓的方式</strong></p>
+<ul>
+<li>此种方式，只有和映射配置一模一样时，Servlet才会接收和响应来自客户端的请求。</li>
+<li>例如：映射为：/servletDemo5</li>
+</ul>
+</li>
+<li><p><strong>第二种：/开头+通配符的方式</strong></p>
+<ul>
+<li><p>此种方式，只要符合目录结构即可，不用考虑结尾是什么。</p>
+</li>
+<li><p>例如：映射为：/servlet/*</p>
+</li>
+</ul>
+</li>
+<li><p><strong>第三种：通配符+固定格式结尾</strong></p>
+<ul>
+<li>此种方式，只要符合固定结尾格式即可，其前面的访问URI无须关心（注意协议，主机和端口必须正确）</li>
+<li>例如：映射为：*.do</li>
+</ul>
+</li>
+<li><p><strong>三种方式优先级</strong></p>
+<ul>
+<li>三种映射方式的优先级为：第一种&gt;第二种&gt;第三种。</li>
+</ul>
+</li>
+</ul>
+<figure class="highlight xml"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">&lt;!-- ServletDemo04的配置 --&gt;</span></span><br><span class="line"> <span class="tag">&lt;<span class="name">servlet</span>&gt;</span></span><br><span class="line">   <span class="tag">&lt;<span class="name">servlet-name</span>&gt;</span>ServletDemo04<span class="tag">&lt;/<span class="name">servlet-name</span>&gt;</span></span><br><span class="line">   <span class="tag">&lt;<span class="name">servlet-class</span>&gt;</span>com.yishan.servlet.ServletDemo04<span class="tag">&lt;/<span class="name">servlet-class</span>&gt;</span></span><br><span class="line"> <span class="tag">&lt;/<span class="name">servlet</span>&gt;</span></span><br><span class="line"></span><br><span class="line"> <span class="tag">&lt;<span class="name">servlet-mapping</span>&gt;</span></span><br><span class="line">   <span class="tag">&lt;<span class="name">servlet-name</span>&gt;</span>ServletDemo04<span class="tag">&lt;/<span class="name">servlet-name</span>&gt;</span></span><br><span class="line">   <span class="tag">&lt;<span class="name">url-pattern</span>&gt;</span>/ServletDemo04<span class="tag">&lt;/<span class="name">url-pattern</span>&gt;</span></span><br><span class="line"> <span class="tag">&lt;/<span class="name">servlet-mapping</span>&gt;</span></span><br><span class="line"></span><br><span class="line"> <span class="comment">&lt;!-- ServletDemo04的配置 /开头+通配符的方式 --&gt;</span></span><br><span class="line"> <span class="tag">&lt;<span class="name">servlet</span>&gt;</span></span><br><span class="line">   <span class="tag">&lt;<span class="name">servlet-name</span>&gt;</span>ServletDemo04<span class="tag">&lt;/<span class="name">servlet-name</span>&gt;</span></span><br><span class="line">   <span class="tag">&lt;<span class="name">servlet-class</span>&gt;</span>com.yishan.servlet.ServletDemo04<span class="tag">&lt;/<span class="name">servlet-class</span>&gt;</span></span><br><span class="line"> <span class="tag">&lt;/<span class="name">servlet</span>&gt;</span></span><br><span class="line"></span><br><span class="line"> <span class="tag">&lt;<span class="name">servlet-mapping</span>&gt;</span></span><br><span class="line">   <span class="tag">&lt;<span class="name">servlet-name</span>&gt;</span>ServletDemo04<span class="tag">&lt;/<span class="name">servlet-name</span>&gt;</span></span><br><span class="line">   <span class="tag">&lt;<span class="name">url-pattern</span>&gt;</span>/ServletDemo/*<span class="tag">&lt;/<span class="name">url-pattern</span>&gt;</span></span><br><span class="line"> <span class="tag">&lt;/<span class="name">servlet-mapping</span>&gt;</span></span><br><span class="line"></span><br><span class="line"></span><br><span class="line"> <span class="comment">&lt;!-- ServletDemo04的配置 通配符+固定格式结尾 --&gt;</span></span><br><span class="line"> <span class="tag">&lt;<span class="name">servlet</span>&gt;</span></span><br><span class="line">   <span class="tag">&lt;<span class="name">servlet-name</span>&gt;</span>ServletDemo04<span class="tag">&lt;/<span class="name">servlet-name</span>&gt;</span></span><br><span class="line">   <span class="tag">&lt;<span class="name">servlet-class</span>&gt;</span>com.yishan.servlet.ServletDemo04<span class="tag">&lt;/<span class="name">servlet-class</span>&gt;</span></span><br><span class="line"> <span class="tag">&lt;/<span class="name">servlet</span>&gt;</span></span><br><span class="line"></span><br><span class="line"> <span class="tag">&lt;<span class="name">servlet-mapping</span>&gt;</span></span><br><span class="line">   <span class="tag">&lt;<span class="name">servlet-name</span>&gt;</span>ServletDemo04<span class="tag">&lt;/<span class="name">servlet-name</span>&gt;</span></span><br><span class="line">   <span class="tag">&lt;<span class="name">url-pattern</span>&gt;</span>*.d<span class="tag">&lt;/<span class="name">url-pattern</span>&gt;</span></span><br><span class="line"> <span class="tag">&lt;/<span class="name">servlet-mapping</span>&gt;</span></span><br></pre></td></tr></table></figure>
+<h4 id="Servlet创建时机"><a href="#Servlet创建时机" class="headerlink" title="Servlet创建时机"></a>Servlet创建时机</h4><ul>
+<li><p>第一种：应用加载时创建Servlet</p>
+<ul>
+<li>它的优势是在服务器启动时，就把需要的对象都创建完成了，从而在使用的时候减少了创建对象的时间，提高了首次执行的效率。</li>
+<li>它的弊端也同样明显，因为在应用加载时就创建了Servlet对象，因此，导致内存中充斥着大量用不上的Servlet对象，造成了内存的浪费。</li>
+</ul>
+</li>
+<li><p>第二种：请求第一次访问是创建Servlet</p>
+<ul>
+<li>它的优势就是减少了对服务器内存的浪费，因为那些一直没有被访问过的Servlet对象都没有创建，因此也提高了服务器的启动时间。</li>
+<li>而它的弊端就是，如果有一些要在应用加载时就做的初始化操作，它都没法完成，从而要考虑其他技术实现。</li>
+</ul>
+</li>
+<li><p>两种方式使用场景</p>
+<ul>
+<li>就是当需要在应用加载就要完成一些工作时，就需要选择第一种方式。</li>
+<li>当Servlet的使用时机并不确定是，就选择第二种方式。</li>
+</ul>
+</li>
+<li><p>web.xml配置。</p>
+<ul>
+<li>正整数代表服务器加载时创建，值越小优先级越高。</li>
+<li>负整数或不写load-on-startup标签代表第一次访问时创建。</li>
+</ul>
+</li>
+</ul>
+<figure class="highlight xml"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line"><span class="tag">&lt;<span class="name">load-on-startup</span>&gt;</span>1<span class="tag">&lt;/<span class="name">load-on-startup</span>&gt;</span></span><br></pre></td></tr></table></figure>
+<h4 id="默认Servlet"><a href="#默认Servlet" class="headerlink" title="默认Servlet"></a>默认Servlet</h4><ul>
+<li><p>默认Servlet是由服务器提供的一个Servlet，它配置在Tomcat的conf目录下的web.xml中。</p>
+</li>
+<li><p>它的映射路径是<b><font color='red'><code>&lt;url-pattern&gt;/&lt;url-pattern&gt;</code></font></b></p>
+</li>
+<li><p>我们在发送请求时，首先会在我们应用中的web.xml中查找映射配置，找到就执行。但是当找不到对应的Servlet路径时，就去找默认的Servlet，由默认Servlet处理。</p>
+</li>
+</ul>
+<h4 id="ServletConfig"><a href="#ServletConfig" class="headerlink" title="ServletConfig"></a>ServletConfig</h4><ul>
+<li>它是Servlet的配置参数对象，在Servlet规范中，允许为每个Servlet都提供一些初始化配置</li>
+</ul>
+<p>作用：</p>
+<ul>
+<li>在Servlet初始化期间，把一些配置信息传递给Servlet。</li>
+<li>每一个Servlet都有自己的ServletConfig</li>
+</ul>
+<h5 id="生命周期"><a href="#生命周期" class="headerlink" title="生命周期"></a>生命周期</h5><ul>
+<li>在初始化阶段读取了web.xml中为Servlet准备的初始化配置，并把配置信息传递给Servlet，所以生命周期与Servlet相同。</li>
+<li>这里需要注意的是，如果Servlet配置了<code>&lt;load-on-startup&gt;1&lt;/load-on-startup&gt;</code>，那么ServletConfig也会在应用加载时创建。</li>
+</ul>
+<figure class="highlight xml"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">&lt;!-- ServletConfigDemo01的配置 --&gt;</span></span><br><span class="line"><span class="tag">&lt;<span class="name">servlet</span>&gt;</span></span><br><span class="line">  <span class="tag">&lt;<span class="name">servlet-name</span>&gt;</span>ServletConfigDemo01<span class="tag">&lt;/<span class="name">servlet-name</span>&gt;</span></span><br><span class="line">  <span class="tag">&lt;<span class="name">servlet-class</span>&gt;</span>com.yishan.servlet.ServletConfigDemo01<span class="tag">&lt;/<span class="name">servlet-class</span>&gt;</span></span><br><span class="line"></span><br><span class="line">  <span class="comment">&lt;!--配置初始化参数--&gt;</span></span><br><span class="line">  <span class="tag">&lt;<span class="name">init-param</span>&gt;</span></span><br><span class="line">    <span class="comment">&lt;!--用于获取初始化参数的key--&gt;</span></span><br><span class="line">    <span class="tag">&lt;<span class="name">param-name</span>&gt;</span>encoding<span class="tag">&lt;/<span class="name">param-name</span>&gt;</span></span><br><span class="line">    <span class="comment">&lt;!--初始化参数的值--&gt;</span></span><br><span class="line">    <span class="tag">&lt;<span class="name">param-value</span>&gt;</span>UTF-8<span class="tag">&lt;/<span class="name">param-value</span>&gt;</span></span><br><span class="line">  <span class="tag">&lt;/<span class="name">init-param</span>&gt;</span></span><br><span class="line"></span><br><span class="line">  <span class="comment">&lt;!--每个初始化参数都需要用到init-param标签--&gt;</span></span><br><span class="line">  <span class="tag">&lt;<span class="name">init-param</span>&gt;</span></span><br><span class="line">    <span class="tag">&lt;<span class="name">param-name</span>&gt;</span>desc<span class="tag">&lt;/<span class="name">param-name</span>&gt;</span></span><br><span class="line">    <span class="tag">&lt;<span class="name">param-value</span>&gt;</span>This is ServletConfigDemo01<span class="tag">&lt;/<span class="name">param-value</span>&gt;</span></span><br><span class="line">  <span class="tag">&lt;/<span class="name">init-param</span>&gt;</span></span><br><span class="line"><span class="tag">&lt;/<span class="name">servlet</span>&gt;</span></span><br><span class="line"></span><br><span class="line"><span class="tag">&lt;<span class="name">servlet-mapping</span>&gt;</span></span><br><span class="line">  <span class="tag">&lt;<span class="name">servlet-name</span>&gt;</span>ServletConfigDemo01<span class="tag">&lt;/<span class="name">servlet-name</span>&gt;</span></span><br><span class="line">  <span class="tag">&lt;<span class="name">url-pattern</span>&gt;</span>/ServletConfigDemo01<span class="tag">&lt;/<span class="name">url-pattern</span>&gt;</span></span><br><span class="line"><span class="tag">&lt;/<span class="name">servlet-mapping</span>&gt;</span></span><br><span class="line"></span><br></pre></td></tr></table></figure>
+<h5 id="常用方法"><a href="#常用方法" class="headerlink" title="常用方法"></a>常用方法</h5><table>
+<thead>
+<tr>
+<th><strong>返回值</strong></th>
+<th><strong>方法名</strong></th>
+<th><strong>说明</strong></th>
+</tr>
+</thead>
+<tbody><tr>
+<td>String</td>
+<td>getInitParameter(String   name)</td>
+<td>根据参数名称获取参数的值</td>
+</tr>
+<tr>
+<td>Enumeration<String></td>
+<td>getInitParameterNames()</td>
+<td>获取所有参数名称的枚举</td>
+</tr>
+<tr>
+<td>String</td>
+<td>getServletName()</td>
+<td>获取Servlet的名称</td>
+</tr>
+<tr>
+<td>ServletContext</td>
+<td>getServletContext()</td>
+<td>获取ServletContext对象</td>
+</tr>
+</tbody></table>
+<h4 id="ServletContext"><a href="#ServletContext" class="headerlink" title="ServletContext"></a>ServletContext</h4><h5 id="配置"><a href="#配置" class="headerlink" title="配置"></a>配置</h5><ul>
+<li><p>ServletContext既然被称之为应用上下文对象，所以它的配置是针对整个应用的配置。</p>
+<p>配置的方式，需要在<code>&lt;web-app&gt;</code>标签中使用<code>&lt;context-param&gt;</code>来配置初始化参数。</p>
+</li>
+</ul>
+<figure class="highlight xml"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">&lt;!-- ServletContextDemo01的配置 --&gt;</span></span><br><span class="line"></span><br><span class="line">  <span class="tag">&lt;<span class="name">servlet</span>&gt;</span></span><br><span class="line">    <span class="tag">&lt;<span class="name">servlet-name</span>&gt;</span>ServletContextDemo01<span class="tag">&lt;/<span class="name">servlet-name</span>&gt;</span></span><br><span class="line">    <span class="tag">&lt;<span class="name">servlet-class</span>&gt;</span>com.yishan.servlet.ServletContextDemo01<span class="tag">&lt;/<span class="name">servlet-class</span>&gt;</span></span><br><span class="line">  <span class="tag">&lt;/<span class="name">servlet</span>&gt;</span></span><br><span class="line">  <span class="tag">&lt;<span class="name">servlet-mapping</span>&gt;</span></span><br><span class="line">    <span class="tag">&lt;<span class="name">servlet-name</span>&gt;</span>ServletContextDemo01<span class="tag">&lt;/<span class="name">servlet-name</span>&gt;</span></span><br><span class="line">    <span class="tag">&lt;<span class="name">url-pattern</span>&gt;</span>/ServletContextDemo01<span class="tag">&lt;/<span class="name">url-pattern</span>&gt;</span></span><br><span class="line">  <span class="tag">&lt;/<span class="name">servlet-mapping</span>&gt;</span></span><br><span class="line"></span><br><span class="line">  <span class="comment">&lt;!-- ServletContext的配置 --&gt;</span></span><br><span class="line"></span><br><span class="line">  <span class="tag">&lt;<span class="name">context-param</span>&gt;</span></span><br><span class="line">    <span class="tag">&lt;<span class="name">param-name</span>&gt;</span>globalEncoding<span class="tag">&lt;/<span class="name">param-name</span>&gt;</span></span><br><span class="line">    <span class="tag">&lt;<span class="name">param-value</span>&gt;</span>UTF-8<span class="tag">&lt;/<span class="name">param-value</span>&gt;</span></span><br><span class="line">  <span class="tag">&lt;/<span class="name">context-param</span>&gt;</span></span><br><span class="line">  <span class="tag">&lt;<span class="name">context-param</span>&gt;</span></span><br><span class="line">    <span class="tag">&lt;<span class="name">param-name</span>&gt;</span>globalDesc<span class="tag">&lt;/<span class="name">param-name</span>&gt;</span></span><br><span class="line">    <span class="tag">&lt;<span class="name">param-value</span>&gt;</span>This is ServletContextDemo01<span class="tag">&lt;/<span class="name">param-value</span>&gt;</span></span><br><span class="line">  <span class="tag">&lt;/<span class="name">context-param</span>&gt;</span></span><br></pre></td></tr></table></figure>
+<h5 id="常用方法-1"><a href="#常用方法-1" class="headerlink" title="常用方法"></a>常用方法</h5><table>
+<thead>
+<tr>
+<th><strong>返回值</strong></th>
+<th><strong>方法名</strong></th>
+<th><strong>说明</strong></th>
+</tr>
+</thead>
+<tbody><tr>
+<td>void</td>
+<td>setAttribute(String   name,Object   value)</td>
+<td>向域对象中存储数据</td>
+</tr>
+<tr>
+<td>Object</td>
+<td>getAttribute(String   name)</td>
+<td>通过名称获取域对象中的数据</td>
+</tr>
+<tr>
+<td>Enumeration<String></td>
+<td>getAttributeNames()</td>
+<td>获取域对象中所有数据的名称</td>
+</tr>
+<tr>
+<td>void</td>
+<td>removeAttribute(String   name)</td>
+<td>通过名称移除域对象中的数据</td>
+</tr>
+<tr>
+<td>String</td>
+<td>getServletContextName()</td>
+<td>获取ServletContext的名称</td>
+</tr>
+<tr>
+<td>String</td>
+<td>getContextPath()</td>
+<td>获取当前应用的访问虚拟目录</td>
+</tr>
+<tr>
+<td>String</td>
+<td>getRealPath(String   path)</td>
+<td>根据虚拟目录获取应用部署的磁盘绝对路径</td>
+</tr>
+<tr>
+<td>String</td>
+<td>getServerInfo()</td>
+<td>获取服务器的名称和版本信息</td>
+</tr>
+<tr>
+<td>String</td>
+<td>getInitParameter(String   name)</td>
+<td>根据名称获取全局配置的值</td>
+</tr>
+<tr>
+<td>Enumeration<String></td>
+<td>getInitParamterNames()</td>
+<td>获取全局配置的所有名称</td>
+</tr>
+</tbody></table>
+<h4 id="注解"><a href="#注解" class="headerlink" title="注解"></a>注解</h4><figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">@<span class="meta">@WebServlet(&quot;/ServletDemo01&quot;)</span></span><br></pre></td></tr></table></figure>
+<h5 id="注意"><a href="#注意" class="headerlink" title="注意"></a>注意</h5><ul>
+<li>括号内的虚拟访问路径必须加   <strong>/</strong>    ,还有双引号</li>
+</ul>
+
+      
+    </div>
+    <footer class="article-footer">
+      <a data-url="http://example.com/2021/01/31/web%E6%A0%B8%E5%BF%83/web%E6%A0%B8%E5%BF%83-Servlet/" data-id="ckkkvm223001ayo594twaaiif" data-title="web核心-Servlet" class="article-share-link">Share</a>
+      
+      
+      
+  <ul class="article-tag-list" itemprop="keywords"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/web%E6%A0%B8%E5%BF%83/" rel="tag">web核心</a></li></ul>
+
+    </footer>
+  </div>
+  
+    
+<nav id="article-nav">
+  
+    <a href="/2021/01/31/web%E6%A0%B8%E5%BF%83/web%E6%A0%B8%E5%BF%83-request-response/" id="article-nav-newer" class="article-nav-link-wrap">
+      <strong class="article-nav-caption">Newer</strong>
+      <div class="article-nav-title">
+        
+          (no title)
+        
+      </div>
+    </a>
+  
+  
+    <a href="/2021/01/30/web%E6%A0%B8%E5%BF%83/web%E6%A0%B8%E5%BF%83-Http%E5%8D%8F%E8%AE%AE/" id="article-nav-older" class="article-nav-link-wrap">
+      <strong class="article-nav-caption">Older</strong>
+      <div class="article-nav-title">web核心-Http协议</div>
+    </a>
+  
+</nav>
+
+  
+</article>
+
+
+</section>
+        
+          <aside id="sidebar">
+  
+    
+
+  
+    
+  <div class="widget-wrap">
+    <h3 class="widget-title">Tags</h3>
+    <div class="widget">
+      <ul class="tag-list" itemprop="keywords"><li class="tag-list-item"><a class="tag-list-link" href="/tags/AOP/" rel="tag">AOP</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/ArrayList/" rel="tag">ArrayList</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/Collection/" rel="tag">Collection</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/HashMap/" rel="tag">HashMap</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/HashSet/" rel="tag">HashSet</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/IO/" rel="tag">IO</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/IOC/" rel="tag">IOC</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/Lambad/" rel="tag">Lambad</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/LinkedList/" rel="tag">LinkedList</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/Linux/" rel="tag">Linux</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/List/" rel="tag">List</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/Map/" rel="tag">Map</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/MarkDown%E5%9F%BA%E7%A1%80/" rel="tag">MarkDown基础</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/Set/" rel="tag">Set</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/Spring/" rel="tag">Spring</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/TreeMap/" rel="tag">TreeMap</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/TreeSet/" rel="tag">TreeSet</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/Vector%E5%90%91%E9%87%8F/" rel="tag">Vector向量</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/java%E5%9F%BA%E7%A1%80/" rel="tag">java基础</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/js/" rel="tag">js</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/jvm/" rel="tag">jvm</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/jvm%E8%B0%83%E4%BC%98/" rel="tag">jvm调优</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/mysql/" rel="tag">mysql</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/web%E6%A0%B8%E5%BF%83/" rel="tag">web核心</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/%E4%BA%8C%E5%88%86%E6%9F%A5%E6%89%BE/" rel="tag">二分查找</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/%E5%86%92%E6%B3%A1%E6%8E%92%E5%BA%8F/" rel="tag">冒泡排序</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/%E5%9E%83%E5%9C%BE%E5%9B%9E%E6%94%B6/" rel="tag">垃圾回收</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/%E5%A4%9A%E7%BA%BF%E7%A8%8B/" rel="tag">多线程</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/%E5%AE%9E%E4%BE%8B%E7%A8%8B%E5%BA%8F/" rel="tag">实例程序</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/%E5%BC%82%E5%B8%B8/" rel="tag">异常</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/%E6%95%B0%E6%8D%AE%E7%BB%93%E6%9E%84/" rel="tag">数据结构</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/%E6%B3%9B%E5%9E%8B/" rel="tag">泛型</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/%E7%89%88%E6%9C%AC%E6%8E%A7%E5%88%B6/" rel="tag">版本控制</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/%E7%AE%97%E6%B3%95%E5%9F%BA%E7%A1%80/" rel="tag">算法基础</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/%E7%B1%BB%E5%8A%A0%E8%BD%BD%E5%99%A8/" rel="tag">类加载器</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/%E8%AE%BE%E8%AE%A1%E6%A8%A1%E5%BC%8F/" rel="tag">设计模式</a></li></ul>
+    </div>
+  </div>
+
+
+  
+    
+  <div class="widget-wrap">
+    <h3 class="widget-title">Tag Cloud</h3>
+    <div class="widget tagcloud">
+      <a href="/tags/AOP/" style="font-size: 10px;">AOP</a> <a href="/tags/ArrayList/" style="font-size: 12px;">ArrayList</a> <a href="/tags/Collection/" style="font-size: 10px;">Collection</a> <a href="/tags/HashMap/" style="font-size: 12px;">HashMap</a> <a href="/tags/HashSet/" style="font-size: 12px;">HashSet</a> <a href="/tags/IO/" style="font-size: 16px;">IO</a> <a href="/tags/IOC/" style="font-size: 10px;">IOC</a> <a href="/tags/Lambad/" style="font-size: 10px;">Lambad</a> <a href="/tags/LinkedList/" style="font-size: 10px;">LinkedList</a> <a href="/tags/Linux/" style="font-size: 14px;">Linux</a> <a href="/tags/List/" style="font-size: 12px;">List</a> <a href="/tags/Map/" style="font-size: 12px;">Map</a> <a href="/tags/MarkDown%E5%9F%BA%E7%A1%80/" style="font-size: 10px;">MarkDown基础</a> <a href="/tags/Set/" style="font-size: 12px;">Set</a> <a href="/tags/Spring/" style="font-size: 12px;">Spring</a> <a href="/tags/TreeMap/" style="font-size: 10px;">TreeMap</a> <a href="/tags/TreeSet/" style="font-size: 10px;">TreeSet</a> <a href="/tags/Vector%E5%90%91%E9%87%8F/" style="font-size: 10px;">Vector向量</a> <a href="/tags/java%E5%9F%BA%E7%A1%80/" style="font-size: 20px;">java基础</a> <a href="/tags/js/" style="font-size: 10px;">js</a> <a href="/tags/jvm/" style="font-size: 12px;">jvm</a> <a href="/tags/jvm%E8%B0%83%E4%BC%98/" style="font-size: 10px;">jvm调优</a> <a href="/tags/mysql/" style="font-size: 10px;">mysql</a> <a href="/tags/web%E6%A0%B8%E5%BF%83/" style="font-size: 12px;">web核心</a> <a href="/tags/%E4%BA%8C%E5%88%86%E6%9F%A5%E6%89%BE/" style="font-size: 10px;">二分查找</a> <a href="/tags/%E5%86%92%E6%B3%A1%E6%8E%92%E5%BA%8F/" style="font-size: 10px;">冒泡排序</a> <a href="/tags/%E5%9E%83%E5%9C%BE%E5%9B%9E%E6%94%B6/" style="font-size: 10px;">垃圾回收</a> <a href="/tags/%E5%A4%9A%E7%BA%BF%E7%A8%8B/" style="font-size: 16px;">多线程</a> <a href="/tags/%E5%AE%9E%E4%BE%8B%E7%A8%8B%E5%BA%8F/" style="font-size: 10px;">实例程序</a> <a href="/tags/%E5%BC%82%E5%B8%B8/" style="font-size: 10px;">异常</a> <a href="/tags/%E6%95%B0%E6%8D%AE%E7%BB%93%E6%9E%84/" style="font-size: 10px;">数据结构</a> <a href="/tags/%E6%B3%9B%E5%9E%8B/" style="font-size: 12px;">泛型</a> <a href="/tags/%E7%89%88%E6%9C%AC%E6%8E%A7%E5%88%B6/" style="font-size: 12px;">版本控制</a> <a href="/tags/%E7%AE%97%E6%B3%95%E5%9F%BA%E7%A1%80/" style="font-size: 12px;">算法基础</a> <a href="/tags/%E7%B1%BB%E5%8A%A0%E8%BD%BD%E5%99%A8/" style="font-size: 10px;">类加载器</a> <a href="/tags/%E8%AE%BE%E8%AE%A1%E6%A8%A1%E5%BC%8F/" style="font-size: 18px;">设计模式</a>
+    </div>
+  </div>
+
+  
+    
+  <div class="widget-wrap">
+    <h3 class="widget-title">Archives</h3>
+    <div class="widget">
+      <ul class="archive-list"><li class="archive-list-item"><a class="archive-list-link" href="/archives/2021/01/">January 2021</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2020/12/">December 2020</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2020/10/">October 2020</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2020/09/">September 2020</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2020/08/">August 2020</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2020/07/">July 2020</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2020/06/">June 2020</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2020/05/">May 2020</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2020/04/">April 2020</a></li></ul>
+    </div>
+  </div>
+
+
+  
+    
+  <div class="widget-wrap">
+    <h3 class="widget-title">Recent Posts</h3>
+    <div class="widget">
+      <ul>
+        
+          <li>
+            <a href="/2021/01/31/web%E6%A0%B8%E5%BF%83/web%E6%A0%B8%E5%BF%83-request-response/">(no title)</a>
+          </li>
+        
+          <li>
+            <a href="/2021/01/31/web%E6%A0%B8%E5%BF%83/web%E6%A0%B8%E5%BF%83-Servlet/">web核心-Servlet</a>
+          </li>
+        
+          <li>
+            <a href="/2021/01/30/web%E6%A0%B8%E5%BF%83/web%E6%A0%B8%E5%BF%83-Http%E5%8D%8F%E8%AE%AE/">web核心-Http协议</a>
+          </li>
+        
+          <li>
+            <a href="/2021/01/26/mysql/mysql%E5%9F%BA%E7%A1%80/">mysql基础</a>
+          </li>
+        
+          <li>
+            <a href="/2021/01/24/Linux/Linux-yum%E5%87%BA%E9%94%99/">Linux-yum出错</a>
+          </li>
+        
+      </ul>
+    </div>
+  </div>
+
+  
+</aside>
+        
+      </div>
+      <footer id="footer">
+  
+  <div class="outer">
+    <div id="footer-info" class="inner">
+      
+      &copy; 2021 John Doe<br>
+      Powered by <a href="https://hexo.io/" target="_blank">Hexo</a>
+    </div>
+  </div>
+</footer>
+
+    </div>
+    <nav id="mobile-nav">
+  
+    <a href="/" class="mobile-nav-link">Home</a>
+  
+    <a href="/archives" class="mobile-nav-link">Archives</a>
+  
+</nav>
+    
+
+
+<script src="/js/jquery-3.4.1.min.js"></script>
+
+
+
+  
+<script src="/fancybox/jquery.fancybox.min.js"></script>
+
+
+
+
+<script src="/js/script.js"></script>
+
+
+
+
+
+  </div>
+</body>
+</html>

@@ -1,0 +1,504 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <meta charset="utf-8">
+  
+  
+  <title>面向对象（提高篇） | Hexo</title>
+  <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+  <meta name="description" content="面向对象的三大特征：继承、封装、多态。">
+<meta property="og:type" content="article">
+<meta property="og:title" content="面向对象（提高篇）">
+<meta property="og:url" content="http://example.com/2020/08/03/%E9%9D%A2%E5%90%91%E5%AF%B9%E8%B1%A1/%E9%9D%A2%E5%90%91%E5%AF%B9%E8%B1%A1%EF%BC%88%E6%8F%90%E9%AB%98%E7%AF%87%EF%BC%89/index.html">
+<meta property="og:site_name" content="Hexo">
+<meta property="og:description" content="面向对象的三大特征：继承、封装、多态。">
+<meta property="og:locale" content="en_US">
+<meta property="article:published_time" content="2020-08-03T06:50:53.000Z">
+<meta property="article:modified_time" content="2021-01-05T01:59:59.711Z">
+<meta property="article:author" content="John Doe">
+<meta property="article:tag" content="java基础">
+<meta name="twitter:card" content="summary">
+  
+    <link rel="alternate" href="/atom.xml" title="Hexo" type="application/atom+xml">
+  
+  
+    <link rel="shortcut icon" href="/favicon.png">
+  
+  
+    
+<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/typeface-source-code-pro@0.0.71/index.min.css">
+
+  
+  
+<link rel="stylesheet" href="/css/style.css">
+
+  
+    
+<link rel="stylesheet" href="/fancybox/jquery.fancybox.min.css">
+
+  
+<meta name="generator" content="Hexo 5.3.0"></head>
+
+<body>
+  <div id="container">
+    <div id="wrap">
+      <header id="header">
+  <div id="banner"></div>
+  <div id="header-outer" class="outer">
+    <div id="header-title" class="inner">
+      <h1 id="logo-wrap">
+        <a href="/" id="logo">Hexo</a>
+      </h1>
+      
+    </div>
+    <div id="header-inner" class="inner">
+      <nav id="main-nav">
+        <a id="main-nav-toggle" class="nav-icon"></a>
+        
+          <a class="main-nav-link" href="/">Home</a>
+        
+          <a class="main-nav-link" href="/archives">Archives</a>
+        
+      </nav>
+      <nav id="sub-nav">
+        
+          <a id="nav-rss-link" class="nav-icon" href="/atom.xml" title="RSS Feed"></a>
+        
+        <a id="nav-search-btn" class="nav-icon" title="Search"></a>
+      </nav>
+      <div id="search-form-wrap">
+        <form action="//google.com/search" method="get" accept-charset="UTF-8" class="search-form"><input type="search" name="q" class="search-form-input" placeholder="Search"><button type="submit" class="search-form-submit">&#xF002;</button><input type="hidden" name="sitesearch" value="http://example.com"></form>
+      </div>
+    </div>
+  </div>
+</header>
+
+      <div class="outer">
+        <section id="main"><article id="post-面向对象/面向对象（提高篇）" class="h-entry article article-type-post" itemprop="blogPost" itemscope itemtype="https://schema.org/BlogPosting">
+  <div class="article-meta">
+    <a href="/2020/08/03/%E9%9D%A2%E5%90%91%E5%AF%B9%E8%B1%A1/%E9%9D%A2%E5%90%91%E5%AF%B9%E8%B1%A1%EF%BC%88%E6%8F%90%E9%AB%98%E7%AF%87%EF%BC%89/" class="article-date">
+  <time class="dt-published" datetime="2020-08-03T06:50:53.000Z" itemprop="datePublished">2020-08-03</time>
+</a>
+    
+  </div>
+  <div class="article-inner">
+    
+    
+      <header class="article-header">
+        
+  
+    <h1 class="p-name article-title" itemprop="headline name">
+      面向对象（提高篇）
+    </h1>
+  
+
+      </header>
+    
+    <div class="e-content article-entry" itemprop="articleBody">
+      
+        <p>面向对象的三大特征：继承、封装、多态。</p>
+<a id="more"></a>
+<h3 id="继承"><a href="#继承" class="headerlink" title="继承"></a>继承</h3><p>继承使用要点：</p>
+<ul>
+<li>1.父类也称作超类、基类、派生类</li>
+<li>2.java中只有单继承，没有C++那样的多继承。多继承会引起混乱，使得继承链过于复杂，系统难于维护。</li>
+<li>3.java的接口可以多继承，类只有单继承。</li>
+<li>4.子类继承父类，可以得到父类的全部属性和方法（除了父类的构造方法），但不见得可以直接访问（比如 父类私有的属性和方法）</li>
+<li>5.如果定义一个类时，没有调用extends，则它的父类是：java.lang.Object<blockquote>
+</blockquote>
+</li>
+</ul>
+<h3 id="方法的重写-override"><a href="#方法的重写-override" class="headerlink" title="方法的重写 override"></a>方法的重写 override</h3><p>子类通过重写父类的方法，可以用自身的行为替换父类的行为</p>
+<p>方法的重写需要符合下面的三个要点：</p>
+<ul>
+<li><p>1.“==”：方法名、形参列表相同</p>
+</li>
+<li><p>2.“&lt;=”: 返回值类型和声明异常类型，子类小于等于父类</p>
+</li>
+<li><p>3.“&gt;=”： 访问权限，子类大于等于父类</p>
+<blockquote>
+<p>测试方法的重写<br>  package cn.yishan.oo2;</p>
+</blockquote>
+<p>  public class TestExtends {</p>
+<pre><code>  public static void main(String[] args) &#123;
+      Horse h = new Horse();
+      h.run();
+      h.stop();
+  &#125;
+</code></pre>
+<p>  }</p>
+<p>  class Vehicle {</p>
+<pre><code>  public void run()&#123;
+      System.out.println(&quot;跑...&quot;);
+  &#125;
+
+  public void stop()&#123;
+      System.out.println(&quot;停止！&quot;);
+  &#125;
+
+  public Person whoIsPsg()&#123;
+      return new Person();
+  &#125;
+</code></pre>
+<p>  }</p>
+<p>  class Horse extends Vehicle{</p>
+<pre><code>  @Override
+  public void run()&#123;
+      System.out.println(&quot;得得得得得&quot;);
+  &#125;
+  @Override
+  public Student whoIsPsg()&#123;//返回值类型小于等于父类的类型
+      return new Student();
+  &#125;
+</code></pre>
+<p>  }</p>
+<h3 id="Object类"><a href="#Object类" class="headerlink" title="Object类"></a>Object类</h3><p>Object类时所有java类的根基类，也就意味着所有的java对象都拥有Object类的属性和方法</p>
+<h3 id="toString方法"><a href="#toString方法" class="headerlink" title="toString方法"></a>toString方法</h3><p>toString方法的重写</p>
+<blockquote>
+<p>测试Object<br>  package cn.yishan.oo2;</p>
+</blockquote>
+<p>  public class TestObject {</p>
+<pre><code>  public static void main(String[] args) &#123;
+      //Object obj;
+      TestObject to = new TestObject();
+      System.out.println(to.toString());
+  &#125;
+
+  @Override
+  public String toString()&#123;
+      return &quot;测试对象&quot;;
+  &#125;
+</code></pre>
+<p>  }</p>
+<h3 id="与equals方法"><a href="#与equals方法" class="headerlink" title="==与equals方法"></a>==与equals方法</h3><p>“==”代表比较双方是否相同。如果是基本类型则表示值相等，如果是引用类型则表示地址相等即是同一个对象。</p>
+</li>
+</ul>
+<p>“equals”Object类中定义有：public boolean equals(Object obj)方法，提供定义“对象内容相等”的逻辑。</p>
+<blockquote>
+<p>测试重写equals<br>    package cn.yishan.oo2;</p>
+</blockquote>
+<pre><code>import java.util.Objects;
+
+public class TestEquals &#123;
+    public static void main(String[] args) &#123;
+        Object obj;
+        String str;
+
+        User u1 = new User(1000,&quot;亦山&quot;,&quot;123&quot;);
+        User u2 = new User(1000,&quot;一闪&quot;,&quot;123&quot;);
+
+        System.out.println(u1==u2);
+        System.out.println(u1.equals(u2));
+
+        String str1 = new String(&quot;sxt&quot;);
+        String str2 = new String(&quot;sxt&quot;);
+        System.out.println(str1 == str2);
+        System.out.println(str1.equals(str2));
+
+    &#125;
+&#125;
+
+class User&#123;
+    int id;
+    String name;
+    String pwd;
+
+
+    public User(int id, String name, String pwd) &#123;
+        super();
+        this.id = id;
+        this.name = name;
+        this.pwd = pwd;
+    &#125;
+
+    @Override
+    public boolean equals(Object obj) &#123;
+        if (this == obj) &#123;
+            return true;
+        &#125;
+        if (obj == null || getClass() != obj.getClass()) &#123;
+            return false;
+        &#125;
+        User user = (User) obj;
+        return id == user.id;
+    &#125;
+
+&#125;
+</code></pre>
+<h3 id="super"><a href="#super" class="headerlink" title="super"></a>super</h3><p>super是直接父类对象的引用。可以通过super来访问父类中被子类覆盖的方法或属性。</p>
+<p>构造方法调用顺序：</p>
+<p>构造方法第一局总是：super(…)来调用父类对应的构造方法。所以，流程就是：先向上追溯到Object,然后再依次向下执行类的初始化块和构造方法，直到当前子类为止。</p>
+<p>子类中所有的构造方法默认都会访问父类中无参的构造方法</p>
+<p>因为在初始化的时候，子类有可能会用到父类中的数据，所以，子类初始化之前，首先会完成父类数据的初始化。因此，每一个构造方法的第一局语句默认的都是：super();</p>
+<p>注：静态初始化快调用顺序，与构造方法调用顺序一样，不再重复。</p>
+<h3 id="封装"><a href="#封装" class="headerlink" title="封装"></a>封装</h3><p>封装的具体优点：</p>
+<ul>
+<li>1.提高代码的安全性</li>
+<li>2.提高代码的复用性</li>
+<li>3.“高内聚”：封装细节，便于修改内部代码，提高可维护性。</li>
+<li>4.“低耦合”：简化外部调用，便于调用者使用，便于扩展和协作。<h4 id="封装的实现–使用访问控制符"><a href="#封装的实现–使用访问控制符" class="headerlink" title="封装的实现–使用访问控制符"></a>封装的实现–使用访问控制符</h4></li>
+<li>1.private表示私有，只有自己类能访问</li>
+<li>2.default表示没有修饰符修饰，只有同一个包的类能访问</li>
+<li>3.protected表示可以被同一个包的类以及其他包中的子类访问</li>
+<li>4.public表示可以被该项目的所有包中的所有类访问<h4 id="封装的使用细节"><a href="#封装的使用细节" class="headerlink" title="封装的使用细节"></a>封装的使用细节</h4>类的属性的处理：</li>
+<li>1.一般使用private访问权限</li>
+<li>2.提供相应的get/set方法来访问相关属性，这些方法通常是public修饰的，以提供对属性的赋值与读取操作（注意：boolean变量的get方法是is开头！）</li>
+<li>3.一些只用于本类的辅助性方法可以用private修饰，希望其他类调用的方法用public修饰。<h3 id="多态"><a href="#多态" class="headerlink" title="多态"></a>多态</h3><blockquote>
+<p>多态指的是同一个方法调用，由于对象不同可能会有不同的行为。现实生活中，同一个方法，具体实现会完全不同。</p>
+</blockquote>
+</li>
+</ul>
+<h4 id="多态的要点："><a href="#多态的要点：" class="headerlink" title="多态的要点："></a>多态的要点：</h4><ul>
+<li>1.多态是方法的多态，不是属性的多态（多态与属性无关）</li>
+<li>2.多态的存在要有3个必要条件：继承/实现关系，方法重写，父类引用指向子类对象。</li>
+<li>3.父类引用指向子类对象后，用该父类引用调用子类重写的方法，此时多态就出现了。</li>
+</ul>
+<h4 id="多态中成员访问特点"><a href="#多态中成员访问特点" class="headerlink" title="多态中成员访问特点"></a>多态中成员访问特点</h4><ul>
+<li>构造方法：同继承一样，子类对通过super访问父类构造方法</li>
+<li>成员变量：编译看左边（父类），运行看左边（父类）</li>
+<li>成员方法;编译看左边（父类），运行看右边（子类）</li>
+</ul>
+<h4 id="多态的好处和弊端"><a href="#多态的好处和弊端" class="headerlink" title="多态的好处和弊端"></a>多态的好处和弊端</h4><ul>
+<li>多态的好处：提高了程序的扩展性<ul>
+<li>具体体现：定义方法的时候，使用父类型作为参数，该方法就可以接受者父类的任意子类对象</li>
+</ul>
+</li>
+<li>多态的弊端：不能使用子类的特有功能</li>
+</ul>
+<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">package</span> com.yishan.myduotai03;</span><br><span class="line"></span><br><span class="line"><span class="comment">/**</span></span><br><span class="line"><span class="comment"> * <span class="doctag">@author</span> : yishan</span></span><br><span class="line"><span class="comment"> * <span class="doctag">@date</span> : 2020-12-28 18:54</span></span><br><span class="line"><span class="comment"> */</span></span><br><span class="line"><span class="keyword">public</span> <span class="class"><span class="keyword">class</span> <span class="title">Test03</span> </span>&#123;</span><br><span class="line">    <span class="function"><span class="keyword">public</span> <span class="keyword">static</span> <span class="keyword">void</span> <span class="title">main</span><span class="params">(String[] args)</span> </span>&#123;</span><br><span class="line">        useAnimal(<span class="keyword">new</span> Dog());</span><br><span class="line">        useAnimal(<span class="keyword">new</span> Cat());</span><br><span class="line">    &#125;</span><br><span class="line">    <span class="function"><span class="keyword">public</span> <span class="keyword">static</span> <span class="keyword">void</span> <span class="title">useAnimal</span><span class="params">(Animal animal)</span></span>&#123;</span><br><span class="line">        animal.eat();</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="keyword">abstract</span> <span class="class"><span class="keyword">class</span> <span class="title">Animal</span></span>&#123;</span><br><span class="line">    <span class="function"><span class="keyword">public</span> <span class="keyword">abstract</span> <span class="keyword">void</span> <span class="title">eat</span><span class="params">()</span></span>;</span><br><span class="line">&#125;</span><br><span class="line"><span class="class"><span class="keyword">class</span> <span class="title">Dog</span> <span class="keyword">extends</span> <span class="title">Animal</span></span>&#123;</span><br><span class="line"></span><br><span class="line">    <span class="meta">@Override</span></span><br><span class="line">    <span class="function"><span class="keyword">public</span> <span class="keyword">void</span> <span class="title">eat</span><span class="params">()</span> </span>&#123;</span><br><span class="line">        System.out.println(<span class="string">&quot;狗吃肉&quot;</span>);</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br><span class="line"><span class="class"><span class="keyword">class</span> <span class="title">Cat</span> <span class="keyword">extends</span> <span class="title">Animal</span></span>&#123;</span><br><span class="line"></span><br><span class="line">    <span class="meta">@Override</span></span><br><span class="line">    <span class="function"><span class="keyword">public</span> <span class="keyword">void</span> <span class="title">eat</span><span class="params">()</span> </span>&#123;</span><br><span class="line">        System.out.println(<span class="string">&quot;猫吃老鼠&quot;</span>);</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<h3 id="多态中的转型"><a href="#多态中的转型" class="headerlink" title="多态中的转型"></a>多态中的转型</h3><ul>
+<li>向上转型：从子到父，父类引用指向子类对象</li>
+<li>向下转型：从父到子，父类引用转为子类对象</li>
+</ul>
+<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">package</span> com.yishan.myduotai04;</span><br><span class="line"></span><br><span class="line"><span class="comment">/**</span></span><br><span class="line"><span class="comment"> * <span class="doctag">@author</span> : yishan</span></span><br><span class="line"><span class="comment"> * <span class="doctag">@date</span> : 2020-12-28 19:16</span></span><br><span class="line"><span class="comment"> */</span></span><br><span class="line"><span class="keyword">public</span> <span class="class"><span class="keyword">class</span> <span class="title">Test04</span> </span>&#123;</span><br><span class="line">    <span class="function"><span class="keyword">public</span> <span class="keyword">static</span> <span class="keyword">void</span> <span class="title">main</span><span class="params">(String[] args)</span> </span>&#123;</span><br><span class="line">        <span class="comment">//1.向上转型：父类引用指向子类对象</span></span><br><span class="line">        Fu fu = <span class="keyword">new</span> Zi();</span><br><span class="line">        fu.eat();</span><br><span class="line">        <span class="comment">//2.向下转型：从父类类型 转换为 子类类型</span></span><br><span class="line">        Zi zi = (Zi) fu;</span><br><span class="line">        zi.show();</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br><span class="line"><span class="class"><span class="keyword">class</span> <span class="title">Fu</span></span>&#123;</span><br><span class="line">    <span class="function"><span class="keyword">void</span> <span class="title">eat</span><span class="params">()</span></span>&#123;</span><br><span class="line">        System.out.println(<span class="string">&quot;我是父类的方法&quot;</span>);</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br><span class="line"><span class="class"><span class="keyword">class</span> <span class="title">Zi</span> <span class="keyword">extends</span> <span class="title">Fu</span></span>&#123;</span><br><span class="line">    <span class="meta">@Override</span></span><br><span class="line">    <span class="function"><span class="keyword">void</span> <span class="title">eat</span><span class="params">()</span> </span>&#123;</span><br><span class="line">        System.out.println(<span class="string">&quot;我是子类的方法&quot;</span>);</span><br><span class="line">    &#125;</span><br><span class="line">    <span class="function"><span class="keyword">void</span> <span class="title">show</span><span class="params">()</span></span>&#123;</span><br><span class="line">        System.out.println(<span class="string">&quot;我是子类特有的方法&quot;</span>);</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br><span class="line"></span><br></pre></td></tr></table></figure>
+<h4 id="多态中的转型存在的风险"><a href="#多态中的转型存在的风险" class="headerlink" title="多态中的转型存在的风险"></a>多态中的转型存在的风险</h4><ul>
+<li>概述;如果被转的引用类型变量，对应的实际类型和目标类型不是同一种类型，那么在转换的时候就会出现ClassCastException</li>
+</ul>
+<h4 id="instanceof-运算符"><a href="#instanceof-运算符" class="headerlink" title="instanceof 运算符"></a>instanceof 运算符</h4><ul>
+<li><p>instanceof是二元运算符，左边是对象，右边是类；当对象时右面类或子类所创建对象时，返回true;否则，返回false.</p>
+<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">if</span>(animal <span class="keyword">instanceof</span> Dog)&#123;</span><br><span class="line">            Dog dog = (Dog) animal;</span><br><span class="line">            dog.show();<span class="comment">//加入instanceof判断，可以避免ClassCastException   类型转换错误</span></span><br><span class="line">        &#125;</span><br></pre></td></tr></table></figure>
+
+
+</li>
+</ul>
+<h3 id="final"><a href="#final" class="headerlink" title="final"></a>final</h3><p>作用：</p>
+<ul>
+<li>1.修饰变量：被它修饰的变量不可改变。一旦赋了初值，就不能被重新赋值<ul>
+<li>基本数据类型变量：其值不能被更改</li>
+<li>引用数据类型变量：其地址值不能被更改，但是可以修改对象的属性值</li>
+<li>成员变量（要注意初始化时机）：1.在创建的时候，直接复制 2.在构造方法结束之前，完成赋值</li>
+</ul>
+</li>
+<li>2.修饰方法：该方法不可被子类重写，但是可以被重载！</li>
+<li>3.修饰类：修饰的类不能被继承。比如：Math、String等<h3 id="抽象方法"><a href="#抽象方法" class="headerlink" title="抽象方法"></a>抽象方法</h3>使用abstract修饰的方法，没有方法体，只有声明。定义的是一种“规范”，就是告诉子类必须要给抽象方法提供具体的实现。<h4 id="抽象类"><a href="#抽象类" class="headerlink" title="抽象类"></a>抽象类</h4>包含抽象方法的类就是抽象类，通过abstract 方法定义规范，然后要求子类必须定义具体实现。通过抽象类，我们就可以做到严格限制子类的设计，使子类之间更加通用。<h4 id="使用要点"><a href="#使用要点" class="headerlink" title="使用要点"></a>使用要点</h4></li>
+<li>1.有抽象方法的类只能定义成抽象类，但是抽象类中不一定有抽象方法</li>
+<li>2.抽象类不能实例化，即不能new来实例化抽象类</li>
+<li>3.抽象类可以包含属性、方法、构造方法。但是构造方法不能用来new实例，只能用来被子类调用</li>
+<li>4.抽象类只能用来被继承</li>
+</ul>
+<blockquote>
+<p>抽象类的意义就在于：为子类提供统一的，规范的模板。子类必须实现相关的抽象方法！<br>    package cn.yishan.oop;</p>
+</blockquote>
+<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">public</span> <span class="keyword">abstract</span> <span class="class"><span class="keyword">class</span> <span class="title">Animal</span> </span>&#123;</span><br><span class="line">    <span class="comment">/**</span></span><br><span class="line"><span class="comment">    * 第一：没有实现</span></span><br><span class="line"><span class="comment">    * 第二：子类必须实现</span></span><br><span class="line"><span class="comment">    */</span></span><br><span class="line">    <span class="function"><span class="keyword">abstract</span> <span class="keyword">public</span> <span class="keyword">void</span> <span class="title">shout</span><span class="params">()</span></span>;</span><br><span class="line"></span><br><span class="line">    <span class="function"><span class="keyword">public</span> <span class="keyword">void</span> <span class="title">run</span><span class="params">()</span></span>&#123;</span><br><span class="line">        System.out.println(<span class="string">&quot;跑！！！&quot;</span>);</span><br><span class="line">    &#125;</span><br><span class="line"></span><br><span class="line">    <span class="function"><span class="keyword">public</span> <span class="keyword">static</span> <span class="keyword">void</span> <span class="title">main</span><span class="params">(String[] args)</span> </span>&#123;</span><br><span class="line">        Animal a = <span class="keyword">new</span> Dog();</span><br><span class="line">        a.shout();</span><br><span class="line">        Integer i;</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br></pre></td><td class="code"><pre><span class="line"><span class="class"><span class="keyword">class</span> <span class="title">Dog</span> <span class="keyword">extends</span> <span class="title">Animal</span></span>&#123;</span><br><span class="line"></span><br><span class="line">    <span class="meta">@Override</span></span><br><span class="line">    <span class="function"><span class="keyword">public</span> <span class="keyword">void</span> <span class="title">shout</span><span class="params">()</span> </span>&#123;</span><br><span class="line">        System.out.println(<span class="string">&quot;哈哈哈！&quot;</span>);</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<h3 id="接口"><a href="#接口" class="headerlink" title="接口"></a>接口</h3><h4 id="声明格式"><a href="#声明格式" class="headerlink" title="声明格式"></a>声明格式</h4><pre><code>[访问修饰符] interface 接口名 [extends 父接口1.父接口2...]&#123;
+    常量定义；
+    方法定义；
+&#125;
+</code></pre>
+<h4 id="定义接口的详细说明"><a href="#定义接口的详细说明" class="headerlink" title="定义接口的详细说明"></a>定义接口的详细说明</h4><ul>
+<li><p>1.访问修饰符：只能是public或默认</p>
+</li>
+<li><p>2.接口名：和类名采用相同命名机制</p>
+</li>
+<li><p>3.extends: 接口可以多继承</p>
+</li>
+<li><p>4.成员变量：接口中的属性只能是常量！总是：public static final 修饰。不写也是</p>
+</li>
+<li><p>5.成员方法：只能是抽象方法！接口中的方法只能是：public abstract。省略的话。也是public abstract</p>
+</li>
+<li><p>6.构造方法：没有，super();访问的是Objict的构造方法</p>
+</li>
+</ul>
+<h3 id="Java8中的接口方法-默认方法、静态方法"><a href="#Java8中的接口方法-默认方法、静态方法" class="headerlink" title="Java8中的接口方法(默认方法、静态方法)"></a>Java8中的接口方法(默认方法、静态方法)</h3><h5 id="默认方法：default关键字"><a href="#默认方法：default关键字" class="headerlink" title="默认方法：default关键字"></a>默认方法：default关键字</h5><ul>
+<li>作用：解决接口升级的问题</li>
+</ul>
+<h5 id="注意事项"><a href="#注意事项" class="headerlink" title="注意事项"></a>注意事项</h5><ul>
+<li>默认方法不是抽象方法，所以不强制被重写。但是可以被重写，重写的时候去掉default关键字</li>
+<li>public可以省略，default不能省略</li>
+<li>如果实现了多个接口，多个接口中存在相同的方法声明，子类就必须对该方法进行重写</li>
+</ul>
+<h3 id="静态方法：static关键字"><a href="#静态方法：static关键字" class="headerlink" title="静态方法：static关键字"></a>静态方法：static关键字</h3><h5 id="注意事项-1"><a href="#注意事项-1" class="headerlink" title="注意事项"></a>注意事项</h5><ul>
+<li>静态方法只能通过接口名调用，不能通过实现类名或者对象名调用</li>
+<li>public可以省略，static不能省略</li>
+</ul>
+<h3 id="Java9中的接口方法-私有方法"><a href="#Java9中的接口方法-私有方法" class="headerlink" title="Java9中的接口方法(私有方法)"></a>Java9中的接口方法(私有方法)</h3><h4 id="私有方法产生原因"><a href="#私有方法产生原因" class="headerlink" title="私有方法产生原因"></a>私有方法产生原因</h4><ul>
+<li>Java 9中新增了带方法体的私有方法，这其实在Java 8中就埋下了伏笔：Java 8允许在接口中定义带方法体的默认方法和静态方法。这样可能就会引发一个问题：当两个默认方法或者静态方法中包含一段相同的代码实现时，程序必然考虑将这段实现代码抽取成一个共性方法，而这个共性方法是不需要让别人使用的，因此用私有给隐藏起来，这就是Java 9增加私有方法的必然性</li>
+</ul>
+<h5 id="注意事项-2"><a href="#注意事项-2" class="headerlink" title="注意事项"></a>注意事项</h5><ul>
+<li>默认方法可以调用私有的静态方法和非静态方法</li>
+<li>静态方法只能调用私有的静态方法</li>
+</ul>
+<h3 id="类和接口的关系"><a href="#类和接口的关系" class="headerlink" title="类和接口的关系"></a>类和接口的关系</h3><ul>
+<li>类和类的关系<ul>
+<li>继承关系，只可以单继承，但是可以多层继承</li>
+</ul>
+</li>
+<li>类和接口的关系<ul>
+<li>实现关系，可以单实现，也可以多实现，还可以在继承一个类的同时实现多个接口</li>
+</ul>
+</li>
+<li>接口和接口的关系<ul>
+<li>继承关系，可以单继承，也可以多继承</li>
+</ul>
+</li>
+</ul>
+
+      
+    </div>
+    <footer class="article-footer">
+      <a data-url="http://example.com/2020/08/03/%E9%9D%A2%E5%90%91%E5%AF%B9%E8%B1%A1/%E9%9D%A2%E5%90%91%E5%AF%B9%E8%B1%A1%EF%BC%88%E6%8F%90%E9%AB%98%E7%AF%87%EF%BC%89/" data-id="ckkkvm254005gyo59eq2s4coi" data-title="面向对象（提高篇）" class="article-share-link">Share</a>
+      
+      
+      
+  <ul class="article-tag-list" itemprop="keywords"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/java%E5%9F%BA%E7%A1%80/" rel="tag">java基础</a></li></ul>
+
+    </footer>
+  </div>
+  
+    
+<nav id="article-nav">
+  
+    <a href="/2020/08/07/%E5%9F%BA%E7%A1%80%E8%AF%AD%E6%B3%95/%E6%95%B0%E7%BB%84/" id="article-nav-newer" class="article-nav-link-wrap">
+      <strong class="article-nav-caption">Newer</strong>
+      <div class="article-nav-title">
+        
+          数组
+        
+      </div>
+    </a>
+  
+  
+    <a href="/2020/08/02/%E9%9D%A2%E5%90%91%E5%AF%B9%E8%B1%A1/this%E3%80%81static%E3%80%81%E9%9D%99%E6%80%81/" id="article-nav-older" class="article-nav-link-wrap">
+      <strong class="article-nav-caption">Older</strong>
+      <div class="article-nav-title">this、static、静态</div>
+    </a>
+  
+</nav>
+
+  
+</article>
+
+
+</section>
+        
+          <aside id="sidebar">
+  
+    
+
+  
+    
+  <div class="widget-wrap">
+    <h3 class="widget-title">Tags</h3>
+    <div class="widget">
+      <ul class="tag-list" itemprop="keywords"><li class="tag-list-item"><a class="tag-list-link" href="/tags/AOP/" rel="tag">AOP</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/ArrayList/" rel="tag">ArrayList</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/Collection/" rel="tag">Collection</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/HashMap/" rel="tag">HashMap</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/HashSet/" rel="tag">HashSet</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/IO/" rel="tag">IO</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/IOC/" rel="tag">IOC</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/Lambad/" rel="tag">Lambad</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/LinkedList/" rel="tag">LinkedList</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/Linux/" rel="tag">Linux</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/List/" rel="tag">List</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/Map/" rel="tag">Map</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/MarkDown%E5%9F%BA%E7%A1%80/" rel="tag">MarkDown基础</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/Set/" rel="tag">Set</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/Spring/" rel="tag">Spring</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/TreeMap/" rel="tag">TreeMap</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/TreeSet/" rel="tag">TreeSet</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/Vector%E5%90%91%E9%87%8F/" rel="tag">Vector向量</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/java%E5%9F%BA%E7%A1%80/" rel="tag">java基础</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/js/" rel="tag">js</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/jvm/" rel="tag">jvm</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/jvm%E8%B0%83%E4%BC%98/" rel="tag">jvm调优</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/mysql/" rel="tag">mysql</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/web%E6%A0%B8%E5%BF%83/" rel="tag">web核心</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/%E4%BA%8C%E5%88%86%E6%9F%A5%E6%89%BE/" rel="tag">二分查找</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/%E5%86%92%E6%B3%A1%E6%8E%92%E5%BA%8F/" rel="tag">冒泡排序</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/%E5%9E%83%E5%9C%BE%E5%9B%9E%E6%94%B6/" rel="tag">垃圾回收</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/%E5%A4%9A%E7%BA%BF%E7%A8%8B/" rel="tag">多线程</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/%E5%AE%9E%E4%BE%8B%E7%A8%8B%E5%BA%8F/" rel="tag">实例程序</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/%E5%BC%82%E5%B8%B8/" rel="tag">异常</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/%E6%95%B0%E6%8D%AE%E7%BB%93%E6%9E%84/" rel="tag">数据结构</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/%E6%B3%9B%E5%9E%8B/" rel="tag">泛型</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/%E7%89%88%E6%9C%AC%E6%8E%A7%E5%88%B6/" rel="tag">版本控制</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/%E7%AE%97%E6%B3%95%E5%9F%BA%E7%A1%80/" rel="tag">算法基础</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/%E7%B1%BB%E5%8A%A0%E8%BD%BD%E5%99%A8/" rel="tag">类加载器</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/%E8%AE%BE%E8%AE%A1%E6%A8%A1%E5%BC%8F/" rel="tag">设计模式</a></li></ul>
+    </div>
+  </div>
+
+
+  
+    
+  <div class="widget-wrap">
+    <h3 class="widget-title">Tag Cloud</h3>
+    <div class="widget tagcloud">
+      <a href="/tags/AOP/" style="font-size: 10px;">AOP</a> <a href="/tags/ArrayList/" style="font-size: 12px;">ArrayList</a> <a href="/tags/Collection/" style="font-size: 10px;">Collection</a> <a href="/tags/HashMap/" style="font-size: 12px;">HashMap</a> <a href="/tags/HashSet/" style="font-size: 12px;">HashSet</a> <a href="/tags/IO/" style="font-size: 16px;">IO</a> <a href="/tags/IOC/" style="font-size: 10px;">IOC</a> <a href="/tags/Lambad/" style="font-size: 10px;">Lambad</a> <a href="/tags/LinkedList/" style="font-size: 10px;">LinkedList</a> <a href="/tags/Linux/" style="font-size: 14px;">Linux</a> <a href="/tags/List/" style="font-size: 12px;">List</a> <a href="/tags/Map/" style="font-size: 12px;">Map</a> <a href="/tags/MarkDown%E5%9F%BA%E7%A1%80/" style="font-size: 10px;">MarkDown基础</a> <a href="/tags/Set/" style="font-size: 12px;">Set</a> <a href="/tags/Spring/" style="font-size: 12px;">Spring</a> <a href="/tags/TreeMap/" style="font-size: 10px;">TreeMap</a> <a href="/tags/TreeSet/" style="font-size: 10px;">TreeSet</a> <a href="/tags/Vector%E5%90%91%E9%87%8F/" style="font-size: 10px;">Vector向量</a> <a href="/tags/java%E5%9F%BA%E7%A1%80/" style="font-size: 20px;">java基础</a> <a href="/tags/js/" style="font-size: 10px;">js</a> <a href="/tags/jvm/" style="font-size: 12px;">jvm</a> <a href="/tags/jvm%E8%B0%83%E4%BC%98/" style="font-size: 10px;">jvm调优</a> <a href="/tags/mysql/" style="font-size: 10px;">mysql</a> <a href="/tags/web%E6%A0%B8%E5%BF%83/" style="font-size: 12px;">web核心</a> <a href="/tags/%E4%BA%8C%E5%88%86%E6%9F%A5%E6%89%BE/" style="font-size: 10px;">二分查找</a> <a href="/tags/%E5%86%92%E6%B3%A1%E6%8E%92%E5%BA%8F/" style="font-size: 10px;">冒泡排序</a> <a href="/tags/%E5%9E%83%E5%9C%BE%E5%9B%9E%E6%94%B6/" style="font-size: 10px;">垃圾回收</a> <a href="/tags/%E5%A4%9A%E7%BA%BF%E7%A8%8B/" style="font-size: 16px;">多线程</a> <a href="/tags/%E5%AE%9E%E4%BE%8B%E7%A8%8B%E5%BA%8F/" style="font-size: 10px;">实例程序</a> <a href="/tags/%E5%BC%82%E5%B8%B8/" style="font-size: 10px;">异常</a> <a href="/tags/%E6%95%B0%E6%8D%AE%E7%BB%93%E6%9E%84/" style="font-size: 10px;">数据结构</a> <a href="/tags/%E6%B3%9B%E5%9E%8B/" style="font-size: 12px;">泛型</a> <a href="/tags/%E7%89%88%E6%9C%AC%E6%8E%A7%E5%88%B6/" style="font-size: 12px;">版本控制</a> <a href="/tags/%E7%AE%97%E6%B3%95%E5%9F%BA%E7%A1%80/" style="font-size: 12px;">算法基础</a> <a href="/tags/%E7%B1%BB%E5%8A%A0%E8%BD%BD%E5%99%A8/" style="font-size: 10px;">类加载器</a> <a href="/tags/%E8%AE%BE%E8%AE%A1%E6%A8%A1%E5%BC%8F/" style="font-size: 18px;">设计模式</a>
+    </div>
+  </div>
+
+  
+    
+  <div class="widget-wrap">
+    <h3 class="widget-title">Archives</h3>
+    <div class="widget">
+      <ul class="archive-list"><li class="archive-list-item"><a class="archive-list-link" href="/archives/2021/01/">January 2021</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2020/12/">December 2020</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2020/10/">October 2020</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2020/09/">September 2020</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2020/08/">August 2020</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2020/07/">July 2020</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2020/06/">June 2020</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2020/05/">May 2020</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2020/04/">April 2020</a></li></ul>
+    </div>
+  </div>
+
+
+  
+    
+  <div class="widget-wrap">
+    <h3 class="widget-title">Recent Posts</h3>
+    <div class="widget">
+      <ul>
+        
+          <li>
+            <a href="/2021/01/31/web%E6%A0%B8%E5%BF%83/web%E6%A0%B8%E5%BF%83-request-response/">(no title)</a>
+          </li>
+        
+          <li>
+            <a href="/2021/01/31/web%E6%A0%B8%E5%BF%83/web%E6%A0%B8%E5%BF%83-Servlet/">web核心-Servlet</a>
+          </li>
+        
+          <li>
+            <a href="/2021/01/30/web%E6%A0%B8%E5%BF%83/web%E6%A0%B8%E5%BF%83-Http%E5%8D%8F%E8%AE%AE/">web核心-Http协议</a>
+          </li>
+        
+          <li>
+            <a href="/2021/01/26/mysql/mysql%E5%9F%BA%E7%A1%80/">mysql基础</a>
+          </li>
+        
+          <li>
+            <a href="/2021/01/24/Linux/Linux-yum%E5%87%BA%E9%94%99/">Linux-yum出错</a>
+          </li>
+        
+      </ul>
+    </div>
+  </div>
+
+  
+</aside>
+        
+      </div>
+      <footer id="footer">
+  
+  <div class="outer">
+    <div id="footer-info" class="inner">
+      
+      &copy; 2021 John Doe<br>
+      Powered by <a href="https://hexo.io/" target="_blank">Hexo</a>
+    </div>
+  </div>
+</footer>
+
+    </div>
+    <nav id="mobile-nav">
+  
+    <a href="/" class="mobile-nav-link">Home</a>
+  
+    <a href="/archives" class="mobile-nav-link">Archives</a>
+  
+</nav>
+    
+
+
+<script src="/js/jquery-3.4.1.min.js"></script>
+
+
+
+  
+<script src="/fancybox/jquery.fancybox.min.js"></script>
+
+
+
+
+<script src="/js/script.js"></script>
+
+
+
+
+
+  </div>
+</body>
+</html>

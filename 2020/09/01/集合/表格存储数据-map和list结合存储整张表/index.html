@@ -1,0 +1,388 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <meta charset="utf-8">
+  
+  
+  <title>表格存储数据 | Hexo</title>
+  <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+  <meta name="description" content="map和list结合存储整张表每行数据使用一个：Map">
+<meta property="og:type" content="article">
+<meta property="og:title" content="表格存储数据">
+<meta property="og:url" content="http://example.com/2020/09/01/%E9%9B%86%E5%90%88/%E8%A1%A8%E6%A0%BC%E5%AD%98%E5%82%A8%E6%95%B0%E6%8D%AE-map%E5%92%8Clist%E7%BB%93%E5%90%88%E5%AD%98%E5%82%A8%E6%95%B4%E5%BC%A0%E8%A1%A8/index.html">
+<meta property="og:site_name" content="Hexo">
+<meta property="og:description" content="map和list结合存储整张表每行数据使用一个：Map">
+<meta property="og:locale" content="en_US">
+<meta property="article:published_time" content="2020-09-01T10:32:10.000Z">
+<meta property="article:modified_time" content="2020-09-01T11:47:49.479Z">
+<meta property="article:author" content="John Doe">
+<meta property="article:tag" content="java基础">
+<meta property="article:tag" content="Map">
+<meta property="article:tag" content="List">
+<meta name="twitter:card" content="summary">
+  
+    <link rel="alternate" href="/atom.xml" title="Hexo" type="application/atom+xml">
+  
+  
+    <link rel="shortcut icon" href="/favicon.png">
+  
+  
+    
+<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/typeface-source-code-pro@0.0.71/index.min.css">
+
+  
+  
+<link rel="stylesheet" href="/css/style.css">
+
+  
+    
+<link rel="stylesheet" href="/fancybox/jquery.fancybox.min.css">
+
+  
+<meta name="generator" content="Hexo 5.3.0"></head>
+
+<body>
+  <div id="container">
+    <div id="wrap">
+      <header id="header">
+  <div id="banner"></div>
+  <div id="header-outer" class="outer">
+    <div id="header-title" class="inner">
+      <h1 id="logo-wrap">
+        <a href="/" id="logo">Hexo</a>
+      </h1>
+      
+    </div>
+    <div id="header-inner" class="inner">
+      <nav id="main-nav">
+        <a id="main-nav-toggle" class="nav-icon"></a>
+        
+          <a class="main-nav-link" href="/">Home</a>
+        
+          <a class="main-nav-link" href="/archives">Archives</a>
+        
+      </nav>
+      <nav id="sub-nav">
+        
+          <a id="nav-rss-link" class="nav-icon" href="/atom.xml" title="RSS Feed"></a>
+        
+        <a id="nav-search-btn" class="nav-icon" title="Search"></a>
+      </nav>
+      <div id="search-form-wrap">
+        <form action="//google.com/search" method="get" accept-charset="UTF-8" class="search-form"><input type="search" name="q" class="search-form-input" placeholder="Search"><button type="submit" class="search-form-submit">&#xF002;</button><input type="hidden" name="sitesearch" value="http://example.com"></form>
+      </div>
+    </div>
+  </div>
+</header>
+
+      <div class="outer">
+        <section id="main"><article id="post-集合/表格存储数据-map和list结合存储整张表" class="h-entry article article-type-post" itemprop="blogPost" itemscope itemtype="https://schema.org/BlogPosting">
+  <div class="article-meta">
+    <a href="/2020/09/01/%E9%9B%86%E5%90%88/%E8%A1%A8%E6%A0%BC%E5%AD%98%E5%82%A8%E6%95%B0%E6%8D%AE-map%E5%92%8Clist%E7%BB%93%E5%90%88%E5%AD%98%E5%82%A8%E6%95%B4%E5%BC%A0%E8%A1%A8/" class="article-date">
+  <time class="dt-published" datetime="2020-09-01T10:32:10.000Z" itemprop="datePublished">2020-09-01</time>
+</a>
+    
+  </div>
+  <div class="article-inner">
+    
+    
+      <header class="article-header">
+        
+  
+    <h1 class="p-name article-title" itemprop="headline name">
+      表格存储数据
+    </h1>
+  
+
+      </header>
+    
+    <div class="e-content article-entry" itemprop="articleBody">
+      
+        <h3 id="map和list结合存储整张表"><a href="#map和list结合存储整张表" class="headerlink" title="map和list结合存储整张表"></a>map和list结合存储整张表</h3><p>每行数据使用一个：Map</p>
+<a id="more"></a>
+<p>整个表格使用一个List</p>
+<p>ORM思想：对象关系映射</p>
+<pre><code>    package cn.yishan.collection;
+
+    import java.util.*;
+
+    /**
+    * 测试表格数据的存储
+    * @author yishan
+    */
+    public class TestStoreData &#123;
+        public static void main(String[] args) &#123;
+
+            Map&lt;String, Object&gt; row1 = new HashMap&lt;&gt;();
+            row1.put(&quot;id&quot;,1001);
+            row1.put(&quot;姓名&quot;,&quot;张三&quot;);
+            row1.put(&quot;薪水&quot;,&quot;2000&quot;);
+            row1.put(&quot;入职日期&quot;,&quot;2001.5.2&quot;);
+
+            Map&lt;String, Object&gt; row2 = new HashMap&lt;&gt;();
+            row2.put(&quot;id&quot;,1002);
+            row2.put(&quot;姓名&quot;,&quot;李四&quot;);
+            row2.put(&quot;薪水&quot;,&quot;3000&quot;);
+            row2.put(&quot;入职日期&quot;,&quot;2010.4.8&quot;);
+
+            Map&lt;String, Object&gt; row3 = new HashMap&lt;&gt;();
+            row3.put(&quot;id&quot;,1003);
+            row3.put(&quot;姓名&quot;,&quot;王五&quot;);
+            row3.put(&quot;薪水&quot;,&quot;4500&quot;);
+            row3.put(&quot;入职日期&quot;,&quot;2010.7.9&quot;);
+
+            List&lt;Map&lt;String, Object&gt;&gt; table1 = new ArrayList&lt;&gt;();
+            table1.add(row1);
+            table1.add(row2);
+            table1.add(row3);
+
+            for (Map&lt;String, Object&gt; row:table1)&#123;
+                Set&lt;String&gt; keyset = row.keySet();
+
+                for (String key:keyset)&#123;
+                    System.out.print(key+&quot;:&quot;+row.get(key)+&quot;\t&quot;);
+                &#125;
+                System.out.println();
+            &#125;
+        &#125;
+    &#125;
+</code></pre>
+<h3 id="javabean和list结合存储整张表"><a href="#javabean和list结合存储整张表" class="headerlink" title="javabean和list结合存储整张表"></a>javabean和list结合存储整张表</h3><p>每一行数据使用一个：javabean对象</p>
+<p>整个表格使用一个：Map/List</p>
+<pre><code>    package cn.yishan.collection;
+
+    import java.util.*;
+
+    /**
+    * 测试表格数据的存储
+    * 体会ORM思想
+    * 每一行数据使用javabean对象存储，多行使用放到map或者list中
+    * @author yishan
+    */
+    public class TestStoreData2 &#123;
+        public static void main(String[] args) &#123;
+            User user1 = new User(1001,&quot;张三&quot;,2000,&quot;2001.5.6&quot;);
+            User user2 = new User(1002,&quot;李四&quot;,3000,&quot;2002.6.8&quot;);
+            User user3 = new User(1003,&quot;王五&quot;,4000,&quot;2006.9.6&quot;);
+
+            List&lt;User&gt; list = new ArrayList&lt;&gt;();
+            list.add(user1);
+            list.add(user2);
+            list.add(user3);
+
+            for (User u:list)&#123;
+                System.out.println(u);
+            &#125;
+            System.out.println(&quot;--------------------------------------------&quot;);
+            Map&lt;Integer, User&gt; map = new HashMap&lt;&gt;();
+            map.put(1001,user1);
+            map.put(1002,user2);
+            map.put(1003,user3);
+            Set&lt;Integer&gt; keyset = map.keySet();
+            for (Integer key:keyset)&#123;
+                System.out.println(key+&quot;--&quot;+map.get(key));
+            &#125;
+        &#125;
+    &#125;
+
+    class User&#123;
+        private int id;
+        private String name;
+        private double salary;
+        private String hiredate;
+
+        //一个完整的javabean。要有set和get方法，以及无参的构造器
+        public User()&#123;&#125;
+        public User(int id, String name, double salary, String hiredate) &#123;
+            this.id = id;
+            this.name = name;
+            this.salary = salary;
+            this.hiredate = hiredate;
+        &#125;
+
+        public int getId() &#123;
+            return id;
+        &#125;
+
+        public void setId(int id) &#123;
+            this.id = id;
+        &#125;
+
+        public String getName() &#123;
+            return name;
+        &#125;
+
+        public void setName(String name) &#123;
+            this.name = name;
+        &#125;
+
+        public double getSalary() &#123;
+            return salary;
+        &#125;
+
+        public void setSalary(double salary) &#123;
+            this.salary = salary;
+        &#125;
+
+        public String getHiredate() &#123;
+            return hiredate;
+        &#125;
+
+        public void setHiredate(String hiredate) &#123;
+            this.hiredate = hiredate;
+        &#125;
+
+        @Override
+        public String toString() &#123;
+            return &quot;id:&quot;+id+&quot;,name:&quot;+name+&quot;,salary:&quot;+salary+&quot;,hiredate:&quot;+hiredate;
+        &#125;
+    &#125;
+</code></pre>
+
+      
+    </div>
+    <footer class="article-footer">
+      <a data-url="http://example.com/2020/09/01/%E9%9B%86%E5%90%88/%E8%A1%A8%E6%A0%BC%E5%AD%98%E5%82%A8%E6%95%B0%E6%8D%AE-map%E5%92%8Clist%E7%BB%93%E5%90%88%E5%AD%98%E5%82%A8%E6%95%B4%E5%BC%A0%E8%A1%A8/" data-id="ckkkvm24s004wyo59dbi9c164" data-title="表格存储数据" class="article-share-link">Share</a>
+      
+      
+      
+  <ul class="article-tag-list" itemprop="keywords"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/List/" rel="tag">List</a></li><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/Map/" rel="tag">Map</a></li><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/java%E5%9F%BA%E7%A1%80/" rel="tag">java基础</a></li></ul>
+
+    </footer>
+  </div>
+  
+    
+<nav id="article-nav">
+  
+    <a href="/2020/09/01/%E8%AE%BE%E8%AE%A1%E6%A8%A1%E5%BC%8F/%E8%AE%BE%E8%AE%A1%E6%A8%A1%E5%BC%8F%E4%B9%8B%E5%8D%95%E4%BE%8B%E6%A8%A1%E5%BC%8F%EF%BC%81/" id="article-nav-newer" class="article-nav-link-wrap">
+      <strong class="article-nav-caption">Newer</strong>
+      <div class="article-nav-title">
+        
+          设计模式之单例模式！
+        
+      </div>
+    </a>
+  
+  
+    <a href="/2020/09/01/%E9%9B%86%E5%90%88/Collections%E5%B7%A5%E5%85%B7%E7%B1%BB/" id="article-nav-older" class="article-nav-link-wrap">
+      <strong class="article-nav-caption">Older</strong>
+      <div class="article-nav-title">Collections工具类</div>
+    </a>
+  
+</nav>
+
+  
+</article>
+
+
+</section>
+        
+          <aside id="sidebar">
+  
+    
+
+  
+    
+  <div class="widget-wrap">
+    <h3 class="widget-title">Tags</h3>
+    <div class="widget">
+      <ul class="tag-list" itemprop="keywords"><li class="tag-list-item"><a class="tag-list-link" href="/tags/AOP/" rel="tag">AOP</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/ArrayList/" rel="tag">ArrayList</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/Collection/" rel="tag">Collection</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/HashMap/" rel="tag">HashMap</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/HashSet/" rel="tag">HashSet</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/IO/" rel="tag">IO</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/IOC/" rel="tag">IOC</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/Lambad/" rel="tag">Lambad</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/LinkedList/" rel="tag">LinkedList</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/Linux/" rel="tag">Linux</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/List/" rel="tag">List</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/Map/" rel="tag">Map</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/MarkDown%E5%9F%BA%E7%A1%80/" rel="tag">MarkDown基础</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/Set/" rel="tag">Set</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/Spring/" rel="tag">Spring</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/TreeMap/" rel="tag">TreeMap</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/TreeSet/" rel="tag">TreeSet</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/Vector%E5%90%91%E9%87%8F/" rel="tag">Vector向量</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/java%E5%9F%BA%E7%A1%80/" rel="tag">java基础</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/js/" rel="tag">js</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/jvm/" rel="tag">jvm</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/jvm%E8%B0%83%E4%BC%98/" rel="tag">jvm调优</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/mysql/" rel="tag">mysql</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/web%E6%A0%B8%E5%BF%83/" rel="tag">web核心</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/%E4%BA%8C%E5%88%86%E6%9F%A5%E6%89%BE/" rel="tag">二分查找</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/%E5%86%92%E6%B3%A1%E6%8E%92%E5%BA%8F/" rel="tag">冒泡排序</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/%E5%9E%83%E5%9C%BE%E5%9B%9E%E6%94%B6/" rel="tag">垃圾回收</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/%E5%A4%9A%E7%BA%BF%E7%A8%8B/" rel="tag">多线程</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/%E5%AE%9E%E4%BE%8B%E7%A8%8B%E5%BA%8F/" rel="tag">实例程序</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/%E5%BC%82%E5%B8%B8/" rel="tag">异常</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/%E6%95%B0%E6%8D%AE%E7%BB%93%E6%9E%84/" rel="tag">数据结构</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/%E6%B3%9B%E5%9E%8B/" rel="tag">泛型</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/%E7%89%88%E6%9C%AC%E6%8E%A7%E5%88%B6/" rel="tag">版本控制</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/%E7%AE%97%E6%B3%95%E5%9F%BA%E7%A1%80/" rel="tag">算法基础</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/%E7%B1%BB%E5%8A%A0%E8%BD%BD%E5%99%A8/" rel="tag">类加载器</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/%E8%AE%BE%E8%AE%A1%E6%A8%A1%E5%BC%8F/" rel="tag">设计模式</a></li></ul>
+    </div>
+  </div>
+
+
+  
+    
+  <div class="widget-wrap">
+    <h3 class="widget-title">Tag Cloud</h3>
+    <div class="widget tagcloud">
+      <a href="/tags/AOP/" style="font-size: 10px;">AOP</a> <a href="/tags/ArrayList/" style="font-size: 12px;">ArrayList</a> <a href="/tags/Collection/" style="font-size: 10px;">Collection</a> <a href="/tags/HashMap/" style="font-size: 12px;">HashMap</a> <a href="/tags/HashSet/" style="font-size: 12px;">HashSet</a> <a href="/tags/IO/" style="font-size: 16px;">IO</a> <a href="/tags/IOC/" style="font-size: 10px;">IOC</a> <a href="/tags/Lambad/" style="font-size: 10px;">Lambad</a> <a href="/tags/LinkedList/" style="font-size: 10px;">LinkedList</a> <a href="/tags/Linux/" style="font-size: 14px;">Linux</a> <a href="/tags/List/" style="font-size: 12px;">List</a> <a href="/tags/Map/" style="font-size: 12px;">Map</a> <a href="/tags/MarkDown%E5%9F%BA%E7%A1%80/" style="font-size: 10px;">MarkDown基础</a> <a href="/tags/Set/" style="font-size: 12px;">Set</a> <a href="/tags/Spring/" style="font-size: 12px;">Spring</a> <a href="/tags/TreeMap/" style="font-size: 10px;">TreeMap</a> <a href="/tags/TreeSet/" style="font-size: 10px;">TreeSet</a> <a href="/tags/Vector%E5%90%91%E9%87%8F/" style="font-size: 10px;">Vector向量</a> <a href="/tags/java%E5%9F%BA%E7%A1%80/" style="font-size: 20px;">java基础</a> <a href="/tags/js/" style="font-size: 10px;">js</a> <a href="/tags/jvm/" style="font-size: 12px;">jvm</a> <a href="/tags/jvm%E8%B0%83%E4%BC%98/" style="font-size: 10px;">jvm调优</a> <a href="/tags/mysql/" style="font-size: 10px;">mysql</a> <a href="/tags/web%E6%A0%B8%E5%BF%83/" style="font-size: 12px;">web核心</a> <a href="/tags/%E4%BA%8C%E5%88%86%E6%9F%A5%E6%89%BE/" style="font-size: 10px;">二分查找</a> <a href="/tags/%E5%86%92%E6%B3%A1%E6%8E%92%E5%BA%8F/" style="font-size: 10px;">冒泡排序</a> <a href="/tags/%E5%9E%83%E5%9C%BE%E5%9B%9E%E6%94%B6/" style="font-size: 10px;">垃圾回收</a> <a href="/tags/%E5%A4%9A%E7%BA%BF%E7%A8%8B/" style="font-size: 16px;">多线程</a> <a href="/tags/%E5%AE%9E%E4%BE%8B%E7%A8%8B%E5%BA%8F/" style="font-size: 10px;">实例程序</a> <a href="/tags/%E5%BC%82%E5%B8%B8/" style="font-size: 10px;">异常</a> <a href="/tags/%E6%95%B0%E6%8D%AE%E7%BB%93%E6%9E%84/" style="font-size: 10px;">数据结构</a> <a href="/tags/%E6%B3%9B%E5%9E%8B/" style="font-size: 12px;">泛型</a> <a href="/tags/%E7%89%88%E6%9C%AC%E6%8E%A7%E5%88%B6/" style="font-size: 12px;">版本控制</a> <a href="/tags/%E7%AE%97%E6%B3%95%E5%9F%BA%E7%A1%80/" style="font-size: 12px;">算法基础</a> <a href="/tags/%E7%B1%BB%E5%8A%A0%E8%BD%BD%E5%99%A8/" style="font-size: 10px;">类加载器</a> <a href="/tags/%E8%AE%BE%E8%AE%A1%E6%A8%A1%E5%BC%8F/" style="font-size: 18px;">设计模式</a>
+    </div>
+  </div>
+
+  
+    
+  <div class="widget-wrap">
+    <h3 class="widget-title">Archives</h3>
+    <div class="widget">
+      <ul class="archive-list"><li class="archive-list-item"><a class="archive-list-link" href="/archives/2021/01/">January 2021</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2020/12/">December 2020</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2020/10/">October 2020</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2020/09/">September 2020</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2020/08/">August 2020</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2020/07/">July 2020</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2020/06/">June 2020</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2020/05/">May 2020</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2020/04/">April 2020</a></li></ul>
+    </div>
+  </div>
+
+
+  
+    
+  <div class="widget-wrap">
+    <h3 class="widget-title">Recent Posts</h3>
+    <div class="widget">
+      <ul>
+        
+          <li>
+            <a href="/2021/01/31/web%E6%A0%B8%E5%BF%83/web%E6%A0%B8%E5%BF%83-request-response/">(no title)</a>
+          </li>
+        
+          <li>
+            <a href="/2021/01/31/web%E6%A0%B8%E5%BF%83/web%E6%A0%B8%E5%BF%83-Servlet/">web核心-Servlet</a>
+          </li>
+        
+          <li>
+            <a href="/2021/01/30/web%E6%A0%B8%E5%BF%83/web%E6%A0%B8%E5%BF%83-Http%E5%8D%8F%E8%AE%AE/">web核心-Http协议</a>
+          </li>
+        
+          <li>
+            <a href="/2021/01/26/mysql/mysql%E5%9F%BA%E7%A1%80/">mysql基础</a>
+          </li>
+        
+          <li>
+            <a href="/2021/01/24/Linux/Linux-yum%E5%87%BA%E9%94%99/">Linux-yum出错</a>
+          </li>
+        
+      </ul>
+    </div>
+  </div>
+
+  
+</aside>
+        
+      </div>
+      <footer id="footer">
+  
+  <div class="outer">
+    <div id="footer-info" class="inner">
+      
+      &copy; 2021 John Doe<br>
+      Powered by <a href="https://hexo.io/" target="_blank">Hexo</a>
+    </div>
+  </div>
+</footer>
+
+    </div>
+    <nav id="mobile-nav">
+  
+    <a href="/" class="mobile-nav-link">Home</a>
+  
+    <a href="/archives" class="mobile-nav-link">Archives</a>
+  
+</nav>
+    
+
+
+<script src="/js/jquery-3.4.1.min.js"></script>
+
+
+
+  
+<script src="/fancybox/jquery.fancybox.min.js"></script>
+
+
+
+
+<script src="/js/script.js"></script>
+
+
+
+
+
+  </div>
+</body>
+</html>

@@ -1,0 +1,344 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <meta charset="utf-8">
+  
+  
+  <title>SVN | Hexo</title>
+  <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+  <meta name="description" content="1.SVN常见操作：">
+<meta property="og:type" content="article">
+<meta property="og:title" content="SVN">
+<meta property="og:url" content="http://example.com/2020/07/20/%E7%89%88%E6%9C%AC%E6%8E%A7%E5%88%B6/SVN/index.html">
+<meta property="og:site_name" content="Hexo">
+<meta property="og:description" content="1.SVN常见操作：">
+<meta property="og:locale" content="en_US">
+<meta property="article:published_time" content="2020-07-20T07:50:39.000Z">
+<meta property="article:modified_time" content="2020-07-21T07:17:49.558Z">
+<meta property="article:author" content="John Doe">
+<meta property="article:tag" content="版本控制">
+<meta name="twitter:card" content="summary">
+  
+    <link rel="alternate" href="/atom.xml" title="Hexo" type="application/atom+xml">
+  
+  
+    <link rel="shortcut icon" href="/favicon.png">
+  
+  
+    
+<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/typeface-source-code-pro@0.0.71/index.min.css">
+
+  
+  
+<link rel="stylesheet" href="/css/style.css">
+
+  
+    
+<link rel="stylesheet" href="/fancybox/jquery.fancybox.min.css">
+
+  
+<meta name="generator" content="Hexo 5.3.0"></head>
+
+<body>
+  <div id="container">
+    <div id="wrap">
+      <header id="header">
+  <div id="banner"></div>
+  <div id="header-outer" class="outer">
+    <div id="header-title" class="inner">
+      <h1 id="logo-wrap">
+        <a href="/" id="logo">Hexo</a>
+      </h1>
+      
+    </div>
+    <div id="header-inner" class="inner">
+      <nav id="main-nav">
+        <a id="main-nav-toggle" class="nav-icon"></a>
+        
+          <a class="main-nav-link" href="/">Home</a>
+        
+          <a class="main-nav-link" href="/archives">Archives</a>
+        
+      </nav>
+      <nav id="sub-nav">
+        
+          <a id="nav-rss-link" class="nav-icon" href="/atom.xml" title="RSS Feed"></a>
+        
+        <a id="nav-search-btn" class="nav-icon" title="Search"></a>
+      </nav>
+      <div id="search-form-wrap">
+        <form action="//google.com/search" method="get" accept-charset="UTF-8" class="search-form"><input type="search" name="q" class="search-form-input" placeholder="Search"><button type="submit" class="search-form-submit">&#xF002;</button><input type="hidden" name="sitesearch" value="http://example.com"></form>
+      </div>
+    </div>
+  </div>
+</header>
+
+      <div class="outer">
+        <section id="main"><article id="post-版本控制/SVN" class="h-entry article article-type-post" itemprop="blogPost" itemscope itemtype="https://schema.org/BlogPosting">
+  <div class="article-meta">
+    <a href="/2020/07/20/%E7%89%88%E6%9C%AC%E6%8E%A7%E5%88%B6/SVN/" class="article-date">
+  <time class="dt-published" datetime="2020-07-20T07:50:39.000Z" itemprop="datePublished">2020-07-20</time>
+</a>
+    
+  </div>
+  <div class="article-inner">
+    
+    
+      <header class="article-header">
+        
+  
+    <h1 class="p-name article-title" itemprop="headline name">
+      SVN
+    </h1>
+  
+
+      </header>
+    
+    <div class="e-content article-entry" itemprop="articleBody">
+      
+        <h4 id="1-SVN常见操作："><a href="#1-SVN常见操作：" class="headerlink" title="1.SVN常见操作："></a>1.SVN常见操作：</h4><a id="more"></a>
+<ul>
+<li><p>a.发布项目（share project）：项目组长将本机的项目第一次发布到中央仓库。</p>
+</li>
+<li><p>b.下载项目（检出项目、check out）：组员将中央仓库的项目第一次下载到本地。</p>
+</li>
+<li><p>c.提交（commit）：将本地修改的内容，同步到服务器中（本地–&gt;服务器）。</p>
+<p>  编写完某一个小功能、每天下班前提交</p>
+</li>
+<li><p>d.更新（updata）：将服务器中的最新代码同步到本地，（服务器–&gt;本地）。</p>
+<p>  编写功能之前、每天上班前更新</p>
+<blockquote>
+<p>注意：编写之前先更新、写完之后立即提交。</p>
+</blockquote>
+</li>
+</ul>
+<blockquote>
+<p>提交、更新：一定要及时。</p>
+</blockquote>
+<h4 id="2-svn安装："><a href="#2-svn安装：" class="headerlink" title="2.svn安装："></a>2.svn安装：</h4><ul>
+<li><p>下载地址：<a target="_blank" rel="noopener" href="https://sourceforge.net/projects/win32svn/">https://sourceforge.net/projects/win32svn/</a></p>
+</li>
+<li><p>配置环境变量Path(bin)</p>
+</li>
+<li><p>验证是否成功：cmd中输入 svn –version</p>
+<h4 id="3-设置中央仓库"><a href="#3-设置中央仓库" class="headerlink" title="3.设置中央仓库"></a>3.设置中央仓库</h4></li>
+<li><p>将本地目录设置为 中央仓库（用于保存项目的各个历史版本）</p>
+</li>
+<li><p>cmd中输入：svnadmin create E:\\svn</p>
+<h4 id="4-启动svn服务"><a href="#4-启动svn服务" class="headerlink" title="4.启动svn服务"></a>4.启动svn服务</h4></li>
+<li><p>a.命令行方式：</p>
+<pre><code>  svnserve -d -r E:\\\\svn
+</code></pre>
+</li>
+<li><p>b.注册系统方式（推荐）：</p>
+<p>  以管理员方式运行cmd</p>
+<p>  sc create 服务名 binpath= “F:\My direction\Subversion\bin\svnserve.exe –service -r E:\\svn” start= auto depend= Tcpip</p>
+<p>  注意：等号后面的空格</p>
+<p>  启动：sc start 服务名</p>
+<p>  关闭：sc start 服务名</p>
+<p>  删除：sc delete 服务名</p>
+<h4 id="5-访问项目"><a href="#5-访问项目" class="headerlink" title="5.访问项目"></a>5.访问项目</h4></li>
+<li><p>a.匿名访问<br>  仓库\..\conf\svnserve.conf</p>
+<p>  开启匿名访问：19行附近</p>
+<p>  (注意：一定要顶格写，不要留空格)</p>
+<p>  anon-access = read 只读</p>
+<p>  anon-access = write 可读可写</p>
+<p>  anon-access = none 无权做任何操作</p>
+<p>  一般为none</p>
+</li>
+<li><p>b.授权访问<br>  svnserve.conf</p>
+<p>  20行附近 auth-access = write 注释打开</p>
+<p>  27行附近 password-db = passwd 注释打开（表示 授权人的用户名密码 存放在 passwd 文件中）</p>
+<p>  36行附近 authz-db = authz 注释打开（表示权限文件是 authz）</p>
+<p>  svnserve.conf</p>
+<p>  编写用户文件：</p>
+<p>  passwd中[user]下编写  用户名=密码</p>
+<p>  编写授权文件authz:</p>
+<p>  分组：[groups] dev=zs,ls</p>
+<p>  权限</p>
+<p>  [/]</p>
+<p>  @dev=rw</p>
+<p>  *= </p>
+<h4 id="6-Eclipse中使用SVN"><a href="#6-Eclipse中使用SVN" class="headerlink" title="6.Eclipse中使用SVN"></a>6.Eclipse中使用SVN</h4><p>在eclipse中安装插件</p>
+</li>
+<li><p>a. 离线方式</p>
+<p>  eclipse_svn_site-1.10.5.zip 解压到 eclipse\dropins</p>
+</li>
+<li><p>b. 在线方式<br>  help-eclipse marketplace 搜：subversion/subeclipse</p>
+</li>
+<li><p>c. 使用：</p>
+<p>  项目组长：发布项目</p>
+<p>  右键要发布的项目-team-share project - svn - … - 输入发布的地址 svn://ip地址</p>
+<p>  真正的发布/提交</p>
+<p>  组员：检出项目（下载）</p>
+<p>  file - import - 搜 svn</p>
+<p>  更新:右键待更新的文件/项目： team-更新</p>
+<p>  提交：右键带提交的文件/项目： team-提交</p>
+<p>  黄色圆柱：本地无未提交的代码</p>
+<p>  */灰色箭头：本地有未提交的代码</p>
+<p>  红色叹号：冲突</p>
+<p>  蓝色箭头：服务端有最新代码，本地还没有更新</p>
+<p>  修改svn用户名密码：</p>
+<p>  删除C:\users\adm..\Appdata\Roaming\Subversion\auth</p>
+<p>  冲突：</p>
+<p>   右键项目 - 与资源库同步</p>
+<p>   选中 有红色标识的文件，右键 - 编辑冲突 - 修改 - 右键 - team - 编辑为解决</p>
+<p>   冲突： 更新时或提交时 发现冲突 - 右键编辑冲突 - 更新提交</p>
+<h4 id="7-恢复-查看历史版本"><a href="#7-恢复-查看历史版本" class="headerlink" title="7. 恢复/查看历史版本"></a>7. 恢复/查看历史版本</h4></li>
+</ul>
+<ul>
+<li>选中需要恢复/查看的文件 - team - 如果要恢复成历史版本（获取内容），如果此操作报错：解决方法：需要将svnserve.conf 文件中的 anon-access=none<h4 id="8-将SVN发布到外网"><a href="#8-将SVN发布到外网" class="headerlink" title="8. 将SVN发布到外网"></a>8. 将SVN发布到外网</h4></li>
+</ul>
+<ul>
+<li>a. nat123等软件 将内网映射成外网</li>
+<li>b. 租一台互联网服务器（新网、万网、阿里云），将项目发布到服务器中</li>
+<li>c. svn托管网站 <a target="_blank" rel="noopener" href="http://www.svnchina.com/">http://www.svnchina.com/</a> </li>
+</ul>
+
+      
+    </div>
+    <footer class="article-footer">
+      <a data-url="http://example.com/2020/07/20/%E7%89%88%E6%9C%AC%E6%8E%A7%E5%88%B6/SVN/" data-id="ckkkvm23i0039yo592avwdyds" data-title="SVN" class="article-share-link">Share</a>
+      
+      
+      
+  <ul class="article-tag-list" itemprop="keywords"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/%E7%89%88%E6%9C%AC%E6%8E%A7%E5%88%B6/" rel="tag">版本控制</a></li></ul>
+
+    </footer>
+  </div>
+  
+    
+<nav id="article-nav">
+  
+    <a href="/2020/07/30/%E9%9D%A2%E5%90%91%E5%AF%B9%E8%B1%A1/%E8%AF%AD%E5%8F%A5%E5%9D%97%E3%80%81%E6%96%B9%E6%B3%95%E3%80%81%E9%80%92%E5%BD%92%E7%BB%93%E6%9E%84/" id="article-nav-newer" class="article-nav-link-wrap">
+      <strong class="article-nav-caption">Newer</strong>
+      <div class="article-nav-title">
+        
+          语句块、方法、递归结构
+        
+      </div>
+    </a>
+  
+  
+    <a href="/2020/07/14/%E6%95%B0%E6%8D%AE%E7%BB%93%E6%9E%84%E4%B8%8E%E7%AE%97%E6%B3%95/%E6%95%B0%E6%8D%AE%E7%BB%93%E6%9E%84-%E6%A0%88%EF%BC%8C%E9%98%9F%E5%88%97/" id="article-nav-older" class="article-nav-link-wrap">
+      <strong class="article-nav-caption">Older</strong>
+      <div class="article-nav-title">数据结构与算法_03</div>
+    </a>
+  
+</nav>
+
+  
+</article>
+
+
+</section>
+        
+          <aside id="sidebar">
+  
+    
+
+  
+    
+  <div class="widget-wrap">
+    <h3 class="widget-title">Tags</h3>
+    <div class="widget">
+      <ul class="tag-list" itemprop="keywords"><li class="tag-list-item"><a class="tag-list-link" href="/tags/AOP/" rel="tag">AOP</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/ArrayList/" rel="tag">ArrayList</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/Collection/" rel="tag">Collection</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/HashMap/" rel="tag">HashMap</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/HashSet/" rel="tag">HashSet</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/IO/" rel="tag">IO</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/IOC/" rel="tag">IOC</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/Lambad/" rel="tag">Lambad</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/LinkedList/" rel="tag">LinkedList</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/Linux/" rel="tag">Linux</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/List/" rel="tag">List</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/Map/" rel="tag">Map</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/MarkDown%E5%9F%BA%E7%A1%80/" rel="tag">MarkDown基础</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/Set/" rel="tag">Set</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/Spring/" rel="tag">Spring</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/TreeMap/" rel="tag">TreeMap</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/TreeSet/" rel="tag">TreeSet</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/Vector%E5%90%91%E9%87%8F/" rel="tag">Vector向量</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/java%E5%9F%BA%E7%A1%80/" rel="tag">java基础</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/js/" rel="tag">js</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/jvm/" rel="tag">jvm</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/jvm%E8%B0%83%E4%BC%98/" rel="tag">jvm调优</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/mysql/" rel="tag">mysql</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/web%E6%A0%B8%E5%BF%83/" rel="tag">web核心</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/%E4%BA%8C%E5%88%86%E6%9F%A5%E6%89%BE/" rel="tag">二分查找</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/%E5%86%92%E6%B3%A1%E6%8E%92%E5%BA%8F/" rel="tag">冒泡排序</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/%E5%9E%83%E5%9C%BE%E5%9B%9E%E6%94%B6/" rel="tag">垃圾回收</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/%E5%A4%9A%E7%BA%BF%E7%A8%8B/" rel="tag">多线程</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/%E5%AE%9E%E4%BE%8B%E7%A8%8B%E5%BA%8F/" rel="tag">实例程序</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/%E5%BC%82%E5%B8%B8/" rel="tag">异常</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/%E6%95%B0%E6%8D%AE%E7%BB%93%E6%9E%84/" rel="tag">数据结构</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/%E6%B3%9B%E5%9E%8B/" rel="tag">泛型</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/%E7%89%88%E6%9C%AC%E6%8E%A7%E5%88%B6/" rel="tag">版本控制</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/%E7%AE%97%E6%B3%95%E5%9F%BA%E7%A1%80/" rel="tag">算法基础</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/%E7%B1%BB%E5%8A%A0%E8%BD%BD%E5%99%A8/" rel="tag">类加载器</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/%E8%AE%BE%E8%AE%A1%E6%A8%A1%E5%BC%8F/" rel="tag">设计模式</a></li></ul>
+    </div>
+  </div>
+
+
+  
+    
+  <div class="widget-wrap">
+    <h3 class="widget-title">Tag Cloud</h3>
+    <div class="widget tagcloud">
+      <a href="/tags/AOP/" style="font-size: 10px;">AOP</a> <a href="/tags/ArrayList/" style="font-size: 12px;">ArrayList</a> <a href="/tags/Collection/" style="font-size: 10px;">Collection</a> <a href="/tags/HashMap/" style="font-size: 12px;">HashMap</a> <a href="/tags/HashSet/" style="font-size: 12px;">HashSet</a> <a href="/tags/IO/" style="font-size: 16px;">IO</a> <a href="/tags/IOC/" style="font-size: 10px;">IOC</a> <a href="/tags/Lambad/" style="font-size: 10px;">Lambad</a> <a href="/tags/LinkedList/" style="font-size: 10px;">LinkedList</a> <a href="/tags/Linux/" style="font-size: 14px;">Linux</a> <a href="/tags/List/" style="font-size: 12px;">List</a> <a href="/tags/Map/" style="font-size: 12px;">Map</a> <a href="/tags/MarkDown%E5%9F%BA%E7%A1%80/" style="font-size: 10px;">MarkDown基础</a> <a href="/tags/Set/" style="font-size: 12px;">Set</a> <a href="/tags/Spring/" style="font-size: 12px;">Spring</a> <a href="/tags/TreeMap/" style="font-size: 10px;">TreeMap</a> <a href="/tags/TreeSet/" style="font-size: 10px;">TreeSet</a> <a href="/tags/Vector%E5%90%91%E9%87%8F/" style="font-size: 10px;">Vector向量</a> <a href="/tags/java%E5%9F%BA%E7%A1%80/" style="font-size: 20px;">java基础</a> <a href="/tags/js/" style="font-size: 10px;">js</a> <a href="/tags/jvm/" style="font-size: 12px;">jvm</a> <a href="/tags/jvm%E8%B0%83%E4%BC%98/" style="font-size: 10px;">jvm调优</a> <a href="/tags/mysql/" style="font-size: 10px;">mysql</a> <a href="/tags/web%E6%A0%B8%E5%BF%83/" style="font-size: 12px;">web核心</a> <a href="/tags/%E4%BA%8C%E5%88%86%E6%9F%A5%E6%89%BE/" style="font-size: 10px;">二分查找</a> <a href="/tags/%E5%86%92%E6%B3%A1%E6%8E%92%E5%BA%8F/" style="font-size: 10px;">冒泡排序</a> <a href="/tags/%E5%9E%83%E5%9C%BE%E5%9B%9E%E6%94%B6/" style="font-size: 10px;">垃圾回收</a> <a href="/tags/%E5%A4%9A%E7%BA%BF%E7%A8%8B/" style="font-size: 16px;">多线程</a> <a href="/tags/%E5%AE%9E%E4%BE%8B%E7%A8%8B%E5%BA%8F/" style="font-size: 10px;">实例程序</a> <a href="/tags/%E5%BC%82%E5%B8%B8/" style="font-size: 10px;">异常</a> <a href="/tags/%E6%95%B0%E6%8D%AE%E7%BB%93%E6%9E%84/" style="font-size: 10px;">数据结构</a> <a href="/tags/%E6%B3%9B%E5%9E%8B/" style="font-size: 12px;">泛型</a> <a href="/tags/%E7%89%88%E6%9C%AC%E6%8E%A7%E5%88%B6/" style="font-size: 12px;">版本控制</a> <a href="/tags/%E7%AE%97%E6%B3%95%E5%9F%BA%E7%A1%80/" style="font-size: 12px;">算法基础</a> <a href="/tags/%E7%B1%BB%E5%8A%A0%E8%BD%BD%E5%99%A8/" style="font-size: 10px;">类加载器</a> <a href="/tags/%E8%AE%BE%E8%AE%A1%E6%A8%A1%E5%BC%8F/" style="font-size: 18px;">设计模式</a>
+    </div>
+  </div>
+
+  
+    
+  <div class="widget-wrap">
+    <h3 class="widget-title">Archives</h3>
+    <div class="widget">
+      <ul class="archive-list"><li class="archive-list-item"><a class="archive-list-link" href="/archives/2021/01/">January 2021</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2020/12/">December 2020</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2020/10/">October 2020</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2020/09/">September 2020</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2020/08/">August 2020</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2020/07/">July 2020</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2020/06/">June 2020</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2020/05/">May 2020</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2020/04/">April 2020</a></li></ul>
+    </div>
+  </div>
+
+
+  
+    
+  <div class="widget-wrap">
+    <h3 class="widget-title">Recent Posts</h3>
+    <div class="widget">
+      <ul>
+        
+          <li>
+            <a href="/2021/01/31/web%E6%A0%B8%E5%BF%83/web%E6%A0%B8%E5%BF%83-request-response/">(no title)</a>
+          </li>
+        
+          <li>
+            <a href="/2021/01/31/web%E6%A0%B8%E5%BF%83/web%E6%A0%B8%E5%BF%83-Servlet/">web核心-Servlet</a>
+          </li>
+        
+          <li>
+            <a href="/2021/01/30/web%E6%A0%B8%E5%BF%83/web%E6%A0%B8%E5%BF%83-Http%E5%8D%8F%E8%AE%AE/">web核心-Http协议</a>
+          </li>
+        
+          <li>
+            <a href="/2021/01/26/mysql/mysql%E5%9F%BA%E7%A1%80/">mysql基础</a>
+          </li>
+        
+          <li>
+            <a href="/2021/01/24/Linux/Linux-yum%E5%87%BA%E9%94%99/">Linux-yum出错</a>
+          </li>
+        
+      </ul>
+    </div>
+  </div>
+
+  
+</aside>
+        
+      </div>
+      <footer id="footer">
+  
+  <div class="outer">
+    <div id="footer-info" class="inner">
+      
+      &copy; 2021 John Doe<br>
+      Powered by <a href="https://hexo.io/" target="_blank">Hexo</a>
+    </div>
+  </div>
+</footer>
+
+    </div>
+    <nav id="mobile-nav">
+  
+    <a href="/" class="mobile-nav-link">Home</a>
+  
+    <a href="/archives" class="mobile-nav-link">Archives</a>
+  
+</nav>
+    
+
+
+<script src="/js/jquery-3.4.1.min.js"></script>
+
+
+
+  
+<script src="/fancybox/jquery.fancybox.min.js"></script>
+
+
+
+
+<script src="/js/script.js"></script>
+
+
+
+
+
+  </div>
+</body>
+</html>

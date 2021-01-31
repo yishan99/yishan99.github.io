@@ -1,0 +1,263 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <meta charset="utf-8">
+  
+  
+  <title>mysql基础 | Hexo</title>
+  <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+  <meta name="description" content="数据库的查询、创建">
+<meta property="og:type" content="article">
+<meta property="og:title" content="mysql基础">
+<meta property="og:url" content="http://example.com/2021/01/26/mysql/mysql%E5%9F%BA%E7%A1%80/index.html">
+<meta property="og:site_name" content="Hexo">
+<meta property="og:description" content="数据库的查询、创建">
+<meta property="og:locale" content="en_US">
+<meta property="article:published_time" content="2021-01-26T03:38:51.000Z">
+<meta property="article:modified_time" content="2021-01-26T10:54:24.652Z">
+<meta property="article:author" content="John Doe">
+<meta property="article:tag" content="mysql">
+<meta name="twitter:card" content="summary">
+  
+    <link rel="alternate" href="/atom.xml" title="Hexo" type="application/atom+xml">
+  
+  
+    <link rel="shortcut icon" href="/favicon.png">
+  
+  
+    
+<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/typeface-source-code-pro@0.0.71/index.min.css">
+
+  
+  
+<link rel="stylesheet" href="/css/style.css">
+
+  
+    
+<link rel="stylesheet" href="/fancybox/jquery.fancybox.min.css">
+
+  
+<meta name="generator" content="Hexo 5.3.0"></head>
+
+<body>
+  <div id="container">
+    <div id="wrap">
+      <header id="header">
+  <div id="banner"></div>
+  <div id="header-outer" class="outer">
+    <div id="header-title" class="inner">
+      <h1 id="logo-wrap">
+        <a href="/" id="logo">Hexo</a>
+      </h1>
+      
+    </div>
+    <div id="header-inner" class="inner">
+      <nav id="main-nav">
+        <a id="main-nav-toggle" class="nav-icon"></a>
+        
+          <a class="main-nav-link" href="/">Home</a>
+        
+          <a class="main-nav-link" href="/archives">Archives</a>
+        
+      </nav>
+      <nav id="sub-nav">
+        
+          <a id="nav-rss-link" class="nav-icon" href="/atom.xml" title="RSS Feed"></a>
+        
+        <a id="nav-search-btn" class="nav-icon" title="Search"></a>
+      </nav>
+      <div id="search-form-wrap">
+        <form action="//google.com/search" method="get" accept-charset="UTF-8" class="search-form"><input type="search" name="q" class="search-form-input" placeholder="Search"><button type="submit" class="search-form-submit">&#xF002;</button><input type="hidden" name="sitesearch" value="http://example.com"></form>
+      </div>
+    </div>
+  </div>
+</header>
+
+      <div class="outer">
+        <section id="main"><article id="post-mysql/mysql基础" class="h-entry article article-type-post" itemprop="blogPost" itemscope itemtype="https://schema.org/BlogPosting">
+  <div class="article-meta">
+    <a href="/2021/01/26/mysql/mysql%E5%9F%BA%E7%A1%80/" class="article-date">
+  <time class="dt-published" datetime="2021-01-26T03:38:51.000Z" itemprop="datePublished">2021-01-26</time>
+</a>
+    
+  </div>
+  <div class="article-inner">
+    
+    
+      <header class="article-header">
+        
+  
+    <h1 class="p-name article-title" itemprop="headline name">
+      mysql基础
+    </h1>
+  
+
+      </header>
+    
+    <div class="e-content article-entry" itemprop="articleBody">
+      
+        <h3 id="数据库的查询、创建"><a href="#数据库的查询、创建" class="headerlink" title="数据库的查询、创建"></a>数据库的查询、创建</h3><a id="more"></a>
+
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br></pre></td><td class="code"><pre><span class="line">-- 查询所有的数据库</span><br><span class="line">SHOW DATABASES;</span><br><span class="line"></span><br><span class="line">-- 查询mysql数据库的创建语句</span><br><span class="line">SHOW CREATE DATABASE mysql;</span><br><span class="line"></span><br><span class="line">-- 创建数据库 db1</span><br><span class="line">CREATE DATABASE db1;</span><br><span class="line"></span><br><span class="line">-- 创建数据库db2（判断，如果不存在则创建）</span><br><span class="line">CREATE DATABASE IF NOT EXISTS db2;</span><br><span class="line"></span><br><span class="line">-- 创建数据库并指定字符集utf8</span><br><span class="line">CREATE DATABASE db3 CHARACTER SET utf8;</span><br><span class="line"></span><br><span class="line">-- 查看db3数据库的字符集</span><br><span class="line">SHOW CREATE DATABASE db3;</span><br><span class="line"></span><br><span class="line">-- 练习：创建db4数据库、如果不存在则创建，指定字符集为gbk</span><br><span class="line">CREATE DATABASE IF NOT EXISTS db4 CHARACTER SET gbk;</span><br><span class="line"></span><br><span class="line">-- 查看db4数据库的字符集</span><br><span class="line">SHOW CREATE DATABASE db4;</span><br></pre></td></tr></table></figure>
+<h3 id="数据库的修改、删除、使用"><a href="#数据库的修改、删除、使用" class="headerlink" title="数据库的修改、删除、使用"></a>数据库的修改、删除、使用</h3><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br></pre></td><td class="code"><pre><span class="line">-- 修改数据库db4的字符集为utf8</span><br><span class="line">ALTER DATABASE db4 CHARACTER SET utf8;</span><br><span class="line"></span><br><span class="line">-- 查看db4数据库的字符集</span><br><span class="line">SHOW CREATE DATABASE db4;</span><br><span class="line"></span><br><span class="line">-- 删除db1数据库</span><br><span class="line">DROP DATABASE db1;</span><br><span class="line"></span><br><span class="line">-- 删除数据库db2,如果存在，则删除</span><br><span class="line">DROP DATABASE IF EXISTS db2;</span><br><span class="line"></span><br><span class="line">-- 使用db4数据库</span><br><span class="line">USE db4;</span><br><span class="line"></span><br><span class="line">-- 查询当前正在使用的数据库</span><br><span class="line">SELECT DATABASE();</span><br></pre></td></tr></table></figure>
+<h3 id="查询数据表"><a href="#查询数据表" class="headerlink" title="查询数据表"></a>查询数据表</h3><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br></pre></td><td class="code"><pre><span class="line">-- 使用mysql数据库</span><br><span class="line">USE mysql;</span><br><span class="line"></span><br><span class="line">-- 查询库中所有的表</span><br><span class="line">SHOW TABLES;</span><br><span class="line"></span><br><span class="line">-- 查询user表结构</span><br><span class="line">DESC USER;</span><br><span class="line"></span><br><span class="line">-- 查看mysql数据库中user表字符集</span><br><span class="line">SHOW TABLE STATUS FROM mysql LIKE &#39;user&#39;;</span><br></pre></td></tr></table></figure>
+<h3 id="数据表的创建"><a href="#数据表的创建" class="headerlink" title="数据表的创建"></a>数据表的创建</h3><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br></pre></td><td class="code"><pre><span class="line">-- 创建一个product商品表（商品编号、商品名称、商品价格、商品库存、上架时间）</span><br><span class="line">CREATE TABLE product(</span><br><span class="line">	id INT,</span><br><span class="line">	NAME VARCHAR(20),</span><br><span class="line">	price DOUBLE,</span><br><span class="line">	stock INT,</span><br><span class="line">	insert_time DATE</span><br><span class="line">);</span><br><span class="line">-- 查看product表详细结构</span><br><span class="line">DESC product;</span><br></pre></td></tr></table></figure>
+<h3 id="数据表的修改"><a href="#数据表的修改" class="headerlink" title="数据表的修改"></a>数据表的修改</h3><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br></pre></td><td class="code"><pre><span class="line">-- 修改product表名为product2</span><br><span class="line">ALTER TABLE product RENAME TO product2;</span><br><span class="line"></span><br><span class="line">-- 查看db3数据库中product2数据表字符集</span><br><span class="line">SHOW TABLE STATUS FROM db3 LIKE &#39;product2&#39;;</span><br><span class="line"></span><br><span class="line">-- 修改product2数据表字符集</span><br><span class="line"> ALTER TABLE product2 CHARACTER SET gbk;</span><br><span class="line"> </span><br><span class="line"> -- 给product2表添加一列color</span><br><span class="line"> ALTER TABLE product2 ADD color VARCHAR(10);</span><br><span class="line"></span><br><span class="line">-- 将color数据类型修改为int</span><br><span class="line">ALTER TABLE product2 MODIFY color INT;</span><br><span class="line">-- 查看product2表的详细结构</span><br><span class="line">DESC product2;</span><br><span class="line"></span><br><span class="line">-- 将color修改为address</span><br><span class="line">ALTER TABLE product2 CHANGE color address VARCHAR(200);</span><br><span class="line"></span><br><span class="line">-- 删除address列</span><br><span class="line">ALTER TABLE product2 DROP address;</span><br></pre></td></tr></table></figure>
+<h3 id="删除数据表"><a href="#删除数据表" class="headerlink" title="删除数据表"></a>删除数据表</h3><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line">-- 删除数据表</span><br><span class="line">DROP product2;</span><br><span class="line">-- 删除数据表（如果表存在就删除）</span><br><span class="line">DROP TABLE IF EXISTS product2; </span><br></pre></td></tr></table></figure>
+<h3 id="新增表数据"><a href="#新增表数据" class="headerlink" title="新增表数据"></a>新增表数据</h3><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br></pre></td><td class="code"><pre><span class="line">-- 向product表添加一条数据</span><br><span class="line">INSERT INTO product (id,NAME,price,stock,insert_time) VALUE (1,&#39;手机&#39;,1560.56,200,&#39;2021-1-26&#39;);</span><br><span class="line"></span><br><span class="line">-- 向product表添加指定列数据</span><br><span class="line">INSERT INTO product(id,NAME,price) VALUE (2,&#39;电脑&#39;,5999.99);</span><br><span class="line"></span><br><span class="line">-- 默认给全部列添加数据</span><br><span class="line">INSERT INTO product VALUE(3,&#39;电视&#39;,2000.52,150,&#39;2021-01-15&#39;);</span><br><span class="line"></span><br><span class="line">-- 批量添加数据</span><br><span class="line">INSERT INTO product VALUE(4,&#39;洗衣机&#39;,1502,100,&#39;2022-05-03&#39;),(5,&#39;电冰箱&#39;,1814,520,&#39;2012-08-15&#39;);</span><br></pre></td></tr></table></figure>
+<h3 id="修改和删除表数据"><a href="#修改和删除表数据" class="headerlink" title="修改和删除表数据"></a>修改和删除表数据</h3><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br></pre></td><td class="code"><pre><span class="line">-- 修改手机的价格为3500元</span><br><span class="line">UPDATE product SET price&#x3D;3500 WHERE NAME&#x3D;&#39;手机&#39;; </span><br><span class="line"></span><br><span class="line">-- 修改电脑的价格为5600元，库存为150个</span><br><span class="line">UPDATE product SET price&#x3D;5600,stock&#x3D;150 WHERE NAME&#x3D;&#39;电脑&#39;;</span><br><span class="line"></span><br><span class="line">-- 删除表中电冰箱的信息</span><br><span class="line">DELETE FROM product WHERE NAME&#x3D;&#39;电冰箱&#39;;</span><br><span class="line"></span><br><span class="line">-- 删除表中库存为150的数据的信息</span><br><span class="line">DELETE FROM product WHERE stock&#x3D;&#39;150&#39;;</span><br></pre></td></tr></table></figure>
+<h3 id="查询数据表准备"><a href="#查询数据表准备" class="headerlink" title="查询数据表准备"></a>查询数据表准备</h3><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br></pre></td><td class="code"><pre><span class="line">-- 创建db1数据库</span><br><span class="line">CREATE DATABASE db1;</span><br><span class="line"></span><br><span class="line">-- 使用db1数据库</span><br><span class="line">USE db1; </span><br><span class="line"></span><br><span class="line">-- 创建数据表</span><br><span class="line">CREATE TABLE product(</span><br><span class="line">	id INT,			-- 商品编号</span><br><span class="line">	NAME VARCHAR(20),	-- 商品名称</span><br><span class="line">	price DOUBLE,		-- 商品价格</span><br><span class="line">	brand VARCHAR(10),	-- 商品品牌</span><br><span class="line">	stock INT,		-- 商品库存</span><br><span class="line">	insert_time DATE 	-- 添加时间</span><br><span class="line">);</span><br><span class="line"></span><br><span class="line">-- 添加数据</span><br><span class="line">INSERT INTO product VALUES</span><br><span class="line">(1,&#39;华为手机&#39;,3999,&#39;华为&#39;,23,&#39;2999-05-20&#39;),</span><br><span class="line">(2,&#39;苹果手机&#39;,2999,&#39;苹果&#39;,15,&#39;2999-04-15&#39;),</span><br><span class="line">(3,&#39;小米手机&#39;,4999,&#39;小米&#39;,66,&#39;2999-12-18&#39;),</span><br><span class="line">(4,&#39;华为电脑&#39;,5999,&#39;华为&#39;,52,&#39;2999-05-30&#39;),</span><br><span class="line">(5,&#39;苹果电脑&#39;,6999,&#39;苹果&#39;,12,&#39;2999-03-25&#39;),</span><br><span class="line">(6,&#39;小米电脑&#39;,1999,&#39;小米&#39;,35,&#39;2999-11-19&#39;),</span><br><span class="line">(7,&#39;联想电脑&#39;,7999,&#39;联想&#39;,NULL,&#39;2999-08-08&#39;);</span><br></pre></td></tr></table></figure>
+<h3 id="查询全部"><a href="#查询全部" class="headerlink" title="查询全部"></a>查询全部</h3><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br></pre></td><td class="code"><pre><span class="line">-- 查询product中全部的数据</span><br><span class="line">SELECT * FROM product;</span><br><span class="line"></span><br><span class="line">-- 查询指定列的数据</span><br><span class="line">SELECT NAME,price,insert_time FROM product;</span><br><span class="line"></span><br><span class="line">-- 查询品牌</span><br><span class="line">SELECT brand FROM product;</span><br><span class="line">-- 查询品牌，去除重复</span><br><span class="line">SELECT DISTINCT brand FROM product;</span><br><span class="line"></span><br><span class="line">-- 查询商品名称和库存，库存在原有基础上加10</span><br><span class="line">SELECT NAME,stock+10 FROM product;</span><br><span class="line">-- 查询商品名称和库存，库存在原有基础上加10,进行null值判断</span><br><span class="line">SELECT NAME,IFNULL(stock,0)+10 FROM product;</span><br><span class="line">-- 查询商品名称和库存，库存在原有基础上加10,进行null值判断,起别名</span><br><span class="line">SELECT NAME,IFNULL(stock,0)+10 AS getNum FROM product;</span><br></pre></td></tr></table></figure>
+<h3 id="条件查询"><a href="#条件查询" class="headerlink" title="条件查询"></a>条件查询</h3><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br></pre></td><td class="code"><pre><span class="line">-- 查询库存大于20的商品信息</span><br><span class="line">SELECT * FROM product WHERE stock &gt; 20;</span><br><span class="line"></span><br><span class="line">-- 查询品牌为华为的商品信息</span><br><span class="line">SELECT * FROM product WHERE brand &#x3D; &#39;华为&#39;;</span><br><span class="line"></span><br><span class="line">-- 查询金额在4000~6000之间的商品信息</span><br><span class="line">SELECT * FROM product WHERE price &gt;&#x3D; 4000 AND price &#x3D;&lt; 6000;</span><br><span class="line">SELECT * FROM product WHERE price BETWEEN 4000 AND 6000;</span><br><span class="line"></span><br><span class="line">-- 查询库存为12,35,66的商品信息</span><br><span class="line">SELECT * FROM product WHERE stock &#x3D; 12 OR stock&#x3D;35 OR stock&#x3D;66;</span><br><span class="line">SELECT * FROM product WHERE stock IN(12,35,66);</span><br><span class="line"></span><br><span class="line">-- 查询库存为null的商品信息</span><br><span class="line">SELECT * FROM product WHERE stock IS NULL;</span><br><span class="line"></span><br><span class="line">-- 查询库存不为null的商品信息</span><br><span class="line">SELECT * FROM product WHERE stock IS NOT NULL;</span><br><span class="line"></span><br><span class="line">-- 查询名称以小米为开头的商品信息</span><br><span class="line">SELECT * FROM product WHERE NAME LIKE &#39;小米%&#39;;</span><br><span class="line"></span><br><span class="line">-- 查询名称第二个是为的商品信息</span><br><span class="line">SELECT * FROM product WHERE NAME LIKE &#39;_为%&#39;;</span><br><span class="line"></span><br><span class="line">-- 查询名称为四个字符的商品信息</span><br><span class="line">SELECT * FROM product WHERE NAME LIKE &#39;____&#39;;</span><br><span class="line"></span><br><span class="line">-- 查询名称中包含电脑的商品信息</span><br><span class="line">SELECT * FROM product WHERE NAME LIKE &#39;%电脑%&#39;;</span><br><span class="line"></span><br></pre></td></tr></table></figure>
+<h3 id="聚合函数查询"><a href="#聚合函数查询" class="headerlink" title="聚合函数查询"></a>聚合函数查询</h3><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br></pre></td><td class="code"><pre><span class="line">-- 计算product表中总记录条数</span><br><span class="line">SELECT COUNT(*) FROM product;</span><br><span class="line"></span><br><span class="line">-- 获取最高价格</span><br><span class="line">SELECT MAX(price) FROM product;</span><br><span class="line"></span><br><span class="line">-- 获取最低库存</span><br><span class="line">SELECT MIN(stock) FROM product;</span><br><span class="line"></span><br><span class="line">-- 获取总库存数量</span><br><span class="line">SELECT SUM(stock) FROM product;</span><br><span class="line"></span><br><span class="line">-- 获取品牌为苹果的总库存数量</span><br><span class="line">SELECT SUM(stock) FROM product WHERE brand&#x3D;&#39;苹果&#39;; </span><br><span class="line"></span><br><span class="line">-- 获取品牌为小米的平均商品价格</span><br><span class="line">SELECT AVG(price) FROM product WHERE brand&#x3D;&#39;小米&#39;;</span><br></pre></td></tr></table></figure>
+<h3 id="排序查询"><a href="#排序查询" class="headerlink" title="排序查询"></a>排序查询</h3><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br></pre></td><td class="code"><pre><span class="line">-- 按照库存升序排序</span><br><span class="line">SELECT * FROM product ORDER BY stock ASC;</span><br><span class="line"></span><br><span class="line">-- 查询名称中包含手机的商品信息。按照金额降序排序</span><br><span class="line">-- 先过滤条件再进行排序</span><br><span class="line">SELECT * FROM product WHERE NAME LIKE &#39;%手机%&#39; ORDER BY price DESC;</span><br><span class="line"></span><br><span class="line">-- 按照金额升序排序，如果金额相同，按照库存降序排序</span><br><span class="line">-- 只有当排序主要条件相同的时候，才会执行次要排序条件</span><br><span class="line">SELECT * FROM product ORDER BY price ASC,stock DESC;</span><br></pre></td></tr></table></figure>
+<h3 id="分组查询"><a href="#分组查询" class="headerlink" title="分组查询"></a>分组查询</h3><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br></pre></td><td class="code"><pre><span class="line">-- 按照品牌分组，获取每组的总金额</span><br><span class="line">SELECT brand,SUM(price) FROM product GROUP BY brand;</span><br><span class="line"></span><br><span class="line">-- 对金额大于4000的商品，按照品牌分组，获取每组商品的总金额</span><br><span class="line">SELECT brand,SUM(price) FROM product</span><br><span class="line">WHERE price &gt; 4000 </span><br><span class="line">GROUP BY brand;</span><br><span class="line"></span><br><span class="line">-- 对金额大于4000的商品，按照品牌分组，获取每组商品的总金额，只显示总金额大于7000元的</span><br><span class="line">SELECT brand,SUM(price) AS getSum FROM product </span><br><span class="line">WHERE price&gt;4000 </span><br><span class="line">GROUP BY brand </span><br><span class="line">HAVING getSum &gt; 7000;</span><br><span class="line"></span><br><span class="line">-- 对金额大于4000的商品，按照品牌分组，获取每组商品的总金额，只显示总金额大于7000元的,并按照总金额的降序排列</span><br><span class="line">SELECT brand,SUM(price) AS getSum FROM product</span><br><span class="line">WHERE price&gt;4000 </span><br><span class="line">GROUP BY brand </span><br><span class="line">HAVING getSum &gt; 7000 </span><br><span class="line">ORDER BY getSum DESC;</span><br></pre></td></tr></table></figure>
+<h3 id="分页查询"><a href="#分页查询" class="headerlink" title="分页查询"></a>分页查询</h3><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br></pre></td><td class="code"><pre><span class="line">-- LIMIT 当前页数，每页显示的条数</span><br><span class="line">-- 公式：当前页数 &#x3D; （当前页数 - 1）* 每页显示的条数</span><br><span class="line">-- 每页显示3条</span><br><span class="line"></span><br><span class="line">-- 第一页：当前页数 &#x3D; （1 - 1）* 3 &#x3D; 0</span><br><span class="line">SELECT * FROM product LIMIT 0,3;</span><br><span class="line"></span><br><span class="line">-- 第二页：当前页数 &#x3D; （2 - 1）* 3 &#x3D; 3</span><br><span class="line">SELECT * FROM product LIMIT 3,3;</span><br><span class="line"></span><br><span class="line">-- 第三页：当前页数 &#x3D; （3 - 1）* 3 &#x3D; 6</span><br><span class="line">SELECT * FROM product LIMIT 6,3;</span><br></pre></td></tr></table></figure>
+
+      
+    </div>
+    <footer class="article-footer">
+      <a data-url="http://example.com/2021/01/26/mysql/mysql%E5%9F%BA%E7%A1%80/" data-id="ckkkvm21z0015yo5924uf6t9r" data-title="mysql基础" class="article-share-link">Share</a>
+      
+      
+      
+  <ul class="article-tag-list" itemprop="keywords"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/mysql/" rel="tag">mysql</a></li></ul>
+
+    </footer>
+  </div>
+  
+    
+<nav id="article-nav">
+  
+    <a href="/2021/01/30/web%E6%A0%B8%E5%BF%83/web%E6%A0%B8%E5%BF%83-Http%E5%8D%8F%E8%AE%AE/" id="article-nav-newer" class="article-nav-link-wrap">
+      <strong class="article-nav-caption">Newer</strong>
+      <div class="article-nav-title">
+        
+          web核心-Http协议
+        
+      </div>
+    </a>
+  
+  
+    <a href="/2021/01/24/Linux/Linux-yum%E5%87%BA%E9%94%99/" id="article-nav-older" class="article-nav-link-wrap">
+      <strong class="article-nav-caption">Older</strong>
+      <div class="article-nav-title">Linux-yum出错</div>
+    </a>
+  
+</nav>
+
+  
+</article>
+
+
+</section>
+        
+          <aside id="sidebar">
+  
+    
+
+  
+    
+  <div class="widget-wrap">
+    <h3 class="widget-title">Tags</h3>
+    <div class="widget">
+      <ul class="tag-list" itemprop="keywords"><li class="tag-list-item"><a class="tag-list-link" href="/tags/AOP/" rel="tag">AOP</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/ArrayList/" rel="tag">ArrayList</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/Collection/" rel="tag">Collection</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/HashMap/" rel="tag">HashMap</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/HashSet/" rel="tag">HashSet</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/IO/" rel="tag">IO</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/IOC/" rel="tag">IOC</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/Lambad/" rel="tag">Lambad</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/LinkedList/" rel="tag">LinkedList</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/Linux/" rel="tag">Linux</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/List/" rel="tag">List</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/Map/" rel="tag">Map</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/MarkDown%E5%9F%BA%E7%A1%80/" rel="tag">MarkDown基础</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/Set/" rel="tag">Set</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/Spring/" rel="tag">Spring</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/TreeMap/" rel="tag">TreeMap</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/TreeSet/" rel="tag">TreeSet</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/Vector%E5%90%91%E9%87%8F/" rel="tag">Vector向量</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/java%E5%9F%BA%E7%A1%80/" rel="tag">java基础</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/js/" rel="tag">js</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/jvm/" rel="tag">jvm</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/jvm%E8%B0%83%E4%BC%98/" rel="tag">jvm调优</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/mysql/" rel="tag">mysql</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/web%E6%A0%B8%E5%BF%83/" rel="tag">web核心</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/%E4%BA%8C%E5%88%86%E6%9F%A5%E6%89%BE/" rel="tag">二分查找</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/%E5%86%92%E6%B3%A1%E6%8E%92%E5%BA%8F/" rel="tag">冒泡排序</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/%E5%9E%83%E5%9C%BE%E5%9B%9E%E6%94%B6/" rel="tag">垃圾回收</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/%E5%A4%9A%E7%BA%BF%E7%A8%8B/" rel="tag">多线程</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/%E5%AE%9E%E4%BE%8B%E7%A8%8B%E5%BA%8F/" rel="tag">实例程序</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/%E5%BC%82%E5%B8%B8/" rel="tag">异常</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/%E6%95%B0%E6%8D%AE%E7%BB%93%E6%9E%84/" rel="tag">数据结构</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/%E6%B3%9B%E5%9E%8B/" rel="tag">泛型</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/%E7%89%88%E6%9C%AC%E6%8E%A7%E5%88%B6/" rel="tag">版本控制</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/%E7%AE%97%E6%B3%95%E5%9F%BA%E7%A1%80/" rel="tag">算法基础</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/%E7%B1%BB%E5%8A%A0%E8%BD%BD%E5%99%A8/" rel="tag">类加载器</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/%E8%AE%BE%E8%AE%A1%E6%A8%A1%E5%BC%8F/" rel="tag">设计模式</a></li></ul>
+    </div>
+  </div>
+
+
+  
+    
+  <div class="widget-wrap">
+    <h3 class="widget-title">Tag Cloud</h3>
+    <div class="widget tagcloud">
+      <a href="/tags/AOP/" style="font-size: 10px;">AOP</a> <a href="/tags/ArrayList/" style="font-size: 12px;">ArrayList</a> <a href="/tags/Collection/" style="font-size: 10px;">Collection</a> <a href="/tags/HashMap/" style="font-size: 12px;">HashMap</a> <a href="/tags/HashSet/" style="font-size: 12px;">HashSet</a> <a href="/tags/IO/" style="font-size: 16px;">IO</a> <a href="/tags/IOC/" style="font-size: 10px;">IOC</a> <a href="/tags/Lambad/" style="font-size: 10px;">Lambad</a> <a href="/tags/LinkedList/" style="font-size: 10px;">LinkedList</a> <a href="/tags/Linux/" style="font-size: 14px;">Linux</a> <a href="/tags/List/" style="font-size: 12px;">List</a> <a href="/tags/Map/" style="font-size: 12px;">Map</a> <a href="/tags/MarkDown%E5%9F%BA%E7%A1%80/" style="font-size: 10px;">MarkDown基础</a> <a href="/tags/Set/" style="font-size: 12px;">Set</a> <a href="/tags/Spring/" style="font-size: 12px;">Spring</a> <a href="/tags/TreeMap/" style="font-size: 10px;">TreeMap</a> <a href="/tags/TreeSet/" style="font-size: 10px;">TreeSet</a> <a href="/tags/Vector%E5%90%91%E9%87%8F/" style="font-size: 10px;">Vector向量</a> <a href="/tags/java%E5%9F%BA%E7%A1%80/" style="font-size: 20px;">java基础</a> <a href="/tags/js/" style="font-size: 10px;">js</a> <a href="/tags/jvm/" style="font-size: 12px;">jvm</a> <a href="/tags/jvm%E8%B0%83%E4%BC%98/" style="font-size: 10px;">jvm调优</a> <a href="/tags/mysql/" style="font-size: 10px;">mysql</a> <a href="/tags/web%E6%A0%B8%E5%BF%83/" style="font-size: 12px;">web核心</a> <a href="/tags/%E4%BA%8C%E5%88%86%E6%9F%A5%E6%89%BE/" style="font-size: 10px;">二分查找</a> <a href="/tags/%E5%86%92%E6%B3%A1%E6%8E%92%E5%BA%8F/" style="font-size: 10px;">冒泡排序</a> <a href="/tags/%E5%9E%83%E5%9C%BE%E5%9B%9E%E6%94%B6/" style="font-size: 10px;">垃圾回收</a> <a href="/tags/%E5%A4%9A%E7%BA%BF%E7%A8%8B/" style="font-size: 16px;">多线程</a> <a href="/tags/%E5%AE%9E%E4%BE%8B%E7%A8%8B%E5%BA%8F/" style="font-size: 10px;">实例程序</a> <a href="/tags/%E5%BC%82%E5%B8%B8/" style="font-size: 10px;">异常</a> <a href="/tags/%E6%95%B0%E6%8D%AE%E7%BB%93%E6%9E%84/" style="font-size: 10px;">数据结构</a> <a href="/tags/%E6%B3%9B%E5%9E%8B/" style="font-size: 12px;">泛型</a> <a href="/tags/%E7%89%88%E6%9C%AC%E6%8E%A7%E5%88%B6/" style="font-size: 12px;">版本控制</a> <a href="/tags/%E7%AE%97%E6%B3%95%E5%9F%BA%E7%A1%80/" style="font-size: 12px;">算法基础</a> <a href="/tags/%E7%B1%BB%E5%8A%A0%E8%BD%BD%E5%99%A8/" style="font-size: 10px;">类加载器</a> <a href="/tags/%E8%AE%BE%E8%AE%A1%E6%A8%A1%E5%BC%8F/" style="font-size: 18px;">设计模式</a>
+    </div>
+  </div>
+
+  
+    
+  <div class="widget-wrap">
+    <h3 class="widget-title">Archives</h3>
+    <div class="widget">
+      <ul class="archive-list"><li class="archive-list-item"><a class="archive-list-link" href="/archives/2021/01/">January 2021</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2020/12/">December 2020</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2020/10/">October 2020</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2020/09/">September 2020</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2020/08/">August 2020</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2020/07/">July 2020</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2020/06/">June 2020</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2020/05/">May 2020</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2020/04/">April 2020</a></li></ul>
+    </div>
+  </div>
+
+
+  
+    
+  <div class="widget-wrap">
+    <h3 class="widget-title">Recent Posts</h3>
+    <div class="widget">
+      <ul>
+        
+          <li>
+            <a href="/2021/01/31/web%E6%A0%B8%E5%BF%83/web%E6%A0%B8%E5%BF%83-request-response/">(no title)</a>
+          </li>
+        
+          <li>
+            <a href="/2021/01/31/web%E6%A0%B8%E5%BF%83/web%E6%A0%B8%E5%BF%83-Servlet/">web核心-Servlet</a>
+          </li>
+        
+          <li>
+            <a href="/2021/01/30/web%E6%A0%B8%E5%BF%83/web%E6%A0%B8%E5%BF%83-Http%E5%8D%8F%E8%AE%AE/">web核心-Http协议</a>
+          </li>
+        
+          <li>
+            <a href="/2021/01/26/mysql/mysql%E5%9F%BA%E7%A1%80/">mysql基础</a>
+          </li>
+        
+          <li>
+            <a href="/2021/01/24/Linux/Linux-yum%E5%87%BA%E9%94%99/">Linux-yum出错</a>
+          </li>
+        
+      </ul>
+    </div>
+  </div>
+
+  
+</aside>
+        
+      </div>
+      <footer id="footer">
+  
+  <div class="outer">
+    <div id="footer-info" class="inner">
+      
+      &copy; 2021 John Doe<br>
+      Powered by <a href="https://hexo.io/" target="_blank">Hexo</a>
+    </div>
+  </div>
+</footer>
+
+    </div>
+    <nav id="mobile-nav">
+  
+    <a href="/" class="mobile-nav-link">Home</a>
+  
+    <a href="/archives" class="mobile-nav-link">Archives</a>
+  
+</nav>
+    
+
+
+<script src="/js/jquery-3.4.1.min.js"></script>
+
+
+
+  
+<script src="/fancybox/jquery.fancybox.min.js"></script>
+
+
+
+
+<script src="/js/script.js"></script>
+
+
+
+
+
+  </div>
+</body>
+</html>
