@@ -6,20 +6,22 @@
   <meta name="renderer" content="webkit">
   <meta http-equiv="X-UA-Compatible" content="IE=edge" >
   <link rel="dns-prefetch" href="http://example.com">
-  <title>mysql基础 | YiShan</title>
+  <title>jdbc高级知识 | YiShan</title>
   <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
-  <meta name="description" content="数据库的查询、创建">
+  <meta name="description" content="数据库连接池的概念 数据库连接背景 数据库连接是一种关键的、有限的、昂贵的资源，这一点在多用户的网页应用程序中体现得尤为突出。对数据库连接的管理能显著影响到整个应用程序的伸缩性和健壮性，影响到程序的性能指标。数据库连接池正是针对这个问题提出来的。">
 <meta property="og:type" content="article">
-<meta property="og:title" content="mysql基础">
-<meta property="og:url" content="http://example.com/2021/01/26/mysql/mysql%E5%9F%BA%E7%A1%80/index.html">
+<meta property="og:title" content="jdbc高级知识">
+<meta property="og:url" content="http://example.com/2021/02/24/JDBC/jdbc%E9%AB%98%E7%BA%A7%E7%9F%A5%E8%AF%86/index.html">
 <meta property="og:site_name" content="YiShan">
-<meta property="og:description" content="数据库的查询、创建">
+<meta property="og:description" content="数据库连接池的概念 数据库连接背景 数据库连接是一种关键的、有限的、昂贵的资源，这一点在多用户的网页应用程序中体现得尤为突出。对数据库连接的管理能显著影响到整个应用程序的伸缩性和健壮性，影响到程序的性能指标。数据库连接池正是针对这个问题提出来的。">
 <meta property="og:locale" content="en_US">
-<meta property="article:published_time" content="2021-01-26T03:38:51.000Z">
-<meta property="article:modified_time" content="2021-01-26T10:54:24.652Z">
+<meta property="og:image" content="https://i.loli.net/2021/02/24/AYZFCyUEMvOkTPu.png">
+<meta property="article:published_time" content="2021-02-24T02:44:26.000Z">
+<meta property="article:modified_time" content="2021-02-24T02:51:02.043Z">
 <meta property="article:author" content="John Doe">
-<meta property="article:tag" content="mysql">
+<meta property="article:tag" content="jdbc">
 <meta name="twitter:card" content="summary">
+<meta name="twitter:image" content="https://i.loli.net/2021/02/24/AYZFCyUEMvOkTPu.png">
   
     <link rel="alternative" href="/atom.xml" title="YiShan" type="application/atom+xml">
   
@@ -178,20 +180,20 @@
             <canvas data-colors="#eaeaea" data-sectionHeight="100" data-contentId="js-content" id="myCanvas1" class="anm-canvas"></canvas>
           </div>
           <div id="js-content" class="content-ll">
-            <article id="post-mysql/mysql基础" class="article article-type-post " itemscope itemprop="blogPost">
+            <article id="post-JDBC/jdbc高级知识" class="article article-type-post " itemscope itemprop="blogPost">
   <div class="article-inner">
     
       <header class="article-header">
         
   
     <h1 class="article-title" itemprop="name">
-      mysql基础
+      jdbc高级知识
     </h1>
   
 
         
-        <a href="/2021/01/26/mysql/mysql%E5%9F%BA%E7%A1%80/" class="archive-article-date">
-  	<time datetime="2021-01-26T03:38:51.000Z" itemprop="datePublished"><i class="icon-calendar icon"></i>2021-01-26</time>
+        <a href="/2021/02/24/JDBC/jdbc%E9%AB%98%E7%BA%A7%E7%9F%A5%E8%AF%86/" class="archive-article-date">
+  	<time datetime="2021-02-24T02:44:26.000Z" itemprop="datePublished"><i class="icon-calendar icon"></i>2021-02-24</time>
 </a>
         
 		
@@ -209,23 +211,31 @@
     
     <div class="article-entry" itemprop="articleBody">
       
-        <h3 id="数据库的查询、创建"><a href="#数据库的查询、创建" class="headerlink" title="数据库的查询、创建"></a>数据库的查询、创建</h3><a id="more"></a>
+        <h3 id="数据库连接池的概念"><a href="#数据库连接池的概念" class="headerlink" title="数据库连接池的概念"></a>数据库连接池的概念</h3><ul>
+<li>数据库连接背景<ul>
+<li>数据库连接是一种关键的、有限的、昂贵的资源，这一点在多用户的网页应用程序中体现得尤为突出。对数据库连接的管理能显著影响到整个应用程序的伸缩性和健壮性，影响到程序的性能指标。数据库连接池正是针对这个问题提出来的。</li>
+</ul>
+</li>
+</ul>
+<a id="more"></a>
 
-<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br></pre></td><td class="code"><pre><span class="line">-- 查询所有的数据库</span><br><span class="line">SHOW DATABASES;</span><br><span class="line"></span><br><span class="line">-- 查询mysql数据库的创建语句</span><br><span class="line">SHOW CREATE DATABASE mysql;</span><br><span class="line"></span><br><span class="line">-- 创建数据库 db1</span><br><span class="line">CREATE DATABASE db1;</span><br><span class="line"></span><br><span class="line">-- 创建数据库db2（判断，如果不存在则创建）</span><br><span class="line">CREATE DATABASE IF NOT EXISTS db2;</span><br><span class="line"></span><br><span class="line">-- 创建数据库并指定字符集utf8</span><br><span class="line">CREATE DATABASE db3 CHARACTER SET utf8;</span><br><span class="line"></span><br><span class="line">-- 查看db3数据库的字符集</span><br><span class="line">SHOW CREATE DATABASE db3;</span><br><span class="line"></span><br><span class="line">-- 练习：创建db4数据库、如果不存在则创建，指定字符集为gbk</span><br><span class="line">CREATE DATABASE IF NOT EXISTS db4 CHARACTER SET gbk;</span><br><span class="line"></span><br><span class="line">-- 查看db4数据库的字符集</span><br><span class="line">SHOW CREATE DATABASE db4;</span><br></pre></td></tr></table></figure>
-<h3 id="数据库的修改、删除、使用"><a href="#数据库的修改、删除、使用" class="headerlink" title="数据库的修改、删除、使用"></a>数据库的修改、删除、使用</h3><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br></pre></td><td class="code"><pre><span class="line">-- 修改数据库db4的字符集为utf8</span><br><span class="line">ALTER DATABASE db4 CHARACTER SET utf8;</span><br><span class="line"></span><br><span class="line">-- 查看db4数据库的字符集</span><br><span class="line">SHOW CREATE DATABASE db4;</span><br><span class="line"></span><br><span class="line">-- 删除db1数据库</span><br><span class="line">DROP DATABASE db1;</span><br><span class="line"></span><br><span class="line">-- 删除数据库db2,如果存在，则删除</span><br><span class="line">DROP DATABASE IF EXISTS db2;</span><br><span class="line"></span><br><span class="line">-- 使用db4数据库</span><br><span class="line">USE db4;</span><br><span class="line"></span><br><span class="line">-- 查询当前正在使用的数据库</span><br><span class="line">SELECT DATABASE();</span><br></pre></td></tr></table></figure>
-<h3 id="查询数据表"><a href="#查询数据表" class="headerlink" title="查询数据表"></a>查询数据表</h3><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br></pre></td><td class="code"><pre><span class="line">-- 使用mysql数据库</span><br><span class="line">USE mysql;</span><br><span class="line"></span><br><span class="line">-- 查询库中所有的表</span><br><span class="line">SHOW TABLES;</span><br><span class="line"></span><br><span class="line">-- 查询user表结构</span><br><span class="line">DESC USER;</span><br><span class="line"></span><br><span class="line">-- 查看mysql数据库中user表字符集</span><br><span class="line">SHOW TABLE STATUS FROM mysql LIKE &#39;user&#39;;</span><br></pre></td></tr></table></figure>
-<h3 id="数据表的创建"><a href="#数据表的创建" class="headerlink" title="数据表的创建"></a>数据表的创建</h3><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br></pre></td><td class="code"><pre><span class="line">-- 创建一个product商品表（商品编号、商品名称、商品价格、商品库存、上架时间）</span><br><span class="line">CREATE TABLE product(</span><br><span class="line">	id INT,</span><br><span class="line">	NAME VARCHAR(20),</span><br><span class="line">	price DOUBLE,</span><br><span class="line">	stock INT,</span><br><span class="line">	insert_time DATE</span><br><span class="line">);</span><br><span class="line">-- 查看product表详细结构</span><br><span class="line">DESC product;</span><br></pre></td></tr></table></figure>
-<h3 id="数据表的修改"><a href="#数据表的修改" class="headerlink" title="数据表的修改"></a>数据表的修改</h3><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br></pre></td><td class="code"><pre><span class="line">-- 修改product表名为product2</span><br><span class="line">ALTER TABLE product RENAME TO product2;</span><br><span class="line"></span><br><span class="line">-- 查看db3数据库中product2数据表字符集</span><br><span class="line">SHOW TABLE STATUS FROM db3 LIKE &#39;product2&#39;;</span><br><span class="line"></span><br><span class="line">-- 修改product2数据表字符集</span><br><span class="line"> ALTER TABLE product2 CHARACTER SET gbk;</span><br><span class="line"> </span><br><span class="line"> -- 给product2表添加一列color</span><br><span class="line"> ALTER TABLE product2 ADD color VARCHAR(10);</span><br><span class="line"></span><br><span class="line">-- 将color数据类型修改为int</span><br><span class="line">ALTER TABLE product2 MODIFY color INT;</span><br><span class="line">-- 查看product2表的详细结构</span><br><span class="line">DESC product2;</span><br><span class="line"></span><br><span class="line">-- 将color修改为address</span><br><span class="line">ALTER TABLE product2 CHANGE color address VARCHAR(200);</span><br><span class="line"></span><br><span class="line">-- 删除address列</span><br><span class="line">ALTER TABLE product2 DROP address;</span><br></pre></td></tr></table></figure>
-<h3 id="删除数据表"><a href="#删除数据表" class="headerlink" title="删除数据表"></a>删除数据表</h3><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line">-- 删除数据表</span><br><span class="line">DROP product2;</span><br><span class="line">-- 删除数据表（如果表存在就删除）</span><br><span class="line">DROP TABLE IF EXISTS product2; </span><br></pre></td></tr></table></figure>
-<h3 id="新增表数据"><a href="#新增表数据" class="headerlink" title="新增表数据"></a>新增表数据</h3><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br></pre></td><td class="code"><pre><span class="line">-- 向product表添加一条数据</span><br><span class="line">INSERT INTO product (id,NAME,price,stock,insert_time) VALUE (1,&#39;手机&#39;,1560.56,200,&#39;2021-1-26&#39;);</span><br><span class="line"></span><br><span class="line">-- 向product表添加指定列数据</span><br><span class="line">INSERT INTO product(id,NAME,price) VALUE (2,&#39;电脑&#39;,5999.99);</span><br><span class="line"></span><br><span class="line">-- 默认给全部列添加数据</span><br><span class="line">INSERT INTO product VALUE(3,&#39;电视&#39;,2000.52,150,&#39;2021-01-15&#39;);</span><br><span class="line"></span><br><span class="line">-- 批量添加数据</span><br><span class="line">INSERT INTO product VALUE(4,&#39;洗衣机&#39;,1502,100,&#39;2022-05-03&#39;),(5,&#39;电冰箱&#39;,1814,520,&#39;2012-08-15&#39;);</span><br></pre></td></tr></table></figure>
-<h3 id="修改和删除表数据"><a href="#修改和删除表数据" class="headerlink" title="修改和删除表数据"></a>修改和删除表数据</h3><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br></pre></td><td class="code"><pre><span class="line">-- 修改手机的价格为3500元</span><br><span class="line">UPDATE product SET price&#x3D;3500 WHERE NAME&#x3D;&#39;手机&#39;; </span><br><span class="line"></span><br><span class="line">-- 修改电脑的价格为5600元，库存为150个</span><br><span class="line">UPDATE product SET price&#x3D;5600,stock&#x3D;150 WHERE NAME&#x3D;&#39;电脑&#39;;</span><br><span class="line"></span><br><span class="line">-- 删除表中电冰箱的信息</span><br><span class="line">DELETE FROM product WHERE NAME&#x3D;&#39;电冰箱&#39;;</span><br><span class="line"></span><br><span class="line">-- 删除表中库存为150的数据的信息</span><br><span class="line">DELETE FROM product WHERE stock&#x3D;&#39;150&#39;;</span><br></pre></td></tr></table></figure>
-<h3 id="查询数据表准备"><a href="#查询数据表准备" class="headerlink" title="查询数据表准备"></a>查询数据表准备</h3><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br></pre></td><td class="code"><pre><span class="line">-- 创建db1数据库</span><br><span class="line">CREATE DATABASE db1;</span><br><span class="line"></span><br><span class="line">-- 使用db1数据库</span><br><span class="line">USE db1; </span><br><span class="line"></span><br><span class="line">-- 创建数据表</span><br><span class="line">CREATE TABLE product(</span><br><span class="line">	id INT,			-- 商品编号</span><br><span class="line">	NAME VARCHAR(20),	-- 商品名称</span><br><span class="line">	price DOUBLE,		-- 商品价格</span><br><span class="line">	brand VARCHAR(10),	-- 商品品牌</span><br><span class="line">	stock INT,		-- 商品库存</span><br><span class="line">	insert_time DATE 	-- 添加时间</span><br><span class="line">);</span><br><span class="line"></span><br><span class="line">-- 添加数据</span><br><span class="line">INSERT INTO product VALUES</span><br><span class="line">(1,&#39;华为手机&#39;,3999,&#39;华为&#39;,23,&#39;2999-05-20&#39;),</span><br><span class="line">(2,&#39;苹果手机&#39;,2999,&#39;苹果&#39;,15,&#39;2999-04-15&#39;),</span><br><span class="line">(3,&#39;小米手机&#39;,4999,&#39;小米&#39;,66,&#39;2999-12-18&#39;),</span><br><span class="line">(4,&#39;华为电脑&#39;,5999,&#39;华为&#39;,52,&#39;2999-05-30&#39;),</span><br><span class="line">(5,&#39;苹果电脑&#39;,6999,&#39;苹果&#39;,12,&#39;2999-03-25&#39;),</span><br><span class="line">(6,&#39;小米电脑&#39;,1999,&#39;小米&#39;,35,&#39;2999-11-19&#39;),</span><br><span class="line">(7,&#39;联想电脑&#39;,7999,&#39;联想&#39;,NULL,&#39;2999-08-08&#39;);</span><br></pre></td></tr></table></figure>
-<h3 id="查询全部"><a href="#查询全部" class="headerlink" title="查询全部"></a>查询全部</h3><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br></pre></td><td class="code"><pre><span class="line">-- 查询product中全部的数据</span><br><span class="line">SELECT * FROM product;</span><br><span class="line"></span><br><span class="line">-- 查询指定列的数据</span><br><span class="line">SELECT NAME,price,insert_time FROM product;</span><br><span class="line"></span><br><span class="line">-- 查询品牌</span><br><span class="line">SELECT brand FROM product;</span><br><span class="line">-- 查询品牌，去除重复</span><br><span class="line">SELECT DISTINCT brand FROM product;</span><br><span class="line"></span><br><span class="line">-- 查询商品名称和库存，库存在原有基础上加10</span><br><span class="line">SELECT NAME,stock+10 FROM product;</span><br><span class="line">-- 查询商品名称和库存，库存在原有基础上加10,进行null值判断</span><br><span class="line">SELECT NAME,IFNULL(stock,0)+10 FROM product;</span><br><span class="line">-- 查询商品名称和库存，库存在原有基础上加10,进行null值判断,起别名</span><br><span class="line">SELECT NAME,IFNULL(stock,0)+10 AS getNum FROM product;</span><br></pre></td></tr></table></figure>
-<h3 id="条件查询"><a href="#条件查询" class="headerlink" title="条件查询"></a>条件查询</h3><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br></pre></td><td class="code"><pre><span class="line">-- 查询库存大于20的商品信息</span><br><span class="line">SELECT * FROM product WHERE stock &gt; 20;</span><br><span class="line"></span><br><span class="line">-- 查询品牌为华为的商品信息</span><br><span class="line">SELECT * FROM product WHERE brand &#x3D; &#39;华为&#39;;</span><br><span class="line"></span><br><span class="line">-- 查询金额在4000~6000之间的商品信息</span><br><span class="line">SELECT * FROM product WHERE price &gt;&#x3D; 4000 AND price &#x3D;&lt; 6000;</span><br><span class="line">SELECT * FROM product WHERE price BETWEEN 4000 AND 6000;</span><br><span class="line"></span><br><span class="line">-- 查询库存为12,35,66的商品信息</span><br><span class="line">SELECT * FROM product WHERE stock &#x3D; 12 OR stock&#x3D;35 OR stock&#x3D;66;</span><br><span class="line">SELECT * FROM product WHERE stock IN(12,35,66);</span><br><span class="line"></span><br><span class="line">-- 查询库存为null的商品信息</span><br><span class="line">SELECT * FROM product WHERE stock IS NULL;</span><br><span class="line"></span><br><span class="line">-- 查询库存不为null的商品信息</span><br><span class="line">SELECT * FROM product WHERE stock IS NOT NULL;</span><br><span class="line"></span><br><span class="line">-- 查询名称以小米为开头的商品信息</span><br><span class="line">SELECT * FROM product WHERE NAME LIKE &#39;小米%&#39;;</span><br><span class="line"></span><br><span class="line">-- 查询名称第二个是为的商品信息</span><br><span class="line">SELECT * FROM product WHERE NAME LIKE &#39;_为%&#39;;</span><br><span class="line"></span><br><span class="line">-- 查询名称为四个字符的商品信息</span><br><span class="line">SELECT * FROM product WHERE NAME LIKE &#39;____&#39;;</span><br><span class="line"></span><br><span class="line">-- 查询名称中包含电脑的商品信息</span><br><span class="line">SELECT * FROM product WHERE NAME LIKE &#39;%电脑%&#39;;</span><br><span class="line"></span><br></pre></td></tr></table></figure>
-<h3 id="聚合函数查询"><a href="#聚合函数查询" class="headerlink" title="聚合函数查询"></a>聚合函数查询</h3><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br></pre></td><td class="code"><pre><span class="line">-- 计算product表中总记录条数</span><br><span class="line">SELECT COUNT(*) FROM product;</span><br><span class="line"></span><br><span class="line">-- 获取最高价格</span><br><span class="line">SELECT MAX(price) FROM product;</span><br><span class="line"></span><br><span class="line">-- 获取最低库存</span><br><span class="line">SELECT MIN(stock) FROM product;</span><br><span class="line"></span><br><span class="line">-- 获取总库存数量</span><br><span class="line">SELECT SUM(stock) FROM product;</span><br><span class="line"></span><br><span class="line">-- 获取品牌为苹果的总库存数量</span><br><span class="line">SELECT SUM(stock) FROM product WHERE brand&#x3D;&#39;苹果&#39;; </span><br><span class="line"></span><br><span class="line">-- 获取品牌为小米的平均商品价格</span><br><span class="line">SELECT AVG(price) FROM product WHERE brand&#x3D;&#39;小米&#39;;</span><br></pre></td></tr></table></figure>
-<h3 id="排序查询"><a href="#排序查询" class="headerlink" title="排序查询"></a>排序查询</h3><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br></pre></td><td class="code"><pre><span class="line">-- 按照库存升序排序</span><br><span class="line">SELECT * FROM product ORDER BY stock ASC;</span><br><span class="line"></span><br><span class="line">-- 查询名称中包含手机的商品信息。按照金额降序排序</span><br><span class="line">-- 先过滤条件再进行排序</span><br><span class="line">SELECT * FROM product WHERE NAME LIKE &#39;%手机%&#39; ORDER BY price DESC;</span><br><span class="line"></span><br><span class="line">-- 按照金额升序排序，如果金额相同，按照库存降序排序</span><br><span class="line">-- 只有当排序主要条件相同的时候，才会执行次要排序条件</span><br><span class="line">SELECT * FROM product ORDER BY price ASC,stock DESC;</span><br></pre></td></tr></table></figure>
-<h3 id="分组查询"><a href="#分组查询" class="headerlink" title="分组查询"></a>分组查询</h3><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br></pre></td><td class="code"><pre><span class="line">-- 按照品牌分组，获取每组的总金额</span><br><span class="line">SELECT brand,SUM(price) FROM product GROUP BY brand;</span><br><span class="line"></span><br><span class="line">-- 对金额大于4000的商品，按照品牌分组，获取每组商品的总金额</span><br><span class="line">SELECT brand,SUM(price) FROM product</span><br><span class="line">WHERE price &gt; 4000 </span><br><span class="line">GROUP BY brand;</span><br><span class="line"></span><br><span class="line">-- 对金额大于4000的商品，按照品牌分组，获取每组商品的总金额，只显示总金额大于7000元的</span><br><span class="line">SELECT brand,SUM(price) AS getSum FROM product </span><br><span class="line">WHERE price&gt;4000 </span><br><span class="line">GROUP BY brand </span><br><span class="line">HAVING getSum &gt; 7000;</span><br><span class="line"></span><br><span class="line">-- 对金额大于4000的商品，按照品牌分组，获取每组商品的总金额，只显示总金额大于7000元的,并按照总金额的降序排列</span><br><span class="line">SELECT brand,SUM(price) AS getSum FROM product</span><br><span class="line">WHERE price&gt;4000 </span><br><span class="line">GROUP BY brand </span><br><span class="line">HAVING getSum &gt; 7000 </span><br><span class="line">ORDER BY getSum DESC;</span><br></pre></td></tr></table></figure>
-<h3 id="分页查询"><a href="#分页查询" class="headerlink" title="分页查询"></a>分页查询</h3><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br></pre></td><td class="code"><pre><span class="line">-- LIMIT 当前页数，每页显示的条数</span><br><span class="line">-- 公式：当前页数 &#x3D; （当前页数 - 1）* 每页显示的条数</span><br><span class="line">-- 每页显示3条</span><br><span class="line"></span><br><span class="line">-- 第一页：当前页数 &#x3D; （1 - 1）* 3 &#x3D; 0</span><br><span class="line">SELECT * FROM product LIMIT 0,3;</span><br><span class="line"></span><br><span class="line">-- 第二页：当前页数 &#x3D; （2 - 1）* 3 &#x3D; 3</span><br><span class="line">SELECT * FROM product LIMIT 3,3;</span><br><span class="line"></span><br><span class="line">-- 第三页：当前页数 &#x3D; （3 - 1）* 3 &#x3D; 6</span><br><span class="line">SELECT * FROM product LIMIT 6,3;</span><br></pre></td></tr></table></figure>
+<ul>
+<li><p>数据库连接池</p>
+<ul>
+<li>数据库连接池负责分配、管理和释放数据库连接，它允许应用程序重复使用一个现有的数据库连接，而不是再重新建立一个。这项技术能明显提高对数据库操作的性能。</li>
+</ul>
+</li>
+<li><p>数据库连接池原理</p>
+</li>
+</ul>
+<p><img src="https://i.loli.net/2021/02/24/AYZFCyUEMvOkTPu.png"></p>
+<h3 id="自定义连接池"><a href="#自定义连接池" class="headerlink" title="自定义连接池"></a>自定义连接池</h3><ul>
+<li>java.sql.DataSource接口：数据源(数据库连接池)。java官方提供的数据库连接池规范(接口)<ul>
+<li>获取数据库连接对象：Connection getConnection();</li>
+</ul>
+</li>
+<li>自定义连接池</li>
+</ul>
 
       
 
@@ -260,7 +270,7 @@
 		<ul class="article-tag-list">
 			 
         		<li class="article-tag-list-item">
-        			<a href="javascript:void(0)" class="js-tag article-tag-list-link color1">mysql</a>
+        			<a href="javascript:void(0)" class="js-tag article-tag-list-link color5">jdbc</a>
         		</li>
       		
 		</ul>
@@ -316,7 +326,7 @@
     <a class="close js-modal-close" href="javascript:;"><i class="icon icon-close"></i></a>
     <p>扫一扫，分享到微信</p>
     <div class="wx-qrcode">
-      <img src="//pan.baidu.com/share/qrcode?url=http://example.com/2021/01/26/mysql/mysql%E5%9F%BA%E7%A1%80/" alt="微信分享二维码">
+      <img src="//pan.baidu.com/share/qrcode?url=http://example.com/2021/02/24/JDBC/jdbc%E9%AB%98%E7%BA%A7%E7%9F%A5%E8%AF%86/" alt="微信分享二维码">
     </div>
 </div>
 
@@ -330,18 +340,18 @@
   
 <nav id="article-nav">
   
-    <a href="/2021/01/30/web%E6%A0%B8%E5%BF%83/web%E6%A0%B8%E5%BF%83-Http%E5%8D%8F%E8%AE%AE/" id="article-nav-newer" class="article-nav-link-wrap">
+    <a href="/2021/02/25/%E6%A1%86%E6%9E%B6%E6%8A%80%E6%9C%AF/MyBatis%E5%9F%BA%E7%A1%80/" id="article-nav-newer" class="article-nav-link-wrap">
       <i class="icon-circle-left"></i>
       <div class="article-nav-title">
         
-          web核心-Http协议
+          MyBatis基础
         
       </div>
     </a>
   
   
-    <a href="/2021/01/24/Linux/Linux-yum%E5%87%BA%E9%94%99/" id="article-nav-older" class="article-nav-link-wrap">
-      <div class="article-nav-title">Linux-yum出错</div>
+    <a href="/2021/02/23/JDBC/JDBC%E5%9F%BA%E7%A1%80%E7%9F%A5%E8%AF%86/" id="article-nav-older" class="article-nav-link-wrap">
+      <div class="article-nav-title">JDBC基础知识</div>
       <i class="icon-circle-right"></i>
     </a>
   
@@ -368,7 +378,7 @@
                 </span>
                 <span class="tooltip-content">
                     <div class="toc-article">
-                    <ol class="toc"><li class="toc-item toc-level-3"><a class="toc-link" href="#%E6%95%B0%E6%8D%AE%E5%BA%93%E7%9A%84%E6%9F%A5%E8%AF%A2%E3%80%81%E5%88%9B%E5%BB%BA"><span class="toc-number">1.</span> <span class="toc-text">数据库的查询、创建</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#%E6%95%B0%E6%8D%AE%E5%BA%93%E7%9A%84%E4%BF%AE%E6%94%B9%E3%80%81%E5%88%A0%E9%99%A4%E3%80%81%E4%BD%BF%E7%94%A8"><span class="toc-number">2.</span> <span class="toc-text">数据库的修改、删除、使用</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#%E6%9F%A5%E8%AF%A2%E6%95%B0%E6%8D%AE%E8%A1%A8"><span class="toc-number">3.</span> <span class="toc-text">查询数据表</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#%E6%95%B0%E6%8D%AE%E8%A1%A8%E7%9A%84%E5%88%9B%E5%BB%BA"><span class="toc-number">4.</span> <span class="toc-text">数据表的创建</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#%E6%95%B0%E6%8D%AE%E8%A1%A8%E7%9A%84%E4%BF%AE%E6%94%B9"><span class="toc-number">5.</span> <span class="toc-text">数据表的修改</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#%E5%88%A0%E9%99%A4%E6%95%B0%E6%8D%AE%E8%A1%A8"><span class="toc-number">6.</span> <span class="toc-text">删除数据表</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#%E6%96%B0%E5%A2%9E%E8%A1%A8%E6%95%B0%E6%8D%AE"><span class="toc-number">7.</span> <span class="toc-text">新增表数据</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#%E4%BF%AE%E6%94%B9%E5%92%8C%E5%88%A0%E9%99%A4%E8%A1%A8%E6%95%B0%E6%8D%AE"><span class="toc-number">8.</span> <span class="toc-text">修改和删除表数据</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#%E6%9F%A5%E8%AF%A2%E6%95%B0%E6%8D%AE%E8%A1%A8%E5%87%86%E5%A4%87"><span class="toc-number">9.</span> <span class="toc-text">查询数据表准备</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#%E6%9F%A5%E8%AF%A2%E5%85%A8%E9%83%A8"><span class="toc-number">10.</span> <span class="toc-text">查询全部</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#%E6%9D%A1%E4%BB%B6%E6%9F%A5%E8%AF%A2"><span class="toc-number">11.</span> <span class="toc-text">条件查询</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#%E8%81%9A%E5%90%88%E5%87%BD%E6%95%B0%E6%9F%A5%E8%AF%A2"><span class="toc-number">12.</span> <span class="toc-text">聚合函数查询</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#%E6%8E%92%E5%BA%8F%E6%9F%A5%E8%AF%A2"><span class="toc-number">13.</span> <span class="toc-text">排序查询</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#%E5%88%86%E7%BB%84%E6%9F%A5%E8%AF%A2"><span class="toc-number">14.</span> <span class="toc-text">分组查询</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#%E5%88%86%E9%A1%B5%E6%9F%A5%E8%AF%A2"><span class="toc-number">15.</span> <span class="toc-text">分页查询</span></a></li></ol>
+                    <ol class="toc"><li class="toc-item toc-level-3"><a class="toc-link" href="#%E6%95%B0%E6%8D%AE%E5%BA%93%E8%BF%9E%E6%8E%A5%E6%B1%A0%E7%9A%84%E6%A6%82%E5%BF%B5"><span class="toc-number">1.</span> <span class="toc-text">数据库连接池的概念</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#%E8%87%AA%E5%AE%9A%E4%B9%89%E8%BF%9E%E6%8E%A5%E6%B1%A0"><span class="toc-number">2.</span> <span class="toc-text">自定义连接池</span></a></li></ol>
                     </div>
                 </span>
             </div>
@@ -523,11 +533,19 @@ return o(i(t),arguments.length<2?void 0:u(arguments[1]))}})},function(t,n,r){var
               </li>
              
               <li class="article-tag-list-item">
+                <a href="javascript:void(0)" class="js-tag color4">JVM</a>
+              </li>
+             
+              <li class="article-tag-list-item">
                 <a href="javascript:void(0)" class="js-tag color5">类加载器</a>
               </li>
              
               <li class="article-tag-list-item">
-                <a href="javascript:void(0)" class="js-tag color3">js</a>
+                <a href="javascript:void(0)" class="js-tag color5">JDBC</a>
+              </li>
+             
+              <li class="article-tag-list-item">
+                <a href="javascript:void(0)" class="js-tag color5">jdbc</a>
               </li>
              
               <li class="article-tag-list-item">
@@ -547,19 +565,7 @@ return o(i(t),arguments.length<2?void 0:u(arguments[1]))}})},function(t,n,r){var
               </li>
              
               <li class="article-tag-list-item">
-                <a href="javascript:void(0)" class="js-tag color1">mysql</a>
-              </li>
-             
-              <li class="article-tag-list-item">
                 <a href="javascript:void(0)" class="js-tag color1">web核心</a>
-              </li>
-             
-              <li class="article-tag-list-item">
-                <a href="javascript:void(0)" class="js-tag color2">Lambad</a>
-              </li>
-             
-              <li class="article-tag-list-item">
-                <a href="javascript:void(0)" class="js-tag color4">多线程</a>
               </li>
              
               <li class="article-tag-list-item">
@@ -575,7 +581,11 @@ return o(i(t),arguments.length<2?void 0:u(arguments[1]))}})},function(t,n,r){var
               </li>
              
               <li class="article-tag-list-item">
-                <a href="javascript:void(0)" class="js-tag color5">实例程序</a>
+                <a href="javascript:void(0)" class="js-tag color2">Lambad</a>
+              </li>
+             
+              <li class="article-tag-list-item">
+                <a href="javascript:void(0)" class="js-tag color4">多线程</a>
               </li>
              
               <li class="article-tag-list-item">
@@ -587,7 +597,15 @@ return o(i(t),arguments.length<2?void 0:u(arguments[1]))}})},function(t,n,r){var
               </li>
              
               <li class="article-tag-list-item">
-                <a href="javascript:void(0)" class="js-tag color5">版本控制</a>
+                <a href="javascript:void(0)" class="js-tag color3">MyBatis</a>
+              </li>
+             
+              <li class="article-tag-list-item">
+                <a href="javascript:void(0)" class="js-tag color3">框架</a>
+              </li>
+             
+              <li class="article-tag-list-item">
+                <a href="javascript:void(0)" class="js-tag color5">实例程序</a>
               </li>
              
               <li class="article-tag-list-item">
@@ -611,19 +629,19 @@ return o(i(t),arguments.length<2?void 0:u(arguments[1]))}})},function(t,n,r){var
               </li>
              
               <li class="article-tag-list-item">
-                <a href="javascript:void(0)" class="js-tag color4">Vector向量</a>
-              </li>
-             
-              <li class="article-tag-list-item">
-                <a href="javascript:void(0)" class="js-tag color3">HashMap</a>
-              </li>
-             
-              <li class="article-tag-list-item">
                 <a href="javascript:void(0)" class="js-tag color3">泛型</a>
               </li>
              
               <li class="article-tag-list-item">
                 <a href="javascript:void(0)" class="js-tag color5">ArrayList</a>
+              </li>
+             
+              <li class="article-tag-list-item">
+                <a href="javascript:void(0)" class="js-tag color4">Vector向量</a>
+              </li>
+             
+              <li class="article-tag-list-item">
+                <a href="javascript:void(0)" class="js-tag color3">HashMap</a>
               </li>
              
               <li class="article-tag-list-item">
@@ -643,11 +661,23 @@ return o(i(t),arguments.length<2?void 0:u(arguments[1]))}})},function(t,n,r){var
               </li>
              
               <li class="article-tag-list-item">
+                <a href="javascript:void(0)" class="js-tag color5">版本控制</a>
+              </li>
+             
+              <li class="article-tag-list-item">
                 <a href="javascript:void(0)" class="js-tag color5">垃圾回收</a>
               </li>
              
               <li class="article-tag-list-item">
                 <a href="javascript:void(0)" class="js-tag color1">jvm调优</a>
+              </li>
+             
+              <li class="article-tag-list-item">
+                <a href="javascript:void(0)" class="js-tag color1">mysql</a>
+              </li>
+             
+              <li class="article-tag-list-item">
+                <a href="javascript:void(0)" class="js-tag color3">js</a>
               </li>
             
             <div class="clearfix"></div>

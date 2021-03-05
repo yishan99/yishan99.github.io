@@ -16,7 +16,7 @@
 <meta property="og:description" content="装饰模式(decorator)">
 <meta property="og:locale" content="en_US">
 <meta property="article:published_time" content="2020-10-20T06:07:50.000Z">
-<meta property="article:modified_time" content="2020-10-20T07:16:58.923Z">
+<meta property="article:modified_time" content="2021-02-24T06:42:55.486Z">
 <meta property="article:author" content="John Doe">
 <meta property="article:tag" content="java基础">
 <meta property="article:tag" content="设计模式">
@@ -219,8 +219,7 @@
 </li>
 </ul>
 <ul>
-<li><p>实现细节</p>
-<ul>
+<li>实现细节<ul>
 <li><p>Component抽象构件角色</p>
 <ul>
 <li>真实对象和装饰对象有相同的接口。这样，客户端对象就能够以与真实对象相同的方式同装饰对象交互。</li>
@@ -240,95 +239,13 @@
 <ul>
 <li>负责给构件对象增加新的责任。</li>
 </ul>
-<h3 id="示例代码"><a href="#示例代码" class="headerlink" title="示例代码"></a>示例代码</h3><p>  package com.yishan.decorator;</p>
-<p>  /**</p>
-<ul>
-<li><p>抽象构件</p>
-</li>
-<li><p>@author : yishan</p>
-</li>
-<li><p>@date : 2020-10-20 14:35</p>
-</li>
-<li><p>/<br>public interface ICar {<br>   void move();<br>}</p>
-<p>//具体构件角色<br>class Car implements ICar{</p>
-<p>   @Override<br>   public void move() {</p>
-<pre><code>   System.out.println(&quot;陆地上跑！&quot;);
-</code></pre>
-<p>   }<br>}</p>
-<p>//装饰器角色<br>class SuperCar implements ICar{<br>   protected ICar car;</p>
-<p>   public SuperCar(ICar car) {</p>
-<pre><code>   this.car = car;
-</code></pre>
-<p>   }</p>
-<p>   @Override<br>   public void move() {</p>
-<pre><code>   car.move();
-</code></pre>
-<p>   }<br>}</p>
-<p>//具体装饰对象1<br>class FlyCar extends SuperCar{<br>   public FlyCar(ICar car) {</p>
-<pre><code>   super(car);
-</code></pre>
-<p>   }</p>
-<p>   public void fly(){</p>
-<pre><code>   System.out.println(&quot;在天上飞！&quot;);
-</code></pre>
-<p>   }<br>   @Override<br>   public void move() {</p>
-<pre><code>   super.move();
-   fly();
-</code></pre>
-<p>   }<br>}</p>
-<p>//具体装饰对象2<br>class WaterCar extends SuperCar{<br>   public WaterCar(ICar car) {</p>
-<pre><code>   super(car);
-</code></pre>
-<p>   }</p>
-<p>   public void Swim(){</p>
-<pre><code>   System.out.println(&quot;在水上游！&quot;);
-</code></pre>
-<p>   }<br>   @Override<br>   public void move() {</p>
-<pre><code>   super.move();
-   Swim();
-</code></pre>
-<p>   }<br>}</p>
-<p>//具体装饰对象3<br>class AICar extends SuperCar{<br>   public AICar(ICar car) {</p>
-<pre><code>   super(car);
-</code></pre>
-<p>   }</p>
-<p>   public void autoMove(){</p>
-<pre><code>   System.out.println(&quot;自动跑！&quot;);
-</code></pre>
-<p>   }<br>   @Override<br>   public void move() {</p>
-<pre><code>   super.move();
-   autoMove();
-</code></pre>
-<p>   }<br>}</p>
-</li>
+<h3 id="示例代码"><a href="#示例代码" class="headerlink" title="示例代码"></a>示例代码</h3></li>
 </ul>
 </li>
 </ul>
-</li>
-</ul>
-<pre><code>    package com.yishan.decorator;
+<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br><span class="line">42</span><br><span class="line">43</span><br><span class="line">44</span><br><span class="line">45</span><br><span class="line">46</span><br><span class="line">47</span><br><span class="line">48</span><br><span class="line">49</span><br><span class="line">50</span><br><span class="line">51</span><br><span class="line">52</span><br><span class="line">53</span><br><span class="line">54</span><br><span class="line">55</span><br><span class="line">56</span><br><span class="line">57</span><br><span class="line">58</span><br><span class="line">59</span><br><span class="line">60</span><br><span class="line">61</span><br><span class="line">62</span><br><span class="line">63</span><br><span class="line">64</span><br><span class="line">65</span><br><span class="line">66</span><br><span class="line">67</span><br><span class="line">68</span><br><span class="line">69</span><br><span class="line">70</span><br><span class="line">71</span><br><span class="line">72</span><br><span class="line">73</span><br><span class="line">74</span><br><span class="line">75</span><br><span class="line">76</span><br><span class="line">77</span><br><span class="line">78</span><br><span class="line">79</span><br><span class="line">80</span><br><span class="line">81</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">package</span> com.yishan.decorator;</span><br><span class="line"></span><br><span class="line"><span class="comment">/**</span></span><br><span class="line"><span class="comment">* 抽象构件</span></span><br><span class="line"><span class="comment">* <span class="doctag">@author</span> : yishan</span></span><br><span class="line"><span class="comment">* <span class="doctag">@date</span> : 2020-10-20 14:35</span></span><br><span class="line"><span class="comment">*/</span></span><br><span class="line"><span class="keyword">public</span> <span class="class"><span class="keyword">interface</span> <span class="title">ICar</span> </span>&#123;</span><br><span class="line">    <span class="function"><span class="keyword">void</span> <span class="title">move</span><span class="params">()</span></span>;</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="comment">//具体构件角色</span></span><br><span class="line"><span class="class"><span class="keyword">class</span> <span class="title">Car</span> <span class="keyword">implements</span> <span class="title">ICar</span></span>&#123;</span><br><span class="line"></span><br><span class="line">    <span class="meta">@Override</span></span><br><span class="line">    <span class="function"><span class="keyword">public</span> <span class="keyword">void</span> <span class="title">move</span><span class="params">()</span> </span>&#123;</span><br><span class="line">        System.out.println(<span class="string">&quot;陆地上跑！&quot;</span>);</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="comment">//装饰器角色</span></span><br><span class="line"><span class="class"><span class="keyword">class</span> <span class="title">SuperCar</span> <span class="keyword">implements</span> <span class="title">ICar</span></span>&#123;</span><br><span class="line">    <span class="keyword">protected</span> ICar car;</span><br><span class="line"></span><br><span class="line">    <span class="function"><span class="keyword">public</span> <span class="title">SuperCar</span><span class="params">(ICar car)</span> </span>&#123;</span><br><span class="line">        <span class="keyword">this</span>.car = car;</span><br><span class="line">    &#125;</span><br><span class="line"></span><br><span class="line">    <span class="meta">@Override</span></span><br><span class="line">    <span class="function"><span class="keyword">public</span> <span class="keyword">void</span> <span class="title">move</span><span class="params">()</span> </span>&#123;</span><br><span class="line">        car.move();</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="comment">//具体装饰对象1</span></span><br><span class="line"><span class="class"><span class="keyword">class</span> <span class="title">FlyCar</span> <span class="keyword">extends</span> <span class="title">SuperCar</span></span>&#123;</span><br><span class="line">    <span class="function"><span class="keyword">public</span> <span class="title">FlyCar</span><span class="params">(ICar car)</span> </span>&#123;</span><br><span class="line">        <span class="keyword">super</span>(car);</span><br><span class="line">    &#125;</span><br><span class="line"></span><br><span class="line">    <span class="function"><span class="keyword">public</span> <span class="keyword">void</span> <span class="title">fly</span><span class="params">()</span></span>&#123;</span><br><span class="line">        System.out.println(<span class="string">&quot;在天上飞！&quot;</span>);</span><br><span class="line">    &#125;</span><br><span class="line">    <span class="meta">@Override</span></span><br><span class="line">    <span class="function"><span class="keyword">public</span> <span class="keyword">void</span> <span class="title">move</span><span class="params">()</span> </span>&#123;</span><br><span class="line">        <span class="keyword">super</span>.move();</span><br><span class="line">        fly();</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="comment">//具体装饰对象2</span></span><br><span class="line"><span class="class"><span class="keyword">class</span> <span class="title">WaterCar</span> <span class="keyword">extends</span> <span class="title">SuperCar</span></span>&#123;</span><br><span class="line">    <span class="function"><span class="keyword">public</span> <span class="title">WaterCar</span><span class="params">(ICar car)</span> </span>&#123;</span><br><span class="line">        <span class="keyword">super</span>(car);</span><br><span class="line">    &#125;</span><br><span class="line"></span><br><span class="line">    <span class="function"><span class="keyword">public</span> <span class="keyword">void</span> <span class="title">Swim</span><span class="params">()</span></span>&#123;</span><br><span class="line">        System.out.println(<span class="string">&quot;在水上游！&quot;</span>);</span><br><span class="line">    &#125;</span><br><span class="line">    <span class="meta">@Override</span></span><br><span class="line">    <span class="function"><span class="keyword">public</span> <span class="keyword">void</span> <span class="title">move</span><span class="params">()</span> </span>&#123;</span><br><span class="line">        <span class="keyword">super</span>.move();</span><br><span class="line">        Swim();</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="comment">//具体装饰对象3</span></span><br><span class="line"><span class="class"><span class="keyword">class</span> <span class="title">AICar</span> <span class="keyword">extends</span> <span class="title">SuperCar</span></span>&#123;</span><br><span class="line">    <span class="function"><span class="keyword">public</span> <span class="title">AICar</span><span class="params">(ICar car)</span> </span>&#123;</span><br><span class="line">        <span class="keyword">super</span>(car);</span><br><span class="line">    &#125;</span><br><span class="line"></span><br><span class="line">    <span class="function"><span class="keyword">public</span> <span class="keyword">void</span> <span class="title">autoMove</span><span class="params">()</span></span>&#123;</span><br><span class="line">        System.out.println(<span class="string">&quot;自动跑！&quot;</span>);</span><br><span class="line">    &#125;</span><br><span class="line">    <span class="meta">@Override</span></span><br><span class="line">    <span class="function"><span class="keyword">public</span> <span class="keyword">void</span> <span class="title">move</span><span class="params">()</span> </span>&#123;</span><br><span class="line">        <span class="keyword">super</span>.move();</span><br><span class="line">        autoMove();</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
 
-    /**
-    * 测试
-    * @author : yishan
-    * @date : 2020-10-20 14:52
-    */
-    public class Client &#123;
-        public static void main(String[] args) &#123;
-            Car car = new Car();
-            car.move();
-            System.out.println(&quot;-----增加新的功能，飞行-----&quot;);
-            FlyCar flyCar = new FlyCar(car);
-            flyCar.move();
-            System.out.println(&quot;-----增加新的功能，水上-----&quot;);
-            WaterCar waterCar = new WaterCar(car);
-            waterCar.move();
-            System.out.println(&quot;-----增加两个新的功能-----&quot;);
-            AICar aiCar = new AICar(new FlyCar(car));
-            aiCar.move();
-        &#125;
-    &#125;
-</code></pre>
+<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">package</span> com.yishan.decorator;</span><br><span class="line"></span><br><span class="line"><span class="comment">/**</span></span><br><span class="line"><span class="comment">* 测试</span></span><br><span class="line"><span class="comment">* <span class="doctag">@author</span> : yishan</span></span><br><span class="line"><span class="comment">* <span class="doctag">@date</span> : 2020-10-20 14:52</span></span><br><span class="line"><span class="comment">*/</span></span><br><span class="line"><span class="keyword">public</span> <span class="class"><span class="keyword">class</span> <span class="title">Client</span> </span>&#123;</span><br><span class="line">    <span class="function"><span class="keyword">public</span> <span class="keyword">static</span> <span class="keyword">void</span> <span class="title">main</span><span class="params">(String[] args)</span> </span>&#123;</span><br><span class="line">        Car car = <span class="keyword">new</span> Car();</span><br><span class="line">        car.move();</span><br><span class="line">        System.out.println(<span class="string">&quot;-----增加新的功能，飞行-----&quot;</span>);</span><br><span class="line">        FlyCar flyCar = <span class="keyword">new</span> FlyCar(car);</span><br><span class="line">        flyCar.move();</span><br><span class="line">        System.out.println(<span class="string">&quot;-----增加新的功能，水上-----&quot;</span>);</span><br><span class="line">        WaterCar waterCar = <span class="keyword">new</span> WaterCar(car);</span><br><span class="line">        waterCar.move();</span><br><span class="line">        System.out.println(<span class="string">&quot;-----增加两个新的功能-----&quot;</span>);</span><br><span class="line">        AICar aiCar = <span class="keyword">new</span> AICar(<span class="keyword">new</span> FlyCar(car));</span><br><span class="line">        aiCar.move();</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
 <h3 id="总结"><a href="#总结" class="headerlink" title="总结"></a>总结</h3><ul>
 <li>装饰模式也叫包装器模式</li>
 <li>装饰模式降低系统的耦合度，可以动态的增加或删除对象的职责，并使得需要装饰的具体构建类和具体装饰类可以独立变化，以便增加新的具体构建类和具体装饰类</li>
@@ -646,11 +563,19 @@ return o(i(t),arguments.length<2?void 0:u(arguments[1]))}})},function(t,n,r){var
               </li>
              
               <li class="article-tag-list-item">
+                <a href="javascript:void(0)" class="js-tag color4">JVM</a>
+              </li>
+             
+              <li class="article-tag-list-item">
                 <a href="javascript:void(0)" class="js-tag color5">类加载器</a>
               </li>
              
               <li class="article-tag-list-item">
-                <a href="javascript:void(0)" class="js-tag color3">js</a>
+                <a href="javascript:void(0)" class="js-tag color5">JDBC</a>
+              </li>
+             
+              <li class="article-tag-list-item">
+                <a href="javascript:void(0)" class="js-tag color5">jdbc</a>
               </li>
              
               <li class="article-tag-list-item">
@@ -670,19 +595,7 @@ return o(i(t),arguments.length<2?void 0:u(arguments[1]))}})},function(t,n,r){var
               </li>
              
               <li class="article-tag-list-item">
-                <a href="javascript:void(0)" class="js-tag color1">mysql</a>
-              </li>
-             
-              <li class="article-tag-list-item">
                 <a href="javascript:void(0)" class="js-tag color1">web核心</a>
-              </li>
-             
-              <li class="article-tag-list-item">
-                <a href="javascript:void(0)" class="js-tag color2">Lambad</a>
-              </li>
-             
-              <li class="article-tag-list-item">
-                <a href="javascript:void(0)" class="js-tag color4">多线程</a>
               </li>
              
               <li class="article-tag-list-item">
@@ -698,7 +611,11 @@ return o(i(t),arguments.length<2?void 0:u(arguments[1]))}})},function(t,n,r){var
               </li>
              
               <li class="article-tag-list-item">
-                <a href="javascript:void(0)" class="js-tag color5">实例程序</a>
+                <a href="javascript:void(0)" class="js-tag color2">Lambad</a>
+              </li>
+             
+              <li class="article-tag-list-item">
+                <a href="javascript:void(0)" class="js-tag color4">多线程</a>
               </li>
              
               <li class="article-tag-list-item">
@@ -710,7 +627,15 @@ return o(i(t),arguments.length<2?void 0:u(arguments[1]))}})},function(t,n,r){var
               </li>
              
               <li class="article-tag-list-item">
-                <a href="javascript:void(0)" class="js-tag color5">版本控制</a>
+                <a href="javascript:void(0)" class="js-tag color3">MyBatis</a>
+              </li>
+             
+              <li class="article-tag-list-item">
+                <a href="javascript:void(0)" class="js-tag color3">框架</a>
+              </li>
+             
+              <li class="article-tag-list-item">
+                <a href="javascript:void(0)" class="js-tag color5">实例程序</a>
               </li>
              
               <li class="article-tag-list-item">
@@ -734,19 +659,19 @@ return o(i(t),arguments.length<2?void 0:u(arguments[1]))}})},function(t,n,r){var
               </li>
              
               <li class="article-tag-list-item">
-                <a href="javascript:void(0)" class="js-tag color4">Vector向量</a>
-              </li>
-             
-              <li class="article-tag-list-item">
-                <a href="javascript:void(0)" class="js-tag color3">HashMap</a>
-              </li>
-             
-              <li class="article-tag-list-item">
                 <a href="javascript:void(0)" class="js-tag color3">泛型</a>
               </li>
              
               <li class="article-tag-list-item">
                 <a href="javascript:void(0)" class="js-tag color5">ArrayList</a>
+              </li>
+             
+              <li class="article-tag-list-item">
+                <a href="javascript:void(0)" class="js-tag color4">Vector向量</a>
+              </li>
+             
+              <li class="article-tag-list-item">
+                <a href="javascript:void(0)" class="js-tag color3">HashMap</a>
               </li>
              
               <li class="article-tag-list-item">
@@ -766,11 +691,23 @@ return o(i(t),arguments.length<2?void 0:u(arguments[1]))}})},function(t,n,r){var
               </li>
              
               <li class="article-tag-list-item">
+                <a href="javascript:void(0)" class="js-tag color5">版本控制</a>
+              </li>
+             
+              <li class="article-tag-list-item">
                 <a href="javascript:void(0)" class="js-tag color5">垃圾回收</a>
               </li>
              
               <li class="article-tag-list-item">
                 <a href="javascript:void(0)" class="js-tag color1">jvm调优</a>
+              </li>
+             
+              <li class="article-tag-list-item">
+                <a href="javascript:void(0)" class="js-tag color1">mysql</a>
+              </li>
+             
+              <li class="article-tag-list-item">
+                <a href="javascript:void(0)" class="js-tag color3">js</a>
               </li>
             
             <div class="clearfix"></div>

@@ -16,7 +16,7 @@
 <meta property="og:description" content="装饰器设计模式 1.抽象组件：需要装饰的抽象对象（接口或抽象父类） 2.具体组件：需要装饰的对象 3.抽象装饰类：包含了对抽象组件的引用以及装饰者共有的方法 4.具体的装饰类：被装饰的对象">
 <meta property="og:locale" content="en_US">
 <meta property="article:published_time" content="2020-09-06T08:47:35.000Z">
-<meta property="article:modified_time" content="2020-09-07T10:59:09.449Z">
+<meta property="article:modified_time" content="2021-02-24T06:20:48.675Z">
 <meta property="article:author" content="John Doe">
 <meta property="article:tag" content="java基础">
 <meta property="article:tag" content="设计模式">
@@ -218,154 +218,9 @@
 
 </li>
 </ul>
-<h4 id="模拟咖啡"><a href="#模拟咖啡" class="headerlink" title="模拟咖啡"></a>模拟咖啡</h4><pre><code>    package com.yishan.io3;
+<h4 id="模拟咖啡"><a href="#模拟咖啡" class="headerlink" title="模拟咖啡"></a>模拟咖啡</h4><figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br><span class="line">42</span><br><span class="line">43</span><br><span class="line">44</span><br><span class="line">45</span><br><span class="line">46</span><br><span class="line">47</span><br><span class="line">48</span><br><span class="line">49</span><br><span class="line">50</span><br><span class="line">51</span><br><span class="line">52</span><br><span class="line">53</span><br><span class="line">54</span><br><span class="line">55</span><br><span class="line">56</span><br><span class="line">57</span><br><span class="line">58</span><br><span class="line">59</span><br><span class="line">60</span><br><span class="line">61</span><br><span class="line">62</span><br><span class="line">63</span><br><span class="line">64</span><br><span class="line">65</span><br><span class="line">66</span><br><span class="line">67</span><br><span class="line">68</span><br><span class="line">69</span><br><span class="line">70</span><br><span class="line">71</span><br><span class="line">72</span><br><span class="line">73</span><br><span class="line">74</span><br><span class="line">75</span><br><span class="line">76</span><br><span class="line">77</span><br><span class="line">78</span><br><span class="line">79</span><br><span class="line">80</span><br><span class="line">81</span><br><span class="line">82</span><br><span class="line">83</span><br><span class="line">84</span><br><span class="line">85</span><br><span class="line">86</span><br><span class="line">87</span><br><span class="line">88</span><br><span class="line">89</span><br><span class="line">90</span><br><span class="line">91</span><br><span class="line">92</span><br><span class="line">93</span><br><span class="line">94</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">package</span> com.yishan.io3;</span><br><span class="line"></span><br><span class="line"><span class="comment">/**</span></span><br><span class="line"><span class="comment">* 模拟咖啡       </span></span><br><span class="line"><span class="comment">* <span class="doctag">@author</span> : yishan</span></span><br><span class="line"><span class="comment">* <span class="doctag">@date</span> : 2020-09-06 16:23</span></span><br><span class="line"><span class="comment">*/</span></span><br><span class="line"><span class="keyword">public</span> <span class="class"><span class="keyword">class</span> <span class="title">DecorateTest02</span> </span>&#123;</span><br><span class="line">    <span class="function"><span class="keyword">public</span> <span class="keyword">static</span> <span class="keyword">void</span> <span class="title">main</span><span class="params">(String[] args)</span> </span>&#123;</span><br><span class="line">        Drink coffee = <span class="keyword">new</span> Coffee();</span><br><span class="line">        Drink suger = <span class="keyword">new</span> Suger(coffee);</span><br><span class="line">        System.out.println(suger.info()+<span class="string">&quot;--&gt;&quot;</span>+suger.cost());</span><br><span class="line">        Drink milk = <span class="keyword">new</span> Milk(coffee);</span><br><span class="line">        System.out.println(milk.info()+<span class="string">&quot;--&gt;&quot;</span>+milk.cost());</span><br><span class="line"></span><br><span class="line">        milk = <span class="keyword">new</span> Milk(suger);</span><br><span class="line">        System.out.println(milk.info()+<span class="string">&quot;--&gt;&quot;</span>+milk.cost());</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br><span class="line"><span class="comment">//抽象组件</span></span><br><span class="line"><span class="class"><span class="keyword">interface</span>  <span class="title">Drink</span></span>&#123;</span><br><span class="line">    <span class="function"><span class="keyword">double</span> <span class="title">cost</span><span class="params">()</span></span>;<span class="comment">//费用</span></span><br><span class="line">    <span class="function">String <span class="title">info</span><span class="params">()</span></span>;<span class="comment">//说明</span></span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="comment">//具体组件</span></span><br><span class="line"><span class="class"><span class="keyword">class</span> <span class="title">Coffee</span> <span class="keyword">implements</span> <span class="title">Drink</span></span>&#123;</span><br><span class="line"></span><br><span class="line">    <span class="keyword">private</span> String name = <span class="string">&quot;原味咖啡&quot;</span>;</span><br><span class="line">    <span class="meta">@Override</span></span><br><span class="line">    <span class="function"><span class="keyword">public</span> <span class="keyword">double</span> <span class="title">cost</span><span class="params">()</span> </span>&#123;</span><br><span class="line">        <span class="keyword">return</span> <span class="number">10</span>;</span><br><span class="line">    &#125;</span><br><span class="line"></span><br><span class="line">    <span class="meta">@Override</span></span><br><span class="line">    <span class="function"><span class="keyword">public</span> String <span class="title">info</span><span class="params">()</span> </span>&#123;</span><br><span class="line">        <span class="keyword">return</span> name;</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="comment">//抽象装饰类</span></span><br><span class="line"><span class="keyword">abstract</span> <span class="class"><span class="keyword">class</span> <span class="title">Decorate</span> <span class="keyword">implements</span> <span class="title">Drink</span></span>&#123;</span><br><span class="line"></span><br><span class="line">    <span class="comment">//对抽象组件的引用</span></span><br><span class="line">    <span class="keyword">private</span>  Drink drink;</span><br><span class="line"></span><br><span class="line">    <span class="function"><span class="keyword">public</span> <span class="title">Decorate</span><span class="params">(Drink drink)</span> </span>&#123;</span><br><span class="line">        <span class="keyword">this</span>.drink = drink;</span><br><span class="line">    &#125;</span><br><span class="line"></span><br><span class="line">    <span class="meta">@Override</span></span><br><span class="line">    <span class="function"><span class="keyword">public</span> <span class="keyword">double</span> <span class="title">cost</span><span class="params">()</span> </span>&#123;</span><br><span class="line">        <span class="keyword">return</span> <span class="keyword">this</span>.drink.cost();</span><br><span class="line">    &#125;</span><br><span class="line"></span><br><span class="line">    <span class="meta">@Override</span></span><br><span class="line">    <span class="function"><span class="keyword">public</span> String <span class="title">info</span><span class="params">()</span> </span>&#123;</span><br><span class="line">        <span class="keyword">return</span> <span class="keyword">this</span>.drink.info();</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="comment">//具体的装饰类</span></span><br><span class="line"><span class="class"><span class="keyword">class</span> <span class="title">Milk</span> <span class="keyword">extends</span> <span class="title">Decorate</span></span>&#123;</span><br><span class="line"></span><br><span class="line">    <span class="function"><span class="keyword">public</span> <span class="title">Milk</span><span class="params">(Drink drink)</span> </span>&#123;</span><br><span class="line">        <span class="keyword">super</span>(drink);</span><br><span class="line">    &#125;</span><br><span class="line"></span><br><span class="line">    <span class="meta">@Override</span></span><br><span class="line">    <span class="function"><span class="keyword">public</span> <span class="keyword">double</span> <span class="title">cost</span><span class="params">()</span> </span>&#123;</span><br><span class="line">        <span class="keyword">return</span> <span class="keyword">super</span>.cost()*<span class="number">4</span>;</span><br><span class="line">    &#125;</span><br><span class="line"></span><br><span class="line">    <span class="meta">@Override</span></span><br><span class="line">    <span class="function"><span class="keyword">public</span> String <span class="title">info</span><span class="params">()</span> </span>&#123;</span><br><span class="line">        <span class="keyword">return</span> <span class="keyword">super</span>.info()+<span class="string">&quot;加入了牛奶&quot;</span>;</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="class"><span class="keyword">class</span> <span class="title">Suger</span> <span class="keyword">extends</span> <span class="title">Decorate</span></span>&#123;</span><br><span class="line">            <span class="function"><span class="keyword">public</span> <span class="title">Suger</span><span class="params">(Drink drink)</span> </span>&#123;</span><br><span class="line">        <span class="keyword">super</span>(drink);</span><br><span class="line">    &#125;</span><br><span class="line"></span><br><span class="line">    <span class="meta">@Override</span></span><br><span class="line">    <span class="function"><span class="keyword">public</span> <span class="keyword">double</span> <span class="title">cost</span><span class="params">()</span> </span>&#123;</span><br><span class="line">        <span class="keyword">return</span> <span class="keyword">super</span>.cost()*<span class="number">2</span>;</span><br><span class="line">    &#125;</span><br><span class="line"></span><br><span class="line">    <span class="meta">@Override</span></span><br><span class="line">    <span class="function"><span class="keyword">public</span> String <span class="title">info</span><span class="params">()</span> </span>&#123;</span><br><span class="line">        <span class="keyword">return</span> <span class="keyword">super</span>.info()+<span class="string">&quot;加入了蔗糖&quot;</span>;</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
 
-    /**
-    * 模拟咖啡       
-    * @author : yishan
-    * @date : 2020-09-06 16:23
-    */
-    public class DecorateTest02 &#123;
-        public static void main(String[] args) &#123;
-            Drink coffee = new Coffee();
-            Drink suger = new Suger(coffee);
-            System.out.println(suger.info()+&quot;--&gt;&quot;+suger.cost());
-            Drink milk = new Milk(coffee);
-            System.out.println(milk.info()+&quot;--&gt;&quot;+milk.cost());
-
-            milk = new Milk(suger);
-            System.out.println(milk.info()+&quot;--&gt;&quot;+milk.cost());
-        &#125;
-    &#125;
-    //抽象组件
-    interface  Drink&#123;
-        double cost();//费用
-        String info();//说明
-    &#125;
-
-    //具体组件
-    class Coffee implements Drink&#123;
-
-        private String name = &quot;原味咖啡&quot;;
-        @Override
-        public double cost() &#123;
-            return 10;
-        &#125;
-
-        @Override
-        public String info() &#123;
-            return name;
-        &#125;
-    &#125;
-
-    //抽象装饰类
-    abstract class Decorate implements Drink&#123;
-
-        //对抽象组件的引用
-        private  Drink drink;
-
-        public Decorate(Drink drink) &#123;
-            this.drink = drink;
-        &#125;
-
-        @Override
-        public double cost() &#123;
-            return this.drink.cost();
-        &#125;
-
-        @Override
-        public String info() &#123;
-            return this.drink.info();
-        &#125;
-    &#125;
-
-    //具体的装饰类
-    class Milk extends Decorate&#123;
-
-        public Milk(Drink drink) &#123;
-            super(drink);
-        &#125;
-
-        @Override
-        public double cost() &#123;
-            return super.cost()*4;
-        &#125;
-
-        @Override
-        public String info() &#123;
-            return super.info()+&quot;加入了牛奶&quot;;
-        &#125;
-    &#125;
-
-    class Suger extends Decorate&#123;
-
-
-        public Suger(Drink drink) &#123;
-            super(drink);
-        &#125;
-
-        @Override
-        public double cost() &#123;
-            return super.cost()*2;
-        &#125;
-
-        @Override
-        public String info() &#123;
-            return super.info()+&quot;加入了蔗糖&quot;;
-        &#125;
-    &#125;
-</code></pre>
-<h4 id="实现放大器对声音的方法功能"><a href="#实现放大器对声音的方法功能" class="headerlink" title="实现放大器对声音的方法功能"></a>实现放大器对声音的方法功能</h4><pre><code>    package com.yishan.io3;
-
-    /**
-    * 实现放大器对声音的放大功能
-    * @author : yishan
-    * @date : 2020-09-06 16:23
-    */
-    public class DecorateTest01 &#123;
-        public static void main(String[] args) &#123;
-            Person p = new Person();
-            p.say();
-            //装饰
-            Amplifier am = new Amplifier(p);
-            am.say();
-        &#125;
-    &#125;
-    interface Say&#123;
-        void say();
-    &#125;
-    class Person implements Say&#123;
-
-        //属性
-        private int voice = 10;
-        @Override
-        public void say() &#123;
-            System.out.println(&quot;人是声音为：&quot;+this.getVoice());
-        &#125;
-
-        public int getVoice() &#123;
-            return voice;
-        &#125;
-
-        public void setVoice(int voice) &#123;
-            this.voice = voice;
-        &#125;
-    &#125;
-
-    class Amplifier implements Say&#123;
-
-        private Person p ;
-        Amplifier(Person p )&#123;
-            this.p=p;
-        &#125;
-        @Override
-        public void say() &#123;
-            System.out.println(&quot;人是声音为：&quot;+p.getVoice()*100);
-            System.out.println(&quot;噪音。。。&quot;);
-        &#125;
-    &#125;
-</code></pre>
-
+<h4 id="实现放大器对声音的方法功能"><a href="#实现放大器对声音的方法功能" class="headerlink" title="实现放大器对声音的方法功能"></a>实现放大器对声音的方法功能</h4><figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br><span class="line">42</span><br><span class="line">43</span><br><span class="line">44</span><br><span class="line">45</span><br><span class="line">46</span><br><span class="line">47</span><br><span class="line">48</span><br><span class="line">49</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">package</span> com.yishan.io3;</span><br><span class="line"></span><br><span class="line"><span class="comment">/**</span></span><br><span class="line"><span class="comment">* 实现放大器对声音的放大功能</span></span><br><span class="line"><span class="comment">* <span class="doctag">@author</span> : yishan</span></span><br><span class="line"><span class="comment">* <span class="doctag">@date</span> : 2020-09-06 16:23</span></span><br><span class="line"><span class="comment">*/</span></span><br><span class="line"><span class="keyword">public</span> <span class="class"><span class="keyword">class</span> <span class="title">DecorateTest01</span> </span>&#123;</span><br><span class="line">    <span class="function"><span class="keyword">public</span> <span class="keyword">static</span> <span class="keyword">void</span> <span class="title">main</span><span class="params">(String[] args)</span> </span>&#123;</span><br><span class="line">        Person p = <span class="keyword">new</span> Person();</span><br><span class="line">        p.say();</span><br><span class="line">        <span class="comment">//装饰</span></span><br><span class="line">        Amplifier am = <span class="keyword">new</span> Amplifier(p);</span><br><span class="line">        am.say();</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br><span class="line"><span class="class"><span class="keyword">interface</span> <span class="title">Say</span></span>&#123;</span><br><span class="line">    <span class="function"><span class="keyword">void</span> <span class="title">say</span><span class="params">()</span></span>;</span><br><span class="line">&#125;</span><br><span class="line"><span class="class"><span class="keyword">class</span> <span class="title">Person</span> <span class="keyword">implements</span> <span class="title">Say</span></span>&#123;</span><br><span class="line"></span><br><span class="line">    <span class="comment">//属性</span></span><br><span class="line">    <span class="keyword">private</span> <span class="keyword">int</span> voice = <span class="number">10</span>;</span><br><span class="line">    <span class="meta">@Override</span></span><br><span class="line">    <span class="function"><span class="keyword">public</span> <span class="keyword">void</span> <span class="title">say</span><span class="params">()</span> </span>&#123;</span><br><span class="line">        System.out.println(<span class="string">&quot;人是声音为：&quot;</span>+<span class="keyword">this</span>.getVoice());</span><br><span class="line">    &#125;</span><br><span class="line"></span><br><span class="line">    <span class="function"><span class="keyword">public</span> <span class="keyword">int</span> <span class="title">getVoice</span><span class="params">()</span> </span>&#123;</span><br><span class="line">        <span class="keyword">return</span> voice;</span><br><span class="line">    &#125;</span><br><span class="line"></span><br><span class="line">    <span class="function"><span class="keyword">public</span> <span class="keyword">void</span> <span class="title">setVoice</span><span class="params">(<span class="keyword">int</span> voice)</span> </span>&#123;</span><br><span class="line">        <span class="keyword">this</span>.voice = voice;</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="class"><span class="keyword">class</span> <span class="title">Amplifier</span> <span class="keyword">implements</span> <span class="title">Say</span></span>&#123;</span><br><span class="line"></span><br><span class="line">    <span class="keyword">private</span> Person p ;</span><br><span class="line">    Amplifier(Person p )&#123;</span><br><span class="line">        <span class="keyword">this</span>.p=p;</span><br><span class="line">    &#125;</span><br><span class="line">    <span class="meta">@Override</span></span><br><span class="line">    <span class="function"><span class="keyword">public</span> <span class="keyword">void</span> <span class="title">say</span><span class="params">()</span> </span>&#123;</span><br><span class="line">        System.out.println(<span class="string">&quot;人是声音为：&quot;</span>+p.getVoice()*<span class="number">100</span>);</span><br><span class="line">        System.out.println(<span class="string">&quot;噪音。。。&quot;</span>);</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
       
 
       
@@ -666,11 +521,19 @@ return o(i(t),arguments.length<2?void 0:u(arguments[1]))}})},function(t,n,r){var
               </li>
              
               <li class="article-tag-list-item">
+                <a href="javascript:void(0)" class="js-tag color4">JVM</a>
+              </li>
+             
+              <li class="article-tag-list-item">
                 <a href="javascript:void(0)" class="js-tag color5">类加载器</a>
               </li>
              
               <li class="article-tag-list-item">
-                <a href="javascript:void(0)" class="js-tag color3">js</a>
+                <a href="javascript:void(0)" class="js-tag color5">JDBC</a>
+              </li>
+             
+              <li class="article-tag-list-item">
+                <a href="javascript:void(0)" class="js-tag color5">jdbc</a>
               </li>
              
               <li class="article-tag-list-item">
@@ -690,19 +553,7 @@ return o(i(t),arguments.length<2?void 0:u(arguments[1]))}})},function(t,n,r){var
               </li>
              
               <li class="article-tag-list-item">
-                <a href="javascript:void(0)" class="js-tag color1">mysql</a>
-              </li>
-             
-              <li class="article-tag-list-item">
                 <a href="javascript:void(0)" class="js-tag color1">web核心</a>
-              </li>
-             
-              <li class="article-tag-list-item">
-                <a href="javascript:void(0)" class="js-tag color2">Lambad</a>
-              </li>
-             
-              <li class="article-tag-list-item">
-                <a href="javascript:void(0)" class="js-tag color4">多线程</a>
               </li>
              
               <li class="article-tag-list-item">
@@ -718,7 +569,11 @@ return o(i(t),arguments.length<2?void 0:u(arguments[1]))}})},function(t,n,r){var
               </li>
              
               <li class="article-tag-list-item">
-                <a href="javascript:void(0)" class="js-tag color5">实例程序</a>
+                <a href="javascript:void(0)" class="js-tag color2">Lambad</a>
+              </li>
+             
+              <li class="article-tag-list-item">
+                <a href="javascript:void(0)" class="js-tag color4">多线程</a>
               </li>
              
               <li class="article-tag-list-item">
@@ -730,7 +585,15 @@ return o(i(t),arguments.length<2?void 0:u(arguments[1]))}})},function(t,n,r){var
               </li>
              
               <li class="article-tag-list-item">
-                <a href="javascript:void(0)" class="js-tag color5">版本控制</a>
+                <a href="javascript:void(0)" class="js-tag color3">MyBatis</a>
+              </li>
+             
+              <li class="article-tag-list-item">
+                <a href="javascript:void(0)" class="js-tag color3">框架</a>
+              </li>
+             
+              <li class="article-tag-list-item">
+                <a href="javascript:void(0)" class="js-tag color5">实例程序</a>
               </li>
              
               <li class="article-tag-list-item">
@@ -754,19 +617,19 @@ return o(i(t),arguments.length<2?void 0:u(arguments[1]))}})},function(t,n,r){var
               </li>
              
               <li class="article-tag-list-item">
-                <a href="javascript:void(0)" class="js-tag color4">Vector向量</a>
-              </li>
-             
-              <li class="article-tag-list-item">
-                <a href="javascript:void(0)" class="js-tag color3">HashMap</a>
-              </li>
-             
-              <li class="article-tag-list-item">
                 <a href="javascript:void(0)" class="js-tag color3">泛型</a>
               </li>
              
               <li class="article-tag-list-item">
                 <a href="javascript:void(0)" class="js-tag color5">ArrayList</a>
+              </li>
+             
+              <li class="article-tag-list-item">
+                <a href="javascript:void(0)" class="js-tag color4">Vector向量</a>
+              </li>
+             
+              <li class="article-tag-list-item">
+                <a href="javascript:void(0)" class="js-tag color3">HashMap</a>
               </li>
              
               <li class="article-tag-list-item">
@@ -786,11 +649,23 @@ return o(i(t),arguments.length<2?void 0:u(arguments[1]))}})},function(t,n,r){var
               </li>
              
               <li class="article-tag-list-item">
+                <a href="javascript:void(0)" class="js-tag color5">版本控制</a>
+              </li>
+             
+              <li class="article-tag-list-item">
                 <a href="javascript:void(0)" class="js-tag color5">垃圾回收</a>
               </li>
              
               <li class="article-tag-list-item">
                 <a href="javascript:void(0)" class="js-tag color1">jvm调优</a>
+              </li>
+             
+              <li class="article-tag-list-item">
+                <a href="javascript:void(0)" class="js-tag color1">mysql</a>
+              </li>
+             
+              <li class="article-tag-list-item">
+                <a href="javascript:void(0)" class="js-tag color3">js</a>
               </li>
             
             <div class="clearfix"></div>
