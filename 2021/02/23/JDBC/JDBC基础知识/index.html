@@ -8,15 +8,15 @@
   <link rel="dns-prefetch" href="http://example.com">
   <title>JDBC基础知识 | YiShan</title>
   <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
-  <meta name="description" content="jdbcjdbc的概念 JDBC（Java DataBase Connectivity,java数据库连接）是一种用于执行SQL语句的Java API，可以为多种关系型数据库提供统一访问，它是由一组用Java语言编写的类和接口组成的。  jdbc的本质 其实就是java官方提供的一套规范(接口)。用于帮助开发人员快速实现不同关系型数据库的连接！  jdbc快速入门12345678910111213">
+  <meta name="description" content="jdbcjdbc的概念 JDBC（Java DataBase Connectivity,java数据库连接）是一种用于执行SQL语句的Java API，可以为多种关系型数据库提供统一访问，它是由一组用Java语言编写的类和接口组成的。  jdbc的本质 其实就是java官方提供的一套规范(接口)。用于帮助开发人员快速实现不同关系型数据库的连接！">
 <meta property="og:type" content="article">
 <meta property="og:title" content="JDBC基础知识">
 <meta property="og:url" content="http://example.com/2021/02/23/JDBC/JDBC%E5%9F%BA%E7%A1%80%E7%9F%A5%E8%AF%86/index.html">
 <meta property="og:site_name" content="YiShan">
-<meta property="og:description" content="jdbcjdbc的概念 JDBC（Java DataBase Connectivity,java数据库连接）是一种用于执行SQL语句的Java API，可以为多种关系型数据库提供统一访问，它是由一组用Java语言编写的类和接口组成的。  jdbc的本质 其实就是java官方提供的一套规范(接口)。用于帮助开发人员快速实现不同关系型数据库的连接！  jdbc快速入门12345678910111213">
+<meta property="og:description" content="jdbcjdbc的概念 JDBC（Java DataBase Connectivity,java数据库连接）是一种用于执行SQL语句的Java API，可以为多种关系型数据库提供统一访问，它是由一组用Java语言编写的类和接口组成的。  jdbc的本质 其实就是java官方提供的一套规范(接口)。用于帮助开发人员快速实现不同关系型数据库的连接！">
 <meta property="og:locale" content="en_US">
 <meta property="article:published_time" content="2021-02-23T01:16:00.000Z">
-<meta property="article:modified_time" content="2021-02-24T02:40:17.293Z">
+<meta property="article:modified_time" content="2021-03-22T03:34:41.411Z">
 <meta property="article:author" content="John Doe">
 <meta property="article:tag" content="JDBC">
 <meta name="twitter:card" content="summary">
@@ -73,6 +73,8 @@
     			
             
     			
+            
+    			
     			<a q-on="click: openSlider(e, 'aboutme')" href="javascript:void(0)">关于我</a>
     			
             
@@ -82,11 +84,9 @@
 				
 					<a class="github" target="_blank" href="#" title="github"><i class="icon-github"></i></a>
 		        
-					<a class="weibo" target="_blank" href="#" title="weibo"><i class="icon-weibo"></i></a>
+					<a class="weibo" target="_blank" href="https://weibo.com/u/5999791906/home?wvr=5&sudaref=www.baidu.com" title="weibo"><i class="icon-weibo"></i></a>
 		        
-					<a class="rss" target="_blank" href="#" title="rss"><i class="icon-rss"></i></a>
-		        
-					<a class="zhihu" target="_blank" href="#" title="zhihu"><i class="icon-zhihu"></i></a>
+					<a class="zhihu" target="_blank" href="https://www.zhihu.com/people/pao-mo-68-80" title="zhihu"><i class="icon-zhihu"></i></a>
 		        
 			</div>
 			<!--音乐播放插件-->
@@ -96,11 +96,9 @@
         
             <a class="github" target="_blank" href="#" title="github"><i class="icon-github"></i></a>
         
-            <a class="weibo" target="_blank" href="#" title="weibo"><i class="icon-weibo"></i></a>
+            <a class="weibo" target="_blank" href="https://weibo.com/u/5999791906/home?wvr=5&sudaref=www.baidu.com" title="weibo"><i class="icon-weibo"></i></a>
         
-            <a class="rss" target="_blank" href="#" title="rss"><i class="icon-rss"></i></a>
-        
-            <a class="zhihu" target="_blank" href="#" title="zhihu"><i class="icon-zhihu"></i></a>
+            <a class="zhihu" target="_blank" href="https://www.zhihu.com/people/pao-mo-68-80" title="zhihu"><i class="icon-zhihu"></i></a>
         
     </div>
 
@@ -146,11 +144,9 @@
 					
 						<a class="github" target="_blank" href="#" title="github"><i class="icon-github"></i></a>
 			        
-						<a class="weibo" target="_blank" href="#" title="weibo"><i class="icon-weibo"></i></a>
+						<a class="weibo" target="_blank" href="https://weibo.com/u/5999791906/home?wvr=5&sudaref=www.baidu.com" title="weibo"><i class="icon-weibo"></i></a>
 			        
-						<a class="rss" target="_blank" href="#" title="rss"><i class="icon-rss"></i></a>
-			        
-						<a class="zhihu" target="_blank" href="#" title="zhihu"><i class="icon-zhihu"></i></a>
+						<a class="zhihu" target="_blank" href="https://www.zhihu.com/people/pao-mo-68-80" title="zhihu"><i class="icon-zhihu"></i></a>
 			        
 				</div>
 			</nav>
@@ -213,9 +209,10 @@
 <li>JDBC（Java DataBase Connectivity,java数据库连接）是一种用于执行SQL语句的Java API，可以为多种关系型数据库提供统一访问，它是由一组用Java语言编写的类和接口组成的。</li>
 </ul>
 <h4 id="jdbc的本质"><a href="#jdbc的本质" class="headerlink" title="jdbc的本质"></a>jdbc的本质</h4><ul>
-<li>其实就是java官方提供的一套规范(接口)。用于帮助开发人员快速实现不同关系型数据库的连接！</li>
+<li>其实就是java官方提供的一套规范(接口)。用于帮助开发人员快速实现不同关系型数据库的连接！<a id="more"></a>
+<h4 id="jdbc快速入门"><a href="#jdbc快速入门" class="headerlink" title="jdbc快速入门"></a>jdbc快速入门</h4></li>
 </ul>
-<h4 id="jdbc快速入门"><a href="#jdbc快速入门" class="headerlink" title="jdbc快速入门"></a>jdbc快速入门</h4><figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br><span class="line">42</span><br><span class="line">43</span><br><span class="line">44</span><br><span class="line">45</span><br><span class="line">46</span><br><span class="line">47</span><br><span class="line">48</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">package</span> com.yishan.jdbc;</span><br><span class="line"></span><br><span class="line"><span class="keyword">import</span> java.sql.Connection;</span><br><span class="line"><span class="keyword">import</span> java.sql.DriverManager;</span><br><span class="line"><span class="keyword">import</span> java.sql.ResultSet;</span><br><span class="line"><span class="keyword">import</span> java.sql.Statement;</span><br><span class="line"></span><br><span class="line"><span class="comment">/**</span></span><br><span class="line"><span class="comment"> * jdbc 快速入门</span></span><br><span class="line"><span class="comment"> *</span></span><br><span class="line"><span class="comment"> * <span class="doctag">@Author</span> yishan</span></span><br><span class="line"><span class="comment"> * <span class="doctag">@Date</span> 2021/2/23 0023 9:30</span></span><br><span class="line"><span class="comment"> * <span class="doctag">@Version</span> 1.0</span></span><br><span class="line"><span class="comment"> */</span></span><br><span class="line"><span class="keyword">public</span> <span class="class"><span class="keyword">class</span> <span class="title">JdbcDemo01</span> </span>&#123;</span><br><span class="line"></span><br><span class="line">   <span class="function"><span class="keyword">public</span> <span class="keyword">static</span> <span class="keyword">void</span> <span class="title">main</span><span class="params">(String[] args)</span> <span class="keyword">throws</span> Exception </span>&#123;</span><br><span class="line"></span><br><span class="line">      <span class="comment">//1.导入jar</span></span><br><span class="line">      <span class="comment">//2.注册驱动</span></span><br><span class="line">      Class.forName(<span class="string">&quot;com.mysql.jdbc.Driver&quot;</span>);</span><br><span class="line"></span><br><span class="line">      <span class="comment">//3.获取连接</span></span><br><span class="line">      Connection connection = DriverManager.getConnection(</span><br><span class="line">            <span class="string">&quot;jdbc:mysql://192.168.2.131/db2&quot;</span>,</span><br><span class="line">            <span class="string">&quot;root&quot;</span>,</span><br><span class="line">            <span class="string">&quot;shan&quot;</span></span><br><span class="line">      );</span><br><span class="line"></span><br><span class="line">      <span class="comment">//4.获取执行者对象</span></span><br><span class="line">      Statement stat = connection.createStatement();</span><br><span class="line"></span><br><span class="line">      <span class="comment">//5.执行sql语句，并且接受结果</span></span><br><span class="line">      String sql = <span class="string">&quot;select * from user&quot;</span>;</span><br><span class="line">      ResultSet rs = stat.executeQuery(sql);</span><br><span class="line"></span><br><span class="line">      <span class="comment">//6.处理结果</span></span><br><span class="line">      <span class="keyword">while</span> (rs.next()) &#123;</span><br><span class="line">         System.out.println(rs.getInt(<span class="string">&quot;id&quot;</span>) + <span class="string">&quot;\t&quot;</span> + rs.getString(<span class="string">&quot;name&quot;</span>));</span><br><span class="line"></span><br><span class="line">      &#125;</span><br><span class="line"></span><br><span class="line">      <span class="comment">//7.释放资源</span></span><br><span class="line">      rs.close();</span><br><span class="line">      stat.close();</span><br><span class="line">      connection.close();</span><br><span class="line">   &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br><span class="line">42</span><br><span class="line">43</span><br><span class="line">44</span><br><span class="line">45</span><br><span class="line">46</span><br><span class="line">47</span><br><span class="line">48</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">package</span> com.yishan.jdbc;</span><br><span class="line"></span><br><span class="line"><span class="keyword">import</span> java.sql.Connection;</span><br><span class="line"><span class="keyword">import</span> java.sql.DriverManager;</span><br><span class="line"><span class="keyword">import</span> java.sql.ResultSet;</span><br><span class="line"><span class="keyword">import</span> java.sql.Statement;</span><br><span class="line"></span><br><span class="line"><span class="comment">/**</span></span><br><span class="line"><span class="comment"> * jdbc 快速入门</span></span><br><span class="line"><span class="comment"> *</span></span><br><span class="line"><span class="comment"> * <span class="doctag">@Author</span> yishan</span></span><br><span class="line"><span class="comment"> * <span class="doctag">@Date</span> 2021/2/23 0023 9:30</span></span><br><span class="line"><span class="comment"> * <span class="doctag">@Version</span> 1.0</span></span><br><span class="line"><span class="comment"> */</span></span><br><span class="line"><span class="keyword">public</span> <span class="class"><span class="keyword">class</span> <span class="title">JdbcDemo01</span> </span>&#123;</span><br><span class="line"></span><br><span class="line">   <span class="function"><span class="keyword">public</span> <span class="keyword">static</span> <span class="keyword">void</span> <span class="title">main</span><span class="params">(String[] args)</span> <span class="keyword">throws</span> Exception </span>&#123;</span><br><span class="line"></span><br><span class="line">      <span class="comment">//1.导入jar</span></span><br><span class="line">      <span class="comment">//2.注册驱动</span></span><br><span class="line">      Class.forName(<span class="string">&quot;com.mysql.jdbc.Driver&quot;</span>);</span><br><span class="line"></span><br><span class="line">      <span class="comment">//3.获取连接</span></span><br><span class="line">      Connection connection = DriverManager.getConnection(</span><br><span class="line">            <span class="string">&quot;jdbc:mysql://192.168.2.131/db2&quot;</span>,</span><br><span class="line">            <span class="string">&quot;root&quot;</span>,</span><br><span class="line">            <span class="string">&quot;shan&quot;</span></span><br><span class="line">      );</span><br><span class="line"></span><br><span class="line">      <span class="comment">//4.获取执行者对象</span></span><br><span class="line">      Statement stat = connection.createStatement();</span><br><span class="line"></span><br><span class="line">      <span class="comment">//5.执行sql语句，并且接受结果</span></span><br><span class="line">      String sql = <span class="string">&quot;select * from user&quot;</span>;</span><br><span class="line">      ResultSet rs = stat.executeQuery(sql);</span><br><span class="line"></span><br><span class="line">      <span class="comment">//6.处理结果</span></span><br><span class="line">      <span class="keyword">while</span> (rs.next()) &#123;</span><br><span class="line">         System.out.println(rs.getInt(<span class="string">&quot;id&quot;</span>) + <span class="string">&quot;\t&quot;</span> + rs.getString(<span class="string">&quot;name&quot;</span>));</span><br><span class="line"></span><br><span class="line">      &#125;</span><br><span class="line"></span><br><span class="line">      <span class="comment">//7.释放资源</span></span><br><span class="line">      rs.close();</span><br><span class="line">      stat.close();</span><br><span class="line">      connection.close();</span><br><span class="line">   &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
 <h3 id="jdbc各个模块功能"><a href="#jdbc各个模块功能" class="headerlink" title="jdbc各个模块功能"></a>jdbc各个模块功能</h3><h4 id="1-DriverManager"><a href="#1-DriverManager" class="headerlink" title="1.DriverManager"></a>1.DriverManager</h4><ul>
 <li><p>DriverManager：驱动管理对象</p>
 <ul>
@@ -577,6 +574,8 @@ return o(i(t),arguments.length<2?void 0:u(arguments[1]))}})},function(t,n,r){var
       
     
       
+    
+      
       
       
     
@@ -587,6 +586,8 @@ return o(i(t),arguments.length<2?void 0:u(arguments[1]))}})},function(t,n,r){var
     
       
       <li style="width: 50%" q-on="click: openSlider(e, 'innerArchive')"><a href="javascript:void(0)" q-class="active:innerArchive">所有文章</a></li>
+      
+        
       
         
       
