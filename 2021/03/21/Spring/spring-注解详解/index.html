@@ -6,19 +6,19 @@
   <meta name="renderer" content="webkit">
   <meta http-equiv="X-UA-Compatible" content="IE=edge" >
   <link rel="dns-prefetch" href="http://example.com">
-  <title>MyBatis基础 | YiShan</title>
+  <title>spring_注解详解 | YiShan</title>
   <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
-  <meta name="description" content="一.Mybatis1.框架介绍 框架是一款半成品软件，我们可以基于这个半成品软件继续开发，来完成我们个性化的需求！">
+  <meta name="description" content="注解驱动 用注解替换xml的配置，简化代码  注解的弊端 为了达成注解驱动的目的，可能会将原先很简单的书写，变的更加复杂  XML中配置第三方开发的资源时很方便的，但是使用注解驱动无法在第三方开发的资源中进行编辑，因此会增大开发工作量">
 <meta property="og:type" content="article">
-<meta property="og:title" content="MyBatis基础">
-<meta property="og:url" content="http://example.com/2021/02/25/%E6%A1%86%E6%9E%B6%E6%8A%80%E6%9C%AF/MyBatis%E5%9F%BA%E7%A1%80/index.html">
+<meta property="og:title" content="spring_注解详解">
+<meta property="og:url" content="http://example.com/2021/03/21/Spring/spring-%E6%B3%A8%E8%A7%A3%E8%AF%A6%E8%A7%A3/index.html">
 <meta property="og:site_name" content="YiShan">
-<meta property="og:description" content="一.Mybatis1.框架介绍 框架是一款半成品软件，我们可以基于这个半成品软件继续开发，来完成我们个性化的需求！">
+<meta property="og:description" content="注解驱动 用注解替换xml的配置，简化代码  注解的弊端 为了达成注解驱动的目的，可能会将原先很简单的书写，变的更加复杂  XML中配置第三方开发的资源时很方便的，但是使用注解驱动无法在第三方开发的资源中进行编辑，因此会增大开发工作量">
 <meta property="og:locale" content="en_US">
-<meta property="article:published_time" content="2021-02-25T01:10:45.000Z">
-<meta property="article:modified_time" content="2021-02-25T01:18:59.734Z">
+<meta property="article:published_time" content="2021-03-21T01:14:23.000Z">
+<meta property="article:modified_time" content="2021-03-22T03:30:57.896Z">
 <meta property="article:author" content="John Doe">
-<meta property="article:tag" content="框架">
+<meta property="article:tag" content="spring">
 <meta name="twitter:card" content="summary">
   
     <link rel="alternative" href="/atom.xml" title="YiShan" type="application/atom+xml">
@@ -178,20 +178,20 @@
             <canvas data-colors="#eaeaea" data-sectionHeight="100" data-contentId="js-content" id="myCanvas1" class="anm-canvas"></canvas>
           </div>
           <div id="js-content" class="content-ll">
-            <article id="post-框架技术/MyBatis基础" class="article article-type-post " itemscope itemprop="blogPost">
+            <article id="post-Spring/spring-注解详解" class="article article-type-post " itemscope itemprop="blogPost">
   <div class="article-inner">
     
       <header class="article-header">
         
   
     <h1 class="article-title" itemprop="name">
-      MyBatis基础
+      spring_注解详解
     </h1>
   
 
         
-        <a href="/2021/02/25/%E6%A1%86%E6%9E%B6%E6%8A%80%E6%9C%AF/MyBatis%E5%9F%BA%E7%A1%80/" class="archive-article-date">
-  	<time datetime="2021-02-25T01:10:45.000Z" itemprop="datePublished"><i class="icon-calendar icon"></i>2021-02-25</time>
+        <a href="/2021/03/21/Spring/spring-%E6%B3%A8%E8%A7%A3%E8%AF%A6%E8%A7%A3/" class="archive-article-date">
+  	<time datetime="2021-03-21T01:14:23.000Z" itemprop="datePublished"><i class="icon-calendar icon"></i>2021-03-21</time>
 </a>
         
 		
@@ -209,36 +209,296 @@
     
     <div class="article-entry" itemprop="articleBody">
       
-        <h3 id="一-Mybatis"><a href="#一-Mybatis" class="headerlink" title="一.Mybatis"></a>一.Mybatis</h3><h4 id="1-框架介绍"><a href="#1-框架介绍" class="headerlink" title="1.框架介绍"></a>1.框架介绍</h4><ul>
-<li>框架是一款半成品软件，我们可以基于这个半成品软件继续开发，来完成我们个性化的需求！</li>
+        <h3 id="注解驱动"><a href="#注解驱动" class="headerlink" title="注解驱动"></a>注解驱动</h3><ul>
+<li>用注解替换xml的配置，简化代码</li>
 </ul>
+<h3 id="注解的弊端"><a href="#注解的弊端" class="headerlink" title="注解的弊端"></a>注解的弊端</h3><ul>
+<li><p>为了达成注解驱动的目的，可能会将原先很简单的书写，变的更加复杂</p>
+</li>
+<li><p>XML中配置第三方开发的资源时很方便的，但是使用注解驱动无法在第三方开发的资源中进行编辑，因此会增大开发工作量</p>
 <a id="more"></a>
-
-<h4 id="2-ORM介绍"><a href="#2-ORM介绍" class="headerlink" title="2. ORM介绍"></a>2. ORM介绍</h4><ul>
-<li>ORM(Object Relational Mapping)： 对象关系映射</li>
-<li>指的是持久化数据和实体对象的映射模式，为了解决面向对象与关系型数据库存在的互不匹配的现象的技术。</li>
-</ul>
-<h4 id="3-原始jdbc操作的分析"><a href="#3-原始jdbc操作的分析" class="headerlink" title="3. 原始jdbc操作的分析"></a>3. 原始jdbc操作的分析</h4><ul>
-<li><p>原始 JDBC 的操作问题分析 </p>
-<p>​    1.频繁创建和销毁数据库的连接会造成系统资源浪费从而影响系统性能。</p>
-<ol start="2">
-<li>sql 语句在代码中硬编码，如果要修改 sql 语句，就需要修改 java 代码，造成代码不易维护。</li>
-<li>查询操作时，需要手动将结果集中的数据封装到实体对象中。</li>
-<li>增删改查操作需要参数时，需要手动将实体对象的数据设置到 sql 语句的占位符。 </li>
-</ol>
+<h3 id="Bean-的定义"><a href="#Bean-的定义" class="headerlink" title="Bean 的定义"></a>Bean 的定义</h3></li>
+<li><p>名称：@Component    @Controller    @Service    @Repository</p>
 </li>
-<li><p>原始 JDBC 的操作问题解决方案 </p>
-<p>​    1.使用数据库连接池初始化连接资源。 </p>
-<ol start="2">
-<li>将 sql 语句抽取到配置文件中。 </li>
-<li>使用反射、内省等底层技术，将实体与表进行属性与字段的自动映射    </li>
-</ol>
+<li><p>类型：<strong>类注解</strong></p>
+</li>
+<li><p>位置：类定义上方</p>
+</li>
+<li><p>作用：设置该类为spring管理的bean</p>
+</li>
+<li><p>范例：</p>
+<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line"><span class="meta">@Component</span></span><br><span class="line"><span class="keyword">public</span> <span class="class"><span class="keyword">class</span> <span class="title">ClassName</span></span>&#123;&#125;</span><br></pre></td></tr></table></figure></li>
+<li><p>说明：</p>
+<ul>
+<li>@Controller、@Service 、@Repository是@Component的衍生注解，功能同@Component</li>
+</ul>
+</li>
+<li><p>相关属性</p>
+<ul>
+<li>value（默认）：定义bean的访问id</li>
+</ul>
 </li>
 </ul>
-<h4 id="4-什么是Mybatis"><a href="#4-什么是Mybatis" class="headerlink" title="4. 什么是Mybatis"></a>4. 什么是Mybatis</h4><p>mybatis 是一个优秀的基于java的持久层框架，它内部封装了jdbc，使开发者只需要关注sql语句本身，而不需要花费精力去处理加载驱动、创建连接、创建statement等繁杂的过程。</p>
-<p>mybatis通过xml或注解的方式将要执行的各种 statement配置起来，并通过java对象和statement中sql的动态参数进行映射生成最终执行的sql语句。</p>
-<p>最后mybatis框架执行sql并将结果映射为java对象并返回。采用ORM思想解决了实体和数据库映射的问题，对jdbc 进行了封装，屏蔽了jdbc api 底层访问细节，使我们不用与jdbc api 打交道，就可以完成对数据库的持久化操作。</p>
-
+<h3 id="Bean的作用域"><a href="#Bean的作用域" class="headerlink" title="Bean的作用域"></a>Bean的作用域</h3><ul>
+<li><p>名称：@Scope</p>
+</li>
+<li><p>类型：<strong>类注解</strong></p>
+</li>
+<li><p>位置：类定义上方</p>
+</li>
+<li><p>作用：设置该类作为bean对应的scope属性</p>
+</li>
+<li><p>范例：</p>
+<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line"><span class="meta">@Scope(&quot;prototype&quot;)</span><span class="comment">//多实例，IOC容器启动创建的时候，并不会创建对象放在容器在容器当中，当你需要的时候，需要从容器当中取该对象的时候，就会创建。</span></span><br><span class="line"><span class="meta">@Scope(&quot;singleton&quot;)</span><span class="comment">//单实例 IOC容器启动的时候就会调用方法创建对象，以后每次获取都是从容器当中拿同一个对象（map当中）。</span></span><br><span class="line"><span class="meta">@Scope(&quot;request&quot;)</span><span class="comment">//同一个请求创建一个实例</span></span><br><span class="line"><span class="meta">@Scope(&quot;session&quot;)</span><span class="comment">//同一个session创建一个实例</span></span><br></pre></td></tr></table></figure></li>
+<li><p>相关属性</p>
+<ul>
+<li>value（默认）：定义bean的作用域，默认为singleton（单例），</li>
+</ul>
+</li>
+</ul>
+<h3 id="Bean的生命周期"><a href="#Bean的生命周期" class="headerlink" title="Bean的生命周期"></a>Bean的生命周期</h3><ul>
+<li><p>名称：@PostConstruct、@PreDestroy</p>
+</li>
+<li><p>类型：<strong>方法注解</strong></p>
+</li>
+<li><p>位置：方法定义上方</p>
+</li>
+<li><p>作用：设置该类作为bean对应的生命周期方法</p>
+</li>
+<li><p>范例：</p>
+<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line"><span class="meta">@PostConstruct</span></span><br><span class="line"><span class="function"><span class="keyword">public</span> <span class="keyword">void</span> <span class="title">init</span><span class="params">()</span> </span>&#123; System.out.println(<span class="string">&quot;init...&quot;</span>); &#125;</span><br></pre></td></tr></table></figure>
+<h3 id="加载第三方资源"><a href="#加载第三方资源" class="headerlink" title="加载第三方资源"></a>加载第三方资源</h3></li>
+<li><p>名称：@Bean</p>
+</li>
+<li><p>类型：<strong>方法注解</strong></p>
+</li>
+<li><p>位置：方法定义上方</p>
+</li>
+<li><p>作用：设置该方法的返回值作为spring管理的bean</p>
+</li>
+<li><p>范例：</p>
+<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line"><span class="meta">@Bean(&quot;dataSource&quot;)</span></span><br><span class="line"><span class="function"><span class="keyword">public</span> DruidDataSource <span class="title">createDataSource</span><span class="params">()</span> </span>&#123;    <span class="keyword">return</span> ……;    &#125;</span><br></pre></td></tr></table></figure></li>
+<li><p>说明：</p>
+<ul>
+<li>因为第三方bean无法在其源码上进行修改，使用@Bean解决第三方bean的引入问题</li>
+<li>该注解用于替代XML配置中的静态工厂与实例工厂创建bean，不区分方法是否为静态或非静态</li>
+<li>@Bean所在的类必须被spring扫描加载，否则该注解无法生效</li>
+</ul>
+</li>
+<li><p>相关属性</p>
+<ul>
+<li>value（默认）：定义bean的访问id</li>
+</ul>
+</li>
+</ul>
+<h3 id="Bean的非引用类型属性注入"><a href="#Bean的非引用类型属性注入" class="headerlink" title="Bean的非引用类型属性注入"></a>Bean的非引用类型属性注入</h3><ul>
+<li><p>名称：@Value</p>
+</li>
+<li><p>类型：<strong>属性注解、方法注解</strong></p>
+</li>
+<li><p>位置：属性定义上方，方法定义上方</p>
+</li>
+<li><p>作用：设置对应属性的值或对方法进行传参</p>
+</li>
+<li><p>范例：</p>
+<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line"><span class="meta">@Value(&quot;$&#123;jdbc.username&#125;&quot;)</span></span><br><span class="line"><span class="keyword">private</span> String username;</span><br></pre></td></tr></table></figure></li>
+<li><p>说明：</p>
+<ul>
+<li>value值仅支持非引用类型数据，赋值时对方法的所有参数全部赋值</li>
+<li>value值支持读取properties文件中的属性值，通过类属性将properties中数据传入类中</li>
+<li>value值支持SpEL</li>
+<li>@value注解如果添加在属性上方，可以省略set方法（set方法的目的是为属性赋值）</li>
+</ul>
+</li>
+<li><p>相关属性</p>
+<ul>
+<li>value（默认）：定义对应的属性值或参数值</li>
+</ul>
+</li>
+</ul>
+<h3 id="Bean的引用类型属性注入"><a href="#Bean的引用类型属性注入" class="headerlink" title="Bean的引用类型属性注入"></a>Bean的引用类型属性注入</h3><ul>
+<li><p>名称：@Autowired、@Qualifier</p>
+</li>
+<li><p>类型：<strong>属性注解、方法注解</strong></p>
+</li>
+<li><p>位置：属性定义上方，方法定义上方</p>
+</li>
+<li><p>作用：设置对应属性的对象或对方法进行引用类型传参</p>
+</li>
+<li><p>范例：</p>
+<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line"><span class="meta">@Autowired(required = false)</span></span><br><span class="line"><span class="meta">@Qualifier(&quot;userDao&quot;)</span></span><br><span class="line"><span class="keyword">private</span> UserDao userDao;</span><br></pre></td></tr></table></figure></li>
+<li><p>说明：</p>
+<ul>
+<li>@Autowired默认按类型装配，指定@Qualifier后可以指定自动装配的bean的id</li>
+</ul>
+</li>
+<li><p>相关属性</p>
+<ul>
+<li>required：定义该属性是否允许为null</li>
+</ul>
+</li>
+</ul>
+<h3 id="Bean的优先级配置"><a href="#Bean的优先级配置" class="headerlink" title="Bean的优先级配置"></a>Bean的优先级配置</h3><ul>
+<li><p>名称：@Primary</p>
+</li>
+<li><p>类型：<strong>类注解</strong></p>
+</li>
+<li><p>位置：类定义上方</p>
+</li>
+<li><p>作用：设置类对应的bean按类型装配时优先装配</p>
+</li>
+<li><p>范例：</p>
+<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line"><span class="meta">@Primary</span></span><br><span class="line"><span class="keyword">public</span> <span class="class"><span class="keyword">class</span> <span class="title">ClassName</span></span>&#123;&#125;</span><br></pre></td></tr></table></figure></li>
+<li><p>说明：</p>
+<ul>
+<li>@Autowired默认按类型装配，当出现相同类型的bean，使用@Primary提高按类型自动装配的优先级，多个@Primary会导致优先级设置无效</li>
+</ul>
+</li>
+</ul>
+<h3 id="bean的引用类型属性注入"><a href="#bean的引用类型属性注入" class="headerlink" title="bean的引用类型属性注入"></a>bean的引用类型属性注入</h3><ul>
+<li>名称：@Inject、@Named、@Resource</li>
+<li>说明：<ul>
+<li>@Inject与@Named是JSR330规范中的注解，功能与@Autowired和@Qualifier完全相同，适用于不同架构场景</li>
+<li>@Resource是JSR250规范中的注解，可以简化书写格式</li>
+</ul>
+</li>
+<li>@Resource相关属性<ul>
+<li>name：设置注入的bean的id</li>
+<li>type：设置注入的bean的类型，接收的参数为Class类型</li>
+</ul>
+</li>
+</ul>
+<h3 id="加载properties文件"><a href="#加载properties文件" class="headerlink" title="加载properties文件"></a>加载properties文件</h3><ul>
+<li><p>名称：@PropertySource</p>
+</li>
+<li><p>类型：<strong>类注解</strong></p>
+</li>
+<li><p>位置：类定义上方</p>
+</li>
+<li><p>作用：加载properties文件中的属性值</p>
+</li>
+<li><p>范例：</p>
+<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line"><span class="meta">@PropertySource(value = &quot;classpath:filename.properties&quot;)</span></span><br><span class="line"><span class="keyword">public</span> <span class="class"><span class="keyword">class</span> <span class="title">ClassName</span> </span>&#123;</span><br><span class="line">    <span class="meta">@Value(&quot;$&#123;propertiesAttributeName&#125;&quot;)</span></span><br><span class="line">    <span class="keyword">private</span> String attributeName;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure></li>
+<li><p>说明：</p>
+<ul>
+<li>不支持*通配格式，一旦加载，所有spring控制的bean中均可使用对应属性值</li>
+</ul>
+</li>
+<li><p>相关属性</p>
+<ul>
+<li>value（默认）：设置加载的properties文件名</li>
+<li>ignoreResourceNotFound：如果资源未找到，是否忽略，默认为false</li>
+</ul>
+</li>
+</ul>
+<h3 id="纯注解格式"><a href="#纯注解格式" class="headerlink" title="纯注解格式"></a>纯注解格式</h3><ul>
+<li><p>名称：@Configuration、@ComponentScan</p>
+</li>
+<li><p>类型：<strong>类注解</strong></p>
+</li>
+<li><p>位置：类定义上方</p>
+</li>
+<li><p>作用：设置当前类为spring核心配置加载类</p>
+</li>
+<li><p>范例：</p>
+<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line"><span class="meta">@Configuration</span></span><br><span class="line"><span class="meta">@ComponentScan(&quot;scanPackageName&quot;)</span></span><br><span class="line"><span class="keyword">public</span> <span class="class"><span class="keyword">class</span> <span class="title">SpringConfigClassName</span></span>&#123;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure></li>
+<li><p>说明：</p>
+<ul>
+<li>核心配合类用于替换spring核心配置文件，此类可以设置空的，不设置变量与属性</li>
+<li>bean扫描工作使用注解@ComponentScan替代</li>
+</ul>
+</li>
+</ul>
+<h3 id="AnnotationConfigApplicationContext"><a href="#AnnotationConfigApplicationContext" class="headerlink" title="AnnotationConfigApplicationContext"></a><strong>AnnotationConfigApplicationContext</strong></h3><ul>
+<li><p>加载纯注解格式上下文对象，需要使用AnnotationConfigApplicationContext</p>
+<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">AnnotationConfigApplicationContext ctx = <span class="keyword">new</span> AnnotationConfigApplicationContext(SpringConfig.class);</span><br></pre></td></tr></table></figure>
+<h3 id="第三方bean配置与管理"><a href="#第三方bean配置与管理" class="headerlink" title="### 第三方bean配置与管理"></a>### 第三方bean配置与管理</h3></li>
+<li><p>名称：@Import</p>
+</li>
+<li><p>类型：<strong>类注解</strong></p>
+</li>
+<li><p>位置：类定义上方</p>
+</li>
+<li><p>作用：导入第三方bean作为spring控制的资源</p>
+</li>
+<li><p>范例：</p>
+<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line"><span class="meta">@Configuration</span></span><br><span class="line"><span class="meta">@Import(OtherClassName.class)</span></span><br><span class="line"><span class="keyword">public</span> <span class="class"><span class="keyword">class</span> <span class="title">ClassName</span> </span>&#123;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure></li>
+<li><p>说明：</p>
+<ul>
+<li>@Import注解在同一个类上，仅允许添加一次，如果需要导入多个，使用数组的形式进行设定</li>
+<li>在被导入的类中可以继续使用@Import导入其他资源（了解）</li>
+<li>@Bean所在的类可以使用导入的形式进入spring容器，无需声明为bean</li>
+</ul>
+</li>
+</ul>
+<h3 id="依赖加载"><a href="#依赖加载" class="headerlink" title="依赖加载"></a>依赖加载</h3><p>(1)@DependsOn</p>
+<ul>
+<li><p>名称：@DependsOn</p>
+</li>
+<li><p>类型：类注解、方法注解</p>
+</li>
+<li><p>位置：bean定义的位置（类上或方法上）</p>
+</li>
+<li><p>作用：控制bean的加载顺序，使其在指定bean加载完毕后再加载</p>
+</li>
+<li><p>范例：</p>
+<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line"><span class="meta">@DependsOn(&quot;beanId&quot;)</span></span><br><span class="line"><span class="keyword">public</span> <span class="class"><span class="keyword">class</span> <span class="title">ClassName</span> </span>&#123;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure></li>
+<li><p>说明：</p>
+<ul>
+<li>配置在方法上，使@DependsOn指定的bean优先于@Bean配置的bean进行加载</li>
+<li>配置在类上，使@DependsOn指定的bean优先于当前类中所有@Bean配置的bean进行加载</li>
+<li>配置在类上，使@DependsOn指定的bean优先于@Component等配置的bean进行加载</li>
+</ul>
+</li>
+<li><p>相关属性</p>
+<ul>
+<li>value（默认）：设置当前bean所依赖的bean的id</li>
+</ul>
+</li>
+</ul>
+<p>(2)@Order</p>
+<ul>
+<li><p>名称：@Order</p>
+</li>
+<li><p>类型：<strong>配置类注解</strong></p>
+</li>
+<li><p>位置：配置类定义的位置（类上）</p>
+</li>
+<li><p>作用：控制配置类的加载顺序</p>
+</li>
+<li><p>范例：</p>
+<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line"><span class="meta">@Order(1)</span></span><br><span class="line"><span class="keyword">public</span> <span class="class"><span class="keyword">class</span> <span class="title">SpringConfigClassName</span> </span>&#123;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<p>(3)@Lazy</p>
+</li>
+<li><p>名称：@Lazy</p>
+</li>
+<li><p>类型：<strong>类注解、方法注解</strong></p>
+</li>
+<li><p>位置：bean定义的位置（类上或方法上）</p>
+</li>
+<li><p>作用：控制bean的加载时机，使其延迟加载</p>
+</li>
+<li><p>范例：</p>
+<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line"><span class="meta">@Lazy</span></span><br><span class="line"><span class="keyword">public</span> <span class="class"><span class="keyword">class</span> <span class="title">ClassName</span> </span>&#123;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<h3 id="依赖加载应用场景"><a href="#依赖加载应用场景" class="headerlink" title="依赖加载应用场景"></a>依赖加载应用场景</h3></li>
+</ul>
+<p>@DependsOn</p>
+<ul>
+<li>微信订阅号，发布消息和订阅消息的bean的加载顺序控制</li>
+<li>双11活动期间，零点前是结算策略A，零点后是结算策略B，策略B操作的数据为促销数据。策略B加载顺序与促销数据的加载顺序</li>
+</ul>
+<p>@Lazy</p>
+<ul>
+<li>程序灾难出现后对应的应急预案处理是启动容器时加载时机</li>
+</ul>
+<p>@Order</p>
+<ul>
+<li>多个种类的配置出现后，优先加载系统级的，然后加载业务级的，避免细粒度的加载控制</li>
+</ul>
+<h3 id="Spring整合Junit"><a href="#Spring整合Junit" class="headerlink" title="Spring整合Junit"></a>Spring整合Junit</h3><ul>
+<li>Junit需要4.12版本以上</li>
+</ul>
+<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">//设定spring专用的类加载器</span></span><br><span class="line"><span class="meta">@RunWith(SpringJUnit4ClassRunner.class)</span></span><br><span class="line"><span class="comment">//设定加载的spring上下文对应的配置</span></span><br><span class="line"><span class="meta">@ContextConfiguration(classes = SpringConfig.class)</span></span><br><span class="line"><span class="keyword">public</span> <span class="class"><span class="keyword">class</span> <span class="title">AccountServiceTest</span> </span>&#123;</span><br><span class="line"></span><br><span class="line">   <span class="meta">@Autowired</span></span><br><span class="line">   <span class="keyword">private</span> AccountService accountService;</span><br><span class="line"></span><br><span class="line">   <span class="meta">@Test</span></span><br><span class="line">   <span class="function"><span class="keyword">public</span> <span class="keyword">void</span> <span class="title">testFindById</span><span class="params">()</span></span>&#123;</span><br><span class="line">      Account account = accountService.findById(<span class="number">1</span>);</span><br><span class="line">      Assert.assertEquals(<span class="string">&quot;张三&quot;</span>,account.getName());</span><br><span class="line">   &#125;</span><br><span class="line"></span><br><span class="line">   <span class="meta">@Test</span></span><br><span class="line">   <span class="function"><span class="keyword">public</span> <span class="keyword">void</span> <span class="title">testFindAll</span><span class="params">()</span></span>&#123;</span><br><span class="line">      List&lt;Account&gt; list = accountService.findAll();</span><br><span class="line">      Assert.assertEquals(<span class="number">2</span>,list.size());</span><br><span class="line">   &#125;</span><br><span class="line"></span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
       
 
       
@@ -272,7 +532,7 @@
 		<ul class="article-tag-list">
 			 
         		<li class="article-tag-list-item">
-        			<a href="javascript:void(0)" class="js-tag article-tag-list-link color3">框架</a>
+        			<a href="javascript:void(0)" class="js-tag article-tag-list-link color2">spring</a>
         		</li>
       		
 		</ul>
@@ -328,7 +588,7 @@
     <a class="close js-modal-close" href="javascript:;"><i class="icon icon-close"></i></a>
     <p>扫一扫，分享到微信</p>
     <div class="wx-qrcode">
-      <img src="//pan.baidu.com/share/qrcode?url=http://example.com/2021/02/25/%E6%A1%86%E6%9E%B6%E6%8A%80%E6%9C%AF/MyBatis%E5%9F%BA%E7%A1%80/" alt="微信分享二维码">
+      <img src="//pan.baidu.com/share/qrcode?url=http://example.com/2021/03/21/Spring/spring-%E6%B3%A8%E8%A7%A3%E8%AF%A6%E8%A7%A3/" alt="微信分享二维码">
     </div>
 </div>
 
@@ -342,18 +602,9 @@
   
 <nav id="article-nav">
   
-    <a href="/2021/03/02/%E6%A1%86%E6%9E%B6%E6%8A%80%E6%9C%AF/MyBatis%E5%85%B3%E7%B3%BB%E6%98%A0%E5%B0%84/" id="article-nav-newer" class="article-nav-link-wrap">
-      <i class="icon-circle-left"></i>
-      <div class="article-nav-title">
-        
-          MyBatis关系映射
-        
-      </div>
-    </a>
   
-  
-    <a href="/2021/02/24/JDBC/jdbc%E9%AB%98%E7%BA%A7%E7%9F%A5%E8%AF%86/" id="article-nav-older" class="article-nav-link-wrap">
-      <div class="article-nav-title">jdbc高级知识</div>
+    <a href="/2021/03/20/Spring/spring-xml%E5%B1%9E%E6%80%A7%E8%AF%A6%E8%A7%A3/" id="article-nav-older" class="article-nav-link-wrap">
+      <div class="article-nav-title">spring_xml属性详解</div>
       <i class="icon-circle-right"></i>
     </a>
   
@@ -380,7 +631,7 @@
                 </span>
                 <span class="tooltip-content">
                     <div class="toc-article">
-                    <ol class="toc"><li class="toc-item toc-level-3"><a class="toc-link" href="#%E4%B8%80-Mybatis"><span class="toc-number">1.</span> <span class="toc-text">一.Mybatis</span></a><ol class="toc-child"><li class="toc-item toc-level-4"><a class="toc-link" href="#1-%E6%A1%86%E6%9E%B6%E4%BB%8B%E7%BB%8D"><span class="toc-number">1.1.</span> <span class="toc-text">1.框架介绍</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#2-ORM%E4%BB%8B%E7%BB%8D"><span class="toc-number">1.2.</span> <span class="toc-text">2. ORM介绍</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#3-%E5%8E%9F%E5%A7%8Bjdbc%E6%93%8D%E4%BD%9C%E7%9A%84%E5%88%86%E6%9E%90"><span class="toc-number">1.3.</span> <span class="toc-text">3. 原始jdbc操作的分析</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#4-%E4%BB%80%E4%B9%88%E6%98%AFMybatis"><span class="toc-number">1.4.</span> <span class="toc-text">4. 什么是Mybatis</span></a></li></ol></li></ol>
+                    <ol class="toc"><li class="toc-item toc-level-3"><a class="toc-link" href="#%E6%B3%A8%E8%A7%A3%E9%A9%B1%E5%8A%A8"><span class="toc-number">1.</span> <span class="toc-text">注解驱动</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#%E6%B3%A8%E8%A7%A3%E7%9A%84%E5%BC%8A%E7%AB%AF"><span class="toc-number">2.</span> <span class="toc-text">注解的弊端</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#Bean-%E7%9A%84%E5%AE%9A%E4%B9%89"><span class="toc-number">3.</span> <span class="toc-text">Bean 的定义</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#Bean%E7%9A%84%E4%BD%9C%E7%94%A8%E5%9F%9F"><span class="toc-number">4.</span> <span class="toc-text">Bean的作用域</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#Bean%E7%9A%84%E7%94%9F%E5%91%BD%E5%91%A8%E6%9C%9F"><span class="toc-number">5.</span> <span class="toc-text">Bean的生命周期</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#%E5%8A%A0%E8%BD%BD%E7%AC%AC%E4%B8%89%E6%96%B9%E8%B5%84%E6%BA%90"><span class="toc-number">6.</span> <span class="toc-text">加载第三方资源</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#Bean%E7%9A%84%E9%9D%9E%E5%BC%95%E7%94%A8%E7%B1%BB%E5%9E%8B%E5%B1%9E%E6%80%A7%E6%B3%A8%E5%85%A5"><span class="toc-number">7.</span> <span class="toc-text">Bean的非引用类型属性注入</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#Bean%E7%9A%84%E5%BC%95%E7%94%A8%E7%B1%BB%E5%9E%8B%E5%B1%9E%E6%80%A7%E6%B3%A8%E5%85%A5"><span class="toc-number">8.</span> <span class="toc-text">Bean的引用类型属性注入</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#Bean%E7%9A%84%E4%BC%98%E5%85%88%E7%BA%A7%E9%85%8D%E7%BD%AE"><span class="toc-number">9.</span> <span class="toc-text">Bean的优先级配置</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#bean%E7%9A%84%E5%BC%95%E7%94%A8%E7%B1%BB%E5%9E%8B%E5%B1%9E%E6%80%A7%E6%B3%A8%E5%85%A5"><span class="toc-number">10.</span> <span class="toc-text">bean的引用类型属性注入</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#%E5%8A%A0%E8%BD%BDproperties%E6%96%87%E4%BB%B6"><span class="toc-number">11.</span> <span class="toc-text">加载properties文件</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#%E7%BA%AF%E6%B3%A8%E8%A7%A3%E6%A0%BC%E5%BC%8F"><span class="toc-number">12.</span> <span class="toc-text">纯注解格式</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#AnnotationConfigApplicationContext"><span class="toc-number">13.</span> <span class="toc-text">AnnotationConfigApplicationContext</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#%E7%AC%AC%E4%B8%89%E6%96%B9bean%E9%85%8D%E7%BD%AE%E4%B8%8E%E7%AE%A1%E7%90%86"><span class="toc-number">14.</span> <span class="toc-text">### 第三方bean配置与管理</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#%E4%BE%9D%E8%B5%96%E5%8A%A0%E8%BD%BD"><span class="toc-number">15.</span> <span class="toc-text">依赖加载</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#%E4%BE%9D%E8%B5%96%E5%8A%A0%E8%BD%BD%E5%BA%94%E7%94%A8%E5%9C%BA%E6%99%AF"><span class="toc-number">16.</span> <span class="toc-text">依赖加载应用场景</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#Spring%E6%95%B4%E5%90%88Junit"><span class="toc-number">17.</span> <span class="toc-text">Spring整合Junit</span></a></li></ol>
                     </div>
                 </span>
             </div>
@@ -559,14 +810,6 @@ return o(i(t),arguments.length<2?void 0:u(arguments[1]))}})},function(t,n,r){var
               </li>
              
               <li class="article-tag-list-item">
-                <a href="javascript:void(0)" class="js-tag color4">IOC</a>
-              </li>
-             
-              <li class="article-tag-list-item">
-                <a href="javascript:void(0)" class="js-tag color4">AOP</a>
-              </li>
-             
-              <li class="article-tag-list-item">
                 <a href="javascript:void(0)" class="js-tag color1">web核心</a>
               </li>
              
@@ -680,6 +923,22 @@ return o(i(t),arguments.length<2?void 0:u(arguments[1]))}})},function(t,n,r){var
              
               <li class="article-tag-list-item">
                 <a href="javascript:void(0)" class="js-tag color3">js</a>
+              </li>
+             
+              <li class="article-tag-list-item">
+                <a href="javascript:void(0)" class="js-tag color5">AJAX</a>
+              </li>
+             
+              <li class="article-tag-list-item">
+                <a href="javascript:void(0)" class="js-tag color1">redis</a>
+              </li>
+             
+              <li class="article-tag-list-item">
+                <a href="javascript:void(0)" class="js-tag color2">spring</a>
+              </li>
+             
+              <li class="article-tag-list-item">
+                <a href="javascript:void(0)" class="js-tag color3">项目</a>
               </li>
             
             <div class="clearfix"></div>

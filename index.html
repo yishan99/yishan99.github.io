@@ -175,20 +175,20 @@
           <div id="js-content" class="content-ll">
             
   
-    <article id="post-框架技术/MyBatis关系映射" class="article article-type-post  article-index" itemscope itemprop="blogPost">
+    <article id="post-Spring/spring-注解详解" class="article article-type-post  article-index" itemscope itemprop="blogPost">
   <div class="article-inner">
     
       <header class="article-header">
         
   
     <h1 itemprop="name">
-      <a class="article-title" href="/2021/03/02/%E6%A1%86%E6%9E%B6%E6%8A%80%E6%9C%AF/MyBatis%E5%85%B3%E7%B3%BB%E6%98%A0%E5%B0%84/">MyBatis关系映射</a>
+      <a class="article-title" href="/2021/03/21/Spring/spring-%E6%B3%A8%E8%A7%A3%E8%AF%A6%E8%A7%A3/">spring_注解详解</a>
     </h1>
   
 
         
-        <a href="/2021/03/02/%E6%A1%86%E6%9E%B6%E6%8A%80%E6%9C%AF/MyBatis%E5%85%B3%E7%B3%BB%E6%98%A0%E5%B0%84/" class="archive-article-date">
-  	<time datetime="2021-03-02T13:04:41.000Z" itemprop="datePublished"><i class="icon-calendar icon"></i>2021-03-02</time>
+        <a href="/2021/03/21/Spring/spring-%E6%B3%A8%E8%A7%A3%E8%AF%A6%E8%A7%A3/" class="archive-article-date">
+  	<time datetime="2021-03-21T01:14:23.000Z" itemprop="datePublished"><i class="icon-calendar icon"></i>2021-03-21</time>
 </a>
         
 		
@@ -202,9 +202,15 @@
     
     <div class="article-entry" itemprop="articleBody">
       
-        <h3 id="MyBatis关系映射"><a href="#MyBatis关系映射" class="headerlink" title="MyBatis关系映射"></a>MyBatis关系映射</h3><h4 id="静态代理实现"><a href="#静态代理实现" class="headerlink" title="静态代理实现"></a>静态代理实现</h4>
+        <h3 id="注解驱动"><a href="#注解驱动" class="headerlink" title="注解驱动"></a>注解驱动</h3><ul>
+<li>用注解替换xml的配置，简化代码</li>
+</ul>
+<h3 id="注解的弊端"><a href="#注解的弊端" class="headerlink" title="注解的弊端"></a>注解的弊端</h3><ul>
+<li><p>为了达成注解驱动的目的，可能会将原先很简单的书写，变的更加复杂</p>
+</li>
+<li><p>XML中配置第三方开发的资源时很方便的，但是使用注解驱动无法在第三方开发的资源中进行编辑，因此会增大开发工作量</p>
         
-          <a class="article-more-a" href="/2021/03/02/%E6%A1%86%E6%9E%B6%E6%8A%80%E6%9C%AF/MyBatis%E5%85%B3%E7%B3%BB%E6%98%A0%E5%B0%84/#more">more >></a>
+          <a class="article-more-a" href="/2021/03/21/Spring/spring-%E6%B3%A8%E8%A7%A3%E8%AF%A6%E8%A7%A3/#more">more >></a>
         
       
 
@@ -218,7 +224,7 @@
 		<ul class="article-tag-list">
 			 
         		<li class="article-tag-list-item">
-        			<a href="javascript:void(0)" class="js-tag article-tag-list-link color3">MyBatis</a>
+        			<a href="javascript:void(0)" class="js-tag article-tag-list-link color2">spring</a>
         		</li>
       		
 		</ul>
@@ -228,7 +234,7 @@
 
       
         <p class="article-more-link">
-          <a class="article-more-a" href="/2021/03/02/%E6%A1%86%E6%9E%B6%E6%8A%80%E6%9C%AF/MyBatis%E5%85%B3%E7%B3%BB%E6%98%A0%E5%B0%84/">展开全文 >></a>
+          <a class="article-more-a" href="/2021/03/21/Spring/spring-%E6%B3%A8%E8%A7%A3%E8%AF%A6%E8%A7%A3/">展开全文 >></a>
         </p>
       
 
@@ -258,19 +264,584 @@
 
 
   
-    <article id="post-框架技术/MyBatis基础" class="article article-type-post  article-index" itemscope itemprop="blogPost">
+    <article id="post-Spring/spring-xml属性详解" class="article article-type-post  article-index" itemscope itemprop="blogPost">
   <div class="article-inner">
     
       <header class="article-header">
         
   
     <h1 itemprop="name">
-      <a class="article-title" href="/2021/02/25/%E6%A1%86%E6%9E%B6%E6%8A%80%E6%9C%AF/MyBatis%E5%9F%BA%E7%A1%80/">MyBatis基础</a>
+      <a class="article-title" href="/2021/03/20/Spring/spring-xml%E5%B1%9E%E6%80%A7%E8%AF%A6%E8%A7%A3/">spring_xml属性详解</a>
     </h1>
   
 
         
-        <a href="/2021/02/25/%E6%A1%86%E6%9E%B6%E6%8A%80%E6%9C%AF/MyBatis%E5%9F%BA%E7%A1%80/" class="archive-article-date">
+        <a href="/2021/03/20/Spring/spring-xml%E5%B1%9E%E6%80%A7%E8%AF%A6%E8%A7%A3/" class="archive-article-date">
+  	<time datetime="2021-03-20T12:51:16.000Z" itemprop="datePublished"><i class="icon-calendar icon"></i>2021-03-20</time>
+</a>
+        
+		
+		
+		<!--添加文章访问量-->
+		
+		
+		
+		
+      </header>
+    
+    <div class="article-entry" itemprop="articleBody">
+      
+        <h3 id="Spring-体系结构"><a href="#Spring-体系结构" class="headerlink" title="Spring-体系结构"></a>Spring-体系结构</h3>
+        
+          <a class="article-more-a" href="/2021/03/20/Spring/spring-xml%E5%B1%9E%E6%80%A7%E8%AF%A6%E8%A7%A3/#more">more >></a>
+        
+      
+
+      
+    </div>
+    <div class="article-info article-info-index">
+      
+      
+	<div class="article-tag tagcloud">
+		<i class="icon-price-tags icon"></i>
+		<ul class="article-tag-list">
+			 
+        		<li class="article-tag-list-item">
+        			<a href="javascript:void(0)" class="js-tag article-tag-list-link color2">spring</a>
+        		</li>
+      		
+		</ul>
+	</div>
+
+      
+
+      
+        <p class="article-more-link">
+          <a class="article-more-a" href="/2021/03/20/Spring/spring-xml%E5%B1%9E%E6%80%A7%E8%AF%A6%E8%A7%A3/">展开全文 >></a>
+        </p>
+      
+
+      
+      <div class="clearfix"></div>
+    </div>
+  </div>
+</article>
+
+<aside class="wrap-side-operation">
+    <div class="mod-side-operation">
+        
+        <div class="jump-container" id="js-jump-container" style="display:none;">
+            <a href="javascript:void(0)" class="mod-side-operation__jump-to-top">
+                <i class="icon-font icon-back"></i>
+            </a>
+            <div id="js-jump-plan-container" class="jump-plan-container" style="top: -11px;">
+                <i class="icon-font icon-plane jump-plane"></i>
+            </div>
+        </div>
+        
+        
+    </div>
+</aside>
+
+
+
+
+  
+    <article id="post-项目总结/项目基础功能" class="article article-type-post  article-index" itemscope itemprop="blogPost">
+  <div class="article-inner">
+    
+      <header class="article-header">
+        
+  
+    <h1 itemprop="name">
+      <a class="article-title" href="/2021/03/19/%E9%A1%B9%E7%9B%AE%E6%80%BB%E7%BB%93/%E9%A1%B9%E7%9B%AE%E5%9F%BA%E7%A1%80%E5%8A%9F%E8%83%BD/">项目基础功能</a>
+    </h1>
+  
+
+        
+        <a href="/2021/03/19/%E9%A1%B9%E7%9B%AE%E6%80%BB%E7%BB%93/%E9%A1%B9%E7%9B%AE%E5%9F%BA%E7%A1%80%E5%8A%9F%E8%83%BD/" class="archive-article-date">
+  	<time datetime="2021-03-19T10:32:11.000Z" itemprop="datePublished"><i class="icon-calendar icon"></i>2021-03-19</time>
+</a>
+        
+		
+		
+		<!--添加文章访问量-->
+		
+		
+		
+		
+      </header>
+    
+    <div class="article-entry" itemprop="articleBody">
+      
+        <h3 id="文件上传问题-核心代码"><a href="#文件上传问题-核心代码" class="headerlink" title="文件上传问题-核心代码"></a>文件上传问题-核心代码</h3>
+        
+          <a class="article-more-a" href="/2021/03/19/%E9%A1%B9%E7%9B%AE%E6%80%BB%E7%BB%93/%E9%A1%B9%E7%9B%AE%E5%9F%BA%E7%A1%80%E5%8A%9F%E8%83%BD/#more">more >></a>
+        
+      
+
+      
+    </div>
+    <div class="article-info article-info-index">
+      
+      
+	<div class="article-tag tagcloud">
+		<i class="icon-price-tags icon"></i>
+		<ul class="article-tag-list">
+			 
+        		<li class="article-tag-list-item">
+        			<a href="javascript:void(0)" class="js-tag article-tag-list-link color3">项目</a>
+        		</li>
+      		
+		</ul>
+	</div>
+
+      
+
+      
+        <p class="article-more-link">
+          <a class="article-more-a" href="/2021/03/19/%E9%A1%B9%E7%9B%AE%E6%80%BB%E7%BB%93/%E9%A1%B9%E7%9B%AE%E5%9F%BA%E7%A1%80%E5%8A%9F%E8%83%BD/">展开全文 >></a>
+        </p>
+      
+
+      
+      <div class="clearfix"></div>
+    </div>
+  </div>
+</article>
+
+<aside class="wrap-side-operation">
+    <div class="mod-side-operation">
+        
+        <div class="jump-container" id="js-jump-container" style="display:none;">
+            <a href="javascript:void(0)" class="mod-side-operation__jump-to-top">
+                <i class="icon-font icon-back"></i>
+            </a>
+            <div id="js-jump-plan-container" class="jump-plan-container" style="top: -11px;">
+                <i class="icon-font icon-plane jump-plane"></i>
+            </div>
+        </div>
+        
+        
+    </div>
+</aside>
+
+
+
+
+  
+    <article id="post-面向对象/面向对象1.2" class="article article-type-post  article-index" itemscope itemprop="blogPost">
+  <div class="article-inner">
+    
+    <div class="article-entry" itemprop="articleBody">
+      
+        <h4 id="继承总结"><a href="#继承总结" class="headerlink" title="继承总结"></a>继承总结</h4><ul>
+<li>父类有的，子类也有（private修饰的子类没有）</li>
+<li>父类没有的，子类可以自己增加（这是子类的特性）</li>
+<li>父类有的，子类可以去改变（这就是重写）</li>
+<li>注意事项：<ul>
+<li>构造方法不可以被继承</li>
+<li>方法和属性可以被继承</li>
+<li>子类的构造方法隐式的调用父类的不带参数的构造方法</li>
+<li>当父类没有不带参数的构造方法时，子类需要使用super关键字来显示调用父类的构造方法</li>
+<li>super代指的是父类的引用</li>
+<li>super关键字必须是构造方法中第一行语句</li>
+</ul>
+</li>
+<li>在定义一个类的时候，如果没有显示指定该类的父类，那么该类就会继承于java.lang.Object类（JDK提供的一个类，Object类时java中所有类的直接或间接父类）。</li>
+</ul>
+<h4 id="抽象类的注意事项"><a href="#抽象类的注意事项" class="headerlink" title="抽象类的注意事项"></a>抽象类的注意事项</h4><ul>
+<li>抽象类不能实例化</li>
+<li>抽象类中不一定有抽象方法，有抽象方法的类一定是抽象类</li>
+<li>抽象类可以有构造方法</li>
+<li>抽象类的子类<ul>
+<li>要么重写抽象类中的所有的抽象方法</li>
+<li>要么是抽象类</li>
+</ul>
+</li>
+</ul>
+<h4 id="final关键字"><a href="#final关键字" class="headerlink" title="final关键字"></a>final关键字</h4><ul>
+<li>final关键字的作用<ul>
+<li>final代表最终的意思，可以修饰成员方法，成员变量，类</li>
+</ul>
+</li>
+<li>final修饰类、方法、变量的效果<ul>
+<li>final修饰类：该类不能被继承（不能有子类，但是可以有父类）</li>
+<li>final修饰方法：该方法不能被重写</li>
+<li>final修饰变量：表明该变量是一个常量，不能再次赋值<ul>
+<li>变量是基本类型，不能改变的是值</li>
+<li>变量是引用类型，不能改变的是地址值，但是地址里面的内容是可以改变的</li>
+</ul>
+</li>
+</ul>
+</li>
+</ul>
+<h4 id="接口"><a href="#接口" class="headerlink" title="接口"></a>接口</h4><ul>
+<li><p>成员变量</p>
+<ul>
+<li>只能是常量</li>
+<li>省略：public static final</li>
+</ul>
+</li>
+<li><p>构造方法</p>
+<ul>
+<li>没有构造方法，接口是主要是扩展功能，没有具体的存在</li>
+</ul>
+</li>
+<li><p>成员方法</p>
+<ul>
+<li><p>抽象方法</p>
+<ul>
+<li>省略：public abstract </li>
+<li>抽象方法子类必须重写</li>
+</ul>
+</li>
+<li><p>默认方法（jdk8）</p>
+<ul>
+<li>默认方法不是抽象方法，不强制重写，但是可以进行重写，重写的时候要去掉default关键字</li>
+<li>如果实现了多个接口，多个接口中存在相同的方法声明，子类就必须对该方法进行重写</li>
+<li>接口的默认方法可以被实现类对象调用</li>
+</ul>
+</li>
+<li><p>静态方法（jdk8）</p>
+<ul>
+<li>静态方法只可以通过接口名进行调用，不可以通过实现类名或者对象名调用</li>
+<li>public可以省略， static不可以省略</li>
+</ul>
+</li>
+<li><p>私有方法（jdk9）</p>
+<ul>
+<li>jdk9添加的私有方法，因为jdk8中添加了默认方法和静态方法，这必然会出现相同的代码，相同的代码抽取成为一个方法，不被别人使用，用私有隐藏起来，这就是私有方法出现的必然性</li>
+</ul>
+</li>
+<li><p>注意事项：</p>
+<ul>
+<li>默认方法可以调用私有的静态方法和私有的非静态方法</li>
+<li>静态方法只能调用私有的静态方法</li>
+<li>所以在定义私有方法的时候，一般定义为私有静态的方法，方便进行调用</li>
+</ul>
+</li>
+</ul>
+</li>
+</ul>
+
+      
+
+      
+    </div>
+    <div class="article-info article-info-index">
+      
+      
+      
+
+      
+        <p class="article-more-link">
+          <a class="article-more-a" href="/2021/03/12/%E9%9D%A2%E5%90%91%E5%AF%B9%E8%B1%A1/%E9%9D%A2%E5%90%91%E5%AF%B9%E8%B1%A11.2/">展开全文 >></a>
+        </p>
+      
+
+      
+      <div class="clearfix"></div>
+    </div>
+  </div>
+</article>
+
+<aside class="wrap-side-operation">
+    <div class="mod-side-operation">
+        
+        <div class="jump-container" id="js-jump-container" style="display:none;">
+            <a href="javascript:void(0)" class="mod-side-operation__jump-to-top">
+                <i class="icon-font icon-back"></i>
+            </a>
+            <div id="js-jump-plan-container" class="jump-plan-container" style="top: -11px;">
+                <i class="icon-font icon-plane jump-plane"></i>
+            </div>
+        </div>
+        
+        
+    </div>
+</aside>
+
+
+
+
+  
+    <article id="post-AJAX/AJAX基础" class="article article-type-post  article-index" itemscope itemprop="blogPost">
+  <div class="article-inner">
+    
+      <header class="article-header">
+        
+  
+    <h1 itemprop="name">
+      <a class="article-title" href="/2021/03/06/AJAX/AJAX%E5%9F%BA%E7%A1%80/">AJAX基础</a>
+    </h1>
+  
+
+        
+        <a href="/2021/03/06/AJAX/AJAX%E5%9F%BA%E7%A1%80/" class="archive-article-date">
+  	<time datetime="2021-03-06T01:06:00.000Z" itemprop="datePublished"><i class="icon-calendar icon"></i>2021-03-06</time>
+</a>
+        
+		
+		
+		<!--添加文章访问量-->
+		
+		
+		
+		
+      </header>
+    
+    <div class="article-entry" itemprop="articleBody">
+      
+        <h2 id="AJAX介绍"><a href="#AJAX介绍" class="headerlink" title="AJAX介绍"></a>AJAX介绍</h2><ul>
+<li><p>AJAX(Asynchronous JavaScript And XML)：异步的 JavaScript 和 XML。</p>
+        
+          <a class="article-more-a" href="/2021/03/06/AJAX/AJAX%E5%9F%BA%E7%A1%80/#more">more >></a>
+        
+      
+
+      
+    </div>
+    <div class="article-info article-info-index">
+      
+      
+	<div class="article-tag tagcloud">
+		<i class="icon-price-tags icon"></i>
+		<ul class="article-tag-list">
+			 
+        		<li class="article-tag-list-item">
+        			<a href="javascript:void(0)" class="js-tag article-tag-list-link color5">AJAX</a>
+        		</li>
+      		
+		</ul>
+	</div>
+
+      
+
+      
+        <p class="article-more-link">
+          <a class="article-more-a" href="/2021/03/06/AJAX/AJAX%E5%9F%BA%E7%A1%80/">展开全文 >></a>
+        </p>
+      
+
+      
+      <div class="clearfix"></div>
+    </div>
+  </div>
+</article>
+
+<aside class="wrap-side-operation">
+    <div class="mod-side-operation">
+        
+        <div class="jump-container" id="js-jump-container" style="display:none;">
+            <a href="javascript:void(0)" class="mod-side-operation__jump-to-top">
+                <i class="icon-font icon-back"></i>
+            </a>
+            <div id="js-jump-plan-container" class="jump-plan-container" style="top: -11px;">
+                <i class="icon-font icon-plane jump-plane"></i>
+            </div>
+        </div>
+        
+        
+    </div>
+</aside>
+
+
+
+
+  
+    <article id="post-Redis/redis基础知识" class="article article-type-post  article-index" itemscope itemprop="blogPost">
+  <div class="article-inner">
+    
+      <header class="article-header">
+        
+  
+    <h1 itemprop="name">
+      <a class="article-title" href="/2021/03/05/Redis/redis%E5%9F%BA%E7%A1%80%E7%9F%A5%E8%AF%86/">redis基础知识</a>
+    </h1>
+  
+
+        
+        <a href="/2021/03/05/Redis/redis%E5%9F%BA%E7%A1%80%E7%9F%A5%E8%AF%86/" class="archive-article-date">
+  	<time datetime="2021-03-05T12:59:54.000Z" itemprop="datePublished"><i class="icon-calendar icon"></i>2021-03-05</time>
+</a>
+        
+		
+		
+		<!--添加文章访问量-->
+		
+		
+		
+		
+      </header>
+    
+    <div class="article-entry" itemprop="articleBody">
+      
+        <h3 id="NoSql"><a href="#NoSql" class="headerlink" title="NoSql"></a>NoSql</h3><ul>
+<li>海量用户+高并发，会造成服务器瘫痪，主要原因就是使用的是关系型数据库</li>
+</ul>
+        
+          <a class="article-more-a" href="/2021/03/05/Redis/redis%E5%9F%BA%E7%A1%80%E7%9F%A5%E8%AF%86/#more">more >></a>
+        
+      
+
+      
+    </div>
+    <div class="article-info article-info-index">
+      
+      
+	<div class="article-tag tagcloud">
+		<i class="icon-price-tags icon"></i>
+		<ul class="article-tag-list">
+			 
+        		<li class="article-tag-list-item">
+        			<a href="javascript:void(0)" class="js-tag article-tag-list-link color1">redis</a>
+        		</li>
+      		
+		</ul>
+	</div>
+
+      
+	<div class="article-category tagcloud">
+		<i class="icon-book icon"></i>
+		<ul class="article-tag-list">
+			 
+        		<li class="article-tag-list-item">
+        			<a href="/categories/redis//" class="article-tag-list-link color1">redis</a>
+        		</li>
+      		
+		</ul>
+	</div>
+
+
+      
+        <p class="article-more-link">
+          <a class="article-more-a" href="/2021/03/05/Redis/redis%E5%9F%BA%E7%A1%80%E7%9F%A5%E8%AF%86/">展开全文 >></a>
+        </p>
+      
+
+      
+      <div class="clearfix"></div>
+    </div>
+  </div>
+</article>
+
+<aside class="wrap-side-operation">
+    <div class="mod-side-operation">
+        
+        <div class="jump-container" id="js-jump-container" style="display:none;">
+            <a href="javascript:void(0)" class="mod-side-operation__jump-to-top">
+                <i class="icon-font icon-back"></i>
+            </a>
+            <div id="js-jump-plan-container" class="jump-plan-container" style="top: -11px;">
+                <i class="icon-font icon-plane jump-plane"></i>
+            </div>
+        </div>
+        
+        
+    </div>
+</aside>
+
+
+
+
+  
+    <article id="post-mybatis/MyBatis关系映射" class="article article-type-post  article-index" itemscope itemprop="blogPost">
+  <div class="article-inner">
+    
+      <header class="article-header">
+        
+  
+    <h1 itemprop="name">
+      <a class="article-title" href="/2021/03/02/mybatis/MyBatis%E5%85%B3%E7%B3%BB%E6%98%A0%E5%B0%84/">MyBatis关系映射</a>
+    </h1>
+  
+
+        
+        <a href="/2021/03/02/mybatis/MyBatis%E5%85%B3%E7%B3%BB%E6%98%A0%E5%B0%84/" class="archive-article-date">
+  	<time datetime="2021-03-02T13:04:41.000Z" itemprop="datePublished"><i class="icon-calendar icon"></i>2021-03-02</time>
+</a>
+        
+		
+		
+		<!--添加文章访问量-->
+		
+		
+		
+		
+      </header>
+    
+    <div class="article-entry" itemprop="articleBody">
+      
+        <h3 id="MyBatis关系映射"><a href="#MyBatis关系映射" class="headerlink" title="MyBatis关系映射"></a>MyBatis关系映射</h3><h4 id="静态代理实现"><a href="#静态代理实现" class="headerlink" title="静态代理实现"></a>静态代理实现</h4>
+        
+          <a class="article-more-a" href="/2021/03/02/mybatis/MyBatis%E5%85%B3%E7%B3%BB%E6%98%A0%E5%B0%84/#more">more >></a>
+        
+      
+
+      
+    </div>
+    <div class="article-info article-info-index">
+      
+      
+	<div class="article-tag tagcloud">
+		<i class="icon-price-tags icon"></i>
+		<ul class="article-tag-list">
+			 
+        		<li class="article-tag-list-item">
+        			<a href="javascript:void(0)" class="js-tag article-tag-list-link color3">MyBatis</a>
+        		</li>
+      		
+		</ul>
+	</div>
+
+      
+
+      
+        <p class="article-more-link">
+          <a class="article-more-a" href="/2021/03/02/mybatis/MyBatis%E5%85%B3%E7%B3%BB%E6%98%A0%E5%B0%84/">展开全文 >></a>
+        </p>
+      
+
+      
+      <div class="clearfix"></div>
+    </div>
+  </div>
+</article>
+
+<aside class="wrap-side-operation">
+    <div class="mod-side-operation">
+        
+        <div class="jump-container" id="js-jump-container" style="display:none;">
+            <a href="javascript:void(0)" class="mod-side-operation__jump-to-top">
+                <i class="icon-font icon-back"></i>
+            </a>
+            <div id="js-jump-plan-container" class="jump-plan-container" style="top: -11px;">
+                <i class="icon-font icon-plane jump-plane"></i>
+            </div>
+        </div>
+        
+        
+    </div>
+</aside>
+
+
+
+
+  
+    <article id="post-mybatis/MyBatis基础" class="article article-type-post  article-index" itemscope itemprop="blogPost">
+  <div class="article-inner">
+    
+      <header class="article-header">
+        
+  
+    <h1 itemprop="name">
+      <a class="article-title" href="/2021/02/25/mybatis/MyBatis%E5%9F%BA%E7%A1%80/">MyBatis基础</a>
+    </h1>
+  
+
+        
+        <a href="/2021/02/25/mybatis/MyBatis%E5%9F%BA%E7%A1%80/" class="archive-article-date">
   	<time datetime="2021-02-25T01:10:45.000Z" itemprop="datePublished"><i class="icon-calendar icon"></i>2021-02-25</time>
 </a>
         
@@ -289,7 +860,7 @@
 <li>框架是一款半成品软件，我们可以基于这个半成品软件继续开发，来完成我们个性化的需求！</li>
 </ul>
         
-          <a class="article-more-a" href="/2021/02/25/%E6%A1%86%E6%9E%B6%E6%8A%80%E6%9C%AF/MyBatis%E5%9F%BA%E7%A1%80/#more">more >></a>
+          <a class="article-more-a" href="/2021/02/25/mybatis/MyBatis%E5%9F%BA%E7%A1%80/#more">more >></a>
         
       
 
@@ -313,7 +884,7 @@
 
       
         <p class="article-more-link">
-          <a class="article-more-a" href="/2021/02/25/%E6%A1%86%E6%9E%B6%E6%8A%80%E6%9C%AF/MyBatis%E5%9F%BA%E7%A1%80/">展开全文 >></a>
+          <a class="article-more-a" href="/2021/02/25/mybatis/MyBatis%E5%9F%BA%E7%A1%80/">展开全文 >></a>
         </p>
       
 
@@ -628,560 +1199,6 @@
 
 
   
-    <article id="post-mysql/mysql进阶" class="article article-type-post  article-index" itemscope itemprop="blogPost">
-  <div class="article-inner">
-    
-      <header class="article-header">
-        
-  
-    <h1 itemprop="name">
-      <a class="article-title" href="/2021/02/22/mysql/mysql%E8%BF%9B%E9%98%B6/">mysql进阶</a>
-    </h1>
-  
-
-        
-        <a href="/2021/02/22/mysql/mysql%E8%BF%9B%E9%98%B6/" class="archive-article-date">
-  	<time datetime="2021-02-22T02:11:26.000Z" itemprop="datePublished"><i class="icon-calendar icon"></i>2021-02-22</time>
-</a>
-        
-		
-		
-		<!--添加文章访问量-->
-		
-		
-		
-		
-      </header>
-    
-    <div class="article-entry" itemprop="articleBody">
-      
-        <h3 id="约束"><a href="#约束" class="headerlink" title="约束"></a>约束</h3><h5 id="外键约束"><a href="#外键约束" class="headerlink" title="外键约束"></a>外键约束</h5><ul>
-<li>让表和表之间产生关系，从而保证数据的准确性</li>
-</ul>
-<h5 id="建表时添加外键约束"><a href="#建表时添加外键约束" class="headerlink" title="建表时添加外键约束"></a>建表时添加外键约束</h5><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br></pre></td><td class="code"><pre><span class="line">-- 创建user用户表</span><br><span class="line">CREATE TABLE USER(</span><br><span class="line">	id INT PRIMARY KEY AUTO_INCREMENT,    -- id</span><br><span class="line">	NAME VARCHAR(20) NOT NULL             -- 姓名                                                                            </span><br><span class="line">);</span><br><span class="line">-- 添加用户数据</span><br><span class="line">INSERT INTO USER VALUES (NULL,&#39;张三&#39;),(NULL,&#39;李四&#39;),(NULL,&#39;王五&#39;);</span><br><span class="line"></span><br><span class="line">-- 创建orderlist订单表</span><br><span class="line">CREATE TABLE orderlist(</span><br><span class="line">	id INT PRIMARY KEY AUTO_INCREMENT,    -- id</span><br><span class="line">	number VARCHAR(20) NOT NULL,          -- 订单编号</span><br><span class="line">	uid INT,                              -- 订单所属用户</span><br><span class="line">	CONSTRAINT ou_fk1 FOREIGN KEY (uid) REFERENCES USER(id)   -- 添加外键约束</span><br><span class="line">);</span><br><span class="line">-- 添加订单数据</span><br><span class="line">INSERT INTO orderlist VALUES (NULL,&#39;hh001&#39;,1),(NULL,&#39;hh002&#39;,1),</span><br><span class="line">(NULL,&#39;hh003&#39;,2),(NULL,&#39;hh004&#39;,2),</span><br><span class="line">(NULL,&#39;hh005&#39;,3),(NULL,&#39;hh006&#39;,3);</span><br><span class="line"></span><br><span class="line">-- 添加一个订单，但是没有所属用户。无法添加</span><br><span class="line">INSERT INTO orderlist VALUES (NULL,&#39;hh007&#39;,8);</span><br><span class="line">-- 删除王五这个用户，但是订单表中王五还有很多个订单呢。无法删除</span><br><span class="line">DELETE FROM USER WHERE NAME&#x3D;&#39;王五&#39;;</span><br></pre></td></tr></table></figure>
-<h5 id="建表后添加外键约束"><a href="#建表后添加外键约束" class="headerlink" title="建表后添加外键约束"></a>建表后添加外键约束</h5><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">-- 建表后添加外键</span><br><span class="line">alter table orderlist ADD constraint ou_fk1 foreign key (uid) references &#96;USER&#96;(id);</span><br></pre></td></tr></table></figure>
-<h5 id="删除外键约束"><a href="#删除外键约束" class="headerlink" title="删除外键约束"></a>删除外键约束</h5><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">-- 删除外键约束</span><br><span class="line">alter table orderlist drop foreign key ou_fk1;</span><br></pre></td></tr></table></figure>
-<h3 id="多表查询"><a href="#多表查询" class="headerlink" title="多表查询"></a>多表查询</h3><h5 id="数据准备"><a href="#数据准备" class="headerlink" title="数据准备"></a>数据准备</h5><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br><span class="line">42</span><br><span class="line">43</span><br><span class="line">44</span><br><span class="line">45</span><br><span class="line">46</span><br><span class="line">47</span><br><span class="line">48</span><br><span class="line">49</span><br><span class="line">50</span><br><span class="line">51</span><br><span class="line">52</span><br><span class="line">53</span><br><span class="line">54</span><br><span class="line">55</span><br><span class="line">56</span><br><span class="line">57</span><br><span class="line">58</span><br><span class="line">59</span><br><span class="line">60</span><br><span class="line">61</span><br><span class="line">62</span><br><span class="line">63</span><br><span class="line">64</span><br><span class="line">65</span><br><span class="line">66</span><br><span class="line">67</span><br><span class="line">68</span><br><span class="line">69</span><br><span class="line">70</span><br><span class="line">71</span><br><span class="line">72</span><br><span class="line">73</span><br><span class="line">74</span><br><span class="line">75</span><br><span class="line">76</span><br><span class="line">77</span><br><span class="line">78</span><br><span class="line">79</span><br><span class="line">80</span><br><span class="line">81</span><br><span class="line">82</span><br><span class="line">83</span><br><span class="line">84</span><br><span class="line">85</span><br><span class="line">86</span><br><span class="line">87</span><br><span class="line">88</span><br><span class="line">89</span><br><span class="line">90</span><br><span class="line">91</span><br><span class="line">92</span><br><span class="line">93</span><br><span class="line">94</span><br><span class="line">95</span><br><span class="line">96</span><br><span class="line">97</span><br><span class="line">98</span><br><span class="line">99</span><br><span class="line">100</span><br><span class="line">101</span><br></pre></td><td class="code"><pre><span class="line">-- 创建db6数据库</span><br><span class="line">CREATE DATABASE db6;</span><br><span class="line">-- 使用db6数据库</span><br><span class="line">USE db6;</span><br><span class="line"></span><br><span class="line">-- 创建user表</span><br><span class="line">CREATE TABLE USER(</span><br><span class="line">	id INT PRIMARY KEY AUTO_INCREMENT,	-- 用户id</span><br><span class="line">	NAME VARCHAR(20),			        -- 用户姓名</span><br><span class="line">	age INT                             -- 用户年龄</span><br><span class="line">);</span><br><span class="line">-- 添加数据</span><br><span class="line">INSERT INTO USER VALUES (1,&#39;张三&#39;,23);</span><br><span class="line">INSERT INTO USER VALUES (2,&#39;李四&#39;,24);</span><br><span class="line">INSERT INTO USER VALUES (3,&#39;王五&#39;,25);</span><br><span class="line">INSERT INTO USER VALUES (4,&#39;赵六&#39;,26);</span><br><span class="line"></span><br><span class="line"></span><br><span class="line">-- 订单表</span><br><span class="line">CREATE TABLE orderlist(</span><br><span class="line">	id INT PRIMARY KEY AUTO_INCREMENT,	-- 订单id</span><br><span class="line">	number VARCHAR(30),					-- 订单编号</span><br><span class="line">	uid INT,    -- 外键字段</span><br><span class="line">	CONSTRAINT ou_fk1 FOREIGN KEY (uid) REFERENCES USER(id)</span><br><span class="line">);</span><br><span class="line">-- 添加数据</span><br><span class="line">INSERT INTO orderlist VALUES (1,&#39;hm001&#39;,1);</span><br><span class="line">INSERT INTO orderlist VALUES (2,&#39;hm002&#39;,1);</span><br><span class="line">INSERT INTO orderlist VALUES (3,&#39;hm003&#39;,2);</span><br><span class="line">INSERT INTO orderlist VALUES (4,&#39;hm004&#39;,2);</span><br><span class="line">INSERT INTO orderlist VALUES (5,&#39;hm005&#39;,3);</span><br><span class="line">INSERT INTO orderlist VALUES (6,&#39;hm006&#39;,3);</span><br><span class="line">INSERT INTO orderlist VALUES (7,&#39;hm007&#39;,NULL);</span><br><span class="line"></span><br><span class="line"></span><br><span class="line">-- 商品分类表</span><br><span class="line">CREATE TABLE category(</span><br><span class="line">	id INT PRIMARY KEY AUTO_INCREMENT,  -- 商品分类id</span><br><span class="line">	NAME VARCHAR(10)                    -- 商品分类名称</span><br><span class="line">);</span><br><span class="line">-- 添加数据</span><br><span class="line">INSERT INTO category VALUES (1,&#39;手机数码&#39;);</span><br><span class="line">INSERT INTO category VALUES (2,&#39;电脑办公&#39;);</span><br><span class="line">INSERT INTO category VALUES (3,&#39;烟酒茶糖&#39;);</span><br><span class="line">INSERT INTO category VALUES (4,&#39;鞋靴箱包&#39;);</span><br><span class="line"></span><br><span class="line"></span><br><span class="line">-- 商品表</span><br><span class="line">CREATE TABLE product(</span><br><span class="line">	id INT PRIMARY KEY AUTO_INCREMENT,   -- 商品id</span><br><span class="line">	NAME VARCHAR(30),                    -- 商品名称</span><br><span class="line">	cid INT, -- 外键字段</span><br><span class="line">	CONSTRAINT cp_fk1 FOREIGN KEY (cid) REFERENCES category(id)</span><br><span class="line">);</span><br><span class="line">-- 添加数据</span><br><span class="line">INSERT INTO product VALUES (1,&#39;华为手机&#39;,1);</span><br><span class="line">INSERT INTO product VALUES (2,&#39;小米手机&#39;,1);</span><br><span class="line">INSERT INTO product VALUES (3,&#39;联想电脑&#39;,2);</span><br><span class="line">INSERT INTO product VALUES (4,&#39;苹果电脑&#39;,2);</span><br><span class="line">INSERT INTO product VALUES (5,&#39;中华香烟&#39;,3);</span><br><span class="line">INSERT INTO product VALUES (6,&#39;玉溪香烟&#39;,3);</span><br><span class="line">INSERT INTO product VALUES (7,&#39;计生用品&#39;,NULL);</span><br><span class="line"></span><br><span class="line"></span><br><span class="line">-- 中间表</span><br><span class="line">CREATE TABLE us_pro(</span><br><span class="line">	upid INT PRIMARY KEY AUTO_INCREMENT,  -- 中间表id</span><br><span class="line">	uid INT, -- 外键字段。需要和用户表的主键产生关联</span><br><span class="line">	pid INT, -- 外键字段。需要和商品表的主键产生关联</span><br><span class="line">	CONSTRAINT up_fk1 FOREIGN KEY (uid) REFERENCES USER(id),</span><br><span class="line">	CONSTRAINT up_fk2 FOREIGN KEY (pid) REFERENCES product(id)</span><br><span class="line">);</span><br><span class="line">-- 添加数据</span><br><span class="line">INSERT INTO us_pro VALUES (NULL,1,1);</span><br><span class="line">INSERT INTO us_pro VALUES (NULL,1,2);</span><br><span class="line">INSERT INTO us_pro VALUES (NULL,1,3);</span><br><span class="line">INSERT INTO us_pro VALUES (NULL,1,4);</span><br><span class="line">INSERT INTO us_pro VALUES (NULL,1,5);</span><br><span class="line">INSERT INTO us_pro VALUES (NULL,1,6);</span><br><span class="line">INSERT INTO us_pro VALUES (NULL,1,7);</span><br><span class="line">INSERT INTO us_pro VALUES (NULL,2,1);</span><br><span class="line">INSERT INTO us_pro VALUES (NULL,2,2);</span><br><span class="line">INSERT INTO us_pro VALUES (NULL,2,3);</span><br><span class="line">INSERT INTO us_pro VALUES (NULL,2,4);</span><br><span class="line">INSERT INTO us_pro VALUES (NULL,2,5);</span><br><span class="line">INSERT INTO us_pro VALUES (NULL,2,6);</span><br><span class="line">INSERT INTO us_pro VALUES (NULL,2,7);</span><br><span class="line">INSERT INTO us_pro VALUES (NULL,3,1);</span><br><span class="line">INSERT INTO us_pro VALUES (NULL,3,2);</span><br><span class="line">INSERT INTO us_pro VALUES (NULL,3,3);</span><br><span class="line">INSERT INTO us_pro VALUES (NULL,3,4);</span><br><span class="line">INSERT INTO us_pro VALUES (NULL,3,5);</span><br><span class="line">INSERT INTO us_pro VALUES (NULL,3,6);</span><br><span class="line">INSERT INTO us_pro VALUES (NULL,3,7);</span><br><span class="line">INSERT INTO us_pro VALUES (NULL,4,1);</span><br><span class="line">INSERT INTO us_pro VALUES (NULL,4,2);</span><br><span class="line">INSERT INTO us_pro VALUES (NULL,4,3);</span><br><span class="line">INSERT INTO us_pro VALUES (NULL,4,4);</span><br><span class="line">INSERT INTO us_pro VALUES (NULL,4,5);</span><br><span class="line">INSERT INTO us_pro VALUES (NULL,4,6);</span><br><span class="line">INSERT INTO us_pro VALUES (NULL,4,7);</span><br></pre></td></tr></table></figure>
-<h5 id="笛卡尔积查询"><a href="#笛卡尔积查询" class="headerlink" title="笛卡尔积查询"></a>笛卡尔积查询</h5><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">-- 查询user表和orderlist表</span><br><span class="line">SELECT * FROM user,orderlist;</span><br></pre></td></tr></table></figure>
-<h5 id="多表查询-内连接查询"><a href="#多表查询-内连接查询" class="headerlink" title="多表查询-内连接查询"></a>多表查询-内连接查询</h5><ul>
-<li><p>内连接查询的是两张表有交集的部分数据（有主外键关联的数据）</p>
-</li>
-<li><p>显示内连接</p>
-</li>
-</ul>
-<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br></pre></td><td class="code"><pre><span class="line">-- 查询用户信息和对应的订单信息</span><br><span class="line">SELECT * FROM &#96;USER&#96; INNER JOIN</span><br><span class="line">orderlist ON &#96;USER&#96;.id&#x3D;orderlist.uid;</span><br><span class="line"></span><br><span class="line">-- 查询用户信息和对应的订单信息 起别名</span><br><span class="line">SELECT * FROM &#96;USER&#96; u JOIN orderlist o ON u.id&#x3D;o.uid;</span><br><span class="line"></span><br><span class="line">-- 查询用户姓名，年龄。和订单编号</span><br><span class="line">SELECT</span><br><span class="line">	u.&#96;NAME&#96;,</span><br><span class="line">	u.age,</span><br><span class="line">	o.number</span><br><span class="line">FROM</span><br><span class="line">	&#96;USER&#96; u	</span><br><span class="line">JOIN</span><br><span class="line">	orderlist o</span><br><span class="line">ON</span><br><span class="line">	u.id&#x3D;o.uid;</span><br></pre></td></tr></table></figure>
-<ul>
-<li>隐式内连接</li>
-</ul>
-<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br></pre></td><td class="code"><pre><span class="line">-- 查询用户姓名，年龄。和订单编号</span><br><span class="line">SELECT</span><br><span class="line">	u.&#96;NAME&#96;,</span><br><span class="line">	u.age,</span><br><span class="line">	o.number</span><br><span class="line">FROM</span><br><span class="line">	&#96;USER&#96; u,</span><br><span class="line">	orderlist o</span><br><span class="line">where</span><br><span class="line">	u.id&#x3D;o.uid;</span><br></pre></td></tr></table></figure>
-<h5 id="多表查询-外连接查询"><a href="#多表查询-外连接查询" class="headerlink" title="多表查询-外连接查询"></a>多表查询-外连接查询</h5><ul>
-<li>左外连接<ul>
-<li>查询左表的全部数据，和左右两张表有交集部分的数据</li>
-</ul>
-</li>
-</ul>
-<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br></pre></td><td class="code"><pre><span class="line">-- 查询用户所有信息，以及用户对应的订单信息</span><br><span class="line">SELECT</span><br><span class="line">	u.&#96;NAME&#96;,</span><br><span class="line">	u.age,</span><br><span class="line">	o.number</span><br><span class="line">FROM</span><br><span class="line">	&#96;USER&#96; u</span><br><span class="line">LEFT JOIN</span><br><span class="line">	orderlist o</span><br><span class="line">ON </span><br><span class="line">	u.id&#x3D;o.uid;</span><br></pre></td></tr></table></figure>
-<ul>
-<li>右外连接<ul>
-<li>查询右表的全部数据，和左右两张表有交集部分的数据</li>
-</ul>
-</li>
-</ul>
-<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br></pre></td><td class="code"><pre><span class="line">-- 	查询所有订单信息，以及订单所属的用户信息</span><br><span class="line">SELECT</span><br><span class="line">	u.&#96;NAME&#96;,</span><br><span class="line">	u.age,</span><br><span class="line">	o.number</span><br><span class="line">FROM</span><br><span class="line">	&#96;USER&#96; u</span><br><span class="line">LEFT JOIN</span><br><span class="line">	orderlist o</span><br><span class="line">ON </span><br><span class="line">	u.id&#x3D;o.uid;	</span><br></pre></td></tr></table></figure>
-<h5 id="多表查询-子查询"><a href="#多表查询-子查询" class="headerlink" title="多表查询-子查询"></a>多表查询-子查询</h5><ul>
-<li>查询语句中嵌套了查询语句–成为子查询</li>
-<li>可以作为条件，使用运算符进行判断</li>
-<li>结果是单行单列的</li>
-</ul>
-<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br></pre></td><td class="code"><pre><span class="line">-- 查询年龄最高的用户姓名</span><br><span class="line">SELECT MAX(age) FROM &#96;USER&#96;;</span><br><span class="line"></span><br><span class="line">-- 根据查询出来的最高年龄，查询姓名和年龄</span><br><span class="line">SELECT &#96;NAME&#96;,age FROM &#96;USER&#96; WHERE age&#x3D;26;</span><br><span class="line"></span><br><span class="line">SELECT &#96;NAME&#96;,age FROM &#96;USER&#96; WHERE age &#x3D; (SELECT MAX(age) FROM &#96;USER&#96;);</span><br></pre></td></tr></table></figure>
-<ul>
-<li>子查询- 结果是多行多列的<ul>
-<li>可以作为条件，使用运算符in或not in 进行判断！</li>
-</ul>
-</li>
-</ul>
-<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br></pre></td><td class="code"><pre><span class="line">-- 查询张三和李四的订单信息</span><br><span class="line">SELECT id FROM &#96;USER&#96; WHERE &#96;NAME&#96;&#x3D;&#39;张三&#39; OR &#96;NAME&#96;&#x3D;&#39;李四&#39;; --查询张三和李四的id</span><br><span class="line"></span><br><span class="line">-- 根据查找出来的id进而查询订单</span><br><span class="line">SELECT number,uid FROM orderlist where uid&#x3D;1 OR uid&#x3D;2;</span><br><span class="line"></span><br><span class="line">SELECT number,uid FROM orderlist WHERE uid IN (SELECT id FROM &#96;USER&#96; WHERE &#96;NAME&#96;&#x3D;&#39;张三&#39; OR &#96;NAME&#96;&#x3D;&#39;李四&#39;);</span><br></pre></td></tr></table></figure>
-<ul>
-<li>子查询-结果是多行多列的<ul>
-<li>可以作为一张虚拟表参与查询</li>
-</ul>
-</li>
-</ul>
-<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">-- 查询订单表中id大于4的订单信息和所属用户信息</span><br><span class="line">SELECT * FROM &#96;USER&#96; u,(SELECT * FROM orderlist where id&gt;4) o WHERE u.id&#x3D;o.uid;</span><br></pre></td></tr></table></figure>
-<h3 id="多表查询练习"><a href="#多表查询练习" class="headerlink" title="多表查询练习"></a>多表查询练习</h3><h5 id="查询用户的编号、姓名、年龄、订单编号"><a href="#查询用户的编号、姓名、年龄、订单编号" class="headerlink" title="查询用户的编号、姓名、年龄、订单编号"></a>查询用户的编号、姓名、年龄、订单编号</h5><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br></pre></td><td class="code"><pre><span class="line">SELECT</span><br><span class="line">	u.id,</span><br><span class="line">	u.&#96;NAME&#96;,</span><br><span class="line">	u.age,</span><br><span class="line">	o.number</span><br><span class="line">FROM</span><br><span class="line">	&#96;USER&#96; u,</span><br><span class="line">	orderlist o</span><br><span class="line">WHERE</span><br><span class="line">	u.id&#x3D;o.uid;</span><br></pre></td></tr></table></figure>
-<h5 id="查询所有的用户。用户的编号、姓名、年龄，订单编号"><a href="#查询所有的用户。用户的编号、姓名、年龄，订单编号" class="headerlink" title="查询所有的用户。用户的编号、姓名、年龄，订单编号"></a>查询所有的用户。用户的编号、姓名、年龄，订单编号</h5><ul>
-<li>左外连接</li>
-</ul>
-<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br></pre></td><td class="code"><pre><span class="line">SELECT</span><br><span class="line">	u.id,</span><br><span class="line">	u.NAME,</span><br><span class="line">	u.age,</span><br><span class="line">	o.number</span><br><span class="line">FROM</span><br><span class="line">	&#96;USER&#96; u</span><br><span class="line">LEFT JOIN</span><br><span class="line">	orderlist o</span><br><span class="line">ON </span><br><span class="line">	u.id&#x3D;o.uid;</span><br></pre></td></tr></table></figure>
-<h5 id="查询所有订单，用户的编号、姓名、年龄、订单编号"><a href="#查询所有订单，用户的编号、姓名、年龄、订单编号" class="headerlink" title="查询所有订单，用户的编号、姓名、年龄、订单编号"></a>查询所有订单，用户的编号、姓名、年龄、订单编号</h5><ul>
-<li>右外连接</li>
-</ul>
-<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br></pre></td><td class="code"><pre><span class="line">SELECT</span><br><span class="line">	u.id,</span><br><span class="line">	u.&#96;NAME&#96;,</span><br><span class="line">	u.age,</span><br><span class="line">	o.number</span><br><span class="line">FROM</span><br><span class="line">	&#96;USER&#96; u</span><br><span class="line">RIGHT JOIN</span><br><span class="line">	orderlist o</span><br><span class="line">ON</span><br><span class="line">	u.id&#x3D;o.uid;</span><br></pre></td></tr></table></figure>
-<h5 id="查询用户年龄大于23岁的信息。显示用户的编号、姓名、年龄。订单编号"><a href="#查询用户年龄大于23岁的信息。显示用户的编号、姓名、年龄。订单编号" class="headerlink" title="查询用户年龄大于23岁的信息。显示用户的编号、姓名、年龄。订单编号"></a>查询用户年龄大于23岁的信息。显示用户的编号、姓名、年龄。订单编号</h5><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br></pre></td><td class="code"><pre><span class="line">SELECT</span><br><span class="line">	u.id,</span><br><span class="line">	u.&#96;NAME&#96;,</span><br><span class="line">	u.age,</span><br><span class="line">	o.number</span><br><span class="line">FROM</span><br><span class="line">	&#96;USER&#96; u</span><br><span class="line"></span><br><span class="line">LEFT JOIN</span><br><span class="line">	orderlist o</span><br><span class="line">ON</span><br><span class="line">	u.id &#x3D; o.uid</span><br><span class="line">WHERE</span><br><span class="line">	u.age&gt;23;</span><br></pre></td></tr></table></figure>
-<h5 id="查询张三和李四用户的信息。显示用户的编号、姓名、年龄。订单编号"><a href="#查询张三和李四用户的信息。显示用户的编号、姓名、年龄。订单编号" class="headerlink" title="查询张三和李四用户的信息。显示用户的编号、姓名、年龄。订单编号"></a>查询张三和李四用户的信息。显示用户的编号、姓名、年龄。订单编号</h5><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br></pre></td><td class="code"><pre><span class="line">SELECT</span><br><span class="line">	u.id,</span><br><span class="line">	u.&#96;NAME&#96;,</span><br><span class="line">	u.age,</span><br><span class="line">	o.number</span><br><span class="line">FROM</span><br><span class="line">	&#96;USER&#96; u,</span><br><span class="line">	orderlist o</span><br><span class="line">WHERE</span><br><span class="line">	u.id&#x3D;o.uid</span><br><span class="line">	AND </span><br><span class="line">	u.NAME IN(&#39;张三&#39;,&#39;李四&#39;);</span><br></pre></td></tr></table></figure>
-
-      
-
-      
-    </div>
-    <div class="article-info article-info-index">
-      
-      
-	<div class="article-tag tagcloud">
-		<i class="icon-price-tags icon"></i>
-		<ul class="article-tag-list">
-			 
-        		<li class="article-tag-list-item">
-        			<a href="javascript:void(0)" class="js-tag article-tag-list-link color1">mysql</a>
-        		</li>
-      		
-		</ul>
-	</div>
-
-      
-
-      
-        <p class="article-more-link">
-          <a class="article-more-a" href="/2021/02/22/mysql/mysql%E8%BF%9B%E9%98%B6/">展开全文 >></a>
-        </p>
-      
-
-      
-      <div class="clearfix"></div>
-    </div>
-  </div>
-</article>
-
-<aside class="wrap-side-operation">
-    <div class="mod-side-operation">
-        
-        <div class="jump-container" id="js-jump-container" style="display:none;">
-            <a href="javascript:void(0)" class="mod-side-operation__jump-to-top">
-                <i class="icon-font icon-back"></i>
-            </a>
-            <div id="js-jump-plan-container" class="jump-plan-container" style="top: -11px;">
-                <i class="icon-font icon-plane jump-plane"></i>
-            </div>
-        </div>
-        
-        
-    </div>
-</aside>
-
-
-
-
-  
-    <article id="post-JVM/java内存区域与内存溢出异常" class="article article-type-post  article-index" itemscope itemprop="blogPost">
-  <div class="article-inner">
-    
-      <header class="article-header">
-        
-  
-    <h1 itemprop="name">
-      <a class="article-title" href="/2021/02/20/JVM/java%E5%86%85%E5%AD%98%E5%8C%BA%E5%9F%9F%E4%B8%8E%E5%86%85%E5%AD%98%E6%BA%A2%E5%87%BA%E5%BC%82%E5%B8%B8/">java内存区域与内存溢出异常</a>
-    </h1>
-  
-
-        
-        <a href="/2021/02/20/JVM/java%E5%86%85%E5%AD%98%E5%8C%BA%E5%9F%9F%E4%B8%8E%E5%86%85%E5%AD%98%E6%BA%A2%E5%87%BA%E5%BC%82%E5%B8%B8/" class="archive-article-date">
-  	<time datetime="2021-02-20T12:52:11.000Z" itemprop="datePublished"><i class="icon-calendar icon"></i>2021-02-20</time>
-</a>
-        
-		
-		
-		<!--添加文章访问量-->
-		
-		
-		
-		
-      </header>
-    
-    <div class="article-entry" itemprop="articleBody">
-      
-        <h5 id="程序计数器"><a href="#程序计数器" class="headerlink" title="程序计数器"></a>程序计数器</h5><ul>
-<li>程序计数器是一块较小的内存空间，可以看做是当前线程所执行的字节码的行号指示器。</li>
-<li>字节码解释器工作时就是要通过改变这个计数器的值来选取下一条需要执行的字节码指令，是程序控制流的指示器，分支、循环、跳转、异常处理、线程恢复等基础功能都需要依赖这个计数器来完成。</li>
-</ul>
-<h5 id="java虚拟机栈"><a href="#java虚拟机栈" class="headerlink" title="java虚拟机栈"></a>java虚拟机栈</h5><ul>
-<li><p>java虚拟机栈是线程私有的，生命周期与线程相同。虚拟机栈描述的是java方法执行的线程内存模型：每个方法被执行的时候，都会同步创建一个栈帧，用于存储局部变量表、操作数栈、动态连接、方法出口等信息。</p>
-</li>
-<li><p>每一个方法被调用直至执行完毕的过程，就对应这一个栈帧在虚拟机栈中从入栈到出栈的过程。</p>
-</li>
-<li><p>局部变量表存放了各种java虚拟机基本数据类型，对象引用类型。这并不等于对象本身，可以是指向对象的起始地址。。。</p>
-</li>
-</ul>
-<h5 id="本地方法栈"><a href="#本地方法栈" class="headerlink" title="本地方法栈"></a>本地方法栈</h5><ul>
-<li>本地方法栈与虚拟机栈锁发挥的作用是非常相似的，其区别只是虚拟机栈为虚拟机执行java方法（也就是字节码）服务，而本地方法栈则是为虚拟机使用到的本地方法服务。</li>
-</ul>
-<h5 id="java堆"><a href="#java堆" class="headerlink" title="java堆"></a>java堆</h5><ul>
-<li>对于java应用程序来说，java堆是虚拟机所管理的内存中最大的一块。java堆是被所有线程共享的一块内存区域，在虚拟机启动时创建。此内存区域的唯一目的就是存放对象实例，java世界里几乎所有的对象实例都是在这个分配内存。</li>
-</ul>
-<h5 id="方法区"><a href="#方法区" class="headerlink" title="方法区"></a>方法区</h5><ul>
-<li>方法区与java堆一样，是各个线程共享的内存区域，用于存储已经被虚拟机加载的类型信息、常量、静态变量、即时编译器编译后的代码缓存等数据。</li>
-</ul>
-<h5 id="运行时常量池"><a href="#运行时常量池" class="headerlink" title="运行时常量池"></a>运行时常量池</h5><ul>
-<li>运行时常量池是方法区的一部分。Class文件中除了有类的版本、字段、方法、接口等描述信息外，还有一项信息是常量池表，用于存放编译器生成的各种字面量与符号引用，这部分内容将在类加载后存放到方法区的运行时常量池中。</li>
-</ul>
-<h5 id="直接内存"><a href="#直接内存" class="headerlink" title="直接内存"></a>直接内存</h5><ul>
-<li>直接内存并不是虚拟机运行时数据区的一部分，也不是java虚拟机规范中定义的内存区域。</li>
-<li>一些场景中显著提高性能，因为避免了再java堆和Native堆中来回赋值数据</li>
-</ul>
-
-      
-
-      
-    </div>
-    <div class="article-info article-info-index">
-      
-      
-	<div class="article-tag tagcloud">
-		<i class="icon-price-tags icon"></i>
-		<ul class="article-tag-list">
-			 
-        		<li class="article-tag-list-item">
-        			<a href="javascript:void(0)" class="js-tag article-tag-list-link color4">JVM</a>
-        		</li>
-      		
-		</ul>
-	</div>
-
-      
-
-      
-        <p class="article-more-link">
-          <a class="article-more-a" href="/2021/02/20/JVM/java%E5%86%85%E5%AD%98%E5%8C%BA%E5%9F%9F%E4%B8%8E%E5%86%85%E5%AD%98%E6%BA%A2%E5%87%BA%E5%BC%82%E5%B8%B8/">展开全文 >></a>
-        </p>
-      
-
-      
-      <div class="clearfix"></div>
-    </div>
-  </div>
-</article>
-
-<aside class="wrap-side-operation">
-    <div class="mod-side-operation">
-        
-        <div class="jump-container" id="js-jump-container" style="display:none;">
-            <a href="javascript:void(0)" class="mod-side-operation__jump-to-top">
-                <i class="icon-font icon-back"></i>
-            </a>
-            <div id="js-jump-plan-container" class="jump-plan-container" style="top: -11px;">
-                <i class="icon-font icon-plane jump-plane"></i>
-            </div>
-        </div>
-        
-        
-    </div>
-</aside>
-
-
-
-
-  
-    <article id="post-web核心/web核心-request-response" class="article article-type-post  article-index" itemscope itemprop="blogPost">
-  <div class="article-inner">
-    
-    <div class="article-entry" itemprop="articleBody">
-      
-        <p>title: web核心-request&amp;&amp;response<br>date: 2021-01-31 10:49:14<br>tags:</p>
-<ul>
-<li>web核心<h3 id="request-amp-amp-response"><a href="#request-amp-amp-response" class="headerlink" title="request&amp;&amp;response"></a>request&amp;&amp;response</h3></li>
-</ul>
-        
-          <a class="article-more-a" href="/2021/01/31/web%E6%A0%B8%E5%BF%83/web%E6%A0%B8%E5%BF%83-request-response/#more">more >></a>
-        
-      
-
-      
-    </div>
-    <div class="article-info article-info-index">
-      
-      
-      
-
-      
-        <p class="article-more-link">
-          <a class="article-more-a" href="/2021/01/31/web%E6%A0%B8%E5%BF%83/web%E6%A0%B8%E5%BF%83-request-response/">展开全文 >></a>
-        </p>
-      
-
-      
-      <div class="clearfix"></div>
-    </div>
-  </div>
-</article>
-
-<aside class="wrap-side-operation">
-    <div class="mod-side-operation">
-        
-        <div class="jump-container" id="js-jump-container" style="display:none;">
-            <a href="javascript:void(0)" class="mod-side-operation__jump-to-top">
-                <i class="icon-font icon-back"></i>
-            </a>
-            <div id="js-jump-plan-container" class="jump-plan-container" style="top: -11px;">
-                <i class="icon-font icon-plane jump-plane"></i>
-            </div>
-        </div>
-        
-        
-    </div>
-</aside>
-
-
-
-
-  
-    <article id="post-web核心/web核心-Servlet" class="article article-type-post  article-index" itemscope itemprop="blogPost">
-  <div class="article-inner">
-    
-      <header class="article-header">
-        
-  
-    <h1 itemprop="name">
-      <a class="article-title" href="/2021/01/31/web%E6%A0%B8%E5%BF%83/web%E6%A0%B8%E5%BF%83-Servlet/">web核心-Servlet</a>
-    </h1>
-  
-
-        
-        <a href="/2021/01/31/web%E6%A0%B8%E5%BF%83/web%E6%A0%B8%E5%BF%83-Servlet/" class="archive-article-date">
-  	<time datetime="2021-01-31T02:48:36.000Z" itemprop="datePublished"><i class="icon-calendar icon"></i>2021-01-31</time>
-</a>
-        
-		
-		
-		<!--添加文章访问量-->
-		
-		
-		
-		
-      </header>
-    
-    <div class="article-entry" itemprop="articleBody">
-      
-        <h3 id="Servlet"><a href="#Servlet" class="headerlink" title="Servlet"></a>Servlet</h3>
-        
-          <a class="article-more-a" href="/2021/01/31/web%E6%A0%B8%E5%BF%83/web%E6%A0%B8%E5%BF%83-Servlet/#more">more >></a>
-        
-      
-
-      
-    </div>
-    <div class="article-info article-info-index">
-      
-      
-	<div class="article-tag tagcloud">
-		<i class="icon-price-tags icon"></i>
-		<ul class="article-tag-list">
-			 
-        		<li class="article-tag-list-item">
-        			<a href="javascript:void(0)" class="js-tag article-tag-list-link color1">web核心</a>
-        		</li>
-      		
-		</ul>
-	</div>
-
-      
-
-      
-        <p class="article-more-link">
-          <a class="article-more-a" href="/2021/01/31/web%E6%A0%B8%E5%BF%83/web%E6%A0%B8%E5%BF%83-Servlet/">展开全文 >></a>
-        </p>
-      
-
-      
-      <div class="clearfix"></div>
-    </div>
-  </div>
-</article>
-
-<aside class="wrap-side-operation">
-    <div class="mod-side-operation">
-        
-        <div class="jump-container" id="js-jump-container" style="display:none;">
-            <a href="javascript:void(0)" class="mod-side-operation__jump-to-top">
-                <i class="icon-font icon-back"></i>
-            </a>
-            <div id="js-jump-plan-container" class="jump-plan-container" style="top: -11px;">
-                <i class="icon-font icon-plane jump-plane"></i>
-            </div>
-        </div>
-        
-        
-    </div>
-</aside>
-
-
-
-
-  
-    <article id="post-web核心/web核心-Http协议" class="article article-type-post  article-index" itemscope itemprop="blogPost">
-  <div class="article-inner">
-    
-      <header class="article-header">
-        
-  
-    <h1 itemprop="name">
-      <a class="article-title" href="/2021/01/30/web%E6%A0%B8%E5%BF%83/web%E6%A0%B8%E5%BF%83-Http%E5%8D%8F%E8%AE%AE/">web核心-Http协议</a>
-    </h1>
-  
-
-        
-        <a href="/2021/01/30/web%E6%A0%B8%E5%BF%83/web%E6%A0%B8%E5%BF%83-Http%E5%8D%8F%E8%AE%AE/" class="archive-article-date">
-  	<time datetime="2021-01-30T05:16:40.000Z" itemprop="datePublished"><i class="icon-calendar icon"></i>2021-01-30</time>
-</a>
-        
-		
-		
-		<!--添加文章访问量-->
-		
-		
-		
-		
-      </header>
-    
-    <div class="article-entry" itemprop="articleBody">
-      
-        <h3 id="Http协议"><a href="#Http协议" class="headerlink" title="Http协议"></a>Http协议</h3>
-        
-          <a class="article-more-a" href="/2021/01/30/web%E6%A0%B8%E5%BF%83/web%E6%A0%B8%E5%BF%83-Http%E5%8D%8F%E8%AE%AE/#more">more >></a>
-        
-      
-
-      
-    </div>
-    <div class="article-info article-info-index">
-      
-      
-	<div class="article-tag tagcloud">
-		<i class="icon-price-tags icon"></i>
-		<ul class="article-tag-list">
-			 
-        		<li class="article-tag-list-item">
-        			<a href="javascript:void(0)" class="js-tag article-tag-list-link color1">web核心</a>
-        		</li>
-      		
-		</ul>
-	</div>
-
-      
-
-      
-        <p class="article-more-link">
-          <a class="article-more-a" href="/2021/01/30/web%E6%A0%B8%E5%BF%83/web%E6%A0%B8%E5%BF%83-Http%E5%8D%8F%E8%AE%AE/">展开全文 >></a>
-        </p>
-      
-
-      
-      <div class="clearfix"></div>
-    </div>
-  </div>
-</article>
-
-<aside class="wrap-side-operation">
-    <div class="mod-side-operation">
-        
-        <div class="jump-container" id="js-jump-container" style="display:none;">
-            <a href="javascript:void(0)" class="mod-side-operation__jump-to-top">
-                <i class="icon-font icon-back"></i>
-            </a>
-            <div id="js-jump-plan-container" class="jump-plan-container" style="top: -11px;">
-                <i class="icon-font icon-plane jump-plane"></i>
-            </div>
-        </div>
-        
-        
-    </div>
-</aside>
-
-
-
-
-  
-    <article id="post-Linux/Linux-yum出错" class="article article-type-post  article-index" itemscope itemprop="blogPost">
-  <div class="article-inner">
-    
-      <header class="article-header">
-        
-  
-    <h1 itemprop="name">
-      <a class="article-title" href="/2021/01/24/Linux/Linux-yum%E5%87%BA%E9%94%99/">Linux-yum出错</a>
-    </h1>
-  
-
-        
-        <a href="/2021/01/24/Linux/Linux-yum%E5%87%BA%E9%94%99/" class="archive-article-date">
-  	<time datetime="2021-01-24T13:23:22.000Z" itemprop="datePublished"><i class="icon-calendar icon"></i>2021-01-24</time>
-</a>
-        
-		
-		
-		<!--添加文章访问量-->
-		
-		
-		
-		
-      </header>
-    
-    <div class="article-entry" itemprop="articleBody">
-      
-        <h3 id="yum-出错"><a href="#yum-出错" class="headerlink" title="yum 出错"></a>yum 出错</h3>
-        
-          <a class="article-more-a" href="/2021/01/24/Linux/Linux-yum%E5%87%BA%E9%94%99/#more">more >></a>
-        
-      
-
-      
-    </div>
-    <div class="article-info article-info-index">
-      
-      
-	<div class="article-tag tagcloud">
-		<i class="icon-price-tags icon"></i>
-		<ul class="article-tag-list">
-			 
-        		<li class="article-tag-list-item">
-        			<a href="javascript:void(0)" class="js-tag article-tag-list-link color1">Linux</a>
-        		</li>
-      		
-		</ul>
-	</div>
-
-      
-
-      
-        <p class="article-more-link">
-          <a class="article-more-a" href="/2021/01/24/Linux/Linux-yum%E5%87%BA%E9%94%99/">展开全文 >></a>
-        </p>
-      
-
-      
-      <div class="clearfix"></div>
-    </div>
-  </div>
-</article>
-
-<aside class="wrap-side-operation">
-    <div class="mod-side-operation">
-        
-        <div class="jump-container" id="js-jump-container" style="display:none;">
-            <a href="javascript:void(0)" class="mod-side-operation__jump-to-top">
-                <i class="icon-font icon-back"></i>
-            </a>
-            <div id="js-jump-plan-container" class="jump-plan-container" style="top: -11px;">
-                <i class="icon-font icon-plane jump-plane"></i>
-            </div>
-        </div>
-        
-        
-    </div>
-</aside>
-
-
-
-
-  
   
     <nav id="page-nav">
       <span class="page-number current">1</span><a class="page-number" href="/page/2/">2</a><a class="page-number" href="/page/3/">3</a><span class="space">&hellip;</span><a class="page-number" href="/page/10/">10</a><a class="extend next" rel="next" href="/page/2/">Next &amp;raquo;</a>
@@ -1346,14 +1363,6 @@ return o(i(t),arguments.length<2?void 0:u(arguments[1]))}})},function(t,n,r){var
               </li>
              
               <li class="article-tag-list-item">
-                <a href="javascript:void(0)" class="js-tag color4">IOC</a>
-              </li>
-             
-              <li class="article-tag-list-item">
-                <a href="javascript:void(0)" class="js-tag color4">AOP</a>
-              </li>
-             
-              <li class="article-tag-list-item">
                 <a href="javascript:void(0)" class="js-tag color1">web核心</a>
               </li>
              
@@ -1467,6 +1476,22 @@ return o(i(t),arguments.length<2?void 0:u(arguments[1]))}})},function(t,n,r){var
              
               <li class="article-tag-list-item">
                 <a href="javascript:void(0)" class="js-tag color3">js</a>
+              </li>
+             
+              <li class="article-tag-list-item">
+                <a href="javascript:void(0)" class="js-tag color5">AJAX</a>
+              </li>
+             
+              <li class="article-tag-list-item">
+                <a href="javascript:void(0)" class="js-tag color1">redis</a>
+              </li>
+             
+              <li class="article-tag-list-item">
+                <a href="javascript:void(0)" class="js-tag color2">spring</a>
+              </li>
+             
+              <li class="article-tag-list-item">
+                <a href="javascript:void(0)" class="js-tag color3">项目</a>
               </li>
             
             <div class="clearfix"></div>
