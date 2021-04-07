@@ -16,7 +16,7 @@
 <meta property="og:description" content="面向对象和面向过程">
 <meta property="og:locale" content="en_US">
 <meta property="article:published_time" content="2020-07-31T05:17:30.000Z">
-<meta property="article:modified_time" content="2021-02-01T07:02:21.555Z">
+<meta property="article:modified_time" content="2021-03-22T06:29:33.784Z">
 <meta property="article:author" content="John Doe">
 <meta property="article:tag" content="java基础">
 <meta property="article:tag" content="jvm">
@@ -305,6 +305,95 @@
 <li>2.程序员可以调用System.gc()，该方法只是通知JVM，并不是运行垃圾回收器。尽量少用，会申请启动Full GC,成本高，影响系统性能。</li>
 <li>3.finalize方法，是java提供给程序员用来释放对象或资源的方法，但是尽量少用。</li>
 </ul>
+<h4 id="继承总结"><a href="#继承总结" class="headerlink" title="继承总结"></a>继承总结</h4><ul>
+<li>父类有的，子类也有（private修饰的子类没有）</li>
+<li>父类没有的，子类可以自己增加（这是子类的特性）</li>
+<li>父类有的，子类可以去改变（这就是重写）</li>
+<li>注意事项：<ul>
+<li>构造方法不可以被继承</li>
+<li>方法和属性可以被继承</li>
+<li>子类的构造方法隐式的调用父类的不带参数的构造方法</li>
+<li>当父类没有不带参数的构造方法时，子类需要使用super关键字来显示调用父类的构造方法</li>
+<li>super代指的是父类的引用</li>
+<li>super关键字必须是构造方法中第一行语句</li>
+</ul>
+</li>
+<li>在定义一个类的时候，如果没有显示指定该类的父类，那么该类就会继承于java.lang.Object类（JDK提供的一个类，Object类时java中所有类的直接或间接父类）。</li>
+</ul>
+<h4 id="抽象类的注意事项"><a href="#抽象类的注意事项" class="headerlink" title="抽象类的注意事项"></a>抽象类的注意事项</h4><ul>
+<li>抽象类不能实例化</li>
+<li>抽象类中不一定有抽象方法，有抽象方法的类一定是抽象类</li>
+<li>抽象类可以有构造方法</li>
+<li>抽象类的子类<ul>
+<li>要么重写抽象类中的所有的抽象方法</li>
+<li>要么是抽象类</li>
+</ul>
+</li>
+</ul>
+<h4 id="final关键字"><a href="#final关键字" class="headerlink" title="final关键字"></a>final关键字</h4><ul>
+<li>final关键字的作用<ul>
+<li>final代表最终的意思，可以修饰成员方法，成员变量，类</li>
+</ul>
+</li>
+<li>final修饰类、方法、变量的效果<ul>
+<li>final修饰类：该类不能被继承（不能有子类，但是可以有父类）</li>
+<li>final修饰方法：该方法不能被重写</li>
+<li>final修饰变量：表明该变量是一个常量，不能再次赋值<ul>
+<li>变量是基本类型，不能改变的是值</li>
+<li>变量是引用类型，不能改变的是地址值，但是地址里面的内容是可以改变的</li>
+</ul>
+</li>
+</ul>
+</li>
+</ul>
+<h4 id="接口"><a href="#接口" class="headerlink" title="接口"></a>接口</h4><ul>
+<li><p>成员变量</p>
+<ul>
+<li>只能是常量</li>
+<li>省略：public static final</li>
+</ul>
+</li>
+<li><p>构造方法</p>
+<ul>
+<li>没有构造方法，接口是主要是扩展功能，没有具体的存在</li>
+</ul>
+</li>
+<li><p>成员方法</p>
+<ul>
+<li><p>抽象方法</p>
+<ul>
+<li>省略：public abstract </li>
+<li>抽象方法子类必须重写</li>
+</ul>
+</li>
+<li><p>默认方法（jdk8）</p>
+<ul>
+<li>默认方法不是抽象方法，不强制重写，但是可以进行重写，重写的时候要去掉default关键字</li>
+<li>如果实现了多个接口，多个接口中存在相同的方法声明，子类就必须对该方法进行重写</li>
+<li>接口的默认方法可以被实现类对象调用</li>
+</ul>
+</li>
+<li><p>静态方法（jdk8）</p>
+<ul>
+<li>静态方法只可以通过接口名进行调用，不可以通过实现类名或者对象名调用</li>
+<li>public可以省略， static不可以省略</li>
+</ul>
+</li>
+<li><p>私有方法（jdk9）</p>
+<ul>
+<li>jdk9添加的私有方法，因为jdk8中添加了默认方法和静态方法，这必然会出现相同的代码，相同的代码抽取成为一个方法，不被别人使用，用私有隐藏起来，这就是私有方法出现的必然性</li>
+</ul>
+</li>
+<li><p>注意事项：</p>
+<ul>
+<li>默认方法可以调用私有的静态方法和私有的非静态方法</li>
+<li>静态方法只能调用私有的静态方法</li>
+<li>所以在定义私有方法的时候，一般定义为私有静态的方法，方便进行调用</li>
+</ul>
+</li>
+</ul>
+</li>
+</ul>
 
       
 
@@ -470,7 +559,7 @@
                 </span>
                 <span class="tooltip-content">
                     <div class="toc-article">
-                    <ol class="toc"><li class="toc-item toc-level-3"><a class="toc-link" href="#%E9%9D%A2%E5%90%91%E5%AF%B9%E8%B1%A1%E5%92%8C%E9%9D%A2%E5%90%91%E8%BF%87%E7%A8%8B"><span class="toc-number">1.</span> <span class="toc-text">面向对象和面向过程</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#%E5%86%85%E5%AD%98%E5%88%86%E6%9E%90"><span class="toc-number">2.</span> <span class="toc-text">内存分析</span></a><ol class="toc-child"><li class="toc-item toc-level-4"><a class="toc-link" href="#%E6%A0%88%E7%9A%84%E7%89%B9%E7%82%B9"><span class="toc-number">2.1.</span> <span class="toc-text">栈的特点</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#%E5%A0%86%E7%9A%84%E7%89%B9%E7%82%B9"><span class="toc-number">2.2.</span> <span class="toc-text">堆的特点</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#%E6%96%B9%E6%B3%95%E5%8C%BA%EF%BC%88%E9%9D%99%E6%80%81%E5%8C%BA%EF%BC%89%E7%9A%84%E7%89%B9%E7%82%B9"><span class="toc-number">2.3.</span> <span class="toc-text">方法区（静态区）的特点</span></a></li></ol></li><li class="toc-item toc-level-3"><a class="toc-link" href="#%E6%9E%84%E9%80%A0%E6%96%B9%E6%B3%95"><span class="toc-number">3.</span> <span class="toc-text">构造方法</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#%E5%9E%83%E5%9C%BE%E5%9B%9E%E6%94%B6%E6%9C%BA%E5%88%B6%EF%BC%88Garbage-Collection%EF%BC%89"><span class="toc-number">4.</span> <span class="toc-text">垃圾回收机制（Garbage Collection）</span></a><ol class="toc-child"><li class="toc-item toc-level-4"><a class="toc-link" href="#%E5%9E%83%E5%9C%BE%E5%9B%9E%E6%94%B6%E8%BF%87%E7%A8%8B"><span class="toc-number">4.1.</span> <span class="toc-text">垃圾回收过程</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#%E5%9E%83%E5%9C%BE%E5%9B%9E%E6%94%B6%E7%9B%B8%E5%85%B3%E7%AE%97%E6%B3%95"><span class="toc-number">4.2.</span> <span class="toc-text">垃圾回收相关算法</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#%E9%80%9A%E7%94%A8%E7%9A%84%E5%88%86%E4%BB%A3%E5%9E%83%E5%9C%BE%E5%9B%9E%E6%94%B6%E6%9C%BA%E5%88%B6"><span class="toc-number">4.3.</span> <span class="toc-text">通用的分代垃圾回收机制</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#%E5%9E%83%E5%9C%BE%E5%9B%9E%E6%94%B6%E8%BF%87%E7%A8%8B-1"><span class="toc-number">4.4.</span> <span class="toc-text">垃圾回收过程</span></a></li></ol></li><li class="toc-item toc-level-3"><a class="toc-link" href="#JVM%E8%B0%83%E4%BC%98%E5%92%8CFull-GC"><span class="toc-number">5.</span> <span class="toc-text">JVM调优和Full GC</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#%E5%BC%80%E5%8F%91%E4%B8%AD%E5%AE%B9%E6%98%93%E9%80%A0%E6%88%90%E5%86%85%E5%AD%98%E6%B3%84%E6%BC%8F%E7%9A%84%E6%93%8D%E4%BD%9C"><span class="toc-number">6.</span> <span class="toc-text">开发中容易造成内存泄漏的操作</span></a><ol class="toc-child"><li class="toc-item toc-level-4"><a class="toc-link" href="#%E8%A6%81%E7%82%B9"><span class="toc-number">6.1.</span> <span class="toc-text">要点</span></a></li></ol></li></ol>
+                    <ol class="toc"><li class="toc-item toc-level-3"><a class="toc-link" href="#%E9%9D%A2%E5%90%91%E5%AF%B9%E8%B1%A1%E5%92%8C%E9%9D%A2%E5%90%91%E8%BF%87%E7%A8%8B"><span class="toc-number">1.</span> <span class="toc-text">面向对象和面向过程</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#%E5%86%85%E5%AD%98%E5%88%86%E6%9E%90"><span class="toc-number">2.</span> <span class="toc-text">内存分析</span></a><ol class="toc-child"><li class="toc-item toc-level-4"><a class="toc-link" href="#%E6%A0%88%E7%9A%84%E7%89%B9%E7%82%B9"><span class="toc-number">2.1.</span> <span class="toc-text">栈的特点</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#%E5%A0%86%E7%9A%84%E7%89%B9%E7%82%B9"><span class="toc-number">2.2.</span> <span class="toc-text">堆的特点</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#%E6%96%B9%E6%B3%95%E5%8C%BA%EF%BC%88%E9%9D%99%E6%80%81%E5%8C%BA%EF%BC%89%E7%9A%84%E7%89%B9%E7%82%B9"><span class="toc-number">2.3.</span> <span class="toc-text">方法区（静态区）的特点</span></a></li></ol></li><li class="toc-item toc-level-3"><a class="toc-link" href="#%E6%9E%84%E9%80%A0%E6%96%B9%E6%B3%95"><span class="toc-number">3.</span> <span class="toc-text">构造方法</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#%E5%9E%83%E5%9C%BE%E5%9B%9E%E6%94%B6%E6%9C%BA%E5%88%B6%EF%BC%88Garbage-Collection%EF%BC%89"><span class="toc-number">4.</span> <span class="toc-text">垃圾回收机制（Garbage Collection）</span></a><ol class="toc-child"><li class="toc-item toc-level-4"><a class="toc-link" href="#%E5%9E%83%E5%9C%BE%E5%9B%9E%E6%94%B6%E8%BF%87%E7%A8%8B"><span class="toc-number">4.1.</span> <span class="toc-text">垃圾回收过程</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#%E5%9E%83%E5%9C%BE%E5%9B%9E%E6%94%B6%E7%9B%B8%E5%85%B3%E7%AE%97%E6%B3%95"><span class="toc-number">4.2.</span> <span class="toc-text">垃圾回收相关算法</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#%E9%80%9A%E7%94%A8%E7%9A%84%E5%88%86%E4%BB%A3%E5%9E%83%E5%9C%BE%E5%9B%9E%E6%94%B6%E6%9C%BA%E5%88%B6"><span class="toc-number">4.3.</span> <span class="toc-text">通用的分代垃圾回收机制</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#%E5%9E%83%E5%9C%BE%E5%9B%9E%E6%94%B6%E8%BF%87%E7%A8%8B-1"><span class="toc-number">4.4.</span> <span class="toc-text">垃圾回收过程</span></a></li></ol></li><li class="toc-item toc-level-3"><a class="toc-link" href="#JVM%E8%B0%83%E4%BC%98%E5%92%8CFull-GC"><span class="toc-number">5.</span> <span class="toc-text">JVM调优和Full GC</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#%E5%BC%80%E5%8F%91%E4%B8%AD%E5%AE%B9%E6%98%93%E9%80%A0%E6%88%90%E5%86%85%E5%AD%98%E6%B3%84%E6%BC%8F%E7%9A%84%E6%93%8D%E4%BD%9C"><span class="toc-number">6.</span> <span class="toc-text">开发中容易造成内存泄漏的操作</span></a><ol class="toc-child"><li class="toc-item toc-level-4"><a class="toc-link" href="#%E8%A6%81%E7%82%B9"><span class="toc-number">6.1.</span> <span class="toc-text">要点</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#%E7%BB%A7%E6%89%BF%E6%80%BB%E7%BB%93"><span class="toc-number">6.2.</span> <span class="toc-text">继承总结</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#%E6%8A%BD%E8%B1%A1%E7%B1%BB%E7%9A%84%E6%B3%A8%E6%84%8F%E4%BA%8B%E9%A1%B9"><span class="toc-number">6.3.</span> <span class="toc-text">抽象类的注意事项</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#final%E5%85%B3%E9%94%AE%E5%AD%97"><span class="toc-number">6.4.</span> <span class="toc-text">final关键字</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#%E6%8E%A5%E5%8F%A3"><span class="toc-number">6.5.</span> <span class="toc-text">接口</span></a></li></ol></li></ol>
                     </div>
                 </span>
             </div>
@@ -652,10 +741,6 @@ return o(i(t),arguments.length<2?void 0:u(arguments[1]))}})},function(t,n,r){var
               </li>
              
               <li class="article-tag-list-item">
-                <a href="javascript:void(0)" class="js-tag color2">Spring</a>
-              </li>
-             
-              <li class="article-tag-list-item">
                 <a href="javascript:void(0)" class="js-tag color1">web核心</a>
               </li>
              
@@ -785,6 +870,18 @@ return o(i(t),arguments.length<2?void 0:u(arguments[1]))}})},function(t,n,r){var
              
               <li class="article-tag-list-item">
                 <a href="javascript:void(0)" class="js-tag color3">项目</a>
+              </li>
+             
+              <li class="article-tag-list-item">
+                <a href="javascript:void(0)" class="js-tag color1">dubbo</a>
+              </li>
+             
+              <li class="article-tag-list-item">
+                <a href="javascript:void(0)" class="js-tag color5">SpringMVC</a>
+              </li>
+             
+              <li class="article-tag-list-item">
+                <a href="javascript:void(0)" class="js-tag color5">zookeeper</a>
               </li>
             
             <div class="clearfix"></div>

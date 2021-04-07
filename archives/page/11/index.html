@@ -6,17 +6,13 @@
   <meta name="renderer" content="webkit">
   <meta http-equiv="X-UA-Compatible" content="IE=edge" >
   <link rel="dns-prefetch" href="http://example.com">
-  <title>YiShan</title>
+  <title>Archives | YiShan</title>
   <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
-  <meta name="description" content="继承总结 父类有的，子类也有（private修饰的子类没有） 父类没有的，子类可以自己增加（这是子类的特性） 父类有的，子类可以去改变（这就是重写） 注意事项： 构造方法不可以被继承 方法和属性可以被继承 子类的构造方法隐式的调用父类的不带参数的构造方法 当父类没有不带参数的构造方法时，子类需要使用super关键字来显示调用父类的构造方法 super代指的是父类的引用 super关键字必须是构造方">
-<meta property="og:type" content="article">
+  <meta property="og:type" content="website">
 <meta property="og:title" content="YiShan">
-<meta property="og:url" content="http://example.com/2021/03/12/%E9%9D%A2%E5%90%91%E5%AF%B9%E8%B1%A1/%E9%9D%A2%E5%90%91%E5%AF%B9%E8%B1%A11.2/index.html">
+<meta property="og:url" content="http://example.com/archives/page/11/index.html">
 <meta property="og:site_name" content="YiShan">
-<meta property="og:description" content="继承总结 父类有的，子类也有（private修饰的子类没有） 父类没有的，子类可以自己增加（这是子类的特性） 父类有的，子类可以去改变（这就是重写） 注意事项： 构造方法不可以被继承 方法和属性可以被继承 子类的构造方法隐式的调用父类的不带参数的构造方法 当父类没有不带参数的构造方法时，子类需要使用super关键字来显示调用父类的构造方法 super代指的是父类的引用 super关键字必须是构造方">
 <meta property="og:locale" content="en_US">
-<meta property="article:published_time" content="2021-03-12T05:43:14.205Z">
-<meta property="article:modified_time" content="2021-02-18T07:56:15.914Z">
 <meta property="article:author" content="John Doe">
 <meta name="twitter:card" content="summary">
   
@@ -173,250 +169,112 @@
             <canvas data-colors="#eaeaea" data-sectionHeight="100" data-contentId="js-content" id="myCanvas1" class="anm-canvas"></canvas>
           </div>
           <div id="js-content" class="content-ll">
-            <article id="post-面向对象/面向对象1.2" class="article article-type-post " itemscope itemprop="blogPost">
-  <div class="article-inner">
+            
+  
+  
     
-    <div class="article-entry" itemprop="articleBody">
+    
       
-        <h4 id="继承总结"><a href="#继承总结" class="headerlink" title="继承总结"></a>继承总结</h4><ul>
-<li>父类有的，子类也有（private修饰的子类没有）</li>
-<li>父类没有的，子类可以自己增加（这是子类的特性）</li>
-<li>父类有的，子类可以去改变（这就是重写）</li>
-<li>注意事项：<ul>
-<li>构造方法不可以被继承</li>
-<li>方法和属性可以被继承</li>
-<li>子类的构造方法隐式的调用父类的不带参数的构造方法</li>
-<li>当父类没有不带参数的构造方法时，子类需要使用super关键字来显示调用父类的构造方法</li>
-<li>super代指的是父类的引用</li>
-<li>super关键字必须是构造方法中第一行语句</li>
-</ul>
-</li>
-<li>在定义一个类的时候，如果没有显示指定该类的父类，那么该类就会继承于java.lang.Object类（JDK提供的一个类，Object类时java中所有类的直接或间接父类）。</li>
-</ul>
-<h4 id="抽象类的注意事项"><a href="#抽象类的注意事项" class="headerlink" title="抽象类的注意事项"></a>抽象类的注意事项</h4><ul>
-<li>抽象类不能实例化</li>
-<li>抽象类中不一定有抽象方法，有抽象方法的类一定是抽象类</li>
-<li>抽象类可以有构造方法</li>
-<li>抽象类的子类<ul>
-<li>要么重写抽象类中的所有的抽象方法</li>
-<li>要么是抽象类</li>
-</ul>
-</li>
-</ul>
-<h4 id="final关键字"><a href="#final关键字" class="headerlink" title="final关键字"></a>final关键字</h4><ul>
-<li>final关键字的作用<ul>
-<li>final代表最终的意思，可以修饰成员方法，成员变量，类</li>
-</ul>
-</li>
-<li>final修饰类、方法、变量的效果<ul>
-<li>final修饰类：该类不能被继承（不能有子类，但是可以有父类）</li>
-<li>final修饰方法：该方法不能被重写</li>
-<li>final修饰变量：表明该变量是一个常量，不能再次赋值<ul>
-<li>变量是基本类型，不能改变的是值</li>
-<li>变量是引用类型，不能改变的是地址值，但是地址里面的内容是可以改变的</li>
-</ul>
-</li>
-</ul>
-</li>
-</ul>
-<h4 id="接口"><a href="#接口" class="headerlink" title="接口"></a>接口</h4><ul>
-<li><p>成员变量</p>
-<ul>
-<li>只能是常量</li>
-<li>省略：public static final</li>
-</ul>
-</li>
-<li><p>构造方法</p>
-<ul>
-<li>没有构造方法，接口是主要是扩展功能，没有具体的存在</li>
-</ul>
-</li>
-<li><p>成员方法</p>
-<ul>
-<li><p>抽象方法</p>
-<ul>
-<li>省略：public abstract </li>
-<li>抽象方法子类必须重写</li>
-</ul>
-</li>
-<li><p>默认方法（jdk8）</p>
-<ul>
-<li>默认方法不是抽象方法，不强制重写，但是可以进行重写，重写的时候要去掉default关键字</li>
-<li>如果实现了多个接口，多个接口中存在相同的方法声明，子类就必须对该方法进行重写</li>
-<li>接口的默认方法可以被实现类对象调用</li>
-</ul>
-</li>
-<li><p>静态方法（jdk8）</p>
-<ul>
-<li>静态方法只可以通过接口名进行调用，不可以通过实现类名或者对象名调用</li>
-<li>public可以省略， static不可以省略</li>
-</ul>
-</li>
-<li><p>私有方法（jdk9）</p>
-<ul>
-<li>jdk9添加的私有方法，因为jdk8中添加了默认方法和静态方法，这必然会出现相同的代码，相同的代码抽取成为一个方法，不被别人使用，用私有隐藏起来，这就是私有方法出现的必然性</li>
-</ul>
-</li>
-<li><p>注意事项：</p>
-<ul>
-<li>默认方法可以调用私有的静态方法和私有的非静态方法</li>
-<li>静态方法只能调用私有的静态方法</li>
-<li>所以在定义私有方法的时候，一般定义为私有静态的方法，方便进行调用</li>
-</ul>
-</li>
-</ul>
-</li>
-</ul>
-
       
-
-      
-        <div class="page-reward">
-          <a href="javascript:;" class="page-reward-btn tooltip-top">
-            <div class="tooltip tooltip-east">
-            <span class="tooltip-item">
-              赏
-            </span>
-            <span class="tooltip-content">
-              <span class="tooltip-text">
-                <span class="tooltip-inner">
-                  <p class="reward-p"><i class="icon icon-quo-left"></i>谢谢你请我吃糖果<i class="icon icon-quo-right"></i></p>
-                  <div class="reward-box">
-                    
-                    
-                  </div>
-                </span>
-              </span>
-            </span>
-          </div>
-          </a>
+      <section class="archives-wrap">
+        <div class="archive-year-wrap">
+          <a href="/archives/2020" class="archive-year">2020</a>
         </div>
-      
-    </div>
-    <div class="article-info article-info-index">
-      
-      
-      
-
-      
-
-      
-        
-<div class="share-btn share-icons tooltip-left">
-  <div class="tooltip tooltip-east">
-    <span class="tooltip-item">
-      <a href="javascript:;" class="share-sns share-outer">
-        <i class="icon icon-share"></i>
-      </a>
-    </span>
-    <span class="tooltip-content">
-      <div class="share-wrap">
-        <div class="share-icons">
-          <a class="weibo share-sns" href="javascript:;" data-type="weibo">
-            <i class="icon icon-weibo"></i>
-          </a>
-          <a class="weixin share-sns wxFab" href="javascript:;" data-type="weixin">
-            <i class="icon icon-weixin"></i>
-          </a>
-          <a class="qq share-sns" href="javascript:;" data-type="qq">
-            <i class="icon icon-qq"></i>
-          </a>
-          <a class="douban share-sns" href="javascript:;" data-type="douban">
-            <i class="icon icon-douban"></i>
-          </a>
-          <a class="qzone share-sns" href="javascript:;" data-type="qzone">
-            <i class="icon icon-qzone"></i>
-          </a>
-          <a class="facebook share-sns" href="javascript:;" data-type="facebook">
-            <i class="icon icon-facebook"></i>
-          </a>
-          <a class="twitter share-sns" href="javascript:;" data-type="twitter">
-            <i class="icon icon-twitter"></i>
-          </a>
-          <a class="google share-sns" href="javascript:;" data-type="google">
-            <i class="icon icon-google"></i>
-          </a>
+        <div class="archives">
+    
+    <article class="archive-article archive-type-post">
+  <div class="archive-article-inner">
+    <header class="archive-article-header">
+      	<div class="article-meta">
+	      	<a href="/2020/04/29/%E5%9F%BA%E7%A1%80%E8%AF%AD%E6%B3%95/JAVA%E5%9F%BA%E7%A1%80%E5%8F%8A%E7%8E%AF%E5%A2%83%E5%8F%98%E9%87%8F%E7%9A%84%E9%85%8D%E7%BD%AE%E4%BB%8B%E7%BB%8D/" class="archive-article-date">
+  	<time datetime="2020-04-29T05:29:29.000Z" itemprop="datePublished"><i class="icon-calendar icon"></i>2020-04-29</time>
+</a>
         </div>
-      </div>
-    </span>
-  </div>
-</div>
+    	 
+  
+    <h1 itemprop="name">
+      <a class="archive-article-title" href="/2020/04/29/%E5%9F%BA%E7%A1%80%E8%AF%AD%E6%B3%95/JAVA%E5%9F%BA%E7%A1%80%E5%8F%8A%E7%8E%AF%E5%A2%83%E5%8F%98%E9%87%8F%E7%9A%84%E9%85%8D%E7%BD%AE%E4%BB%8B%E7%BB%8D/">JAVA基础入门</a>
+    </h1>
+  
 
-<div class="page-modal wx-share js-wx-box">
-    <a class="close js-modal-close" href="javascript:;"><i class="icon icon-close"></i></a>
-    <p>扫一扫，分享到微信</p>
-    <div class="wx-qrcode">
-      <img src="//pan.baidu.com/share/qrcode?url=http://example.com/2021/03/12/%E9%9D%A2%E5%90%91%E5%AF%B9%E8%B1%A1/%E9%9D%A2%E5%90%91%E5%AF%B9%E8%B1%A11.2/" alt="微信分享二维码">
-    </div>
-</div>
+        <div class="article-info info-on-right">
+          
+	<div class="article-tag tagcloud">
+		<i class="icon-price-tags icon"></i>
+		<ul class="article-tag-list">
+			 
+        		<li class="article-tag-list-item">
+        			<a href="javascript:void(0)" class="js-tag article-tag-list-link color2">java基础</a>
+        		</li>
+      		
+		</ul>
+	</div>
 
-<div class="mask js-mask"></div>
-      
-      <div class="clearfix"></div>
-    </div>
+          
+	<div class="article-category tagcloud">
+		<i class="icon-book icon"></i>
+		<ul class="article-tag-list">
+			 
+        		<li class="article-tag-list-item">
+        			<a href="/categories/javase//" class="article-tag-list-link color2">javase</a>
+        		</li>
+      		
+		</ul>
+	</div>
+
+
+        </div>
+        <div class="clearfix"></div>
+    </header>
   </div>
 </article>
-
   
-<nav id="article-nav">
-  
-    <a href="/2021/03/19/%E9%A1%B9%E7%9B%AE%E6%80%BB%E7%BB%93/%E9%A1%B9%E7%9B%AE%E5%9F%BA%E7%A1%80%E5%8A%9F%E8%83%BD/" id="article-nav-newer" class="article-nav-link-wrap">
-      <i class="icon-circle-left"></i>
-      <div class="article-nav-title">
-        
-          项目基础功能
-        
-      </div>
-    </a>
-  
-  
-    <a href="/2021/03/06/AJAX/AJAX%E5%9F%BA%E7%A1%80/" id="article-nav-older" class="article-nav-link-wrap">
-      <div class="article-nav-title">AJAX基础</div>
-      <i class="icon-circle-right"></i>
-    </a>
-  
-</nav>
-
-
-<aside class="wrap-side-operation">
-    <div class="mod-side-operation">
-        
-        <div class="jump-container" id="js-jump-container" style="display:none;">
-            <a href="javascript:void(0)" class="mod-side-operation__jump-to-top">
-                <i class="icon-font icon-back"></i>
-            </a>
-            <div id="js-jump-plan-container" class="jump-plan-container" style="top: -11px;">
-                <i class="icon-font icon-plane jump-plane"></i>
-            </div>
+    
+    
+    <article class="archive-article archive-type-post">
+  <div class="archive-article-inner">
+    <header class="archive-article-header">
+      	<div class="article-meta">
+	      	<a href="/2020/04/28/%E5%9F%BA%E7%A1%80%E8%AF%AD%E6%B3%95/MarkDown%E5%9F%BA%E7%A1%80%E8%AF%AD%E6%B3%95/" class="archive-article-date">
+  	<time datetime="2020-04-28T05:01:50.000Z" itemprop="datePublished"><i class="icon-calendar icon"></i>2020-04-28</time>
+</a>
         </div>
-        
-        
-        <div class="toc-container tooltip-left">
-            <i class="icon-font icon-category"></i>
-            <div class="tooltip tooltip-east">
-                <span class="tooltip-item">
-                </span>
-                <span class="tooltip-content">
-                    <div class="toc-article">
-                    <ol class="toc"><li class="toc-item toc-level-4"><a class="toc-link" href="#%E7%BB%A7%E6%89%BF%E6%80%BB%E7%BB%93"><span class="toc-number">1.</span> <span class="toc-text">继承总结</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#%E6%8A%BD%E8%B1%A1%E7%B1%BB%E7%9A%84%E6%B3%A8%E6%84%8F%E4%BA%8B%E9%A1%B9"><span class="toc-number">2.</span> <span class="toc-text">抽象类的注意事项</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#final%E5%85%B3%E9%94%AE%E5%AD%97"><span class="toc-number">3.</span> <span class="toc-text">final关键字</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#%E6%8E%A5%E5%8F%A3"><span class="toc-number">4.</span> <span class="toc-text">接口</span></a></li></ol>
-                    </div>
-                </span>
-            </div>
+    	 
+  
+    <h1 itemprop="name">
+      <a class="archive-article-title" href="/2020/04/28/%E5%9F%BA%E7%A1%80%E8%AF%AD%E6%B3%95/MarkDown%E5%9F%BA%E7%A1%80%E8%AF%AD%E6%B3%95/">MarkDown基础语法</a>
+    </h1>
+  
+
+        <div class="article-info info-on-right">
+          
+	<div class="article-tag tagcloud">
+		<i class="icon-price-tags icon"></i>
+		<ul class="article-tag-list">
+			 
+        		<li class="article-tag-list-item">
+        			<a href="javascript:void(0)" class="js-tag article-tag-list-link color1">MarkDown基础</a>
+        		</li>
+      		
+		</ul>
+	</div>
+
+          
+
         </div>
-        
-    </div>
-</aside>
-
-
-
+        <div class="clearfix"></div>
+    </header>
+  </div>
+</article>
   
   
+    </div></section>
   
 
-  
-
-  
-
+    
+    <nav id="page-nav">
+      <a class="extend prev" rel="prev" href="/archives/page/10/">&amp;laquo; Prev</a><a class="page-number" href="/archives/">1</a><span class="space">&hellip;</span><a class="page-number" href="/archives/page/9/">9</a><a class="page-number" href="/archives/page/10/">10</a><span class="page-number current">11</span>
+    </nav>
   
 
 
@@ -482,8 +340,8 @@
 	var yiliaConfig = {
 		mathjax: false,
 		isHome: false,
-		isPost: true,
-		isArchive: false,
+		isPost: false,
+		isArchive: true,
 		isTag: false,
 		isCategory: false,
 		open_in_new: false,
@@ -577,10 +435,6 @@ return o(i(t),arguments.length<2?void 0:u(arguments[1]))}})},function(t,n,r){var
              
               <li class="article-tag-list-item">
                 <a href="javascript:void(0)" class="js-tag color1">Linux</a>
-              </li>
-             
-              <li class="article-tag-list-item">
-                <a href="javascript:void(0)" class="js-tag color2">Spring</a>
               </li>
              
               <li class="article-tag-list-item">
@@ -713,6 +567,18 @@ return o(i(t),arguments.length<2?void 0:u(arguments[1]))}})},function(t,n,r){var
              
               <li class="article-tag-list-item">
                 <a href="javascript:void(0)" class="js-tag color3">项目</a>
+              </li>
+             
+              <li class="article-tag-list-item">
+                <a href="javascript:void(0)" class="js-tag color1">dubbo</a>
+              </li>
+             
+              <li class="article-tag-list-item">
+                <a href="javascript:void(0)" class="js-tag color5">SpringMVC</a>
+              </li>
+             
+              <li class="article-tag-list-item">
+                <a href="javascript:void(0)" class="js-tag color5">zookeeper</a>
               </li>
             
             <div class="clearfix"></div>
