@@ -26,8 +26,10 @@
 <meta property="og:image" content="https://i.loli.net/2021/03/22/rBHjeYgsP9MV3Cc.png">
 <meta property="og:image" content="https://i.loli.net/2021/03/22/62HIPBSfQpgKZ1w.png">
 <meta property="og:image" content="https://i.loli.net/2021/03/22/ZPsvqNAzWo6CaTM.png">
+<meta property="og:image" content="https://i.loli.net/2021/04/13/jDC1LyPGWcIKteS.png">
+<meta property="og:image" content="https://i.loli.net/2021/04/13/maQcfleiHIEYRoh.png">
 <meta property="article:published_time" content="2021-03-05T12:59:54.000Z">
-<meta property="article:modified_time" content="2021-03-22T03:27:57.927Z">
+<meta property="article:modified_time" content="2021-04-13T09:08:37.087Z">
 <meta property="article:author" content="John Doe">
 <meta property="article:tag" content="redis">
 <meta name="twitter:card" content="summary">
@@ -397,7 +399,48 @@
 <p><img src="https://i.loli.net/2021/03/22/rBHjeYgsP9MV3Cc.png"></p>
 <h3 id="RDB与AOF区别"><a href="#RDB与AOF区别" class="headerlink" title="RDB与AOF区别"></a>RDB与AOF区别</h3><p><img src="https://i.loli.net/2021/03/22/62HIPBSfQpgKZ1w.png"></p>
 <p><img src="https://i.loli.net/2021/03/22/ZPsvqNAzWo6CaTM.png"></p>
-
+<h3 id="数据删除策略"><a href="#数据删除策略" class="headerlink" title="数据删除策略"></a>数据删除策略</h3><h5 id="定时删除"><a href="#定时删除" class="headerlink" title="定时删除"></a>定时删除</h5><ul>
+<li>创建一个定时器，当key设置有过期时间，且过期时间到达时，由定时器任务立即执行对键的删除操作</li>
+<li><strong>优点</strong>：节约内存，到时就删除，快速释放掉不必要的内存占用</li>
+<li><strong>缺点</strong>：CPU压力很大，无论CPU此时负载量多高，均占用CPU，会影响redis服务器响应时间和指令吞吐量</li>
+<li><strong>总结</strong>：用处理器性能换取存储空间（拿时间换空间）</li>
+</ul>
+<h5 id="惰性删除"><a href="#惰性删除" class="headerlink" title="惰性删除"></a>惰性删除</h5><p>数据到达过期时间，不做处理。等下次访问该数据时，我们需要判断</p>
+<ol>
+<li>如果未过期，返回数据</li>
+<li>发现已过期，删除，返回不存在</li>
+</ol>
+<ul>
+<li><strong>优点</strong>：节约CPU性能，发现必须删除的时候才删除</li>
+<li><strong>缺点</strong>：内存压力很大，出现长期占用内存的数据</li>
+<li><strong>总结</strong>：用存储空间换取处理器性能（拿空间换时间）</li>
+</ul>
+<h5 id="定期删除"><a href="#定期删除" class="headerlink" title="定期删除"></a>定期删除</h5><p>定时删除和惰性删除这两种方案都是走的极端，那有没有折中方案？</p>
+<p>我们来讲redis的定期删除方案：</p>
+<ul>
+<li>Redis启动服务器初始化时，读取配置server.hz的值，默认为10</li>
+<li>每秒钟执行server.hz次<strong>serverCron()</strong>——–&gt;<strong>databasesCron()</strong>———&gt;<strong>activeExpireCycle()</strong></li>
+<li>*<em>activeExpireCycle()**对每个expires[</em>]逐一进行检测，每次执行耗时：250ms/server.hz</li>
+<li>对某个expires[*]检测时，随机挑选W个key检测</li>
+</ul>
+<figure class="highlight markdown"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br></pre></td><td class="code"><pre><span class="line">如果key超时，删除key</span><br><span class="line"></span><br><span class="line">如果一轮中删除的key的数量&gt;W<span class="emphasis">*25%，循环该过程</span></span><br><span class="line"><span class="emphasis"></span></span><br><span class="line"><span class="emphasis">如果一轮中删除的key的数量≤W*</span>25%，检查下一个expires[<span class="emphasis">*]，0-15循环</span></span><br><span class="line"><span class="emphasis"></span></span><br><span class="line"><span class="emphasis">W取值=ACTIVE_EXPIRE_CYCLE_LOOKUPS_PER_LOOP属性值</span></span><br></pre></td></tr></table></figure>
+<ul>
+<li>参数current_db用于记录<strong>activeExpireCycle()</strong> 进入哪个expires[*] 执行</li>
+<li>如果activeExpireCycle()执行时间到期，下次从current_db继续向下执行</li>
+</ul>
+<p><img src="https://i.loli.net/2021/04/13/jDC1LyPGWcIKteS.png"></p>
+<p>总的来说：定期删除就是周期性轮询redis库中的时效性数据，采用随机抽取的策略，利用过期数据占比的方式控制删除频度</p>
+<ul>
+<li><strong>特点1</strong>：CPU性能占用设置有峰值，检测频度可自定义设置</li>
+<li><strong>特点2</strong>：内存压力不是很大，长期占用内存的冷数据会被持续清理</li>
+<li><strong>总结</strong>：周期性抽查存储空间（随机抽查，重点抽查）</li>
+</ul>
+<p><img src="https://i.loli.net/2021/04/13/maQcfleiHIEYRoh.png"></p>
+<h3 id="数据淘汰策略-逐出算法"><a href="#数据淘汰策略-逐出算法" class="headerlink" title="数据淘汰策略(逐出算法)"></a>数据淘汰策略(逐出算法)</h3><h5 id="概述"><a href="#概述" class="headerlink" title="概述"></a>概述</h5><p>什么叫数据淘汰策略？什么样的应用场景需要用到数据淘汰策略？</p>
+<p>当新数据进入redis时，如果内存不足怎么办？在执行每一个命令前，会调用**freeMemoryIfNeeded()**检测内存是否充足。如果内存不满足新 加入数据的最低存储要求，redis要临时删除一些数据为当前指令清理存储空间。清理数据的策略称为逐出算法。</p>
+<p>注意：逐出数据的过程不是100%能够清理出足够的可使用的内存空间，如果不成功则反复执行。当对所有数据尝试完毕，  如不能达到内存清理的要求，将出现错误信息如下</p>
+<figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">(error) OOM command not allowed when used memory &gt;&#x27;maxmemory&#x27;</span><br></pre></td></tr></table></figure>
+<h4 id=""><a href="#" class="headerlink" title=""></a></h4>
       
 
       
@@ -550,7 +593,7 @@
                 </span>
                 <span class="tooltip-content">
                     <div class="toc-article">
-                    <ol class="toc"><li class="toc-item toc-level-3"><a class="toc-link" href="#NoSql"><span class="toc-number">1.</span> <span class="toc-text">NoSql</span></a><ol class="toc-child"><li class="toc-item toc-level-5"><a class="toc-link" href="#%E5%8E%9F%E5%9B%A0"><span class="toc-number">1.0.1.</span> <span class="toc-text">原因</span></a></li><li class="toc-item toc-level-5"><a class="toc-link" href="#%E8%A7%A3%E5%86%B3%E6%80%9D%E8%B7%AF"><span class="toc-number">1.0.2.</span> <span class="toc-text">解决思路</span></a></li><li class="toc-item toc-level-5"><a class="toc-link" href="#NoSql%E6%A6%82%E5%BF%B5"><span class="toc-number">1.0.3.</span> <span class="toc-text">NoSql概念</span></a></li></ol></li></ol></li><li class="toc-item toc-level-3"><a class="toc-link" href="#Redis"><span class="toc-number">2.</span> <span class="toc-text">Redis</span></a><ol class="toc-child"><li class="toc-item toc-level-5"><a class="toc-link" href="#%E6%A6%82%E5%BF%B5"><span class="toc-number">2.0.1.</span> <span class="toc-text">概念</span></a></li><li class="toc-item toc-level-5"><a class="toc-link" href="#%E7%89%B9%E5%BE%81"><span class="toc-number">2.0.2.</span> <span class="toc-text">特征</span></a></li><li class="toc-item toc-level-5"><a class="toc-link" href="#%E5%BA%94%E7%94%A8%E5%9C%BA%E6%99%AF"><span class="toc-number">2.0.3.</span> <span class="toc-text">应用场景</span></a></li></ol></li></ol></li><li class="toc-item toc-level-3"><a class="toc-link" href="#Redis%E7%9A%84%E4%BD%BF%E7%94%A8"><span class="toc-number">3.</span> <span class="toc-text">Redis的使用</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#%E6%8C%81%E4%B9%85%E5%8C%96"><span class="toc-number">4.</span> <span class="toc-text">持久化</span></a><ol class="toc-child"><li class="toc-item toc-level-5"><a class="toc-link" href="#%E4%BB%80%E4%B9%88%E6%98%AF%E6%8C%81%E4%B9%85%E5%8C%96"><span class="toc-number">4.0.1.</span> <span class="toc-text">什么是持久化</span></a></li><li class="toc-item toc-level-5"><a class="toc-link" href="#%E6%8C%81%E4%B9%85%E5%8C%96%E8%BF%87%E7%A8%8B%E4%BF%9D%E5%AD%98%E4%BB%80%E4%B9%88"><span class="toc-number">4.0.2.</span> <span class="toc-text">持久化过程保存什么</span></a></li></ol></li></ol></li><li class="toc-item toc-level-3"><a class="toc-link" href="#RDB"><span class="toc-number">5.</span> <span class="toc-text">RDB</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#AOF"><span class="toc-number">6.</span> <span class="toc-text">AOF</span></a><ol class="toc-child"><li class="toc-item toc-level-5"><a class="toc-link" href="#AOF%E9%87%8D%E5%86%99"><span class="toc-number">6.0.1.</span> <span class="toc-text">AOF重写</span></a></li></ol></li></ol></li><li class="toc-item toc-level-3"><a class="toc-link" href="#RDB%E4%B8%8EAOF%E5%8C%BA%E5%88%AB"><span class="toc-number">7.</span> <span class="toc-text">RDB与AOF区别</span></a></li></ol>
+                    <ol class="toc"><li class="toc-item toc-level-3"><a class="toc-link" href="#NoSql"><span class="toc-number">1.</span> <span class="toc-text">NoSql</span></a><ol class="toc-child"><li class="toc-item toc-level-5"><a class="toc-link" href="#%E5%8E%9F%E5%9B%A0"><span class="toc-number">1.0.1.</span> <span class="toc-text">原因</span></a></li><li class="toc-item toc-level-5"><a class="toc-link" href="#%E8%A7%A3%E5%86%B3%E6%80%9D%E8%B7%AF"><span class="toc-number">1.0.2.</span> <span class="toc-text">解决思路</span></a></li><li class="toc-item toc-level-5"><a class="toc-link" href="#NoSql%E6%A6%82%E5%BF%B5"><span class="toc-number">1.0.3.</span> <span class="toc-text">NoSql概念</span></a></li></ol></li></ol></li><li class="toc-item toc-level-3"><a class="toc-link" href="#Redis"><span class="toc-number">2.</span> <span class="toc-text">Redis</span></a><ol class="toc-child"><li class="toc-item toc-level-5"><a class="toc-link" href="#%E6%A6%82%E5%BF%B5"><span class="toc-number">2.0.1.</span> <span class="toc-text">概念</span></a></li><li class="toc-item toc-level-5"><a class="toc-link" href="#%E7%89%B9%E5%BE%81"><span class="toc-number">2.0.2.</span> <span class="toc-text">特征</span></a></li><li class="toc-item toc-level-5"><a class="toc-link" href="#%E5%BA%94%E7%94%A8%E5%9C%BA%E6%99%AF"><span class="toc-number">2.0.3.</span> <span class="toc-text">应用场景</span></a></li></ol></li></ol></li><li class="toc-item toc-level-3"><a class="toc-link" href="#Redis%E7%9A%84%E4%BD%BF%E7%94%A8"><span class="toc-number">3.</span> <span class="toc-text">Redis的使用</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#%E6%8C%81%E4%B9%85%E5%8C%96"><span class="toc-number">4.</span> <span class="toc-text">持久化</span></a><ol class="toc-child"><li class="toc-item toc-level-5"><a class="toc-link" href="#%E4%BB%80%E4%B9%88%E6%98%AF%E6%8C%81%E4%B9%85%E5%8C%96"><span class="toc-number">4.0.1.</span> <span class="toc-text">什么是持久化</span></a></li><li class="toc-item toc-level-5"><a class="toc-link" href="#%E6%8C%81%E4%B9%85%E5%8C%96%E8%BF%87%E7%A8%8B%E4%BF%9D%E5%AD%98%E4%BB%80%E4%B9%88"><span class="toc-number">4.0.2.</span> <span class="toc-text">持久化过程保存什么</span></a></li></ol></li></ol></li><li class="toc-item toc-level-3"><a class="toc-link" href="#RDB"><span class="toc-number">5.</span> <span class="toc-text">RDB</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#AOF"><span class="toc-number">6.</span> <span class="toc-text">AOF</span></a><ol class="toc-child"><li class="toc-item toc-level-5"><a class="toc-link" href="#AOF%E9%87%8D%E5%86%99"><span class="toc-number">6.0.1.</span> <span class="toc-text">AOF重写</span></a></li></ol></li></ol></li><li class="toc-item toc-level-3"><a class="toc-link" href="#RDB%E4%B8%8EAOF%E5%8C%BA%E5%88%AB"><span class="toc-number">7.</span> <span class="toc-text">RDB与AOF区别</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#%E6%95%B0%E6%8D%AE%E5%88%A0%E9%99%A4%E7%AD%96%E7%95%A5"><span class="toc-number">8.</span> <span class="toc-text">数据删除策略</span></a><ol class="toc-child"><li class="toc-item toc-level-5"><a class="toc-link" href="#%E5%AE%9A%E6%97%B6%E5%88%A0%E9%99%A4"><span class="toc-number">8.0.1.</span> <span class="toc-text">定时删除</span></a></li><li class="toc-item toc-level-5"><a class="toc-link" href="#%E6%83%B0%E6%80%A7%E5%88%A0%E9%99%A4"><span class="toc-number">8.0.2.</span> <span class="toc-text">惰性删除</span></a></li><li class="toc-item toc-level-5"><a class="toc-link" href="#%E5%AE%9A%E6%9C%9F%E5%88%A0%E9%99%A4"><span class="toc-number">8.0.3.</span> <span class="toc-text">定期删除</span></a></li></ol></li></ol></li><li class="toc-item toc-level-3"><a class="toc-link" href="#%E6%95%B0%E6%8D%AE%E6%B7%98%E6%B1%B0%E7%AD%96%E7%95%A5-%E9%80%90%E5%87%BA%E7%AE%97%E6%B3%95"><span class="toc-number">9.</span> <span class="toc-text">数据淘汰策略(逐出算法)</span></a><ol class="toc-child"><li class="toc-item toc-level-5"><a class="toc-link" href="#%E6%A6%82%E8%BF%B0"><span class="toc-number">9.0.1.</span> <span class="toc-text">概述</span></a></li></ol></li><li class="toc-item toc-level-4"><a class="toc-link"><span class="toc-number">9.1.</span> <span class="toc-text"></span></a></li></ol></li></ol>
                     </div>
                 </span>
             </div>
@@ -700,6 +743,26 @@ return o(i(t),arguments.length<2?void 0:u(arguments[1]))}})},function(t,n,r){var
           <ul class="article-tag-list" q-show="showTags">
              
               <li class="article-tag-list-item">
+                <a href="javascript:void(0)" class="js-tag color4">ElasticSearch</a>
+              </li>
+             
+              <li class="article-tag-list-item">
+                <a href="javascript:void(0)" class="js-tag color5">jdbc</a>
+              </li>
+             
+              <li class="article-tag-list-item">
+                <a href="javascript:void(0)" class="js-tag color5">JDBC</a>
+              </li>
+             
+              <li class="article-tag-list-item">
+                <a href="javascript:void(0)" class="js-tag color1">Linux</a>
+              </li>
+             
+              <li class="article-tag-list-item">
+                <a href="javascript:void(0)" class="js-tag color1">redis</a>
+              </li>
+             
+              <li class="article-tag-list-item">
                 <a href="javascript:void(0)" class="js-tag color2">java基础</a>
               </li>
              
@@ -708,31 +771,31 @@ return o(i(t),arguments.length<2?void 0:u(arguments[1]))}})},function(t,n,r){var
               </li>
              
               <li class="article-tag-list-item">
-                <a href="javascript:void(0)" class="js-tag color4">jvm</a>
+                <a href="javascript:void(0)" class="js-tag color5">SpringMVC</a>
               </li>
              
               <li class="article-tag-list-item">
-                <a href="javascript:void(0)" class="js-tag color4">JVM</a>
+                <a href="javascript:void(0)" class="js-tag color1">dubbo</a>
               </li>
              
               <li class="article-tag-list-item">
-                <a href="javascript:void(0)" class="js-tag color5">类加载器</a>
+                <a href="javascript:void(0)" class="js-tag color5">AJAX</a>
               </li>
              
               <li class="article-tag-list-item">
-                <a href="javascript:void(0)" class="js-tag color5">JDBC</a>
+                <a href="javascript:void(0)" class="js-tag color3">框架</a>
               </li>
              
               <li class="article-tag-list-item">
-                <a href="javascript:void(0)" class="js-tag color5">jdbc</a>
+                <a href="javascript:void(0)" class="js-tag color3">MyBatis</a>
               </li>
              
               <li class="article-tag-list-item">
-                <a href="javascript:void(0)" class="js-tag color1">Linux</a>
+                <a href="javascript:void(0)" class="js-tag color2">spring</a>
               </li>
              
               <li class="article-tag-list-item">
-                <a href="javascript:void(0)" class="js-tag color1">web核心</a>
+                <a href="javascript:void(0)" class="js-tag color5">zookeeper</a>
               </li>
              
               <li class="article-tag-list-item">
@@ -748,6 +811,14 @@ return o(i(t),arguments.length<2?void 0:u(arguments[1]))}})},function(t,n,r){var
               </li>
              
               <li class="article-tag-list-item">
+                <a href="javascript:void(0)" class="js-tag color5">实例程序</a>
+              </li>
+             
+              <li class="article-tag-list-item">
+                <a href="javascript:void(0)" class="js-tag color3">异常</a>
+              </li>
+             
+              <li class="article-tag-list-item">
                 <a href="javascript:void(0)" class="js-tag color2">Lambad</a>
               </li>
              
@@ -756,27 +827,11 @@ return o(i(t),arguments.length<2?void 0:u(arguments[1]))}})},function(t,n,r){var
               </li>
              
               <li class="article-tag-list-item">
-                <a href="javascript:void(0)" class="js-tag color3">异常</a>
+                <a href="javascript:void(0)" class="js-tag color5">版本控制</a>
               </li>
              
               <li class="article-tag-list-item">
                 <a href="javascript:void(0)" class="js-tag color5">算法基础</a>
-              </li>
-             
-              <li class="article-tag-list-item">
-                <a href="javascript:void(0)" class="js-tag color3">MyBatis</a>
-              </li>
-             
-              <li class="article-tag-list-item">
-                <a href="javascript:void(0)" class="js-tag color3">框架</a>
-              </li>
-             
-              <li class="article-tag-list-item">
-                <a href="javascript:void(0)" class="js-tag color5">实例程序</a>
-              </li>
-             
-              <li class="article-tag-list-item">
-                <a href="javascript:void(0)" class="js-tag color5">设计模式</a>
               </li>
              
               <li class="article-tag-list-item">
@@ -796,19 +851,19 @@ return o(i(t),arguments.length<2?void 0:u(arguments[1]))}})},function(t,n,r){var
               </li>
              
               <li class="article-tag-list-item">
-                <a href="javascript:void(0)" class="js-tag color3">泛型</a>
-              </li>
-             
-              <li class="article-tag-list-item">
-                <a href="javascript:void(0)" class="js-tag color5">ArrayList</a>
-              </li>
-             
-              <li class="article-tag-list-item">
                 <a href="javascript:void(0)" class="js-tag color4">Vector向量</a>
               </li>
              
               <li class="article-tag-list-item">
                 <a href="javascript:void(0)" class="js-tag color3">HashMap</a>
+              </li>
+             
+              <li class="article-tag-list-item">
+                <a href="javascript:void(0)" class="js-tag color3">泛型</a>
+              </li>
+             
+              <li class="article-tag-list-item">
+                <a href="javascript:void(0)" class="js-tag color5">ArrayList</a>
               </li>
              
               <li class="article-tag-list-item">
@@ -828,7 +883,7 @@ return o(i(t),arguments.length<2?void 0:u(arguments[1]))}})},function(t,n,r){var
               </li>
              
               <li class="article-tag-list-item">
-                <a href="javascript:void(0)" class="js-tag color5">版本控制</a>
+                <a href="javascript:void(0)" class="js-tag color4">jvm</a>
               </li>
              
               <li class="article-tag-list-item">
@@ -840,39 +895,31 @@ return o(i(t),arguments.length<2?void 0:u(arguments[1]))}})},function(t,n,r){var
               </li>
              
               <li class="article-tag-list-item">
-                <a href="javascript:void(0)" class="js-tag color1">mysql</a>
-              </li>
-             
-              <li class="article-tag-list-item">
-                <a href="javascript:void(0)" class="js-tag color3">js</a>
-              </li>
-             
-              <li class="article-tag-list-item">
-                <a href="javascript:void(0)" class="js-tag color5">AJAX</a>
-              </li>
-             
-              <li class="article-tag-list-item">
-                <a href="javascript:void(0)" class="js-tag color1">redis</a>
-              </li>
-             
-              <li class="article-tag-list-item">
-                <a href="javascript:void(0)" class="js-tag color2">spring</a>
-              </li>
-             
-              <li class="article-tag-list-item">
                 <a href="javascript:void(0)" class="js-tag color3">项目</a>
               </li>
              
               <li class="article-tag-list-item">
-                <a href="javascript:void(0)" class="js-tag color1">dubbo</a>
+                <a href="javascript:void(0)" class="js-tag color1">mysql</a>
               </li>
              
               <li class="article-tag-list-item">
-                <a href="javascript:void(0)" class="js-tag color5">SpringMVC</a>
+                <a href="javascript:void(0)" class="js-tag color5">设计模式</a>
               </li>
              
               <li class="article-tag-list-item">
-                <a href="javascript:void(0)" class="js-tag color5">zookeeper</a>
+                <a href="javascript:void(0)" class="js-tag color4">JVM</a>
+              </li>
+             
+              <li class="article-tag-list-item">
+                <a href="javascript:void(0)" class="js-tag color5">类加载器</a>
+              </li>
+             
+              <li class="article-tag-list-item">
+                <a href="javascript:void(0)" class="js-tag color1">web核心</a>
+              </li>
+             
+              <li class="article-tag-list-item">
+                <a href="javascript:void(0)" class="js-tag color3">js</a>
               </li>
             
             <div class="clearfix"></div>
