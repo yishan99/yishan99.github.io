@@ -17,7 +17,7 @@
 <meta property="og:locale" content="en_US">
 <meta property="og:image" content="https://s1.ax1x.com/2020/08/15/dkUxdP.png">
 <meta property="article:published_time" content="2020-08-15T10:01:28.000Z">
-<meta property="article:modified_time" content="2021-02-01T06:47:40.838Z">
+<meta property="article:modified_time" content="2021-04-14T12:38:28.495Z">
 <meta property="article:author" content="John Doe">
 <meta property="article:tag" content="java基础">
 <meta property="article:tag" content="泛型">
@@ -216,174 +216,28 @@
 <p><img src="https://s1.ax1x.com/2020/08/15/dkUxdP.png" alt="容器"></p>
 <h2 id="泛型"><a href="#泛型" class="headerlink" title="泛型"></a>泛型</h2><p>泛型是JDK1.5以后增加的，他可以帮助我们建立类型安全的集合。</p>
 <p>泛型的本质就是“数据类型的参数化”。我们可以吧“泛型”理解为数据类型的一个占位符（形式参数），即告诉编译器，在调用泛型时必须传入实际类型。</p>
-<pre><code>    package cn.yishan.collection;
-
-    /**
-    * 测试泛型
-    * @author yishan
-    */
-    public class TestGeneric &#123;
-        public static void main(String[] args) &#123;
-            MyCollection&lt;String&gt; mc = new MyCollection&lt;String&gt;();
-
-            mc.set(&quot;杨亦山&quot;,0);
-
-            String b = mc.get(0);
-        &#125;
-    &#125;
-
-    class MyCollection&lt;E&gt;&#123;
-        Object[] objs = new Object[5];
-
-        public void set(E e,int index)&#123;
-            objs[index] = e;
-        &#125;
-        public E get(int index)&#123;
-            return (E) objs[index];
-        &#125;
-    &#125;
-</code></pre>
-<h2 id="容器中方法"><a href="#容器中方法" class="headerlink" title="容器中方法"></a>容器中方法</h2><pre><code>    package cn.yishan.collection;
-
-    import java.util.*;
-
-    /**
-    * 测试Collection接口中的方法
-    * @author yishan
-    */
-    public class TestList &#123;
-        public static void main(String[] args) &#123;           
-            test01();
-        &#125;
-        public static void test01()&#123;
-            Collection&lt;String&gt; c = new ArrayList&lt;&gt;();
-
-            System.out.println(c.size());
-            System.out.println(c.isEmpty());
-
-            c.add(&quot;杨大侠&quot;);
-            c.add(&quot;杨大帅&quot;);
-            System.out.println(c);
-            System.out.println(c.size());
-            //判断是否包含字符串内容
-            System.out.println(c.contains(&quot;杨大侠&quot;));
-            Object[] obj = c.toArray();
-            System.out.println(obj);
-            //移除容器里面的对象，并不是删除
-            c.remove(&quot;杨大帅&quot;);
-            System.out.println(c);
-            //移除容器内所有的元素
-            c.clear();
-            System.out.println(c.size());
-        &#125;       
-    &#125;
-</code></pre>
-<h2 id="ArrayList-操作多个List-并集和交集"><a href="#ArrayList-操作多个List-并集和交集" class="headerlink" title="ArrayList_操作多个List_并集和交集"></a>ArrayList_操作多个List_并集和交集</h2><pre><code>public static void test02()&#123;
-            List&lt;String&gt; list01 = new ArrayList&lt;&gt;();
-            list01.add(&quot;aa&quot;);
-            list01.add(&quot;bb&quot;);
-            list01.add(&quot;cc&quot;);
-
-            List&lt;String&gt; list02 = new ArrayList&lt;&gt;();
-            list02.add(&quot;aa&quot;);
-            list02.add(&quot;dd&quot;);
-            list02.add(&quot;ee&quot;);
-
-            System.out.println(&quot;list01:&quot;+list01);
-            //把另外一个集合的所有的元素都加进来
-            //list01.addAll(list02);
-            //移除两个集合相同的部分
-            //list01.removeAll(list02);
-            //取交集
-            list01.retainAll(list02);
-
-            System.out.println(&quot;list01:&quot;+list01);
-            //查看一个集合是否包含另外一个集合
-            System.out.println(list01.containsAll(list02));
-
-        &#125;
-</code></pre>
+<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">package</span> cn.yishan.collection;</span><br><span class="line"></span><br><span class="line"><span class="comment">/**</span></span><br><span class="line"><span class="comment">* 测试泛型</span></span><br><span class="line"><span class="comment">* <span class="doctag">@author</span> yishan</span></span><br><span class="line"><span class="comment">*/</span></span><br><span class="line"><span class="keyword">public</span> <span class="class"><span class="keyword">class</span> <span class="title">TestGeneric</span> </span>&#123;</span><br><span class="line">    <span class="function"><span class="keyword">public</span> <span class="keyword">static</span> <span class="keyword">void</span> <span class="title">main</span><span class="params">(String[] args)</span> </span>&#123;</span><br><span class="line">        MyCollection&lt;String&gt; mc = <span class="keyword">new</span> MyCollection&lt;String&gt;();</span><br><span class="line"></span><br><span class="line">        mc.set(<span class="string">&quot;杨亦山&quot;</span>,<span class="number">0</span>);</span><br><span class="line"></span><br><span class="line">        String b = mc.get(<span class="number">0</span>);</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="class"><span class="keyword">class</span> <span class="title">MyCollection</span>&lt;<span class="title">E</span>&gt;</span>&#123;</span><br><span class="line">    Object[] objs = <span class="keyword">new</span> Object[<span class="number">5</span>];</span><br><span class="line"></span><br><span class="line">    <span class="function"><span class="keyword">public</span> <span class="keyword">void</span> <span class="title">set</span><span class="params">(E e,<span class="keyword">int</span> index)</span></span>&#123;</span><br><span class="line">        objs[index] = e;</span><br><span class="line">    &#125;</span><br><span class="line">    <span class="function"><span class="keyword">public</span> E <span class="title">get</span><span class="params">(<span class="keyword">int</span> index)</span></span>&#123;</span><br><span class="line">        <span class="keyword">return</span> (E) objs[index];</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<h2 id="容器中方法"><a href="#容器中方法" class="headerlink" title="容器中方法"></a>容器中方法</h2><figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">package</span> cn.yishan.collection;</span><br><span class="line"></span><br><span class="line"><span class="keyword">import</span> java.util.*;</span><br><span class="line"></span><br><span class="line"><span class="comment">/**</span></span><br><span class="line"><span class="comment">* 测试Collection接口中的方法</span></span><br><span class="line"><span class="comment">* <span class="doctag">@author</span> yishan</span></span><br><span class="line"><span class="comment">*/</span></span><br><span class="line"><span class="keyword">public</span> <span class="class"><span class="keyword">class</span> <span class="title">TestList</span> </span>&#123;</span><br><span class="line">    <span class="function"><span class="keyword">public</span> <span class="keyword">static</span> <span class="keyword">void</span> <span class="title">main</span><span class="params">(String[] args)</span> </span>&#123;           </span><br><span class="line">        test01();</span><br><span class="line">    &#125;</span><br><span class="line">    <span class="function"><span class="keyword">public</span> <span class="keyword">static</span> <span class="keyword">void</span> <span class="title">test01</span><span class="params">()</span></span>&#123;</span><br><span class="line">        Collection&lt;String&gt; c = <span class="keyword">new</span> ArrayList&lt;&gt;();</span><br><span class="line"></span><br><span class="line">        System.out.println(c.size());</span><br><span class="line">        System.out.println(c.isEmpty());</span><br><span class="line"></span><br><span class="line">        c.add(<span class="string">&quot;杨大侠&quot;</span>);</span><br><span class="line">        c.add(<span class="string">&quot;杨大帅&quot;</span>);</span><br><span class="line">        System.out.println(c);</span><br><span class="line">        System.out.println(c.size());</span><br><span class="line">        <span class="comment">//判断是否包含字符串内容</span></span><br><span class="line">        System.out.println(c.contains(<span class="string">&quot;杨大侠&quot;</span>));</span><br><span class="line">        Object[] obj = c.toArray();</span><br><span class="line">        System.out.println(obj);</span><br><span class="line">        <span class="comment">//移除容器里面的对象，并不是删除</span></span><br><span class="line">        c.remove(<span class="string">&quot;杨大帅&quot;</span>);</span><br><span class="line">        System.out.println(c);</span><br><span class="line">        <span class="comment">//移除容器内所有的元素</span></span><br><span class="line">        c.clear();</span><br><span class="line">        System.out.println(c.size());</span><br><span class="line">    &#125;       </span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<h2 id="ArrayList-操作多个List-并集和交集"><a href="#ArrayList-操作多个List-并集和交集" class="headerlink" title="ArrayList_操作多个List_并集和交集"></a>ArrayList_操作多个List_并集和交集</h2><figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br></pre></td><td class="code"><pre><span class="line"><span class="function"><span class="keyword">public</span> <span class="keyword">static</span> <span class="keyword">void</span> <span class="title">test02</span><span class="params">()</span></span>&#123;</span><br><span class="line">            List&lt;String&gt; list01 = <span class="keyword">new</span> ArrayList&lt;&gt;();</span><br><span class="line">            list01.add(<span class="string">&quot;aa&quot;</span>);</span><br><span class="line">            list01.add(<span class="string">&quot;bb&quot;</span>);</span><br><span class="line">            list01.add(<span class="string">&quot;cc&quot;</span>);</span><br><span class="line"></span><br><span class="line">            List&lt;String&gt; list02 = <span class="keyword">new</span> ArrayList&lt;&gt;();</span><br><span class="line">            list02.add(<span class="string">&quot;aa&quot;</span>);</span><br><span class="line">            list02.add(<span class="string">&quot;dd&quot;</span>);</span><br><span class="line">            list02.add(<span class="string">&quot;ee&quot;</span>);</span><br><span class="line"></span><br><span class="line">            System.out.println(<span class="string">&quot;list01:&quot;</span>+list01);</span><br><span class="line">            <span class="comment">//把另外一个集合的所有的元素都加进来</span></span><br><span class="line">            <span class="comment">//list01.addAll(list02);</span></span><br><span class="line">            <span class="comment">//移除两个集合相同的部分</span></span><br><span class="line">            <span class="comment">//list01.removeAll(list02);</span></span><br><span class="line">            <span class="comment">//取交集</span></span><br><span class="line">            list01.retainAll(list02);</span><br><span class="line"></span><br><span class="line">            System.out.println(<span class="string">&quot;list01:&quot;</span>+list01);</span><br><span class="line">            <span class="comment">//查看一个集合是否包含另外一个集合</span></span><br><span class="line">            System.out.println(list01.containsAll(list02));</span><br><span class="line"></span><br><span class="line">        &#125;</span><br></pre></td></tr></table></figure>
 <h2 id="ArrayList-索引和顺序相关方法"><a href="#ArrayList-索引和顺序相关方法" class="headerlink" title="ArrayList_索引和顺序相关方法"></a>ArrayList_索引和顺序相关方法</h2><p>List是有序，可重复的容器</p>
 <p>有序：List中每个元素都有索引标记。可以根据元素的索引标记（在List中的位置）访问元素，从而精确控制这些元素。</p>
 <p>可重复：List允许加入重复的元素。更确切的讲，List通常允许满足e1.equals(e2)的元素重复加入容器。</p>
 <p>List接口常用的实现类有3个：ArrayList(底层实现是数组)、LinkedList（底层是链表）和Vector（底层也是数组，线程安全）。</p>
-<pre><code>    private static void test03() &#123;
-            List&lt;String&gt; list = new ArrayList&lt;&gt;();
-            list.add(&quot;A&quot;);
-            list.add(&quot;B&quot;);
-            list.add(&quot;C&quot;);
-            list.add(&quot;D&quot;);
-            System.out.println(list);
-            //在指定的相应的索引处插入字符
-            list.add(2,&quot;我&quot;);
-            System.out.println(list);
-            //在指定的相应的索引处删除字符
-            list.remove(2);
-            System.out.println(list);
-            //在指定的相应的索引处修改字符
-            list.set(2,&quot;杨大帅&quot;);
-            System.out.println(list);
-            //获取指定的相应索引处的字符
-            System.out.println(list.get(2));
-
-            list.add(&quot;C&quot;);
-            list.add(&quot;B&quot;);
-            list.add(&quot;A&quot;);
-            System.out.println(list);
-            //查找该字符，返回该字符第一次出现的索引位置，不存在返回-1
-            System.out.println(list.indexOf(&quot;B&quot;));
-            //查找该字符，返回该字符最后一次出现的索引位置，不存在返回-1
-            System.out.println(list.lastIndexOf(&quot;B&quot;));
-        &#125;
-</code></pre>
+<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br></pre></td><td class="code"><pre><span class="line"><span class="function"><span class="keyword">private</span> <span class="keyword">static</span> <span class="keyword">void</span> <span class="title">test03</span><span class="params">()</span> </span>&#123;</span><br><span class="line">        List&lt;String&gt; list = <span class="keyword">new</span> ArrayList&lt;&gt;();</span><br><span class="line">        list.add(<span class="string">&quot;A&quot;</span>);</span><br><span class="line">        list.add(<span class="string">&quot;B&quot;</span>);</span><br><span class="line">        list.add(<span class="string">&quot;C&quot;</span>);</span><br><span class="line">        list.add(<span class="string">&quot;D&quot;</span>);</span><br><span class="line">        System.out.println(list);</span><br><span class="line">        <span class="comment">//在指定的相应的索引处插入字符</span></span><br><span class="line">        list.add(<span class="number">2</span>,<span class="string">&quot;我&quot;</span>);</span><br><span class="line">        System.out.println(list);</span><br><span class="line">        <span class="comment">//在指定的相应的索引处删除字符</span></span><br><span class="line">        list.remove(<span class="number">2</span>);</span><br><span class="line">        System.out.println(list);</span><br><span class="line">        <span class="comment">//在指定的相应的索引处修改字符</span></span><br><span class="line">        list.set(<span class="number">2</span>,<span class="string">&quot;杨大帅&quot;</span>);</span><br><span class="line">        System.out.println(list);</span><br><span class="line">        <span class="comment">//获取指定的相应索引处的字符</span></span><br><span class="line">        System.out.println(list.get(<span class="number">2</span>));</span><br><span class="line"></span><br><span class="line">        list.add(<span class="string">&quot;C&quot;</span>);</span><br><span class="line">        list.add(<span class="string">&quot;B&quot;</span>);</span><br><span class="line">        list.add(<span class="string">&quot;A&quot;</span>);</span><br><span class="line">        System.out.println(list);</span><br><span class="line">        <span class="comment">//查找该字符，返回该字符第一次出现的索引位置，不存在返回-1</span></span><br><span class="line">        System.out.println(list.indexOf(<span class="string">&quot;B&quot;</span>));</span><br><span class="line">        <span class="comment">//查找该字符，返回该字符最后一次出现的索引位置，不存在返回-1</span></span><br><span class="line">        System.out.println(list.lastIndexOf(<span class="string">&quot;B&quot;</span>));</span><br><span class="line">    &#125;</span><br></pre></td></tr></table></figure>
 <h2 id="ArrayList-源码解读"><a href="#ArrayList-源码解读" class="headerlink" title="ArrayList 源码解读"></a>ArrayList 源码解读</h2><p>ArrayList底层是用数组实现的存储。特点：查询效率高，增删效率低，线程不安全。我们一般使用它。</p>
 <p>数组长度是有限的，而ArrayList是可以存放任意数量的对象，长度不受限制，那么他是怎么实现的呢？ <strong>数组扩容</strong></p>
 <ul>
 <li><p>扩容长度为 原数组长度右移一位，相当于扩容原数组长度的一半</p>
-<pre><code>  private void grow(int minCapacity) &#123;
-          // overflow-conscious code
-          int oldCapacity = elementData.length;
-          int newCapacity = oldCapacity + (oldCapacity &gt;&gt; 1);
-          if (newCapacity - minCapacity &lt; 0)
-              newCapacity = minCapacity;
-          if (newCapacity - MAX_ARRAY_SIZE &gt; 0)
-              newCapacity = hugeCapacity(minCapacity);
-          // minCapacity is usually close to size, so this is a win:
-          elementData = Arrays.copyOf(elementData, newCapacity);
-      &#125;.
-</code></pre>
+  <figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br></pre></td><td class="code"><pre><span class="line"><span class="function"><span class="keyword">private</span> <span class="keyword">void</span> <span class="title">grow</span><span class="params">(<span class="keyword">int</span> minCapacity)</span> </span>&#123;</span><br><span class="line">        <span class="comment">// overflow-conscious code</span></span><br><span class="line">        <span class="keyword">int</span> oldCapacity = elementData.length;</span><br><span class="line">        <span class="keyword">int</span> newCapacity = oldCapacity + (oldCapacity &gt;&gt; <span class="number">1</span>);</span><br><span class="line">        <span class="keyword">if</span> (newCapacity - minCapacity &lt; <span class="number">0</span>)</span><br><span class="line">            newCapacity = minCapacity;</span><br><span class="line">        <span class="keyword">if</span> (newCapacity - MAX_ARRAY_SIZE &gt; <span class="number">0</span>)</span><br><span class="line">            newCapacity = hugeCapacity(minCapacity);</span><br><span class="line">        <span class="comment">// minCapacity is usually close to size, so this is a win:</span></span><br><span class="line">        elementData = Arrays.copyOf(elementData, newCapacity);</span><br><span class="line">    &#125;</span><br></pre></td></tr></table></figure>
 <h4 id="remove方法"><a href="#remove方法" class="headerlink" title="remove方法"></a>remove方法</h4></li>
 <li><p>数组拷贝 数组下标控制位置，自我拷贝，覆盖需要删除的元素</p>
-<pre><code>  public E remove(int index) &#123;
-          rangeCheck(index);
-
-          modCount++;
-          E oldValue = elementData(index);
-
-          int numMoved = size - index - 1;
-          if (numMoved &gt; 0)
-              System.arraycopy(elementData, index+1, elementData, index,
-                              numMoved);
-          elementData[--size] = null; // clear to let GC do its work
-
-          return oldValue;
-      &#125;
-</code></pre>
+  <figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br></pre></td><td class="code"><pre><span class="line"><span class="function"><span class="keyword">public</span> E <span class="title">remove</span><span class="params">(<span class="keyword">int</span> index)</span> </span>&#123;</span><br><span class="line">    rangeCheck(index);</span><br><span class="line"></span><br><span class="line">        modCount++;</span><br><span class="line">    E oldValue = elementData(index);</span><br><span class="line"></span><br><span class="line">        <span class="keyword">int</span> numMoved = size - index - <span class="number">1</span>;</span><br><span class="line">        <span class="keyword">if</span> (numMoved &gt; <span class="number">0</span>)</span><br><span class="line">            System.arraycopy(elementData, index+<span class="number">1</span>, elementData, index, numMoved);</span><br><span class="line">        elementData[--size] = <span class="keyword">null</span>; <span class="comment">// clear to let GC do its work</span></span><br><span class="line">    <span class="keyword">return</span> oldValue;</span><br><span class="line">    &#125;</span><br></pre></td></tr></table></figure>
 <h4 id="clear方法"><a href="#clear方法" class="headerlink" title="clear方法"></a>clear方法</h4></li>
 <li><p>循环遍历，依次赋值为null,即清空所有元素</p>
-<pre><code>  public void clear() &#123;
-          modCount++;
-
-          // clear to let GC do its work
-          for (int i = 0; i &lt; size; i++)
-              elementData[i] = null;
-
-          size = 0;
-      &#125;
-</code></pre>
-</li>
+  <figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br></pre></td><td class="code"><pre><span class="line"><span class="function"><span class="keyword">public</span> <span class="keyword">void</span> <span class="title">clear</span><span class="params">()</span> </span>&#123;</span><br><span class="line">        modCount++;</span><br><span class="line"></span><br><span class="line">        <span class="comment">// clear to let GC do its work</span></span><br><span class="line">        <span class="keyword">for</span> (<span class="keyword">int</span> i = <span class="number">0</span>; i &lt; size; i++)</span><br><span class="line">            elementData[i] = <span class="keyword">null</span>;</span><br><span class="line">        	size = <span class="number">0</span>;</span><br><span class="line">    &#125;</span><br></pre></td></tr></table></figure>
+<h4 id="扩展"><a href="#扩展" class="headerlink" title="扩展"></a>扩展</h4></li>
 </ul>
-<h4 id="扩展"><a href="#扩展" class="headerlink" title="扩展"></a>扩展</h4><p>ArrayList的增删未必就是比LinkedList要慢。</p>
+<p>ArrayList的增删未必就是比LinkedList要慢。</p>
 <ul>
 <li>如果增删都是在末尾来操作【每次调用的都是remove()和add()】，此时ArrayList就不需要移动和复制数组来进行操作了。如果数据量有百万级的时，速度是会比LinkedList要快的。</li>
 <li>如果删除操作的位置是在中间。由于LinkedList的消耗主要是在遍历上，ArrayList的消耗主要是在移动和复制上(底层调用的是arraycopy()方法，是native方法)。<ul>
@@ -707,11 +561,27 @@ return o(i(t),arguments.length<2?void 0:u(arguments[1]))}})},function(t,n,r){var
               </li>
              
               <li class="article-tag-list-item">
-                <a href="javascript:void(0)" class="js-tag color5">jdbc</a>
+                <a href="javascript:void(0)" class="js-tag color2">java基础</a>
+              </li>
+             
+              <li class="article-tag-list-item">
+                <a href="javascript:void(0)" class="js-tag color3">IO</a>
               </li>
              
               <li class="article-tag-list-item">
                 <a href="javascript:void(0)" class="js-tag color5">JDBC</a>
+              </li>
+             
+              <li class="article-tag-list-item">
+                <a href="javascript:void(0)" class="js-tag color4">jvm</a>
+              </li>
+             
+              <li class="article-tag-list-item">
+                <a href="javascript:void(0)" class="js-tag color4">JVM</a>
+              </li>
+             
+              <li class="article-tag-list-item">
+                <a href="javascript:void(0)" class="js-tag color5">类加载器</a>
               </li>
              
               <li class="article-tag-list-item">
@@ -723,11 +593,11 @@ return o(i(t),arguments.length<2?void 0:u(arguments[1]))}})},function(t,n,r){var
               </li>
              
               <li class="article-tag-list-item">
-                <a href="javascript:void(0)" class="js-tag color2">java基础</a>
+                <a href="javascript:void(0)" class="js-tag color2">spring</a>
               </li>
              
               <li class="article-tag-list-item">
-                <a href="javascript:void(0)" class="js-tag color3">IO</a>
+                <a href="javascript:void(0)" class="js-tag color5">AJAX</a>
               </li>
              
               <li class="article-tag-list-item">
@@ -739,7 +609,7 @@ return o(i(t),arguments.length<2?void 0:u(arguments[1]))}})},function(t,n,r){var
               </li>
              
               <li class="article-tag-list-item">
-                <a href="javascript:void(0)" class="js-tag color5">AJAX</a>
+                <a href="javascript:void(0)" class="js-tag color5">jdbc</a>
               </li>
              
               <li class="article-tag-list-item">
@@ -751,7 +621,7 @@ return o(i(t),arguments.length<2?void 0:u(arguments[1]))}})},function(t,n,r){var
               </li>
              
               <li class="article-tag-list-item">
-                <a href="javascript:void(0)" class="js-tag color2">spring</a>
+                <a href="javascript:void(0)" class="js-tag color1">web核心</a>
               </li>
              
               <li class="article-tag-list-item">
@@ -771,14 +641,6 @@ return o(i(t),arguments.length<2?void 0:u(arguments[1]))}})},function(t,n,r){var
               </li>
              
               <li class="article-tag-list-item">
-                <a href="javascript:void(0)" class="js-tag color5">实例程序</a>
-              </li>
-             
-              <li class="article-tag-list-item">
-                <a href="javascript:void(0)" class="js-tag color3">异常</a>
-              </li>
-             
-              <li class="article-tag-list-item">
                 <a href="javascript:void(0)" class="js-tag color2">Lambad</a>
               </li>
              
@@ -787,11 +649,23 @@ return o(i(t),arguments.length<2?void 0:u(arguments[1]))}})},function(t,n,r){var
               </li>
              
               <li class="article-tag-list-item">
-                <a href="javascript:void(0)" class="js-tag color5">版本控制</a>
+                <a href="javascript:void(0)" class="js-tag color5">实例程序</a>
+              </li>
+             
+              <li class="article-tag-list-item">
+                <a href="javascript:void(0)" class="js-tag color3">异常</a>
               </li>
              
               <li class="article-tag-list-item">
                 <a href="javascript:void(0)" class="js-tag color5">算法基础</a>
+              </li>
+             
+              <li class="article-tag-list-item">
+                <a href="javascript:void(0)" class="js-tag color5">版本控制</a>
+              </li>
+             
+              <li class="article-tag-list-item">
+                <a href="javascript:void(0)" class="js-tag color5">设计模式</a>
               </li>
              
               <li class="article-tag-list-item">
@@ -843,10 +717,6 @@ return o(i(t),arguments.length<2?void 0:u(arguments[1]))}})},function(t,n,r){var
               </li>
              
               <li class="article-tag-list-item">
-                <a href="javascript:void(0)" class="js-tag color4">jvm</a>
-              </li>
-             
-              <li class="article-tag-list-item">
                 <a href="javascript:void(0)" class="js-tag color5">垃圾回收</a>
               </li>
              
@@ -855,31 +725,19 @@ return o(i(t),arguments.length<2?void 0:u(arguments[1]))}})},function(t,n,r){var
               </li>
              
               <li class="article-tag-list-item">
-                <a href="javascript:void(0)" class="js-tag color3">项目</a>
-              </li>
-             
-              <li class="article-tag-list-item">
                 <a href="javascript:void(0)" class="js-tag color1">mysql</a>
               </li>
              
               <li class="article-tag-list-item">
-                <a href="javascript:void(0)" class="js-tag color5">设计模式</a>
-              </li>
-             
-              <li class="article-tag-list-item">
-                <a href="javascript:void(0)" class="js-tag color4">JVM</a>
-              </li>
-             
-              <li class="article-tag-list-item">
-                <a href="javascript:void(0)" class="js-tag color5">类加载器</a>
-              </li>
-             
-              <li class="article-tag-list-item">
-                <a href="javascript:void(0)" class="js-tag color1">web核心</a>
+                <a href="javascript:void(0)" class="js-tag color3">项目</a>
               </li>
              
               <li class="article-tag-list-item">
                 <a href="javascript:void(0)" class="js-tag color3">js</a>
+              </li>
+             
+              <li class="article-tag-list-item">
+                <a href="javascript:void(0)" class="js-tag color5">项目总结</a>
               </li>
             
             <div class="clearfix"></div>
