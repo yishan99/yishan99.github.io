@@ -171,19 +171,342 @@
           <div id="js-content" class="content-ll">
             
   
-    <article id="post-项目总结/交友App-登录注册模块" class="article article-type-post  article-index" itemscope itemprop="blogPost">
+    <article id="post-项目总结/每日段子" class="article article-type-post  article-index" itemscope itemprop="blogPost">
   <div class="article-inner">
     
       <header class="article-header">
         
   
     <h1 itemprop="name">
-      <a class="article-title" href="/2021/04/25/%E9%A1%B9%E7%9B%AE%E6%80%BB%E7%BB%93/%E4%BA%A4%E5%8F%8BApp-%E7%99%BB%E5%BD%95%E6%B3%A8%E5%86%8C%E6%A8%A1%E5%9D%97/">交友App-登录注册模块</a>
+      <a class="article-title" href="/2021/05/13/%E9%A1%B9%E7%9B%AE%E6%80%BB%E7%BB%93/%E6%AF%8F%E6%97%A5%E6%AE%B5%E5%AD%90/">每日段子</a>
     </h1>
   
 
         
-        <a href="/2021/04/25/%E9%A1%B9%E7%9B%AE%E6%80%BB%E7%BB%93/%E4%BA%A4%E5%8F%8BApp-%E7%99%BB%E5%BD%95%E6%B3%A8%E5%86%8C%E6%A8%A1%E5%9D%97/" class="archive-article-date">
+        <a href="/2021/05/13/%E9%A1%B9%E7%9B%AE%E6%80%BB%E7%BB%93/%E6%AF%8F%E6%97%A5%E6%AE%B5%E5%AD%90/" class="archive-article-date">
+  	<time datetime="2021-05-13T06:03:53.000Z" itemprop="datePublished"><i class="icon-calendar icon"></i>2021-05-13</time>
+</a>
+        
+		
+		
+		<!--添加文章访问量-->
+		
+		
+		
+		
+      </header>
+    
+    <div class="article-entry" itemprop="articleBody">
+      
+        <blockquote>
+<p>技术栈：SpringBoot + SpringCloud + MybatisPlus + Swagger + knif4j + Redis + MongoDB + ElaticSearch + JWT + Kafka/Kafka Stream + Jenkins + Dockerfile + nginx + git + SkyWalking(链路追踪) + 云服务(阿里云服务内容安全)</p>
+</blockquote>
+<h2 id="1-管理员后台系统-平台管理员"><a href="#1-管理员后台系统-平台管理员" class="headerlink" title="1. 管理员后台系统(平台管理员)"></a>1. 管理员后台系统(平台管理员)</h2><blockquote>
+<p>频道接口开发—-ad_channel 频道信息表</p>
+</blockquote>
+<ul>
+<li>分页条件查询</li>
+<li>新增频道</li>
+<li>修改频道</li>
+<li>删除频道：需要判断改频道是否有效，无效方可进行删除操作</li>
+<li>查询频道</li>
+</ul>
+<blockquote>
+<p>配置全局异常处理器—-无论正常执行还是出现异常，都返回统一的响应结果</p>
+</blockquote>
+<ul>
+<li>如果异常不进行处理，最终异常就会抛给框架，框架会对异常进行默认的处理，相应的结果就为默认的json字符串，这是不满足开发规范中的统一响应结果的</li>
+<li>在抛出异常后，将异常信息发送到MQ中，然后被告警平台消费，定位了指定详细的异常位置，通过发邮件或者发短信通知相关人员进行处理即可。</li>
+</ul>
+<blockquote>
+<p>敏感词的管理—-定义文章中的敏感词汇，后续可进行审核文章内容</p>
+</blockquote>
+<ul>
+<li>增加敏感词</li>
+<li>删除敏感词</li>
+<li>修改敏感词</li>
+<li>查询敏感词</li>
+</ul>
+<blockquote>
+<p>网关定义全局过滤器，实现jwt校验</p>
+</blockquote>
+<ul>
+<li>判定当前请求是否是登录操作，如果是登录操作的话，直接放行</li>
+<li>从请求头中获取token的值jwt令牌，判定jwt令牌是否存在，如果令牌不存在的话，直接相应错误信息，结束。</li>
+<li>如果jwt令牌存在，检验令牌的有效期，令牌过期，直接响应错误信息，结束</li>
+<li>如果jwt令牌存在，并且令牌有效，需要从jwt令牌中获取id</li>
+<li>然后将现有的request对象进行增强(增强header信息–&gt;userId)</li>
+<li>放行</li>
+</ul>
+<blockquote>
+<p>密码加密方式</p>
+</blockquote>
+<ul>
+<li><p>可逆加密 ：加密后，密文可以反向解密得到密码原文</p>
+<ul>
+<li>对称加密：加密的密钥和解密的密钥是一样的：AES、DES、3DES、Blowfish、IDEA、RC4、RC5、RC6、HS256…</li>
+<li>非对称加密：加密的密钥和解密的密钥是不一样的（密钥对=私钥（解密）+公钥（加密））</li>
+</ul>
+</li>
+<li><p>不可加密算法：一旦加密就不能反向解密得到密码原文：MD5、SHA、HMAC</p>
+</li>
+<li><p>Base64编码：<strong>Base64只是一种编码方式，不能算是加密方法。</strong></p>
+</li>
+<li><p>手动加密：MD5+随机字符串：这样子的密码，加密多次值是不相同的，因为加入了随机字符串，也就是在MD5的基础上手动加盐（salt）处理</p>
+</li>
+</ul>
+<blockquote>
+<p>分布式事务</p>
+</blockquote>
+<ul>
+<li><p>CAP定理</p>
+<ul>
+<li>一致性C：写操作之后的读操作，必须返回改制<ul>
+<li>强一致性：要求更新过的数据都被后续的访问都看看到</li>
+<li>弱一致性：可以容忍后续的部分或者全部访问不到</li>
+<li>最终一致性：经过一段时间后要求可以访问到更新后的数据</li>
+</ul>
+</li>
+<li>可用性A：只要用户收到请求，服务器就必须要给出回应</li>
+<li>分区容错性P：区间通信失败，服务器之间无法正常进行通信 </li>
+</ul>
+<blockquote>
+<p>为什么说一致性和可用性冲突？</p>
+</blockquote>
+<ul>
+<li>分区容错性是一定需要保证的，一致性和可用性会产生冲突，一致性高的话，那么它的可用性势必就会降低，相反，可用性高的话，一致性就会降低，比如一台服务器只负责一台服务器的数据一致的话，那么它的一直性就会高，如果一台服务器给十台服务器同步数据的话，那么它的可用性很高，但是数据的一致性就会变的很低。所以一致性和可用性是冲突的。</li>
+</ul>
+</li>
+<li><p>BASE理论</p>
+<ul>
+<li>BASE理论是基于CAP理论的，核心思想为：既然我们没有办法做到强一致性，那么我们就需要根据每个业务的特点，采用适当的方式使得系统达到最终一致性</li>
+<li>基本可用：假设系统出现了不可预知的故障，但是还是可以使用的，就是相比较正常的系统而言，响应时间可能会变久一些，比如服务的降级</li>
+<li>软状态：允许系统的数据存在中间状态，认为这种状态是不影响系统的整体可用性的。即 允许系统在多个不同节点的数据副本存在数据延时</li>
+<li>最终一致性：系统可以保证在没有其他更新操作情况下，数据最终一定是可以达到一致的状态，因此最终所有的客户端都是可以获取到最新的值</li>
+</ul>
+</li>
+</ul>
+<blockquote>
+<p>分布式事务的解决方案</p>
+</blockquote>
+<ul>
+<li>Seata事务模式AT<ul>
+<li>TC 事务协调器：主要负责事务的提交或者回滚</li>
+<li>TM 控制全局事务的边界。负责开始全局事务，最终发起全局提交或者全局回滚的决议</li>
+<li>RM 控制分支事务，负责分支注册，状态汇报，接受事务协调器的指令，驱动分支事务的提交和回滚</li>
+<li><strong>AT模式</strong>是基于两阶段提交协议的演变<ul>
+<li>一阶段：业务数据和回滚日志在同一个本地事务进行提交</li>
+<li>二阶段：<strong>提交</strong>异步化，十分快速就完成了。<strong>回滚</strong>是通过一阶段的回滚日志进行反向补偿</li>
+</ul>
+</li>
+</ul>
+</li>
+</ul>
+<blockquote>
+<p>分布式文件系统-FastDFS</p>
+</blockquote>
+<ul>
+<li>FastDFS包括Tracker server 和 Storage server  </li>
+<li>Tracker server 负责负载均衡和调度， Storage server 主要负责文件存储， Storage server 是没有自己的文件系统，它是利用操作系统的文件系统来管理文件的。</li>
+<li><img src="C:\Users\Administrator\AppData\Roaming\Typora\typora-user-images\1621509136844.png" alt="1621509136844"></li>
+</ul>
+<blockquote>
+<p>用户认证为自媒体人</p>
+</blockquote>
+<ul>
+<li>跨域：cors–&gt;是一个为w3c标准，“跨域资源共享”，发送xmlHttpRequest请求</li>
+<li>用户通过了实名认证，就可以成为发布者，需要用户在App端进行实名认证提交，然后在平台运营端就可以进行人工审核</li>
+<li>审核成功后就需要开通发布者账号，发布者账号和app端账号密码一致，然后就可以通过发布者平台正常的进行文章的发布</li>
+<li>用户在App端进行实名认证信息的提交，保存到实名认证信息表中，系统运营端对实名信息表进行查询，</li>
+</ul>
+<h2 id="2-自媒体人后台系统-自媒体人"><a href="#2-自媒体人后台系统-自媒体人" class="headerlink" title="2. 自媒体人后台系统(自媒体人)"></a>2. 自媒体人后台系统(自媒体人)</h2><blockquote>
+<p>上传素材图片</p>
+</blockquote>
+<ul>
+<li>通用模块继承fastdfs，方便后期各个模块引用</li>
+<li>自媒体微服务</li>
+<li>上传素材图片到fastdfs中，同时要保存一份数据到素材表中，方便后期的管理</li>
+<li>然后进行路径的拼接，素材表中保存的url没有fastdfs所在虚拟机的地址和端口号，需要进行路径的拼接，在上传后进行页面的回显操作</li>
+</ul>
+<blockquote>
+<p>自媒体登录</p>
+</blockquote>
+<ul>
+<li>从前端获取到自媒体人输入的账号和密码，去数据库中进行查找</li>
+<li>数据库中的密码是通过md5+盐值  加密后进行存储 ，数据库中同时也会进行保存加密后的盐值</li>
+<li>验证密码：使用用户输入的密码 + 数据库存储的盐值  拼接  进行md5加密与数据库中存储的密码进行对比。一致通过验证。</li>
+</ul>
+<blockquote>
+<p>自媒体网关</p>
+</blockquote>
+<ul>
+<li>上传素材的时候，是需要知道是哪一位自媒体人登录了当前系统</li>
+<li>上传图片需要携带token,首先请求带网关服务，解析token是否有效，如果有效的话，解析后将用户的数据设置到header中</li>
+<li>在自媒体微服务中使用过滤器解析header中的数据，就可以获取到用户数据，然后将用户信息设置到当前线程中，ThreadLoad</li>
+<li>在后续的操作中就可以从此线程中获取到当前登录的用户信息</li>
+</ul>
+<blockquote>
+<p>素材列表  全部/收藏    0 不收藏    1收藏</p>
+</blockquote>
+<ul>
+<li>正常查询就好</li>
+<li>分页查询–从threadload中获取登录用户</li>
+<li></li>
+</ul>
+<h2 id="3-手机APP客户端-用户"><a href="#3-手机APP客户端-用户" class="headerlink" title="3. 手机APP客户端(用户)"></a>3. 手机APP客户端(用户)</h2>
+      
+
+      
+    </div>
+    <div class="article-info article-info-index">
+      
+      
+	<div class="article-tag tagcloud">
+		<i class="icon-price-tags icon"></i>
+		<ul class="article-tag-list">
+			 
+        		<li class="article-tag-list-item">
+        			<a href="javascript:void(0)" class="js-tag article-tag-list-link color3">项目</a>
+        		</li>
+      		
+		</ul>
+	</div>
+
+      
+
+      
+        <p class="article-more-link">
+          <a class="article-more-a" href="/2021/05/13/%E9%A1%B9%E7%9B%AE%E6%80%BB%E7%BB%93/%E6%AF%8F%E6%97%A5%E6%AE%B5%E5%AD%90/">展开全文 >></a>
+        </p>
+      
+
+      
+      <div class="clearfix"></div>
+    </div>
+  </div>
+</article>
+
+<aside class="wrap-side-operation">
+    <div class="mod-side-operation">
+        
+        <div class="jump-container" id="js-jump-container" style="display:none;">
+            <a href="javascript:void(0)" class="mod-side-operation__jump-to-top">
+                <i class="icon-font icon-back"></i>
+            </a>
+            <div id="js-jump-plan-container" class="jump-plan-container" style="top: -11px;">
+                <i class="icon-font icon-plane jump-plane"></i>
+            </div>
+        </div>
+        
+        
+    </div>
+</aside>
+
+
+
+
+  
+    <article id="post-SpringCloud/spring-cloud" class="article article-type-post  article-index" itemscope itemprop="blogPost">
+  <div class="article-inner">
+    
+      <header class="article-header">
+        
+  
+    <h1 itemprop="name">
+      <a class="article-title" href="/2021/05/04/SpringCloud/spring-cloud/">spring-cloud</a>
+    </h1>
+  
+
+        
+        <a href="/2021/05/04/SpringCloud/spring-cloud/" class="archive-article-date">
+  	<time datetime="2021-05-04T12:46:58.000Z" itemprop="datePublished"><i class="icon-calendar icon"></i>2021-05-04</time>
+</a>
+        
+		
+		
+		<!--添加文章访问量-->
+		
+		
+		
+		
+      </header>
+    
+    <div class="article-entry" itemprop="articleBody">
+      
+        <h3 id="1-Eureka-服务治理"><a href="#1-Eureka-服务治理" class="headerlink" title="1. Eureka 服务治理"></a>1. Eureka 服务治理</h3><h4 id="Eureka服务器搭建"><a href="#Eureka服务器搭建" class="headerlink" title="Eureka服务器搭建"></a>Eureka服务器搭建</h4><blockquote>
+<p>Eureka 解决了  微服务治理问题，因为相互调用之间十分复杂</p>
+</blockquote>
+<blockquote>
+<p>服务注册和发现</p>
+</blockquote>
+        
+          <a class="article-more-a" href="/2021/05/04/SpringCloud/spring-cloud/#more">more >></a>
+        
+      
+
+      
+    </div>
+    <div class="article-info article-info-index">
+      
+      
+	<div class="article-tag tagcloud">
+		<i class="icon-price-tags icon"></i>
+		<ul class="article-tag-list">
+			 
+        		<li class="article-tag-list-item">
+        			<a href="javascript:void(0)" class="js-tag article-tag-list-link color3">spring-cloud</a>
+        		</li>
+      		
+		</ul>
+	</div>
+
+      
+
+      
+        <p class="article-more-link">
+          <a class="article-more-a" href="/2021/05/04/SpringCloud/spring-cloud/">展开全文 >></a>
+        </p>
+      
+
+      
+      <div class="clearfix"></div>
+    </div>
+  </div>
+</article>
+
+<aside class="wrap-side-operation">
+    <div class="mod-side-operation">
+        
+        <div class="jump-container" id="js-jump-container" style="display:none;">
+            <a href="javascript:void(0)" class="mod-side-operation__jump-to-top">
+                <i class="icon-font icon-back"></i>
+            </a>
+            <div id="js-jump-plan-container" class="jump-plan-container" style="top: -11px;">
+                <i class="icon-font icon-plane jump-plane"></i>
+            </div>
+        </div>
+        
+        
+    </div>
+</aside>
+
+
+
+
+  
+    <article id="post-项目总结/登录注册" class="article article-type-post  article-index" itemscope itemprop="blogPost">
+  <div class="article-inner">
+    
+      <header class="article-header">
+        
+  
+    <h1 itemprop="name">
+      <a class="article-title" href="/2021/04/25/%E9%A1%B9%E7%9B%AE%E6%80%BB%E7%BB%93/%E7%99%BB%E5%BD%95%E6%B3%A8%E5%86%8C/">登录注册</a>
+    </h1>
+  
+
+        
+        <a href="/2021/04/25/%E9%A1%B9%E7%9B%AE%E6%80%BB%E7%BB%93/%E7%99%BB%E5%BD%95%E6%B3%A8%E5%86%8C/" class="archive-article-date">
   	<time datetime="2021-04-25T08:34:44.000Z" itemprop="datePublished"><i class="icon-calendar icon"></i>2021-04-25</time>
 </a>
         
@@ -205,7 +528,7 @@
 <li>4.如果是老用户，进入首页</li>
 </ul>
         
-          <a class="article-more-a" href="/2021/04/25/%E9%A1%B9%E7%9B%AE%E6%80%BB%E7%BB%93/%E4%BA%A4%E5%8F%8BApp-%E7%99%BB%E5%BD%95%E6%B3%A8%E5%86%8C%E6%A8%A1%E5%9D%97/#more">more >></a>
+          <a class="article-more-a" href="/2021/04/25/%E9%A1%B9%E7%9B%AE%E6%80%BB%E7%BB%93/%E7%99%BB%E5%BD%95%E6%B3%A8%E5%86%8C/#more">more >></a>
         
       
 
@@ -229,7 +552,91 @@
 
       
         <p class="article-more-link">
-          <a class="article-more-a" href="/2021/04/25/%E9%A1%B9%E7%9B%AE%E6%80%BB%E7%BB%93/%E4%BA%A4%E5%8F%8BApp-%E7%99%BB%E5%BD%95%E6%B3%A8%E5%86%8C%E6%A8%A1%E5%9D%97/">展开全文 >></a>
+          <a class="article-more-a" href="/2021/04/25/%E9%A1%B9%E7%9B%AE%E6%80%BB%E7%BB%93/%E7%99%BB%E5%BD%95%E6%B3%A8%E5%86%8C/">展开全文 >></a>
+        </p>
+      
+
+      
+      <div class="clearfix"></div>
+    </div>
+  </div>
+</article>
+
+<aside class="wrap-side-operation">
+    <div class="mod-side-operation">
+        
+        <div class="jump-container" id="js-jump-container" style="display:none;">
+            <a href="javascript:void(0)" class="mod-side-operation__jump-to-top">
+                <i class="icon-font icon-back"></i>
+            </a>
+            <div id="js-jump-plan-container" class="jump-plan-container" style="top: -11px;">
+                <i class="icon-font icon-plane jump-plane"></i>
+            </div>
+        </div>
+        
+        
+    </div>
+</aside>
+
+
+
+
+  
+    <article id="关于在使用docker时候的安装部署和相关命令-docker/安装docker和相关命令" class="article article-type-关于在使用docker时候的安装部署和相关命令  article-index" itemscope itemprop="blogPost">
+  <div class="article-inner">
+    
+      <header class="article-header">
+        
+  
+    <h1 itemprop="name">
+      <a class="article-title" href="/2021/04/14/docker/%E5%AE%89%E8%A3%85docker%E5%92%8C%E7%9B%B8%E5%85%B3%E5%91%BD%E4%BB%A4/">Docker</a>
+    </h1>
+  
+
+        
+        <a href="/2021/04/14/docker/%E5%AE%89%E8%A3%85docker%E5%92%8C%E7%9B%B8%E5%85%B3%E5%91%BD%E4%BB%A4/" class="archive-article-date">
+  	<time datetime="2021-04-14T08:00:00.000Z" itemprop="datePublished"><i class="icon-calendar icon"></i>2021-04-14</time>
+</a>
+        
+		
+		
+		<!--添加文章访问量-->
+		
+		
+		
+		
+      </header>
+    
+    <div class="article-entry" itemprop="articleBody">
+      
+        <h1 id="Docker相关"><a href="#Docker相关" class="headerlink" title="Docker相关"></a>Docker相关</h1><hr>
+<p><strong>Docker就相当于一个应用容器引擎，是容器化技术，用来解决软件迁移造成的环境不兼容问题</strong></p>
+        
+          <a class="article-more-a" href="/2021/04/14/docker/%E5%AE%89%E8%A3%85docker%E5%92%8C%E7%9B%B8%E5%85%B3%E5%91%BD%E4%BB%A4/#more">more >></a>
+        
+      
+
+      
+    </div>
+    <div class="article-info article-info-index">
+      
+      
+	<div class="article-tag tagcloud">
+		<i class="icon-price-tags icon"></i>
+		<ul class="article-tag-list">
+			 
+        		<li class="article-tag-list-item">
+        			<a href="javascript:void(0)" class="js-tag article-tag-list-link color2">Docker</a>
+        		</li>
+      		
+		</ul>
+	</div>
+
+      
+
+      
+        <p class="article-more-link">
+          <a class="article-more-a" href="/2021/04/14/docker/%E5%AE%89%E8%A3%85docker%E5%92%8C%E7%9B%B8%E5%85%B3%E5%91%BD%E4%BB%A4/">展开全文 >></a>
         </p>
       
 
@@ -765,254 +1172,6 @@
 
 
   
-    <article id="post-SpringMVC/SpringMVC" class="article article-type-post  article-index" itemscope itemprop="blogPost">
-  <div class="article-inner">
-    
-      <header class="article-header">
-        
-  
-    <h1 itemprop="name">
-      <a class="article-title" href="/2021/03/25/SpringMVC/SpringMVC/">SpringMVC</a>
-    </h1>
-  
-
-        
-        <a href="/2021/03/25/SpringMVC/SpringMVC/" class="archive-article-date">
-  	<time datetime="2021-03-25T01:18:55.000Z" itemprop="datePublished"><i class="icon-calendar icon"></i>2021-03-25</time>
-</a>
-        
-		
-		
-		<!--添加文章访问量-->
-		
-		
-		
-		
-      </header>
-    
-    <div class="article-entry" itemprop="articleBody">
-      
-        <h1 id="1-Spring-MVC简介"><a href="#1-Spring-MVC简介" class="headerlink" title="1 Spring MVC简介"></a>1 Spring MVC简介</h1><p>概述：是spring家族的一款基于mvc模式的轻量级的web框架。</p>
-<p>特点：</p>
-<p>1、是spring家族的</p>
-<p>2、轻量级的web框架（轻量级：暂用的系统资源较少）</p>
-<p>3、基于mvc模式</p>
-        
-          <a class="article-more-a" href="/2021/03/25/SpringMVC/SpringMVC/#more">more >></a>
-        
-      
-
-      
-    </div>
-    <div class="article-info article-info-index">
-      
-      
-	<div class="article-tag tagcloud">
-		<i class="icon-price-tags icon"></i>
-		<ul class="article-tag-list">
-			 
-        		<li class="article-tag-list-item">
-        			<a href="javascript:void(0)" class="js-tag article-tag-list-link color5">SpringMVC</a>
-        		</li>
-      		
-		</ul>
-	</div>
-
-      
-
-      
-        <p class="article-more-link">
-          <a class="article-more-a" href="/2021/03/25/SpringMVC/SpringMVC/">展开全文 >></a>
-        </p>
-      
-
-      
-      <div class="clearfix"></div>
-    </div>
-  </div>
-</article>
-
-<aside class="wrap-side-operation">
-    <div class="mod-side-operation">
-        
-        <div class="jump-container" id="js-jump-container" style="display:none;">
-            <a href="javascript:void(0)" class="mod-side-operation__jump-to-top">
-                <i class="icon-font icon-back"></i>
-            </a>
-            <div id="js-jump-plan-container" class="jump-plan-container" style="top: -11px;">
-                <i class="icon-font icon-plane jump-plane"></i>
-            </div>
-        </div>
-        
-        
-    </div>
-</aside>
-
-
-
-
-  
-    <article id="post-面试题自我总结/javase面试题自我理解" class="article article-type-post  article-index" itemscope itemprop="blogPost">
-  <div class="article-inner">
-    
-      <header class="article-header">
-        
-  
-    <h1 itemprop="name">
-      <a class="article-title" href="/2021/03/22/%E9%9D%A2%E8%AF%95%E9%A2%98%E8%87%AA%E6%88%91%E6%80%BB%E7%BB%93/javase%E9%9D%A2%E8%AF%95%E9%A2%98%E8%87%AA%E6%88%91%E7%90%86%E8%A7%A3/">javase面试题自我理解</a>
-    </h1>
-  
-
-        
-        <a href="/2021/03/22/%E9%9D%A2%E8%AF%95%E9%A2%98%E8%87%AA%E6%88%91%E6%80%BB%E7%BB%93/javase%E9%9D%A2%E8%AF%95%E9%A2%98%E8%87%AA%E6%88%91%E7%90%86%E8%A7%A3/" class="archive-article-date">
-  	<time datetime="2021-03-22T13:32:04.000Z" itemprop="datePublished"><i class="icon-calendar icon"></i>2021-03-22</time>
-</a>
-        
-		
-		
-		<!--添加文章访问量-->
-		
-		
-		
-		
-      </header>
-    
-    <div class="article-entry" itemprop="articleBody">
-      
-        <h3 id="面试题自我理解"><a href="#面试题自我理解" class="headerlink" title="面试题自我理解"></a>面试题自我理解</h3>
-        
-          <a class="article-more-a" href="/2021/03/22/%E9%9D%A2%E8%AF%95%E9%A2%98%E8%87%AA%E6%88%91%E6%80%BB%E7%BB%93/javase%E9%9D%A2%E8%AF%95%E9%A2%98%E8%87%AA%E6%88%91%E7%90%86%E8%A7%A3/#more">more >></a>
-        
-      
-
-      
-    </div>
-    <div class="article-info article-info-index">
-      
-      
-      
-
-      
-        <p class="article-more-link">
-          <a class="article-more-a" href="/2021/03/22/%E9%9D%A2%E8%AF%95%E9%A2%98%E8%87%AA%E6%88%91%E6%80%BB%E7%BB%93/javase%E9%9D%A2%E8%AF%95%E9%A2%98%E8%87%AA%E6%88%91%E7%90%86%E8%A7%A3/">展开全文 >></a>
-        </p>
-      
-
-      
-      <div class="clearfix"></div>
-    </div>
-  </div>
-</article>
-
-<aside class="wrap-side-operation">
-    <div class="mod-side-operation">
-        
-        <div class="jump-container" id="js-jump-container" style="display:none;">
-            <a href="javascript:void(0)" class="mod-side-operation__jump-to-top">
-                <i class="icon-font icon-back"></i>
-            </a>
-            <div id="js-jump-plan-container" class="jump-plan-container" style="top: -11px;">
-                <i class="icon-font icon-plane jump-plane"></i>
-            </div>
-        </div>
-        
-        
-    </div>
-</aside>
-
-
-
-
-  
-    <article id="post-Spring/spring-注解详解" class="article article-type-post  article-index" itemscope itemprop="blogPost">
-  <div class="article-inner">
-    
-      <header class="article-header">
-        
-  
-    <h1 itemprop="name">
-      <a class="article-title" href="/2021/03/21/Spring/spring-%E6%B3%A8%E8%A7%A3%E8%AF%A6%E8%A7%A3/">spring_注解详解</a>
-    </h1>
-  
-
-        
-        <a href="/2021/03/21/Spring/spring-%E6%B3%A8%E8%A7%A3%E8%AF%A6%E8%A7%A3/" class="archive-article-date">
-  	<time datetime="2021-03-21T01:14:23.000Z" itemprop="datePublished"><i class="icon-calendar icon"></i>2021-03-21</time>
-</a>
-        
-		
-		
-		<!--添加文章访问量-->
-		
-		
-		
-		
-      </header>
-    
-    <div class="article-entry" itemprop="articleBody">
-      
-        <h2 id="IOC-注解"><a href="#IOC-注解" class="headerlink" title="IOC-注解"></a>IOC-注解</h2><h3 id="注解驱动"><a href="#注解驱动" class="headerlink" title="注解驱动"></a>注解驱动</h3><ul>
-<li>用注解替换xml的配置，简化代码</li>
-</ul>
-<h3 id="注解的弊端"><a href="#注解的弊端" class="headerlink" title="注解的弊端"></a>注解的弊端</h3><ul>
-<li><p>为了达成注解驱动的目的，可能会将原先很简单的书写，变的更加复杂</p>
-</li>
-<li><p>XML中配置第三方开发的资源时很方便的，但是使用注解驱动无法在第三方开发的资源中进行编辑，因此会增大开发工作量</p>
-        
-          <a class="article-more-a" href="/2021/03/21/Spring/spring-%E6%B3%A8%E8%A7%A3%E8%AF%A6%E8%A7%A3/#more">more >></a>
-        
-      
-
-      
-    </div>
-    <div class="article-info article-info-index">
-      
-      
-	<div class="article-tag tagcloud">
-		<i class="icon-price-tags icon"></i>
-		<ul class="article-tag-list">
-			 
-        		<li class="article-tag-list-item">
-        			<a href="javascript:void(0)" class="js-tag article-tag-list-link color2">spring</a>
-        		</li>
-      		
-		</ul>
-	</div>
-
-      
-
-      
-        <p class="article-more-link">
-          <a class="article-more-a" href="/2021/03/21/Spring/spring-%E6%B3%A8%E8%A7%A3%E8%AF%A6%E8%A7%A3/">展开全文 >></a>
-        </p>
-      
-
-      
-      <div class="clearfix"></div>
-    </div>
-  </div>
-</article>
-
-<aside class="wrap-side-operation">
-    <div class="mod-side-operation">
-        
-        <div class="jump-container" id="js-jump-container" style="display:none;">
-            <a href="javascript:void(0)" class="mod-side-operation__jump-to-top">
-                <i class="icon-font icon-back"></i>
-            </a>
-            <div id="js-jump-plan-container" class="jump-plan-container" style="top: -11px;">
-                <i class="icon-font icon-plane jump-plane"></i>
-            </div>
-        </div>
-        
-        
-    </div>
-</aside>
-
-
-
-
-  
   
     <nav id="page-nav">
       <span class="page-number current">1</span><a class="page-number" href="/page/2/">2</a><a class="page-number" href="/page/3/">3</a><span class="space">&hellip;</span><a class="page-number" href="/page/11/">11</a><a class="extend next" rel="next" href="/page/2/">Next &amp;raquo;</a>
@@ -1148,6 +1307,10 @@ return o(i(t),arguments.length<2?void 0:u(arguments[1]))}})},function(t,n,r){var
           <ul class="article-tag-list" q-show="showTags">
              
               <li class="article-tag-list-item">
+                <a href="javascript:void(0)" class="js-tag color5">AJAX</a>
+              </li>
+             
+              <li class="article-tag-list-item">
                 <a href="javascript:void(0)" class="js-tag color4">ElasticSearch</a>
               </li>
              
@@ -1161,6 +1324,10 @@ return o(i(t),arguments.length<2?void 0:u(arguments[1]))}})},function(t,n,r){var
              
               <li class="article-tag-list-item">
                 <a href="javascript:void(0)" class="js-tag color5">JDBC</a>
+              </li>
+             
+              <li class="article-tag-list-item">
+                <a href="javascript:void(0)" class="js-tag color5">jdbc</a>
               </li>
              
               <li class="article-tag-list-item">
@@ -1188,7 +1355,7 @@ return o(i(t),arguments.length<2?void 0:u(arguments[1]))}})},function(t,n,r){var
               </li>
              
               <li class="article-tag-list-item">
-                <a href="javascript:void(0)" class="js-tag color5">AJAX</a>
+                <a href="javascript:void(0)" class="js-tag color3">spring-cloud</a>
               </li>
              
               <li class="article-tag-list-item">
@@ -1196,11 +1363,15 @@ return o(i(t),arguments.length<2?void 0:u(arguments[1]))}})},function(t,n,r){var
               </li>
              
               <li class="article-tag-list-item">
+                <a href="javascript:void(0)" class="js-tag color2">Docker</a>
+              </li>
+             
+              <li class="article-tag-list-item">
                 <a href="javascript:void(0)" class="js-tag color1">dubbo</a>
               </li>
              
               <li class="article-tag-list-item">
-                <a href="javascript:void(0)" class="js-tag color5">jdbc</a>
+                <a href="javascript:void(0)" class="js-tag color3">MyBatis</a>
               </li>
              
               <li class="article-tag-list-item">
@@ -1208,7 +1379,7 @@ return o(i(t),arguments.length<2?void 0:u(arguments[1]))}})},function(t,n,r){var
               </li>
              
               <li class="article-tag-list-item">
-                <a href="javascript:void(0)" class="js-tag color3">MyBatis</a>
+                <a href="javascript:void(0)" class="js-tag color1">mysql</a>
               </li>
              
               <li class="article-tag-list-item">
@@ -1313,10 +1484,6 @@ return o(i(t),arguments.length<2?void 0:u(arguments[1]))}})},function(t,n,r){var
              
               <li class="article-tag-list-item">
                 <a href="javascript:void(0)" class="js-tag color1">jvm调优</a>
-              </li>
-             
-              <li class="article-tag-list-item">
-                <a href="javascript:void(0)" class="js-tag color1">mysql</a>
               </li>
              
               <li class="article-tag-list-item">
