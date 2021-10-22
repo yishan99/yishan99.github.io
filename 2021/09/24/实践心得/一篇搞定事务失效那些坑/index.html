@@ -6,13 +6,17 @@
   <meta name="renderer" content="webkit">
   <meta http-equiv="X-UA-Compatible" content="IE=edge" >
   <link rel="dns-prefetch" href="http://example.com">
-  <title>Archives: 2021 | YiShan</title>
+  <title>一篇搞定事务失效那些坑 | YiShan</title>
   <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
-  <meta property="og:type" content="website">
-<meta property="og:title" content="YiShan">
-<meta property="og:url" content="http://example.com/archives/2021/page/3/index.html">
+  <meta name="description" content="Spring事务   @Transactional 1.访问权限问题 2.方法用final修饰 3.方法内部调用 4.未被spring管理 5.多线程调用">
+<meta property="og:type" content="article">
+<meta property="og:title" content="一篇搞定事务失效那些坑">
+<meta property="og:url" content="http://example.com/2021/09/24/%E5%AE%9E%E8%B7%B5%E5%BF%83%E5%BE%97/%E4%B8%80%E7%AF%87%E6%90%9E%E5%AE%9A%E4%BA%8B%E5%8A%A1%E5%A4%B1%E6%95%88%E9%82%A3%E4%BA%9B%E5%9D%91/index.html">
 <meta property="og:site_name" content="YiShan">
+<meta property="og:description" content="Spring事务   @Transactional 1.访问权限问题 2.方法用final修饰 3.方法内部调用 4.未被spring管理 5.多线程调用">
 <meta property="og:locale" content="en_US">
+<meta property="article:published_time" content="2021-09-24T05:42:05.000Z">
+<meta property="article:modified_time" content="2021-09-25T11:01:25.454Z">
 <meta property="article:author" content="John Doe">
 <meta name="twitter:card" content="summary">
   
@@ -169,399 +173,212 @@
             <canvas data-colors="#eaeaea" data-sectionHeight="100" data-contentId="js-content" id="myCanvas1" class="anm-canvas"></canvas>
           </div>
           <div id="js-content" class="content-ll">
-            
-  
-  
+            <article id="post-实践心得/一篇搞定事务失效那些坑" class="article article-type-post " itemscope itemprop="blogPost">
+  <div class="article-inner">
     
+      <header class="article-header">
+        
+  
+    <h1 class="article-title" itemprop="name">
+      一篇搞定事务失效那些坑
+    </h1>
+  
+
+        
+        <a href="/2021/09/24/%E5%AE%9E%E8%B7%B5%E5%BF%83%E5%BE%97/%E4%B8%80%E7%AF%87%E6%90%9E%E5%AE%9A%E4%BA%8B%E5%8A%A1%E5%A4%B1%E6%95%88%E9%82%A3%E4%BA%9B%E5%9D%91/" class="archive-article-date">
+  	<time datetime="2021-09-24T05:42:05.000Z" itemprop="datePublished"><i class="icon-calendar icon"></i>2021-09-24</time>
+</a>
+        
+		
+		
+		<!--添加文章访问量-->
+		
+			<span class="archive-article-date">
+				阅读量 <span id="busuanzi_value_page_pv"></span>
+			</span>
+		
+		
+		
+		
+      </header>
     
+    <div class="article-entry" itemprop="articleBody">
+      
+        <h4 id="Spring事务-Transactional"><a href="#Spring事务-Transactional" class="headerlink" title="Spring事务   @Transactional"></a>Spring事务   @Transactional</h4><ul>
+<li>1.访问权限问题</li>
+<li>2.方法用final修饰</li>
+<li>3.方法内部调用</li>
+<li>4.未被spring管理</li>
+<li>5.多线程调用</li>
+</ul>
+<a id="more"></a>
+
+<ul>
+<li>6.表不支持事务</li>
+<li>7.错误的传播特性</li>
+<li>8.自己吞了异常</li>
+<li>9.手动抛了别的异常</li>
+<li>10.自定义了回滚异常</li>
+<li>11.嵌套事务回滚多了 </li>
+</ul>
+<h5 id="1-访问权限问题"><a href="#1-访问权限问题" class="headerlink" title="1.访问权限问题"></a>1.访问权限问题</h5><p>java的访问权限主要有四种：private,default,protected,public，如果某些事务方法，定义了错误的访问权限，就会导致事务功能出现问题：</p>
+<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br></pre></td><td class="code"><pre><span class="line"><span class="meta">@Service</span></span><br><span class="line"><span class="keyword">public</span> <span class="class"><span class="keyword">class</span> <span class="title">UserService</span> </span>&#123;</span><br><span class="line">    </span><br><span class="line">    <span class="meta">@Transactional</span></span><br><span class="line">    <span class="function"><span class="keyword">private</span> <span class="keyword">void</span> <span class="title">add</span><span class="params">(UserModel userModel)</span> </span>&#123;</span><br><span class="line">         saveData(userModel);</span><br><span class="line">         updateData(userModel);</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<p><strong>add</strong>方法的访问权限被定义成了 <strong>private</strong>,这样会导致事务失效，spring是要求代理方法必须是 <strong>public</strong> 的，在 <strong>AbstractFallbackTransactionAttributeSource</strong>类的<strong>computeTransactionAttribute</strong>方法中有一个判断，如果目标方法不是<strong>public</strong>的，则<strong>TransactionAttribute</strong>返回<strong>null</strong>,即不支持书事务。</p>
+<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br></pre></td><td class="code"><pre><span class="line"><span class="function"><span class="keyword">protected</span> TransactionAttribute <span class="title">computeTransactionAttribute</span><span class="params">(Method method, <span class="meta">@Nullable</span> Class&lt;?&gt; targetClass)</span> </span>&#123;</span><br><span class="line">    <span class="comment">// Don&#x27;t allow no-public methods as required.</span></span><br><span class="line">    <span class="keyword">if</span> (allowPublicMethodsOnly() &amp;&amp; !Modifier.isPublic(method.getModifiers())) &#123;</span><br><span class="line">      <span class="keyword">return</span> <span class="keyword">null</span>;</span><br><span class="line">    &#125;</span><br><span class="line"></span><br><span class="line">    <span class="comment">// The method may be on an interface, but we need attributes from the target class.</span></span><br><span class="line">    <span class="comment">// If the target class is null, the method will be unchanged.</span></span><br><span class="line">    Method specificMethod = AopUtils.getMostSpecificMethod(method, targetClass);</span><br><span class="line"></span><br><span class="line">    <span class="comment">// First try is the method in the target class.</span></span><br><span class="line">    TransactionAttribute txAttr = findTransactionAttribute(specificMethod);</span><br><span class="line">    <span class="keyword">if</span> (txAttr != <span class="keyword">null</span>) &#123;</span><br><span class="line">      <span class="keyword">return</span> txAttr;</span><br><span class="line">    &#125;</span><br><span class="line"></span><br><span class="line">    <span class="comment">// Second try is the transaction attribute on the target class.</span></span><br><span class="line">    txAttr = findTransactionAttribute(specificMethod.getDeclaringClass());</span><br><span class="line">    <span class="keyword">if</span> (txAttr != <span class="keyword">null</span> &amp;&amp; ClassUtils.isUserLevelMethod(method)) &#123;</span><br><span class="line">      <span class="keyword">return</span> txAttr;</span><br><span class="line">    &#125;</span><br><span class="line"></span><br><span class="line">    <span class="keyword">if</span> (specificMethod != method) &#123;</span><br><span class="line">      <span class="comment">// Fallback is to look at the original method.</span></span><br><span class="line">      txAttr = findTransactionAttribute(method);</span><br><span class="line">      <span class="keyword">if</span> (txAttr != <span class="keyword">null</span>) &#123;</span><br><span class="line">        <span class="keyword">return</span> txAttr;</span><br><span class="line">      &#125;</span><br><span class="line">      <span class="comment">// Last fallback is the class of the original method.</span></span><br><span class="line">      txAttr = findTransactionAttribute(method.getDeclaringClass());</span><br><span class="line">      <span class="keyword">if</span> (txAttr != <span class="keyword">null</span> &amp;&amp; ClassUtils.isUserLevelMethod(method)) &#123;</span><br><span class="line">        <span class="keyword">return</span> txAttr;</span><br><span class="line">      &#125;</span><br><span class="line">    &#125;</span><br><span class="line">    <span class="keyword">return</span> <span class="keyword">null</span>;</span><br><span class="line">  &#125;</span><br></pre></td></tr></table></figure>
+<p>如果自定义的事务方法(目标方法)，他的访问权限不是<strong>public</strong>,而是<strong>private</strong>,<strong>default</strong>或<strong>protected</strong>的话，spring则不会提供事务功能。</p>
+<h5 id="2-方法用final修饰"><a href="#2-方法用final修饰" class="headerlink" title="2.方法用final修饰"></a>2.方法用final修饰</h5><p>有时候，某个方法不想被子类重写，我们会将此方法定义为final的。如果是事务方法定义成final的，</p>
+<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br></pre></td><td class="code"><pre><span class="line"><span class="meta">@Service</span></span><br><span class="line"><span class="keyword">public</span> <span class="class"><span class="keyword">class</span> <span class="title">UserService</span> </span>&#123;</span><br><span class="line"></span><br><span class="line">    <span class="meta">@Transactional</span></span><br><span class="line">    <span class="function"><span class="keyword">public</span> <span class="keyword">final</span> <span class="keyword">void</span> <span class="title">add</span><span class="params">(UserModel userModel)</span></span>&#123;</span><br><span class="line">        saveData(userModel);</span><br><span class="line">        updateData(userModel);</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<p>这样会导致事务失效。spring事务的源码，使用了<strong>aop</strong>,也就是通过<strong>jdk</strong>动态代理或者<strong>cglib</strong>,帮我们生成了代理类，在代理类中实现的事务功能。如果某个方法用<strong>final</strong>修饰了，那么在它的代理类中，也就无法重写该方法，进而不能添加事务功能。如果某个方法是<strong>static</strong>的，同样无法通过动态代理，变成事务方法。</p>
+
+      
+
+      
+        <div class="page-reward">
+          <a href="javascript:;" class="page-reward-btn tooltip-top">
+            <div class="tooltip tooltip-east">
+            <span class="tooltip-item">
+              赏
+            </span>
+            <span class="tooltip-content">
+              <span class="tooltip-text">
+                <span class="tooltip-inner">
+                  <p class="reward-p"><i class="icon icon-quo-left"></i>谢谢你请我吃糖果<i class="icon icon-quo-right"></i></p>
+                  <div class="reward-box">
+                    
+                    
+                  </div>
+                </span>
+              </span>
+            </span>
+          </div>
+          </a>
+        </div>
+      
+    </div>
+    <div class="article-info article-info-index">
       
       
-      <section class="archives-wrap">
-        <div class="archive-year-wrap">
-          <a href="/archives/2021" class="archive-year">2021</a>
-        </div>
-        <div class="archives">
-    
-    <article class="archive-article archive-type-post">
-  <div class="archive-article-inner">
-    <header class="archive-article-header">
-      	<div class="article-meta">
-	      	<a href="/2021/03/19/%E9%A1%B9%E7%9B%AE%E6%80%BB%E7%BB%93/%E9%A1%B9%E7%9B%AE%E5%9F%BA%E7%A1%80%E5%8A%9F%E8%83%BD/" class="archive-article-date">
-  	<time datetime="2021-03-19T10:32:11.000Z" itemprop="datePublished"><i class="icon-calendar icon"></i>2021-03-19</time>
-</a>
-        </div>
-    	 
-  
-    <h1 itemprop="name">
-      <a class="archive-article-title" href="/2021/03/19/%E9%A1%B9%E7%9B%AE%E6%80%BB%E7%BB%93/%E9%A1%B9%E7%9B%AE%E5%9F%BA%E7%A1%80%E5%8A%9F%E8%83%BD/">项目基础功能</a>
-    </h1>
-  
+      
 
-        <div class="article-info info-on-right">
-          
-	<div class="article-tag tagcloud">
-		<i class="icon-price-tags icon"></i>
-		<ul class="article-tag-list">
-			 
-        		<li class="article-tag-list-item">
-        			<a href="javascript:void(0)" class="js-tag article-tag-list-link color3">项目</a>
-        		</li>
-      		
-		</ul>
-	</div>
+      
 
-          
-
+      
+        
+<div class="share-btn share-icons tooltip-left">
+  <div class="tooltip tooltip-east">
+    <span class="tooltip-item">
+      <a href="javascript:;" class="share-sns share-outer">
+        <i class="icon icon-share"></i>
+      </a>
+    </span>
+    <span class="tooltip-content">
+      <div class="share-wrap">
+        <div class="share-icons">
+          <a class="weibo share-sns" href="javascript:;" data-type="weibo">
+            <i class="icon icon-weibo"></i>
+          </a>
+          <a class="weixin share-sns wxFab" href="javascript:;" data-type="weixin">
+            <i class="icon icon-weixin"></i>
+          </a>
+          <a class="qq share-sns" href="javascript:;" data-type="qq">
+            <i class="icon icon-qq"></i>
+          </a>
+          <a class="douban share-sns" href="javascript:;" data-type="douban">
+            <i class="icon icon-douban"></i>
+          </a>
+          <a class="qzone share-sns" href="javascript:;" data-type="qzone">
+            <i class="icon icon-qzone"></i>
+          </a>
+          <a class="facebook share-sns" href="javascript:;" data-type="facebook">
+            <i class="icon icon-facebook"></i>
+          </a>
+          <a class="twitter share-sns" href="javascript:;" data-type="twitter">
+            <i class="icon icon-twitter"></i>
+          </a>
+          <a class="google share-sns" href="javascript:;" data-type="google">
+            <i class="icon icon-google"></i>
+          </a>
         </div>
-        <div class="clearfix"></div>
-    </header>
+      </div>
+    </span>
+  </div>
+</div>
+
+<div class="page-modal wx-share js-wx-box">
+    <a class="close js-modal-close" href="javascript:;"><i class="icon icon-close"></i></a>
+    <p>扫一扫，分享到微信</p>
+    <div class="wx-qrcode">
+      <img src="//pan.baidu.com/share/qrcode?url=http://example.com/2021/09/24/%E5%AE%9E%E8%B7%B5%E5%BF%83%E5%BE%97/%E4%B8%80%E7%AF%87%E6%90%9E%E5%AE%9A%E4%BA%8B%E5%8A%A1%E5%A4%B1%E6%95%88%E9%82%A3%E4%BA%9B%E5%9D%91/" alt="微信分享二维码">
+    </div>
+</div>
+
+<div class="mask js-mask"></div>
+      
+      <div class="clearfix"></div>
+    </div>
   </div>
 </article>
+
   
-    
-    
-    <article class="archive-article archive-type-post">
-  <div class="archive-article-inner">
-    <header class="archive-article-header">
-      	<div class="article-meta">
-	      	<a href="/2021/03/06/AJAX/AJAX%E5%9F%BA%E7%A1%80/" class="archive-article-date">
-  	<time datetime="2021-03-06T01:06:00.000Z" itemprop="datePublished"><i class="icon-calendar icon"></i>2021-03-06</time>
-</a>
+<nav id="article-nav">
+  
+    <a href="/2021/10/21/%E5%AE%9E%E8%B7%B5%E5%BF%83%E5%BE%97/MySql%E4%B8%80%E5%AF%B9%E5%A4%9A%EF%BC%8C%E6%9F%A5%E8%AF%A2%E6%9C%80%E6%96%B0%E6%95%B0%E6%8D%AE/" id="article-nav-newer" class="article-nav-link-wrap">
+      <i class="icon-circle-left"></i>
+      <div class="article-nav-title">
+        
+          MySql一对多，查询最新数据
+        
+      </div>
+    </a>
+  
+  
+    <a href="/2021/09/09/%E5%AE%9E%E8%B7%B5%E5%BF%83%E5%BE%97/%E4%BC%98%E9%9B%85%E7%9A%84%E5%A4%84%E7%90%86%E5%BC%82%E5%B8%B8/" id="article-nav-older" class="article-nav-link-wrap">
+      <div class="article-nav-title"></div>
+      <i class="icon-circle-right"></i>
+    </a>
+  
+</nav>
+
+
+<aside class="wrap-side-operation">
+    <div class="mod-side-operation">
+        
+        <div class="jump-container" id="js-jump-container" style="display:none;">
+            <a href="javascript:void(0)" class="mod-side-operation__jump-to-top">
+                <i class="icon-font icon-back"></i>
+            </a>
+            <div id="js-jump-plan-container" class="jump-plan-container" style="top: -11px;">
+                <i class="icon-font icon-plane jump-plane"></i>
+            </div>
         </div>
-    	 
-  
-    <h1 itemprop="name">
-      <a class="archive-article-title" href="/2021/03/06/AJAX/AJAX%E5%9F%BA%E7%A1%80/">AJAX基础</a>
-    </h1>
-  
-
-        <div class="article-info info-on-right">
-          
-	<div class="article-tag tagcloud">
-		<i class="icon-price-tags icon"></i>
-		<ul class="article-tag-list">
-			 
-        		<li class="article-tag-list-item">
-        			<a href="javascript:void(0)" class="js-tag article-tag-list-link color5">AJAX</a>
-        		</li>
-      		
-		</ul>
-	</div>
-
-          
-
+        
+        
+        <div class="toc-container tooltip-left">
+            <i class="icon-font icon-category"></i>
+            <div class="tooltip tooltip-east">
+                <span class="tooltip-item">
+                </span>
+                <span class="tooltip-content">
+                    <div class="toc-article">
+                    <ol class="toc"><li class="toc-item toc-level-4"><a class="toc-link" href="#Spring%E4%BA%8B%E5%8A%A1-Transactional"><span class="toc-number">1.</span> <span class="toc-text">Spring事务   @Transactional</span></a><ol class="toc-child"><li class="toc-item toc-level-5"><a class="toc-link" href="#1-%E8%AE%BF%E9%97%AE%E6%9D%83%E9%99%90%E9%97%AE%E9%A2%98"><span class="toc-number">1.1.</span> <span class="toc-text">1.访问权限问题</span></a></li><li class="toc-item toc-level-5"><a class="toc-link" href="#2-%E6%96%B9%E6%B3%95%E7%94%A8final%E4%BF%AE%E9%A5%B0"><span class="toc-number">1.2.</span> <span class="toc-text">2.方法用final修饰</span></a></li></ol></li></ol>
+                    </div>
+                </span>
+            </div>
         </div>
-        <div class="clearfix"></div>
-    </header>
-  </div>
-</article>
-  
-    
-    
-    <article class="archive-article archive-type-post">
-  <div class="archive-article-inner">
-    <header class="archive-article-header">
-      	<div class="article-meta">
-	      	<a href="/2021/03/05/Redis/redis%E5%9F%BA%E7%A1%80%E7%9F%A5%E8%AF%86/" class="archive-article-date">
-  	<time datetime="2021-03-05T12:59:54.000Z" itemprop="datePublished"><i class="icon-calendar icon"></i>2021-03-05</time>
-</a>
-        </div>
-    	 
-  
-    <h1 itemprop="name">
-      <a class="archive-article-title" href="/2021/03/05/Redis/redis%E5%9F%BA%E7%A1%80%E7%9F%A5%E8%AF%86/">redis基础知识</a>
-    </h1>
-  
-
-        <div class="article-info info-on-right">
-          
-	<div class="article-tag tagcloud">
-		<i class="icon-price-tags icon"></i>
-		<ul class="article-tag-list">
-			 
-        		<li class="article-tag-list-item">
-        			<a href="javascript:void(0)" class="js-tag article-tag-list-link color1">redis</a>
-        		</li>
-      		
-		</ul>
-	</div>
-
-          
-	<div class="article-category tagcloud">
-		<i class="icon-book icon"></i>
-		<ul class="article-tag-list">
-			 
-        		<li class="article-tag-list-item">
-        			<a href="/categories/redis//" class="article-tag-list-link color1">redis</a>
-        		</li>
-      		
-		</ul>
-	</div>
+        
+    </div>
+</aside>
 
 
-        </div>
-        <div class="clearfix"></div>
-    </header>
-  </div>
-</article>
+
   
-    
-    
-    <article class="archive-article archive-type-post">
-  <div class="archive-article-inner">
-    <header class="archive-article-header">
-      	<div class="article-meta">
-	      	<a href="/2021/03/02/mybatis/MyBatis%E5%85%B3%E7%B3%BB%E6%98%A0%E5%B0%84/" class="archive-article-date">
-  	<time datetime="2021-03-02T13:04:41.000Z" itemprop="datePublished"><i class="icon-calendar icon"></i>2021-03-02</time>
-</a>
-        </div>
-    	 
   
-    <h1 itemprop="name">
-      <a class="archive-article-title" href="/2021/03/02/mybatis/MyBatis%E5%85%B3%E7%B3%BB%E6%98%A0%E5%B0%84/">MyBatis关系映射</a>
-    </h1>
   
 
-        <div class="article-info info-on-right">
-          
-	<div class="article-tag tagcloud">
-		<i class="icon-price-tags icon"></i>
-		<ul class="article-tag-list">
-			 
-        		<li class="article-tag-list-item">
-        			<a href="javascript:void(0)" class="js-tag article-tag-list-link color3">MyBatis</a>
-        		</li>
-      		
-		</ul>
-	</div>
-
-          
-
-        </div>
-        <div class="clearfix"></div>
-    </header>
-  </div>
-</article>
-  
-    
-    
-    <article class="archive-article archive-type-post">
-  <div class="archive-article-inner">
-    <header class="archive-article-header">
-      	<div class="article-meta">
-	      	<a href="/2021/02/25/mybatis/MyBatis%E5%9F%BA%E7%A1%80/" class="archive-article-date">
-  	<time datetime="2021-02-25T01:10:45.000Z" itemprop="datePublished"><i class="icon-calendar icon"></i>2021-02-25</time>
-</a>
-        </div>
-    	 
-  
-    <h1 itemprop="name">
-      <a class="archive-article-title" href="/2021/02/25/mybatis/MyBatis%E5%9F%BA%E7%A1%80/">MyBatis基础</a>
-    </h1>
   
 
-        <div class="article-info info-on-right">
-          
-	<div class="article-tag tagcloud">
-		<i class="icon-price-tags icon"></i>
-		<ul class="article-tag-list">
-			 
-        		<li class="article-tag-list-item">
-        			<a href="javascript:void(0)" class="js-tag article-tag-list-link color3">框架</a>
-        		</li>
-      		
-		</ul>
-	</div>
-
-          
-
-        </div>
-        <div class="clearfix"></div>
-    </header>
-  </div>
-</article>
-  
-    
-    
-    <article class="archive-article archive-type-post">
-  <div class="archive-article-inner">
-    <header class="archive-article-header">
-      	<div class="article-meta">
-	      	<a href="/2021/02/24/JDBC/jdbc%E9%AB%98%E7%BA%A7%E7%9F%A5%E8%AF%86/" class="archive-article-date">
-  	<time datetime="2021-02-24T02:44:26.000Z" itemprop="datePublished"><i class="icon-calendar icon"></i>2021-02-24</time>
-</a>
-        </div>
-    	 
-  
-    <h1 itemprop="name">
-      <a class="archive-article-title" href="/2021/02/24/JDBC/jdbc%E9%AB%98%E7%BA%A7%E7%9F%A5%E8%AF%86/">jdbc高级知识</a>
-    </h1>
   
 
-        <div class="article-info info-on-right">
-          
-	<div class="article-tag tagcloud">
-		<i class="icon-price-tags icon"></i>
-		<ul class="article-tag-list">
-			 
-        		<li class="article-tag-list-item">
-        			<a href="javascript:void(0)" class="js-tag article-tag-list-link color5">jdbc</a>
-        		</li>
-      		
-		</ul>
-	</div>
-
-          
-
-        </div>
-        <div class="clearfix"></div>
-    </header>
-  </div>
-</article>
-  
-    
-    
-    <article class="archive-article archive-type-post">
-  <div class="archive-article-inner">
-    <header class="archive-article-header">
-      	<div class="article-meta">
-	      	<a href="/2021/02/23/JDBC/JDBC%E5%9F%BA%E7%A1%80%E7%9F%A5%E8%AF%86/" class="archive-article-date">
-  	<time datetime="2021-02-23T01:16:00.000Z" itemprop="datePublished"><i class="icon-calendar icon"></i>2021-02-23</time>
-</a>
-        </div>
-    	 
-  
-    <h1 itemprop="name">
-      <a class="archive-article-title" href="/2021/02/23/JDBC/JDBC%E5%9F%BA%E7%A1%80%E7%9F%A5%E8%AF%86/">JDBC基础知识</a>
-    </h1>
-  
-
-        <div class="article-info info-on-right">
-          
-	<div class="article-tag tagcloud">
-		<i class="icon-price-tags icon"></i>
-		<ul class="article-tag-list">
-			 
-        		<li class="article-tag-list-item">
-        			<a href="javascript:void(0)" class="js-tag article-tag-list-link color5">JDBC</a>
-        		</li>
-      		
-		</ul>
-	</div>
-
-          
-
-        </div>
-        <div class="clearfix"></div>
-    </header>
-  </div>
-</article>
-  
-    
-    
-    <article class="archive-article archive-type-post">
-  <div class="archive-article-inner">
-    <header class="archive-article-header">
-      	<div class="article-meta">
-	      	<a href="/2021/02/22/mysql/mysql%E8%BF%9B%E9%98%B6/" class="archive-article-date">
-  	<time datetime="2021-02-22T02:11:26.000Z" itemprop="datePublished"><i class="icon-calendar icon"></i>2021-02-22</time>
-</a>
-        </div>
-    	 
-  
-    <h1 itemprop="name">
-      <a class="archive-article-title" href="/2021/02/22/mysql/mysql%E8%BF%9B%E9%98%B6/">mysql进阶</a>
-    </h1>
-  
-
-        <div class="article-info info-on-right">
-          
-	<div class="article-tag tagcloud">
-		<i class="icon-price-tags icon"></i>
-		<ul class="article-tag-list">
-			 
-        		<li class="article-tag-list-item">
-        			<a href="javascript:void(0)" class="js-tag article-tag-list-link color1">mysql</a>
-        		</li>
-      		
-		</ul>
-	</div>
-
-          
-
-        </div>
-        <div class="clearfix"></div>
-    </header>
-  </div>
-</article>
-  
-    
-    
-    <article class="archive-article archive-type-post">
-  <div class="archive-article-inner">
-    <header class="archive-article-header">
-      	<div class="article-meta">
-	      	<a href="/2021/02/20/JVM/java%E5%86%85%E5%AD%98%E5%8C%BA%E5%9F%9F%E4%B8%8E%E5%86%85%E5%AD%98%E6%BA%A2%E5%87%BA%E5%BC%82%E5%B8%B8/" class="archive-article-date">
-  	<time datetime="2021-02-20T12:52:11.000Z" itemprop="datePublished"><i class="icon-calendar icon"></i>2021-02-20</time>
-</a>
-        </div>
-    	 
-  
-    <h1 itemprop="name">
-      <a class="archive-article-title" href="/2021/02/20/JVM/java%E5%86%85%E5%AD%98%E5%8C%BA%E5%9F%9F%E4%B8%8E%E5%86%85%E5%AD%98%E6%BA%A2%E5%87%BA%E5%BC%82%E5%B8%B8/">java内存区域与内存溢出异常</a>
-    </h1>
-  
-
-        <div class="article-info info-on-right">
-          
-	<div class="article-tag tagcloud">
-		<i class="icon-price-tags icon"></i>
-		<ul class="article-tag-list">
-			 
-        		<li class="article-tag-list-item">
-        			<a href="javascript:void(0)" class="js-tag article-tag-list-link color4">JVM</a>
-        		</li>
-      		
-		</ul>
-	</div>
-
-          
-
-        </div>
-        <div class="clearfix"></div>
-    </header>
-  </div>
-</article>
-  
-    
-    
-    <article class="archive-article archive-type-post">
-  <div class="archive-article-inner">
-    <header class="archive-article-header">
-      	<div class="article-meta">
-	      	<a href="/2021/01/31/web%E6%A0%B8%E5%BF%83/web%E6%A0%B8%E5%BF%83-request-response/" class="archive-article-date">
-  	<time datetime="2021-01-31T08:22:08.478Z" itemprop="datePublished"><i class="icon-calendar icon"></i>2021-01-31</time>
-</a>
-        </div>
-    	 
-        <div class="article-info info-on-right">
-          
-          
-
-        </div>
-        <div class="clearfix"></div>
-    </header>
-  </div>
-</article>
-  
-  
-    </div></section>
-  
-
-    
-    <nav id="page-nav">
-      <a class="extend prev" rel="prev" href="/archives/2021/page/2/">&amp;laquo; Prev</a><a class="page-number" href="/archives/2021/">1</a><a class="page-number" href="/archives/2021/page/2/">2</a><span class="page-number current">3</span><a class="page-number" href="/archives/2021/page/4/">4</a><a class="page-number" href="/archives/2021/page/5/">5</a><a class="extend next" rel="next" href="/archives/2021/page/4/">Next &amp;raquo;</a>
-    </nav>
   
 
 
@@ -627,8 +444,8 @@
 	var yiliaConfig = {
 		mathjax: false,
 		isHome: false,
-		isPost: false,
-		isArchive: true,
+		isPost: true,
+		isArchive: false,
 		isTag: false,
 		isCategory: false,
 		open_in_new: false,
